@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/CommodityInBuyList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/CommodityNotFound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/CommodityOutOfStock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/DuplicateUsername.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/InvalidRating.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/InvalidUsername.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/ProviderNotFound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/UserNotFound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Provider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
