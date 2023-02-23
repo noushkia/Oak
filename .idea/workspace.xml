@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/CommodityInBuyList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/CommodityNotFound.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/CommodityOutOfStock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/DuplicateUsername.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/InvalidRating.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/InvalidUsername.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/ProviderNotFound.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/UserNotFound.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Provider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" afterDir="false" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add User class and functionality.&#10;Add Commodity Class and partial functionality.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +22,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -110,5 +105,20 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add User class and functionality.&#10;Add Commodity Class and partial functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add User class and functionality.&#10;Add Commodity Class and partial functionality." />
   </component>
 </project>
