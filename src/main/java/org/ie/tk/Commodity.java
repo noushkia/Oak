@@ -2,6 +2,7 @@ package org.ie.tk;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import org.ie.tk.Exception.InvalidRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +17,7 @@ public class Commodity {
     private ArrayList<String> categories;
     private Double rating;
     private Integer inStock;
+
     private final HashMap<String, Double> userRatings = new HashMap<>();
 
     @Override
@@ -62,5 +64,19 @@ public class Commodity {
             categoriesNode.add(category);
         }
         return categoriesNode;
+    }
+
+    public void addUserRating(String username, Integer rating) throws InvalidRating {
+        //todo: check rating type?
+        if (rating < 1 || rating > 10) {
+            throw new InvalidRating();
+        }
+        userRatings.put(username, rating);
+        //todo
+        // check if comm or user is found or not in system
+    }
+
+    public Boolean inCategory(String category) {
+        return categories.contains(category);
     }
 }
