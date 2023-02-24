@@ -21,19 +21,6 @@ public class Commodity {
 
     private final HashMap<String, Integer> userRatings = new HashMap<>();
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Commodity other) {
-            return Objects.equals(this.id, other.id);
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
     public String getId() {
         return id;
     }
@@ -67,12 +54,16 @@ public class Commodity {
         return categoriesNode;
     }
 
-    public void addUserRating(String username, Integer rating) throws InvalidRating {
-        //todo: check rating type?
-        if (rating < 1 || rating > 10) {
-            throw new InvalidRating();
+    public void addUserRating(String username, String rating) throws InvalidRating {
+        try {
+            int ratingValue = Integer.parseInt(rating);
+            if (ratingValue < 1 || ratingValue > 10) {
+                throw new InvalidRating();
+            }
+            userRatings.put(username, ratingValue);
+        } catch (NumberFormatException e) {
+            throw  new InvalidRating();
         }
-        userRatings.put(username, rating);
         //todo
         // check if comm or user is found or not in system
     }

@@ -64,9 +64,9 @@ public class User {
         // Increase inStock
     }
 
-    public ArrayNode getBuyList() {
+    public ArrayList<ObjectNode> getBuyList() {
         ObjectMapper objectMapper = new ObjectMapper();
-        ArrayNode buyListNode = objectMapper.createArrayNode();
+        ArrayList<ObjectNode> buyListNode = new ArrayList<>();
 
         for (Commodity commodity : buyList.values()) {
             ObjectNode commodityNode = objectMapper.createObjectNode();
