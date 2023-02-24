@@ -1,4 +1,4 @@
-package org.ie.tk.Exception;
+package org.ie.tk.Exception.User;
 
 public class InvalidUsername extends Exception{
     public InvalidUsername() {

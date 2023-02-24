@@ -1,4 +1,4 @@
-package org.ie.tk.Exception;
+package org.ie.tk.Exception.Commodity;
 
 public class CommodityInBuyList extends Exception {
     public CommodityInBuyList(String username, String commId) {
