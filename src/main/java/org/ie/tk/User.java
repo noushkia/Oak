@@ -1,40 +1,65 @@
 package org.ie.tk;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.ie.tk.Exception.Commodity.CommodityInBuyList;
 import org.ie.tk.Exception.Commodity.CommodityNotFound;
+import org.ie.tk.Exception.User.InvalidUsername;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class User {
     private String username;
-    private String email;
     private String password;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private String email;
+
     private Date birthDate;
     private String address;
     private Integer credit;
-    private final ArrayList<Commodity> buyList = new ArrayList<>();
+    private final HashMap<String, Commodity> buyList;
+
+    @JsonCreator
+    public User(@JsonProperty("username") String username,
+                @JsonProperty("password") String password,
+                @JsonProperty("email") String email,
+                @JsonProperty("birthDate") String birthDate,
+                @JsonProperty("address") String address,
+                @JsonProperty("credit") Integer credit) throws InvalidUsername, ParseException {
+        if (!username.matches("^[a-zA-Z0-9_]+$")) {
+            throw new InvalidUsername();
+        }
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(birthDate);
+        this.address = address;
+        this.credit = credit;
+        this.buyList = new HashMap<>();
+    }
 
     public void addToBuyList(Commodity commodity) throws CommodityInBuyList {
-        if (buyList.contains(commodity)) {
+        if (buyList.containsKey(commodity.getId())) {
             throw new CommodityInBuyList(this.username, commodity.getId());
         }
-        buyList.add(commodity);
+        buyList.put(commodity.getId(), commodity);
         //TODO
         // Decrease me there in system
         // Check found and inStock in system
     }
 
     public void removeFromBuyList(Commodity commodity) throws CommodityNotFound {
-        if (!buyList.contains(commodity)){
+        if (!buyList.containsKey(commodity.getId())){
             throw new CommodityNotFound(commodity.getId());
         }
-        buyList.remove(commodity);
+        buyList.remove(commodity.getId());
         //TODO
         // Increase inStock
     }
@@ -43,7 +68,7 @@ public class User {
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayNode buyListNode = objectMapper.createArrayNode();
 
-        for (Commodity commodity : buyList) {
+        for (Commodity commodity : buyList.values()) {
             ObjectNode commodityNode = objectMapper.createObjectNode();
             commodityNode.put("id", commodity.getId());
             commodityNode.put("name", commodity.getName());
