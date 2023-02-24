@@ -3,6 +3,8 @@ package org.ie.tk;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.ie.tk.Exception.Commodity.CommodityOutOfStock;
 import org.ie.tk.Exception.Commodity.InvalidRating;
 
 import java.util.ArrayList;
@@ -25,16 +27,8 @@ public class Commodity {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String getProviderId() {
         return providerId;
-    }
-
-    public Integer getPrice() {
-        return price;
     }
 
     public Double getRating() {
@@ -45,13 +39,16 @@ public class Commodity {
         return sum / (userRatings.size() + 1);
     }
 
-    public ArrayNode getCategories() {
+    public ObjectNode getObjectNode() {
         ObjectMapper objectMapper = new ObjectMapper();
-        ArrayNode categoriesNode = objectMapper.createArrayNode();
-        for (String category: categories) {
-            categoriesNode.add(category);
-        }
-        return categoriesNode;
+        ObjectNode commodityNode = objectMapper.createObjectNode();
+        commodityNode.put("id", id);
+        commodityNode.put("name", name);
+        commodityNode.put("providerId", providerId);
+        commodityNode.put("price", price);
+        commodityNode.set("categories", objectMapper.valueToTree(categories));
+        commodityNode.put("rating", getRating());
+        return commodityNode;
     }
 
     public void addUserRating(String username, String rating) throws InvalidRating {
@@ -64,11 +61,23 @@ public class Commodity {
         } catch (NumberFormatException e) {
             throw  new InvalidRating();
         }
-        //todo
-        // check if comm or user is found or not in system
     }
 
     public Boolean isInCategory(String category) {
         return categories.contains(category);
+    }
+
+    public void stockUp() {
+        inStock++;
+    }
+
+    public void stockDown() {
+        inStock--;
+    }
+
+    public void validate() throws CommodityOutOfStock {
+        if (inStock == 0) {
+            throw new CommodityOutOfStock(id);
+        }
     }
 }

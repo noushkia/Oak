@@ -39,9 +39,6 @@ public class User {
             throw new CommodityInBuyList(this.username, commodity.getId());
         }
         buyList.put(commodity.getId(), commodity);
-        //TODO
-        // Decrease me there in system
-        // Check found and inStock in system
     }
 
     public void removeFromBuyList(Commodity commodity) throws CommodityNotFound {
@@ -49,25 +46,13 @@ public class User {
             throw new CommodityNotFound(commodity.getId());
         }
         buyList.remove(commodity.getId());
-        //TODO
-        // Increase inStock
     }
 
     public ArrayList<ObjectNode> getBuyList() {
-        ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<ObjectNode> buyListNode = new ArrayList<>();
-
         for (Commodity commodity : buyList.values()) {
-            ObjectNode commodityNode = objectMapper.createObjectNode();
-            commodityNode.put("id", commodity.getId());
-            commodityNode.put("name", commodity.getName());
-            commodityNode.put("providerId", commodity.getProviderId());
-            commodityNode.put("price", commodity.getPrice());
-            commodityNode.set("categories", commodity.getCategories());
-            commodityNode.put("rating", commodity.getRating());
-            buyListNode.add(commodityNode);
+            buyListNode.add(commodity.getObjectNode());
         }
-
         return buyListNode;
     }
 
