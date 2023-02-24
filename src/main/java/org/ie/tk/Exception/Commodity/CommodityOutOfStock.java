@@ -1,4 +1,4 @@
-package org.ie.tk.Exception;
+package org.ie.tk.Exception.Commodity;
 
 public class CommodityOutOfStock extends Exception{
     public CommodityOutOfStock(String commId) {

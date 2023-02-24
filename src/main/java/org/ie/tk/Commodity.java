@@ -3,7 +3,7 @@ package org.ie.tk;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import org.ie.tk.Exception.InvalidRating;
+import org.ie.tk.Exception.Commodity.InvalidRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;

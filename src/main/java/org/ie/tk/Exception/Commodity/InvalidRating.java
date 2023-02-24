@@ -1,4 +1,4 @@
-package org.ie.tk.Exception;
+package org.ie.tk.Exception.Commodity;
 
 public class InvalidRating extends Exception{
     public InvalidRating() {
