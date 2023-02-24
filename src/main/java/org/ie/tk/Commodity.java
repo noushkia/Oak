@@ -17,7 +17,8 @@ public class Commodity {
     private ArrayList<String> categories;
     private Double rating;
     private Integer inStock;
-    private final HashMap<String, Integer> userRatings = new HashMap<>();
+
+    private final HashMap<String, Double> userRatings = new HashMap<>();
 
     @Override
     public boolean equals(Object obj) {
@@ -50,7 +51,7 @@ public class Commodity {
 
     public Double getRating() {
         Double sum = rating;
-        for (Integer userRating : userRatings.values()) {
+        for (Double userRating : userRatings.values()) {
             sum += userRating;
         }
         return sum / (userRatings.size() + 1);
