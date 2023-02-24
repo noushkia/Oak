@@ -2,6 +2,7 @@ package org.ie.tk;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -15,35 +16,23 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     private String username;
     private String password;
     private String email;
-
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthDate;
     private String address;
     private Integer credit;
-    private final HashMap<String, Commodity> buyList;
+    private final HashMap<String, Commodity> buyList = new HashMap<>();
 
-    @JsonCreator
-    public User(@JsonProperty("username") String username,
-                @JsonProperty("password") String password,
-                @JsonProperty("email") String email,
-                @JsonProperty("birthDate") String birthDate,
-                @JsonProperty("address") String address,
-                @JsonProperty("credit") Integer credit) throws InvalidUsername, ParseException {
+    public void validate() throws InvalidUsername {
         if (!username.matches("^[a-zA-Z0-9_]+$")) {
             throw new InvalidUsername();
         }
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(birthDate);
-        this.address = address;
-        this.credit = credit;
-        this.buyList = new HashMap<>();
     }
+    public String getUsername() { return username;}
 
     public void addToBuyList(Commodity commodity) throws CommodityInBuyList {
         if (buyList.containsKey(commodity.getId())) {
