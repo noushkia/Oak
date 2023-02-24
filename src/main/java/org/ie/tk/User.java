@@ -1,5 +1,6 @@
 package org.ie.tk;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -7,12 +8,14 @@ import org.ie.tk.Exception.CommodityInBuyList;
 import org.ie.tk.Exception.CommodityNotFound;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class User {
     private String username;
     private String email;
     private String password;
-    private String birthDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date birthDate;
     private String address;
     private Integer credit;
     private final ArrayList<Commodity> buyList = new ArrayList<>();

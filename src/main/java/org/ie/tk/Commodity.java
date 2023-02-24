@@ -1,5 +1,6 @@
 package org.ie.tk;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.ie.tk.Exception.InvalidRating;
@@ -8,17 +9,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-//@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Commodity {
     private String id;
     private String name;
     private String providerId;
-    private Double price;
+    private Integer price;
     private ArrayList<String> categories;
     private Double rating;
     private Integer inStock;
 
-    private final HashMap<String, Double> userRatings = new HashMap<>();
+    private final HashMap<String, Integer> userRatings = new HashMap<>();
 
     @Override
     public boolean equals(Object obj) {
@@ -45,13 +46,13 @@ public class Commodity {
         return providerId;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
     public Double getRating() {
         Double sum = rating;
-        for (Double userRating : userRatings.values()) {
+        for (Integer userRating : userRatings.values()) {
             sum += userRating;
         }
         return sum / (userRatings.size() + 1);
@@ -76,7 +77,7 @@ public class Commodity {
         // check if comm or user is found or not in system
     }
 
-    public Boolean inCategory(String category) {
+    public Boolean isInCategory(String category) {
         return categories.contains(category);
     }
 }
