@@ -2,7 +2,7 @@ package org.ie.tk;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import org.ie.tk.Exception.InvalidRating;
+import org.ie.tk.Exception.Commodity.InvalidRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,7 +71,7 @@ public class Commodity {
         if (rating < 1 || rating > 10) {
             throw new InvalidRating();
         }
-        userRatings.put(username, rating);
+        userRatings.put(username, Double.valueOf(rating));
         //todo
         // check if comm or user is found or not in system
     }

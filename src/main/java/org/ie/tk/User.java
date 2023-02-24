@@ -3,8 +3,8 @@ package org.ie.tk;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.ie.tk.Exception.CommodityInBuyList;
-import org.ie.tk.Exception.CommodityNotFound;
+import org.ie.tk.Exception.Commodity.CommodityNotFound;
+import org.ie.tk.Exception.Commodity.CommodityInBuyList;
 
 import java.util.ArrayList;
 
