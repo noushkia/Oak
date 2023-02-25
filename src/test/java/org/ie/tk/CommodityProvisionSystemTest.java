@@ -102,5 +102,82 @@ public class CommodityProvisionSystemTest {
         assertEquals("Commodity not found with id " + idNode.get("id"), result.get("error").asText());
     }
 
+    // get commodities by category tests
 
+
+
+    // add commodity to buyList tests
+
+    @Test
+    public void addToBuyList_withValidInputs_shouldAddCommodityToUserBuyList() throws Exception {
+        // Arrange
+        //todo: use setup
+        String username = "user1";
+        String commodityId = "commodity1";
+        int initialStock = 10;
+        ObjectNode userNode = JsonNodeFactory.instance.objectNode();
+        userNode.put("username", username);
+        cps.addUser(userNode);
+        ObjectNode commodityNode = JsonNodeFactory.instance.objectNode();
+        commodityNode.put("id", commodityId);
+        commodityNode.put("providerId", "provider1");
+        commodityNode.put("name", "Commodity 1");
+        commodityNode.put("description", "Description of Commodity 1");
+        commodityNode.put("price", 100);
+        commodityNode.put("stock", initialStock);
+        cps.addProvider(JsonNodeFactory.instance.objectNode().put("id", "provider1"));
+        cps.addCommodity(commodityNode);
+        //todo: use setup
+        ObjectNode buyListNode = JsonNodeFactory.instance.objectNode();
+        buyListNode.put("username", username);
+        buyListNode.put("commodityId", commodityId);
+
+        // Act
+        cps.addToBuyList(buyListNode);
+
+        // Assert
+        assertEquals(1, cps.findUser(username).getBuyList().size());
+        assertEquals(commodityId, String.valueOf(cps.findUser(username).getBuyList().get(0).get("id")));
+        //todo: implement getInStock
+        assertEquals(initialStock - 1, cps.findCommodity(commodityId).getInStock());
+    }
+
+    @Test
+    public void addToBuyList_withNonExistingUser_shouldThrowUserNotFound() throws Exception {
+        // Arrange
+        //todo: use setup
+        String username = "user1";
+        String commodityId = "commodity1";
+        //todo: use setup
+        ObjectNode buyListNode = JsonNodeFactory.instance.objectNode();
+        buyListNode.put("username", username);
+        buyListNode.put("commodityId", commodityId);
+
+        // Act & Assert
+        UserNotFound exception = assertThrows(UserNotFound.class, () -> {
+            cps.addToBuyList(buyListNode);
+        });
+        assertEquals("User with username " + username + " not found", exception.getMessage());
+    }
+
+    @Test
+    public void addToBuyList_withNonExistingCommodity_shouldThrowCommodityNotFound() throws Exception {
+        // Arrange
+        //todo: use setup
+        String username = "user1";
+        String commodityId = "commodity1";
+        ObjectNode userNode = JsonNodeFactory.instance.objectNode();
+        userNode.put("username", username);
+        cps.addUser(userNode);
+        //todo: use setup
+        ObjectNode buyListNode = JsonNodeFactory.instance.objectNode();
+        buyListNode.put("username", username);
+        buyListNode.put("commodityId", commodityId);
+
+        // Act & Assert
+        CommodityNotFound exception = assertThrows(CommodityNotFound.class, () -> {
+            cps.addToBuyList(buyListNode);
+        });
+        assertEquals("Commodity with id " + commodityId + " not found", exception.getMessage());
+    }
 }
