@@ -16,6 +16,9 @@ public class CommandHandler {
     private static final String RATE_COMMODITY = "rateCommodity";
     private static final String ADD_TO_BUY_LIST = "addToBuyList";
     private static final String REMOVE_FROM_BUY_LIST = "removeFromBuyList";
+    private static final String GET_COMMODITY_BY_ID = "getCommodityById";
+    private static final String GET_COMMODITIES_BY_CATEGORY = "getCommoditiesByCategory";
+    private static final String GET_BUY_LIST = "getBuyList";
 
     private final CommodityProvisionSystem commodityProvisionSystem = new CommodityProvisionSystem();
     private ObjectMapper mapper = new ObjectMapper();
@@ -65,7 +68,18 @@ public class CommandHandler {
                     responseNode = commodityProvisionSystem.removeFromBuyList(jsonNode);
                     break;
                 }
-
+                case GET_COMMODITY_BY_ID -> {
+                    responseNode = commodityProvisionSystem.getCommodityById(jsonNode);
+                    break;
+                }
+                case GET_COMMODITIES_BY_CATEGORY -> {
+                    responseNode = commodityProvisionSystem.getCommoditiesByCategory(jsonNode);
+                    break;
+                }
+                case GET_BUY_LIST -> {
+                    responseNode = commodityProvisionSystem.getBuyList(jsonNode);
+                    break;
+                }
             }
             if (responseNode != null){
                 printJson(responseNode);

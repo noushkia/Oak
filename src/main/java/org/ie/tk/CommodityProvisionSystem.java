@@ -162,4 +162,48 @@ public class CommodityProvisionSystem {
         response.put("response", responseText);
         return createJsonResult(success, response);
     }
+
+    public JsonNode getCommodityById(JsonNode commodityNode) {
+        ObjectNode response = null;
+        String responseText;
+        boolean success = true;
+        try {
+            Commodity commodity = findCommodity(commodityNode.get("id").asText());
+            Provider provider = findProvider(commodity.getProviderId());
+            response = commodity.getObjectNode();
+            response.remove("providerId");
+            response.put("provider", provider.getName());
+        } catch (Exception e) {
+            response = mapper.createObjectNode();
+            response.put("response", e.getMessage());
+            success = false;
+        }
+        return createJsonResult(success, response);
+    }
+
+    public JsonNode getCommoditiesByCategory(JsonNode commodityNode) {
+        ArrayList<ObjectNode> commoditiesNode = new ArrayList<>();
+        for (Commodity commodity : commodities.values()) {
+            if (commodity.isInCategory(commodityNode.get("category").asText())) {
+                commoditiesNode.add(commodity.getObjectNode());
+            }
+        }
+        ObjectNode response = mapper.createObjectNode();
+        response.set("CommoditiesListByCategory", mapper.valueToTree(commoditiesNode));
+        return createJsonResult(true, response);
+    }
+
+    public JsonNode getBuyList(JsonNode buyListNode) {
+        ObjectNode response = mapper.createObjectNode();
+        String responseText;
+        boolean success = true;
+        try {
+            User user = findUser(buyListNode.get("username").asText());
+            response.set("buyList", mapper.valueToTree(user.getBuyList()));
+        } catch (Exception e) {
+            response.put("response", e.getMessage());
+            success = false;
+        }
+        return createJsonResult(success, response);
+    }
 }
