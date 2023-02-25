@@ -86,4 +86,8 @@ public class CommandHandler {
             }
         }
     }
+    public static void main(String[] args) throws JsonProcessingException {
+        CommandHandler commandHandler = new CommandHandler();
+        commandHandler.run();
+    }
 }
