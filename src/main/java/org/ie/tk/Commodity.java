@@ -57,7 +57,7 @@ public class Commodity {
             }
             userRatings.put(username, ratingValue);
         } catch (NumberFormatException e) {
-            throw  new InvalidRating();
+            throw new InvalidRating();
         }
     }
 
@@ -65,12 +65,8 @@ public class Commodity {
         return categories.contains(category);
     }
 
-    public void stockUp() {
-        inStock++;
-    }
-
-    public void stockDown() {
-        inStock--;
+    public void updateStock(Integer amount) {
+        inStock += amount;
     }
 
     public void validate() throws CommodityOutOfStock {
