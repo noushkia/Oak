@@ -12,10 +12,10 @@ import java.util.HashMap;
 
 public class CommodityProvisionSystem {
 
-    private HashMap<String, Commodity> commodities;
-    private HashMap<String, Provider> providers;
-    private HashMap<String, User> users;
-    private ObjectMapper mapper;
+    private final HashMap<String, Commodity> commodities;
+    private final HashMap<String, Provider> providers;
+    private final HashMap<String, User> users;
+    private final ObjectMapper mapper;
 
     public CommodityProvisionSystem() {
         commodities = new HashMap<>();

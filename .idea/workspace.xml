@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add User class and functionality.&#10;Add Commodity Class and partial functionality.">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Remove unnecessary breaks.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +103,14 @@
       <workItem from="1677158624199" duration="2000" />
       <workItem from="1677160220663" duration="1522000" />
     </task>
+    <task id="LOCAL-00001" summary="Remove unnecessary breaks.">
+      <created>1677321018117</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677321018117</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +129,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add User class and functionality.&#10;Add Commodity Class and partial functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add User class and functionality.&#10;Add Commodity Class and partial functionality." />
+    <MESSAGE value="Remove unnecessary breaks." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unnecessary breaks." />
   </component>
 </project>

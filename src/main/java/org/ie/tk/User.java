@@ -1,21 +1,16 @@
 package org.ie.tk;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.ie.tk.Exception.Commodity.CommodityInBuyList;
 import org.ie.tk.Exception.Commodity.CommodityNotFound;
 import org.ie.tk.Exception.User.InvalidUsername;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     private String username;

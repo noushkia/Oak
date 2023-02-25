@@ -2,14 +2,12 @@ package org.ie.tk;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.ie.tk.Exception.Commodity.CommodityOutOfStock;
 import org.ie.tk.Exception.Commodity.InvalidRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Commodity {
