@@ -24,7 +24,7 @@ public class CommodityProvisionSystem {
         mapper = new ObjectMapper();
     }
 
-    private JsonNode createJsonResult(boolean success, JsonNode data) {
+    JsonNode createJsonResult(boolean success, JsonNode data) {
         ObjectNode root = mapper.createObjectNode();
         root.put("success", success);
         root.set("data", data);
@@ -32,7 +32,7 @@ public class CommodityProvisionSystem {
     }
 
     public Provider findProvider(String providerId) throws ProviderNotFound {
-        if (providers.containsKey(providerId)) {
+        if (!providers.containsKey(providerId)) {
             throw new ProviderNotFound(providerId);
         }
         return providers.get(providerId);

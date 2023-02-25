@@ -1,7 +1,9 @@
 package org.ie.tk;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.ie.tk.Exception.Commodity.CommodityInBuyList;
 import org.ie.tk.Exception.Commodity.CommodityNotFound;
@@ -13,13 +15,20 @@ import java.util.HashMap;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
+    @JsonProperty("username")
     private String username;
+    @JsonProperty("password")
     private String password;
+    @JsonProperty("email")
     private String email;
+    @JsonProperty("birthDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthDate;
+    @JsonProperty("address")
     private String address;
+    @JsonProperty("credit")
     private Integer credit;
+    @JsonIgnore
     private final HashMap<String, Commodity> buyList = new HashMap<>();
 
     public void validate() throws InvalidUsername {
