@@ -42,43 +42,33 @@ public class CommandHandler {
             switch (splitInput[COMMAND_INDEX]) {
                 case ADD_USER -> {
                     responseNode = commodityProvisionSystem.addUser(jsonNode);
-                    break;
                 }
                 case ADD_PROVIDER -> {
                     responseNode = commodityProvisionSystem.addProvider(jsonNode);
-                    break;
                 }
                 case ADD_COMMODITY -> {
                     responseNode = commodityProvisionSystem.addCommodity(jsonNode);
-                    break;
                 }
                 case GET_COMMODITIES_LIST -> {
                     responseNode = commodityProvisionSystem.getCommoditiesList();
-                    break;
                 }
                 case RATE_COMMODITY -> {
                     responseNode = commodityProvisionSystem.rateCommodity(jsonNode);
-                    break;
                 }
                 case ADD_TO_BUY_LIST -> {
                     responseNode = commodityProvisionSystem.addToBuyList(jsonNode);
-                    break;
                 }
                 case REMOVE_FROM_BUY_LIST -> {
                     responseNode = commodityProvisionSystem.removeFromBuyList(jsonNode);
-                    break;
                 }
                 case GET_COMMODITY_BY_ID -> {
                     responseNode = commodityProvisionSystem.getCommodityById(jsonNode);
-                    break;
                 }
                 case GET_COMMODITIES_BY_CATEGORY -> {
                     responseNode = commodityProvisionSystem.getCommoditiesByCategory(jsonNode);
-                    break;
                 }
                 case GET_BUY_LIST -> {
                     responseNode = commodityProvisionSystem.getBuyList(jsonNode);
-                    break;
                 }
             }
             if (responseNode != null){

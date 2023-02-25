@@ -7,8 +7,6 @@
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add User class and functionality.&#10;Add Commodity Class and partial functionality.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Provider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,19 +110,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="Commodity" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
