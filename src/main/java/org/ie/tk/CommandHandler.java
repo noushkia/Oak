@@ -4,11 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
 import java.util.Scanner;
+
 public class CommandHandler {
     private static final int COMMAND_INDEX = 0;
-    private static final int JSON_INDEX = 1;
+    private static final int DATA_INDEX = 1;
     private static final String ADD_USER = "addUser";
     private static final String ADD_PROVIDER = "addProvider";
     private static final String ADD_COMMODITY = "addCommodity";
@@ -21,7 +21,7 @@ public class CommandHandler {
     private static final String GET_BUY_LIST = "getBuyList";
 
     private final CommodityProvisionSystem commodityProvisionSystem = new CommodityProvisionSystem();
-    private ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper();
 
     private void printJson(JsonNode json) {
         try {
@@ -37,48 +37,38 @@ public class CommandHandler {
             String[] splitInput = input.split(" ", 2);
             JsonNode jsonNode = null, responseNode = null;
             if (splitInput.length > 1) {
-                jsonNode = mapper.readTree(splitInput[JSON_INDEX]);
+                jsonNode = mapper.readTree(splitInput[DATA_INDEX]);
             }
             switch (splitInput[COMMAND_INDEX]) {
                 case ADD_USER -> {
                     responseNode = commodityProvisionSystem.addUser(jsonNode);
-                    break;
                 }
                 case ADD_PROVIDER -> {
                     responseNode = commodityProvisionSystem.addProvider(jsonNode);
-                    break;
                 }
                 case ADD_COMMODITY -> {
                     responseNode = commodityProvisionSystem.addCommodity(jsonNode);
-                    break;
                 }
                 case GET_COMMODITIES_LIST -> {
                     responseNode = commodityProvisionSystem.getCommoditiesList();
-                    break;
                 }
                 case RATE_COMMODITY -> {
                     responseNode = commodityProvisionSystem.rateCommodity(jsonNode);
-                    break;
                 }
                 case ADD_TO_BUY_LIST -> {
                     responseNode = commodityProvisionSystem.addToBuyList(jsonNode);
-                    break;
                 }
                 case REMOVE_FROM_BUY_LIST -> {
                     responseNode = commodityProvisionSystem.removeFromBuyList(jsonNode);
-                    break;
                 }
                 case GET_COMMODITY_BY_ID -> {
                     responseNode = commodityProvisionSystem.getCommodityById(jsonNode);
-                    break;
                 }
                 case GET_COMMODITIES_BY_CATEGORY -> {
                     responseNode = commodityProvisionSystem.getCommoditiesByCategory(jsonNode);
-                    break;
                 }
                 case GET_BUY_LIST -> {
                     responseNode = commodityProvisionSystem.getBuyList(jsonNode);
-                    break;
                 }
             }
             if (responseNode != null){

@@ -12,10 +12,10 @@ import java.util.HashMap;
 
 public class CommodityProvisionSystem {
 
-    private HashMap<String, Commodity> commodities;
-    private HashMap<String, Provider> providers;
-    private HashMap<String, User> users;
-    private ObjectMapper mapper;
+    private final HashMap<String, Commodity> commodities;
+    private final HashMap<String, Provider> providers;
+    private final HashMap<String, User> users;
+    private final ObjectMapper mapper;
 
     public CommodityProvisionSystem() {
         commodities = new HashMap<>();
@@ -135,7 +135,7 @@ public class CommodityProvisionSystem {
             Commodity commodity = findCommodity(buyListNode.get("commodityId").asText());
             commodity.validate();
             user.addToBuyList(commodity);
-            commodity.stockDown();
+            commodity.updateStock(-1);
             responseText = "Commodity with id " + commodity.getId() + " added to user's buy list with username " + user.getUsername()+ " successfully!";
         } catch (Exception e) {
             responseText = e.getMessage();
@@ -153,7 +153,7 @@ public class CommodityProvisionSystem {
             User user = findUser(buyListNode.get("username").asText());
             Commodity commodity = findCommodity(buyListNode.get("commodityId").asText());
             user.removeFromBuyList(commodity);
-            commodity.stockUp();
+            commodity.updateStock(1);
             responseText = "Commodity with id " + commodity.getId() + " removed from user's buy list with username " + user.getUsername()+ " successfully!";
         } catch (Exception e) {
             responseText = e.getMessage();
@@ -164,8 +164,7 @@ public class CommodityProvisionSystem {
     }
 
     public JsonNode getCommodityById(JsonNode commodityNode) {
-        ObjectNode response = null;
-        String responseText;
+        ObjectNode response;
         boolean success = true;
         try {
             Commodity commodity = findCommodity(commodityNode.get("id").asText());
@@ -195,7 +194,6 @@ public class CommodityProvisionSystem {
 
     public JsonNode getBuyList(JsonNode buyListNode) {
         ObjectNode response = mapper.createObjectNode();
-        String responseText;
         boolean success = true;
         try {
             User user = findUser(buyListNode.get("username").asText());

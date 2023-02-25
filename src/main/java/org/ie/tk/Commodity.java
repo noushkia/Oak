@@ -2,14 +2,12 @@ package org.ie.tk;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.ie.tk.Exception.Commodity.CommodityOutOfStock;
 import org.ie.tk.Exception.Commodity.InvalidRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Commodity {
@@ -59,7 +57,7 @@ public class Commodity {
             }
             userRatings.put(username, ratingValue);
         } catch (NumberFormatException e) {
-            throw  new InvalidRating();
+            throw new InvalidRating();
         }
     }
 
@@ -67,12 +65,8 @@ public class Commodity {
         return categories.contains(category);
     }
 
-    public void stockUp() {
-        inStock++;
-    }
-
-    public void stockDown() {
-        inStock--;
+    public void updateStock(Integer amount) {
+        inStock += amount;
     }
 
     public void validate() throws CommodityOutOfStock {
