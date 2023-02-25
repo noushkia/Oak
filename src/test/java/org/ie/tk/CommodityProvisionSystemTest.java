@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import org.ie.tk.Exception.Commodity.CommodityNotFound;
+import org.ie.tk.Exception.Provider.ProviderNotFound;
 import org.ie.tk.Exception.User.UserNotFound;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,8 @@ import static org.junit.Assert.assertEquals;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import java.util.ArrayList;
 
 
 public class CommodityProvisionSystemTest {
@@ -104,7 +107,24 @@ public class CommodityProvisionSystemTest {
 
     // get commodities by category tests
 
+    @Test
+    public void testGetCommoditiesByCategory() throws ProviderNotFound, UserNotFound, CommodityNotFound {
+        // Arrange
+        ArrayList<Commodity> expected = new ArrayList<>();
+        //todo: use setup
+        expected.add(c1);
+        expected.add(c2);
+        //todo: use setup
+        ObjectNode categoryNode = mapper.createObjectNode();
+        categoryNode.put("category", "Vegetables");
 
+        // Act
+        JsonNode actual = cps.getCommoditiesByCategory(categoryNode);
+        //todo: convert JsonNode to arraylist?
+
+        // Assert
+        assertEquals(expected, actual);
+    }
 
     // add commodity to buyList tests
 
