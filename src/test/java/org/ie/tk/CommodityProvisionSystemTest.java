@@ -71,4 +71,36 @@ public class CommodityProvisionSystemTest {
         assertEquals(4, commodity.getUserRatings().get("john_doe").intValue());
     }
 
+    // getCommodityById tests
+
+    @Test
+    public void testGetCommodityByIdSuccess() throws Exception {
+        // Arrange
+        ObjectNode idNode = mapper.createObjectNode();
+        idNode.put("id", "456");//todo: get a setup commodity id
+        JsonNode expectedData = mapper.valueToTree(cps.findCommodity(String.valueOf(idNode.get("id"))));
+
+        // Act
+        JsonNode result = cps.getCommodityById(idNode);
+
+        // Assert
+        assertTrue(result.get("success").asBoolean());
+        assertEquals(expectedData, result.get("data"));
+    }
+
+    @Test
+    public void testGetCommodityByIdCommodityNotFound() throws Exception {
+        // Arrange
+        ObjectNode idNode = mapper.createObjectNode();
+        idNode.put("id", "456");
+
+        // Act
+        JsonNode result = cps.getCommodityById(idNode);
+
+        // Assert
+        assertFalse(result.get("success").asBoolean());
+        assertEquals("Commodity not found with id " + idNode.get("id"), result.get("error").asText());
+    }
+
+
 }

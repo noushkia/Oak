@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add User class and functionality.&#10;Add Commodity Class and partial functionality.">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add rateCommodity tests">
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +99,14 @@
       <workItem from="1677158624199" duration="2000" />
       <workItem from="1677160220663" duration="1522000" />
     </task>
+    <task id="LOCAL-00001" summary="Add rateCommodity tests">
+      <created>1677313703507</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1677313703507</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,6 +137,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add User class and functionality.&#10;Add Commodity Class and partial functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add User class and functionality.&#10;Add Commodity Class and partial functionality." />
+    <MESSAGE value="Add rateCommodity tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add rateCommodity tests" />
   </component>
 </project>
