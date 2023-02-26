@@ -29,7 +29,7 @@ public class User {
     @JsonProperty("credit")
     private Integer credit;
     @JsonIgnore
-    private final HashMap<String, Commodity> buyList = new HashMap<>();
+    private final HashMap<Integer, Commodity> buyList = new HashMap<>();
 
     public void validate() throws InvalidUsername {
         if (!username.matches("^[a-zA-Z0-9_]+$")) {

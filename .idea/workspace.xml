@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Remove unused variables.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/commodities.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/commodities.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/providers.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/providers.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +65,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Maven.Oak [clean,install]">
+  <component name="RunManager" selected="JUnit.CommodityProvisionSystemTest">
     <configuration name="CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.ie.tk.CommandHandler" />
       <module name="Oak" />
