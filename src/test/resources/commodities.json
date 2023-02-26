@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "Commodity 1",
+    "providerId": 1,
+    "price": 200,
+    "categories": ["Vegetables", "Fruit"],
+    "rating": 8.8,
+    "inStock": 2
+  },
+  {
+    "id": 2,
+    "name": "Commodity 2",
+    "providerId": 1,
+    "price": 200,
+    "categories": ["Vegetables", "Fruit"],
+    "rating": 8.8,
+    "inStock": 1
+  },
+  {
+    "id": 3,
+    "name": "Commodity 3",
+    "providerId": 1,
+    "price": 300,
+    "categories": ["Tech"],
+    "rating": 8.5,
+    "inStock": 0
+  }
+]

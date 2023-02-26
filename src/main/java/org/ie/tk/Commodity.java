@@ -1,82 +1,95 @@
 package org.ie.tk;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.ie.tk.Exception.Commodity.CommodityOutOfStock;
 import org.ie.tk.Exception.Commodity.InvalidRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
-//@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Commodity {
-    private String id;
+    @JsonProperty("id")
+    private Integer id;
+    @JsonProperty("name")
     private String name;
-    private String providerId;
-    private Double price;
+    @JsonProperty("providerId")
+    private Integer providerId;
+    @JsonProperty("price")
+    private Integer price;
+    @JsonProperty("categories")
     private ArrayList<String> categories;
+    @JsonProperty("rating")
     private Double rating;
+    @JsonProperty("inStock")
     private Integer inStock;
 
-    private final HashMap<String, Double> userRatings = new HashMap<>();
+    @JsonIgnore
+    private final HashMap<String, Integer> userRatings = new HashMap<>();
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Commodity other) {
-            return Objects.equals(this.id, other.id);
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getProviderId() {
+    public Integer getProviderId() {
         return providerId;
-    }
-
-    public Double getPrice() {
-        return price;
     }
 
     public Double getRating() {
         Double sum = rating;
-        for (Double userRating : userRatings.values()) {
+        for (Integer userRating : userRatings.values()) {
             sum += userRating;
         }
         return sum / (userRatings.size() + 1);
     }
 
-    public ArrayNode getCategories() {
+    public ObjectNode getObjectNode() {
         ObjectMapper objectMapper = new ObjectMapper();
-        ArrayNode categoriesNode = objectMapper.createArrayNode();
-        for (String category: categories) {
-            categoriesNode.add(category);
-        }
-        return categoriesNode;
+        ObjectNode commodityNode = objectMapper.createObjectNode();
+        commodityNode.put("id", id);
+        commodityNode.put("name", name);
+        commodityNode.put("providerId", providerId);
+        commodityNode.put("price", price);
+        commodityNode.set("categories", objectMapper.valueToTree(categories));
+        commodityNode.put("rating", getRating());
+        return commodityNode;
     }
 
-    public void addUserRating(String username, Integer rating) throws InvalidRating {
-        //todo: check rating type?
-        if (rating < 1 || rating > 10) {
+    public void addUserRating(String username, String rating) throws InvalidRating {
+        try {
+            int ratingValue = Integer.parseInt(rating);
+            if (ratingValue < 1 || ratingValue > 10) {
+                throw new InvalidRating();
+            }
+            userRatings.put(username, ratingValue);
+        } catch (NumberFormatException e) {
             throw new InvalidRating();
         }
-        userRatings.put(username, Double.valueOf(rating));
-        //todo
-        // check if comm or user is found or not in system
     }
 
-    public Boolean inCategory(String category) {
+    public Boolean isInCategory(String category) {
         return categories.contains(category);
+    }
+
+    public void updateStock(Integer amount) {
+        inStock += amount;
+    }
+
+    public void validate() throws CommodityOutOfStock {
+        if (inStock == 0) {
+            throw new CommodityOutOfStock(id);
+        }
+    }
+
+    public HashMap<String, Integer> getUserRatings() {
+        return userRatings;
+    }
+
+    public int getInStock() {
+        return inStock;
     }
 }
