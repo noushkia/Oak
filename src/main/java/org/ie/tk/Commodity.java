@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.ie.tk.Exception.Commodity.CommodityOutOfStock;
 import org.ie.tk.Exception.Commodity.InvalidRating;
@@ -26,8 +24,6 @@ public class Commodity {
     @JsonProperty("price")
     private Integer price;
     @JsonProperty("categories")
-    @JsonDeserialize(using = CategoriesDeserializer.class)
-    @JsonSerialize(using = CategoriesSerializer.class)
     private ArrayList<String> categories;
     @JsonProperty("rating")
     private Double rating;
