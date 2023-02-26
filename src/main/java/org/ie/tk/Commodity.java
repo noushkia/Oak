@@ -7,8 +7,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.ie.tk.Exception.Commodity.CommodityOutOfStock;
 import org.ie.tk.Exception.Commodity.InvalidRating;
-import org.ie.tk.utils.CategoriesDeserializer;
-import org.ie.tk.utils.CategoriesSerializer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
