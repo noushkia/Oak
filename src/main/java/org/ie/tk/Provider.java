@@ -9,14 +9,14 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Provider {
     @JsonProperty("id")
-    private String id;
+    private Integer id;
     @JsonProperty("name")
     private String name;
     @JsonProperty("registryDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date registryDate;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 

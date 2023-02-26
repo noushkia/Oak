@@ -53,7 +53,7 @@ public class CommodityProvisionSystemTest {
 
     // rate commodity tests
     @Test
-    public void testRateCommodity() throws Exception {
+    public void rateCommodity() throws Exception {
         // Arrange
         String username = users[0].getUsername();
         String commodityId = commodities[0].getId();

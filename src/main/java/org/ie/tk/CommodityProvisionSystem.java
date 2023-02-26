@@ -12,8 +12,8 @@ import java.util.HashMap;
 
 public class CommodityProvisionSystem {
 
-    private final HashMap<String, Commodity> commodities;
-    private final HashMap<String, Provider> providers;
+    private final HashMap<Integer, Commodity> commodities;
+    private final HashMap<Integer, Provider> providers;
     private final HashMap<String, User> users;
     private final ObjectMapper mapper;
 
@@ -31,7 +31,7 @@ public class CommodityProvisionSystem {
         return root;
     }
 
-    public Provider findProvider(String providerId) throws ProviderNotFound {
+    public Provider findProvider(Integer providerId) throws ProviderNotFound {
         if (!providers.containsKey(providerId)) {
             throw new ProviderNotFound(providerId);
         }
@@ -45,7 +45,7 @@ public class CommodityProvisionSystem {
         return users.get(username);
     }
 
-    public Commodity findCommodity(String commodityId) throws CommodityNotFound {
+    public Commodity findCommodity(Integer commodityId) throws CommodityNotFound {
         if (!commodities.containsKey(commodityId)) {
             throw new CommodityNotFound(commodityId);
         }
@@ -115,7 +115,7 @@ public class CommodityProvisionSystem {
         boolean success = true;
         try {
             User user = findUser(ratingNode.get("username").asText());
-            Commodity commodity = findCommodity(ratingNode.get("commodityId").asText());
+            Commodity commodity = findCommodity(ratingNode.get("commodityId").asInt());
             commodity.addUserRating(user.getUsername(), ratingNode.get("score").asText());
             responseText = "Commodity with id " + commodity.getId() + " rated by user with username " + user.getUsername()+ " successfully!";
         } catch (Exception e) {
@@ -132,7 +132,7 @@ public class CommodityProvisionSystem {
         boolean success = true;
         try {
             User user = findUser(buyListNode.get("username").asText());
-            Commodity commodity = findCommodity(buyListNode.get("commodityId").asText());
+            Commodity commodity = findCommodity(buyListNode.get("commodityId").asInt());
             commodity.validate();
             user.addToBuyList(commodity);
             commodity.updateStock(-1);
@@ -151,7 +151,7 @@ public class CommodityProvisionSystem {
         boolean success = true;
         try {
             User user = findUser(buyListNode.get("username").asText());
-            Commodity commodity = findCommodity(buyListNode.get("commodityId").asText());
+            Commodity commodity = findCommodity(buyListNode.get("commodityId").asInt());
             user.removeFromBuyList(commodity);
             commodity.updateStock(1);
             responseText = "Commodity with id " + commodity.getId() + " removed from user's buy list with username " + user.getUsername()+ " successfully!";
@@ -167,7 +167,7 @@ public class CommodityProvisionSystem {
         ObjectNode response;
         boolean success = true;
         try {
-            Commodity commodity = findCommodity(commodityNode.get("id").asText());
+            Commodity commodity = findCommodity(commodityNode.get("id").asInt());
             Provider provider = findProvider(commodity.getProviderId());
             response = commodity.getObjectNode();
             response.remove("providerId");

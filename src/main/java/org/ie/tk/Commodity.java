@@ -16,11 +16,11 @@ import java.util.HashMap;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Commodity {
     @JsonProperty("id")
-    private String id;
+    private Integer id;
     @JsonProperty("name")
     private String name;
     @JsonProperty("providerId")
-    private String providerId;
+    private Integer providerId;
     @JsonProperty("price")
     private Integer price;
     @JsonProperty("categories")
@@ -33,11 +33,11 @@ public class Commodity {
     @JsonIgnore
     private final HashMap<String, Integer> userRatings = new HashMap<>();
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public String getProviderId() {
+    public Integer getProviderId() {
         return providerId;
     }
 
