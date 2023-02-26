@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Remove unused variables.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/utils/CategoriesDeserializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/utils/CategoriesSerializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/commodities.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/providers.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/users.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/User/UserNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/User/UserNotFound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Provider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,23 +84,8 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.ie.tk" />
       <option name="MAIN_CLASS_NAME" value="org.ie.tk.CommodityProvisionSystemTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CommodityProvisionSystemTest.testGetCommodityByIdCommodityNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Oak" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.ie.tk.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.ie.tk" />
-      <option name="MAIN_CLASS_NAME" value="org.ie.tk.CommodityProvisionSystemTest" />
-      <option name="METHOD_NAME" value="testGetCommodityByIdCommodityNotFound" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -142,10 +116,14 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.CommandHandler" />
+      <item itemvalue="JUnit.CommodityProvisionSystemTest" />
+      <item itemvalue="Maven.Oak [clean,install]" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.CommodityProvisionSystemTest" />
-        <item itemvalue="JUnit.CommodityProvisionSystemTest.testGetCommodityByIdCommodityNotFound" />
         <item itemvalue="Application.CommandHandler" />
       </list>
     </recent_temporary>
@@ -200,17 +178,6 @@
     <MESSAGE value="Remove unused imports." />
     <MESSAGE value="Remove unused variables." />
     <option name="LAST_COMMIT_MESSAGE" value="Remove unused variables." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="30" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Oak$CommodityProvisionSystemTest.ic" NAME="CommodityProvisionSystemTest Coverage Results" MODIFIED="1677351387860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
