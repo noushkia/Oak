@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.TextNode;
 import org.ie.tk.Exception.Commodity.CommodityNotFound;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -275,5 +276,10 @@ public class CommodityProvisionSystemTest {
 
         // Act & Assert
         assertEquals(expectedResponse.toString(), cps.addToBuyList(buyListNode).toString());
+    }
+
+    @After
+    public void tearDown() {
+        cps = null;
     }
 }
