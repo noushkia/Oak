@@ -31,6 +31,9 @@ public class Commodity {
     @JsonIgnore
     private final HashMap<String, Integer> userRatings = new HashMap<>();
 
+    @JsonIgnore
+    private final HashMap<Integer, Comment> userComments = new HashMap<>();
+
     public Integer getId() {
         return id;
     }
@@ -91,5 +94,9 @@ public class Commodity {
 
     public int getInStock() {
         return inStock;
+    }
+
+    public void addComment(Comment comment) {
+        userComments.put(comment.getId(), comment);
     }
 }

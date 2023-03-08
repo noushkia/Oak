@@ -201,6 +201,10 @@ public class CommodityProvisionSystem {
         return createJsonResult(success, response);
     }
 
+    public JsonNode voteComment(JsonNode voteNode) throws ExecutionControl.NotImplementedException {
+        throw new ExecutionControl.NotImplementedException("vote comment");
+    }
+
     public JsonNode addToBuyList(JsonNode buyListNode) {
         ObjectNode response = mapper.createObjectNode();
         String responseText;
