@@ -3,6 +3,7 @@ package org.ie.tk;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import jdk.jshell.spi.ExecutionControl;
 import org.ie.tk.Exception.Commodity.CommodityNotFound;
 import org.ie.tk.Exception.Provider.ProviderNotFound;
 import org.ie.tk.Exception.User.UserNotFound;
@@ -51,6 +52,7 @@ public class CommodityProvisionSystem {
         }
         return commodities.get(commodityId);
     }
+
     public JsonNode addUser(JsonNode userNode) {
         ObjectNode response = mapper.createObjectNode();
         String responseText;
@@ -60,6 +62,36 @@ public class CommodityProvisionSystem {
             user.validate();
             users.put(user.getUsername(), user);
             responseText = "User with username " + user.getUsername() + " added/updated successfully!";
+        } catch (Exception e) {
+            responseText = e.getMessage();
+            success = false;
+        }
+        response.put("response", responseText);
+        return createJsonResult(success, response);
+    }
+
+    public JsonNode getUserById(JsonNode userNode) {
+        ObjectNode response;
+        boolean success = true;
+        try {
+            User user = findUser(userNode.get("username").asText());
+            response = user.getObjectNode();
+        } catch (Exception e) {
+            response = mapper.createObjectNode();
+            response.put("response", e.getMessage());
+            success = false;
+        }
+        return createJsonResult(success, response);
+    }
+
+    public JsonNode addCredit(JsonNode userNode) {
+        ObjectNode response = mapper.createObjectNode();
+        String responseText;
+        boolean success = true;
+        try {
+            User user = findUser(userNode.get("username").asText());
+            user.addCredit(userNode.get("credit").asInt());
+            responseText = "Credit added to user " + user.getUsername() + " successfully!";
         } catch (Exception e) {
             responseText = e.getMessage();
             success = false;
@@ -81,6 +113,20 @@ public class CommodityProvisionSystem {
             success = false;
         }
         response.put("response", responseText);
+        return createJsonResult(success, response);
+    }
+
+    public JsonNode getProviderById(JsonNode providerNode) {
+        ObjectNode response;
+        boolean success = true;
+        try {
+            Provider provider = findProvider(providerNode.get("id").asInt());
+            response = provider.getObjectNode();
+        } catch (Exception e) {
+            response = mapper.createObjectNode();
+            response.put("response", e.getMessage());
+            success = false;
+        }
         return createJsonResult(success, response);
     }
 
@@ -107,60 +153,6 @@ public class CommodityProvisionSystem {
             commoditiesNodes.add(commodity.getObjectNode());
         }
         return createJsonResult(true, mapper.valueToTree(commoditiesNodes));
-    }
-
-    public JsonNode rateCommodity(JsonNode ratingNode) {
-        ObjectNode response = mapper.createObjectNode();
-        String responseText;
-        boolean success = true;
-        try {
-            User user = findUser(ratingNode.get("username").asText());
-            Commodity commodity = findCommodity(ratingNode.get("commodityId").asInt());
-            commodity.addUserRating(user.getUsername(), ratingNode.get("score").asText());
-            responseText = "Commodity with id " + commodity.getId() + " rated by user with username " + user.getUsername()+ " successfully!";
-        } catch (Exception e) {
-            responseText = e.getMessage();
-            success = false;
-        }
-        response.put("response", responseText);
-        return createJsonResult(success, response);
-    }
-
-    public JsonNode addToBuyList(JsonNode buyListNode) {
-        ObjectNode response = mapper.createObjectNode();
-        String responseText;
-        boolean success = true;
-        try {
-            User user = findUser(buyListNode.get("username").asText());
-            Commodity commodity = findCommodity(buyListNode.get("commodityId").asInt());
-            commodity.validate();
-            user.addToBuyList(commodity);
-            commodity.updateStock(-1);
-            responseText = "Commodity with id " + commodity.getId() + " added to user's buy list with username " + user.getUsername()+ " successfully!";
-        } catch (Exception e) {
-            responseText = e.getMessage();
-            success = false;
-        }
-        response.put("response", responseText);
-        return createJsonResult(success, response);
-    }
-
-    public JsonNode removeFromBuyList(JsonNode buyListNode) {
-        ObjectNode response = mapper.createObjectNode();
-        String responseText;
-        boolean success = true;
-        try {
-            User user = findUser(buyListNode.get("username").asText());
-            Commodity commodity = findCommodity(buyListNode.get("commodityId").asInt());
-            user.removeFromBuyList(commodity);
-            commodity.updateStock(1);
-            responseText = "Commodity with id " + commodity.getId() + " removed from user's buy list with username " + user.getUsername()+ " successfully!";
-        } catch (Exception e) {
-            responseText = e.getMessage();
-            success = false;
-        }
-        response.put("response", responseText);
-        return createJsonResult(success, response);
     }
 
     public JsonNode getCommodityById(JsonNode commodityNode) {
@@ -190,6 +182,60 @@ public class CommodityProvisionSystem {
         ObjectNode response = mapper.createObjectNode();
         response.set("CommoditiesListByCategory", mapper.valueToTree(commoditiesNode));
         return createJsonResult(true, response);
+    }
+
+    public JsonNode rateCommodity(JsonNode ratingNode) {
+        ObjectNode response = mapper.createObjectNode();
+        String responseText;
+        boolean success = true;
+        try {
+            User user = findUser(ratingNode.get("username").asText());
+            Commodity commodity = findCommodity(ratingNode.get("commodityId").asInt());
+            commodity.addUserRating(user.getUsername(), ratingNode.get("score").asText());
+            responseText = "Commodity with id " + commodity.getId() + " rated by user with username " + user.getUsername() + " successfully!";
+        } catch (Exception e) {
+            responseText = e.getMessage();
+            success = false;
+        }
+        response.put("response", responseText);
+        return createJsonResult(success, response);
+    }
+
+    public JsonNode addToBuyList(JsonNode buyListNode) {
+        ObjectNode response = mapper.createObjectNode();
+        String responseText;
+        boolean success = true;
+        try {
+            User user = findUser(buyListNode.get("username").asText());
+            Commodity commodity = findCommodity(buyListNode.get("commodityId").asInt());
+            commodity.validate();
+            user.addToBuyList(commodity);
+            commodity.updateStock(-1);
+            responseText = "Commodity with id " + commodity.getId() + " added to user's buy list with username " + user.getUsername() + " successfully!";
+        } catch (Exception e) {
+            responseText = e.getMessage();
+            success = false;
+        }
+        response.put("response", responseText);
+        return createJsonResult(success, response);
+    }
+
+    public JsonNode removeFromBuyList(JsonNode buyListNode) {
+        ObjectNode response = mapper.createObjectNode();
+        String responseText;
+        boolean success = true;
+        try {
+            User user = findUser(buyListNode.get("username").asText());
+            Commodity commodity = findCommodity(buyListNode.get("commodityId").asInt());
+            user.removeFromBuyList(commodity);
+            commodity.updateStock(1);
+            responseText = "Commodity with id " + commodity.getId() + " removed from user's buy list with username " + user.getUsername() + " successfully!";
+        } catch (Exception e) {
+            responseText = e.getMessage();
+            success = false;
+        }
+        response.put("response", responseText);
+        return createJsonResult(success, response);
     }
 
     public JsonNode getBuyList(JsonNode buyListNode) {

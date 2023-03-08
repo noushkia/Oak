@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.ie.tk.Exception.Commodity.CommodityInBuyList;
@@ -61,4 +62,15 @@ public class User {
         return buyListNode;
     }
 
+    public void addCredit(Integer credit) {
+        this.credit += credit;
+    }
+
+    public ObjectNode getObjectNode() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode userNode = objectMapper.createObjectNode();
+        userNode.put("username", username);
+        userNode.put("email", email);
+        return userNode;
+    }
 }
