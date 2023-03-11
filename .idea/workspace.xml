@@ -4,11 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add extra functionality for services.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Comment.java" afterDir="false" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add templates">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_02_23_22_55_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_02_23_22_55_[Changes]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_02_23_22_55__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_02_23_22_04_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_02_23_22_04_[Changes]1/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_02_23_22_04__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/200.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/403.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Commodities.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Commodity.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Provider.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/User.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +155,8 @@
       <workItem from="1677160220663" duration="1522000" />
       <workItem from="1677342950178" duration="2270000" />
       <workItem from="1677346010675" duration="6550000" />
+      <workItem from="1678303830448" duration="19000" />
+      <workItem from="1678543933342" duration="1224000" />
     </task>
     <task id="LOCAL-00001" summary="Remove unnecessary breaks.">
       <created>1677321018117</created>
@@ -166,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678295149496</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add Comment class">
+      <created>1678296309105</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1678296309105</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +209,9 @@
     <MESSAGE value="Remove unused imports." />
     <MESSAGE value="Remove unused variables." />
     <MESSAGE value="Add extra functionality for services." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add extra functionality for services." />
+    <MESSAGE value="Add Comment class" />
+    <MESSAGE value="Add templates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add templates" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Oak$CommodityProvisionSystemTest.ic" NAME="CommodityProvisionSystemTest Coverage Results" MODIFIED="1677351387860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
