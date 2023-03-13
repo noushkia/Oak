@@ -4,7 +4,10 @@ import static org.junit.Assert.*;
 
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.TextNode;
-import org.ie.tk.Exception.Commodity.CommodityNotFound;
+import org.ie.tk.exception.Commodity.CommodityNotFound;
+import org.ie.tk.model.Commodity;
+import org.ie.tk.model.Provider;
+import org.ie.tk.model.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

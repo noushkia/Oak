@@ -1,4 +1,4 @@
-package org.ie.tk.Exception.Provider;
+package org.ie.tk.exception.Provider;
 
 public class ProviderNotFound extends Exception{
 

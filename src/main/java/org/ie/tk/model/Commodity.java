@@ -1,12 +1,12 @@
-package org.ie.tk;
+package org.ie.tk.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.ie.tk.Exception.Commodity.CommodityOutOfStock;
-import org.ie.tk.Exception.Commodity.InvalidRating;
+import org.ie.tk.exception.Commodity.CommodityOutOfStock;
+import org.ie.tk.exception.Commodity.InvalidRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,7 +74,7 @@ public class Commodity {
         }
     }
 
-    public Boolean isInCategory(String category) {
+    public Boolean containsCategory(String category) {
         return categories.contains(category);
     }
 

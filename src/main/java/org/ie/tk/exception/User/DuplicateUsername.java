@@ -1,4 +1,4 @@
-package org.ie.tk.Exception.User;
+package org.ie.tk.exception.User;
 
 public class DuplicateUsername extends Exception{
     public DuplicateUsername(String username) {

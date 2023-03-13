@@ -1,4 +1,4 @@
-package org.ie.tk;
+package org.ie.tk.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import org.ie.tk.Exception.Commodity.CommodityInBuyList;
-import org.ie.tk.Exception.Commodity.CommodityNotFound;
-import org.ie.tk.Exception.User.InvalidUsername;
+import org.ie.tk.exception.Commodity.CommodityInBuyList;
+import org.ie.tk.exception.Commodity.CommodityNotFound;
+import org.ie.tk.exception.User.InvalidUsername;
 
 import java.util.ArrayList;
 import java.util.Date;

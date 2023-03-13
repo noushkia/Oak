@@ -5,21 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add templates">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_02_23_22_55_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_02_23_22_55_[Changes]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_02_23_22_55__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_02_23_22_04_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_02_23_22_04_[Changes]1/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_24_02_23_22_04__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/200.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/403.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Commodities.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Commodity.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/Provider.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/User.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/database/DataBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/CommodityManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/ManagementSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/ProviderManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/UserManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/IO/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/Commodity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/Commodity/CommodityInBuyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityInBuyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/Commodity/CommodityNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/Commodity/CommodityOutOfStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityOutOfStock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/Commodity/InvalidRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/InvalidRating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/Provider/ProviderNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Provider/ProviderNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/User/DuplicateUsername.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/DuplicateUsername.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/User/InvalidUsername.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/InvalidUsername.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/User/UserNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/UserNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/Provider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +36,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -77,11 +84,11 @@
 }</component>
   <component name="RunManager" selected="JUnit.CommodityProvisionSystemTest">
     <configuration name="CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ie.tk.CommandHandler" />
+      <option name="MAIN_CLASS_NAME" value="org.ie.tk.IO.CommandHandler" />
       <module name="Oak" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.ie.tk.*" />
+          <option name="PATTERN" value="org.ie.tk.IO.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -93,7 +100,7 @@
       <module name="Oak" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.ie.tk.*" />
+          <option name="PATTERN" value="org.ie.tk.IO.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -156,7 +163,9 @@
       <workItem from="1677342950178" duration="2270000" />
       <workItem from="1677346010675" duration="6550000" />
       <workItem from="1678303830448" duration="19000" />
-      <workItem from="1678543933342" duration="1224000" />
+      <workItem from="1678543933342" duration="2408000" />
+      <workItem from="1678692353756" duration="4927000" />
+      <workItem from="1678698309360" duration="2509000" />
     </task>
     <task id="LOCAL-00001" summary="Remove unnecessary breaks.">
       <created>1677321018117</created>
@@ -186,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678296309105</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add templates">
+      <created>1678545311906</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1678545311906</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
