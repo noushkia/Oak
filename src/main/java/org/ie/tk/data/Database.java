@@ -71,7 +71,6 @@ public class Database {
         commodities.put(commodity.getId(), commodity);
     }
     public void addComment(Comment comment) {
-        comment.setId();
         comments.put(comment.getId(), comment);
     }
 }

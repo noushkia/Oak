@@ -3,6 +3,7 @@ package org.ie.tk.application.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import jdk.jshell.spi.ExecutionControl;
 import org.ie.tk.data.Database;
+import org.ie.tk.domain.Comment;
 import org.ie.tk.domain.Commodity;
 import org.ie.tk.domain.User;
 import org.ie.tk.exception.Commodity.CommodityNotFound;
@@ -43,7 +44,12 @@ public class CommodityService extends Service {
         commodity.addUserRating(user.getUsername(), rating);
     }
 
-    public JsonNode voteComment(JsonNode voteNode) throws ExecutionControl.NotImplementedException {
+    public void addComment(Comment comment) throws CommodityNotFound {
+        Commodity commodity = db.fetchCommodity(comment.getCommodityId());
+        commodity.addComment(comment);
+        db.addComment(comment);
+    }
+    public void voteComment(JsonNode voteNode) throws ExecutionControl.NotImplementedException {
         // TODO: 14.03.23 Implement
         throw new ExecutionControl.NotImplementedException("vote comment");
     }

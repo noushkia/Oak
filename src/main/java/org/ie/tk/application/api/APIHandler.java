@@ -2,13 +2,16 @@ package org.ie.tk.application.api;
 
 import io.javalin.Javalin;
 import org.ie.tk.application.Handler;
+import org.ie.tk.exception.Commodity.CommodityNotFound;
+import org.ie.tk.exception.Provider.ProviderNotFound;
+import org.ie.tk.exception.User.InvalidUsername;
 
 import java.io.IOException;
 
 
 public class APIHandler extends Handler {
     private Javalin app;
-    public APIHandler() throws IOException {
+    public APIHandler() throws IOException, InvalidUsername, CommodityNotFound, ProviderNotFound {
         super();
     }
 
@@ -20,7 +23,7 @@ public class APIHandler extends Handler {
         });
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InvalidUsername, CommodityNotFound, ProviderNotFound {
         APIHandler apiHandler = new APIHandler();
         apiHandler.run();
     }

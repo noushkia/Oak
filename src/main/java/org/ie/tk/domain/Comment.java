@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment {
+    @JsonProperty("id")
     @JsonIgnore
     private Integer id;
     @JsonProperty("userEmail")
@@ -29,6 +30,7 @@ public class Comment {
     @JsonIgnore
     private static Integer newCommentId = 0;
 
+    @JsonProperty("id")
     public void setId() {
         id = newCommentId++;
     }
@@ -39,5 +41,9 @@ public class Comment {
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getCommodityId() {
+        return commodityId;
     }
 }

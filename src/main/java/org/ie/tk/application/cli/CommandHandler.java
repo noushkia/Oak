@@ -4,6 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ie.tk.application.Handler;
+import org.ie.tk.exception.Commodity.CommodityNotFound;
+import org.ie.tk.exception.Provider.ProviderNotFound;
+import org.ie.tk.exception.User.InvalidUsername;
 import org.ie.tk.presentation.json.JsonPresentationLayer;
 
 import java.io.IOException;
@@ -25,7 +28,7 @@ public class CommandHandler extends Handler {
     private final JsonPresentationLayer jsonPresentationLayer;
     private final ObjectMapper mapper;
 
-    public CommandHandler() throws IOException {
+    public CommandHandler() throws IOException, InvalidUsername, CommodityNotFound, ProviderNotFound {
         super();
         jsonPresentationLayer = new JsonPresentationLayer(serviceLayer);
         mapper = new ObjectMapper();
@@ -73,7 +76,7 @@ public class CommandHandler extends Handler {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InvalidUsername, CommodityNotFound, ProviderNotFound {
         CommandHandler commandHandler = new CommandHandler();
         commandHandler.run();
     }
