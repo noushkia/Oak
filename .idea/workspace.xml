@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Merge with remote.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/command/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/cli/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommodityService.java" afterDir="false" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Clean Code">
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Commodity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/CommodityJsonPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/CommodityJsonPresentation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +189,42 @@
       <option name="project" value="LOCAL" />
       <updated>1678795570871</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add Commodity Services and Json Presentation.">
+      <created>1678802918442</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1678802918442</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add Provider Services and Json Presentation.">
+      <created>1678803735872</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1678803735872</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Clean Commodity Classes.">
+      <created>1678803810437</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1678803810437</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Clean User Classes.">
+      <created>1678803820997</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1678803820997</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Clean Code">
+      <created>1678803838934</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1678803838934</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +262,12 @@
     <MESSAGE value="Add Comment class" />
     <MESSAGE value="Add templates" />
     <MESSAGE value="Merge with remote." />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge with remote." />
+    <MESSAGE value="Add Commodity Services and Json Presentation." />
+    <MESSAGE value="Add Provider Services and Json Presentation." />
+    <MESSAGE value="Clean Commodity Classes." />
+    <MESSAGE value="Clean User Classes." />
+    <MESSAGE value="Clean Code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean Code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Oak$CommodityProvisionSystemTest.ic" NAME="CommodityProvisionSystemTest Coverage Results" MODIFIED="1677351387860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -12,13 +12,4 @@ public abstract class Service {
     public Service(Database db) {
         this.db = db;
     }
-
-    public JsonNode createJsonResult(boolean success, JsonNode data) {
-        // TODO: 14.03.23 Remove this?
-        ObjectNode root = mapper.createObjectNode();
-        root.put("success", success);
-        root.set("data", data);
-        return root;
-    }
-
 }
