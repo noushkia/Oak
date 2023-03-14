@@ -1,5 +1,6 @@
 package org.ie.tk.data;
 
+import org.ie.tk.domain.Comment;
 import org.ie.tk.exception.Commodity.CommodityNotFound;
 import org.ie.tk.exception.Provider.ProviderNotFound;
 import org.ie.tk.exception.User.UserNotFound;
@@ -16,11 +17,13 @@ public class Database {
     private final HashMap<Integer, Commodity> commodities;
     private final HashMap<Integer, Provider> providers;
     private final HashMap<String, User> users;
+    private final HashMap<Integer, Comment> comments;
 
     public Database() {
         commodities = new HashMap<>();
         providers = new HashMap<>();
         users = new HashMap<>();
+        comments = new HashMap<>();
     }
 
     public User fetchUser(String username) throws UserNotFound {
@@ -66,5 +69,9 @@ public class Database {
 
     public void addCommodity(Commodity commodity) {
         commodities.put(commodity.getId(), commodity);
+    }
+    public void addComment(Comment comment) {
+        comment.setId();
+        comments.put(comment.getId(), comment);
     }
 }
