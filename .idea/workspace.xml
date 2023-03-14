@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add DataLoader">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Clean code.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/Handler.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommodityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/cli/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/cli/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/data/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/data/Database.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +77,20 @@
       <recent name="$PROJECT_DIR$/src/test/java/org/ie/tk/service" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.Oak [clean,install]">
+  <component name="RunManager" selected="Application.APIHandler">
+    <configuration name="APIHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ie.tk.application.api.APIHandler" />
+      <module name="Oak" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ie.tk.application.api.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="org.ie.tk.application.cli.CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.ie.tk.application.cli.CommandHandler" />
       <module name="Oak" />
@@ -148,6 +161,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.APIHandler" />
       <item itemvalue="Application.org.ie.tk.application.cli.CommandHandler" />
       <item itemvalue="JUnit.CommodityServiceTest" />
       <item itemvalue="JUnit.UserServiceTest" />
@@ -155,9 +169,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.APIHandler" />
+        <item itemvalue="Application.org.ie.tk.application.cli.CommandHandler" />
         <item itemvalue="JUnit.CommodityServiceTest" />
         <item itemvalue="JUnit.UserServiceTest" />
-        <item itemvalue="Application.org.ie.tk.application.cli.CommandHandler" />
       </list>
     </recent_temporary>
   </component>
@@ -178,7 +193,7 @@
       <workItem from="1678692353756" duration="4927000" />
       <workItem from="1678698309360" duration="2509000" />
       <workItem from="1678814561590" duration="852000" />
-      <workItem from="1678815422609" duration="2278000" />
+      <workItem from="1678815422609" duration="3689000" />
     </task>
     <task id="LOCAL-00001" summary="Remove unnecessary breaks.">
       <created>1677321018117</created>
@@ -299,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678817839940</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Clean code.">
+      <created>1678817913432</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1678817913432</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +370,8 @@
     <MESSAGE value="Refactor Tests." />
     <MESSAGE value="Update dependencies." />
     <MESSAGE value="Add DataLoader" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add DataLoader" />
+    <MESSAGE value="Clean code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean code." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Oak$CommodityProvisionSystemTest.ic" NAME="CommodityProvisionSystemTest Coverage Results" MODIFIED="1677351387860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
