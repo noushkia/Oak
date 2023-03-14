@@ -1,20 +1,19 @@
-package org.ie.tk.manager;
+package org.ie.tk.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import jdk.jshell.spi.ExecutionControl;
-import org.ie.tk.database.DataBase;
-import org.ie.tk.model.Commodity;
-import org.ie.tk.model.Provider;
-import org.ie.tk.model.User;
+import org.ie.tk.data.Database;
+import org.ie.tk.domain.Commodity;
+import org.ie.tk.domain.Provider;
+import org.ie.tk.domain.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CommodityManagement extends ManagementSystem {
+public class CommodityService extends Service {
 
-    public CommodityManagement(DataBase db) {
+    public CommodityService(Database db) {
         super(db);
     }
 

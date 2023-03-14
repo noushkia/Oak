@@ -1,12 +1,12 @@
-package org.ie.tk.manager;
+package org.ie.tk.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.ie.tk.database.DataBase;
-import org.ie.tk.model.Provider;
+import org.ie.tk.data.Database;
+import org.ie.tk.domain.Provider;
 
-public class ProviderManagement extends ManagementSystem {
-    public ProviderManagement(DataBase db) {
+public class ProviderService extends Service {
+    public ProviderService(Database db) {
         super(db);
     }
 

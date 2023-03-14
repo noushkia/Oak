@@ -12,12 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class DataBase {
+public class Database {
     private final HashMap<Integer, Commodity> commodities;
     private final HashMap<Integer, Provider> providers;
     private final HashMap<String, User> users;
 
-    public DataBase() {
+    public Database() {
         commodities = new HashMap<>();
         providers = new HashMap<>();
         users = new HashMap<>();

@@ -1,15 +1,15 @@
-package org.ie.tk.manager;
+package org.ie.tk.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import org.ie.tk.database.DataBase;
+import org.ie.tk.data.Database;
 import org.ie.tk.exception.User.InvalidUsername;
-import org.ie.tk.model.Commodity;
-import org.ie.tk.model.User;
+import org.ie.tk.domain.Commodity;
+import org.ie.tk.domain.User;
 
-public class UserManagement extends ManagementSystem {
+public class UserService extends Service {
 
-    public UserManagement(DataBase db) {
+    public UserService(Database db) {
         super(db);
     }
 
