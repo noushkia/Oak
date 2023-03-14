@@ -18,7 +18,7 @@ public abstract class JsonPresentation {
     public JsonNode fetchData(String data) throws JsonProcessingException {
         return mapper.readTree(data);
     }
-    public JsonNode marshallResponse(boolean success, JsonNode data) {
+    public JsonNode marshalResponse(boolean success, JsonNode data) {
         ObjectNode root = mapper.createObjectNode();
         root.put("success", success);
         root.set("data", data);
