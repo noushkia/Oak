@@ -4,8 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -39,13 +37,5 @@ public class Provider {
 
     public String getName() {
         return name;
-    }
-
-    public ObjectNode getObjectNode() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        ObjectNode providerNode = objectMapper.createObjectNode();
-        providerNode.put("id", id);
-        providerNode.put("name", name);
-        return providerNode;
     }
 }
