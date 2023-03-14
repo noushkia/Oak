@@ -7,9 +7,12 @@ import org.ie.tk.data.Database;
 import org.ie.tk.domain.Commodity;
 import org.ie.tk.domain.Provider;
 import org.ie.tk.domain.User;
+import org.ie.tk.exception.Commodity.CommodityNotFound;
+import org.ie.tk.exception.Commodity.InvalidRating;
+import org.ie.tk.exception.Provider.ProviderNotFound;
+import org.ie.tk.exception.User.UserNotFound;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CommodityService extends Service {
 
@@ -18,72 +21,36 @@ public class CommodityService extends Service {
     }
 
 
-    public JsonNode addCommodity(JsonNode commodityNode) {
-        ObjectNode response = mapper.createObjectNode();
-        String responseText;
-        boolean success = true;
-        try {
-            Commodity commodity = mapper.treeToValue(commodityNode, Commodity.class);
-            // todo: check
-            db.fetchProvider(commodity.getProviderId());
-            db.addCommodity(commodity);
-            responseText = "Commodity with id " + commodity.getId() + " added/updated successfully!";
-        } catch (Exception e) {
-            responseText = e.getMessage();
-            success = false;
-        }
-        response.put("response", responseText);
-        return createJsonResult(success, response);
+    public void addCommodity(Commodity commodity) throws ProviderNotFound {
+        db.fetchProvider(commodity.getProviderId());
+        db.addCommodity(commodity);
     }
 
 
-    public JsonNode getCommoditiesList() {
-        List<ObjectNode> commodityNodes = db.fetchCommodities(c -> true).stream().map(Commodity::getObjectNode).collect(Collectors.toList());
-        return createJsonResult(true, mapper.valueToTree(commodityNodes));
+    public List<Commodity> getCommoditiesList() {
+        return db.fetchCommodities(c -> true);
     }
 
-    public JsonNode getCommodityById(JsonNode commodityNode) {
-        ObjectNode response;
-        boolean success = true;
-        try {
-            Commodity commodity = db.fetchCommodity(commodityNode.get("id").asInt());
-            Provider provider = db.fetchProvider(commodity.getProviderId());
-            response = commodity.getObjectNode();
-            response.remove("providerId");
-            response.put("provider", provider.getName());
-        } catch (Exception e) {
-            response = mapper.createObjectNode();
-            response.put("response", e.getMessage());
-            success = false;
-        }
-        return createJsonResult(success, response);
+    public Commodity getCommodityById(Integer commodityId) throws CommodityNotFound, ProviderNotFound {
+        Commodity commodity = db.fetchCommodity(commodityId);
+        Provider provider = db.fetchProvider(commodity.getProviderId());
+        // TODO: 14.03.23 Return provider as well? Maybe fetch provider in the Presenation layer?
+        return commodity;
     }
 
-    public JsonNode getCommoditiesByCategory(JsonNode commodityNode) {
-        String category = commodityNode.get("category").asText();
-        List<ObjectNode> commodityNodes = db.fetchCommodities(c -> c.containsCategory(category)).stream().map(Commodity::getObjectNode).collect(Collectors.toList());
-        return createJsonResult(true, mapper.valueToTree(commodityNodes));
+    public List<Commodity> getCommoditiesByCategory(String category) {
+        return db.fetchCommodities(c -> c.containsCategory(category));
+
     }
 
-    public JsonNode rateCommodity(JsonNode ratingNode) {
-        ObjectNode response = mapper.createObjectNode();
-        String responseText;
-        boolean success = true;
-        try {
-            User user = db.fetchUser(ratingNode.get("username").asText());
-            Commodity commodity = db.fetchCommodity(ratingNode.get("commodityId").asInt());
-            commodity.addUserRating(user.getUsername(), ratingNode.get("score").asText());
-            responseText = "Commodity with id " + commodity.getId() + " rated by user with username " + user.getUsername() + " successfully!";
-        } catch (Exception e) {
-            responseText = e.getMessage();
-            success = false;
-        }
-        response.put("response", responseText);
-        return createJsonResult(success, response);
+    public void rateCommodity(String username, Integer commodityId, String rating) throws InvalidRating, UserNotFound, CommodityNotFound {
+        User user = db.fetchUser(username);
+        Commodity commodity = db.fetchCommodity(commodityId);
+        commodity.addUserRating(user.getUsername(), rating);
     }
 
     public JsonNode voteComment(JsonNode voteNode) throws ExecutionControl.NotImplementedException {
-        // todo
+        // TODO: 14.03.23 Implement
         throw new ExecutionControl.NotImplementedException("vote comment");
     }
 

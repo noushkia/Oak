@@ -55,18 +55,6 @@ public class Commodity {
         return sum / (userRatings.size() + 1);
     }
 
-    public ObjectNode getObjectNode() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        ObjectNode commodityNode = objectMapper.createObjectNode();
-        commodityNode.put("id", id);
-        commodityNode.put("name", name);
-        commodityNode.put("providerId", providerId);
-        commodityNode.put("price", price);
-        commodityNode.set("categories", objectMapper.valueToTree(categories));
-        commodityNode.put("rating", getRating());
-        return commodityNode;
-    }
-
     public void addUserRating(String username, String rating) throws InvalidRating {
         try {
             int ratingValue = Integer.parseInt(rating);

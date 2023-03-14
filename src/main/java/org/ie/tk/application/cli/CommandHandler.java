@@ -1,4 +1,4 @@
-package org.ie.tk.application.command;
+package org.ie.tk.application.cli;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
