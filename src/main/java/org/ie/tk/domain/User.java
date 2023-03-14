@@ -4,14 +4,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import org.ie.tk.exception.Commodity.CommodityInBuyList;
 import org.ie.tk.exception.Commodity.CommodityNotFound;
 import org.ie.tk.exception.User.InvalidUsername;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -61,14 +58,6 @@ public class User {
 
     public void addCredit(Integer credit) {
         this.credit += credit;
-    }
-
-    public ObjectNode getObjectNode() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        ObjectNode userNode = objectMapper.createObjectNode();
-        userNode.put("username", username);
-        userNode.put("email", email);
-        return userNode;
     }
 
     public String getEmail() {

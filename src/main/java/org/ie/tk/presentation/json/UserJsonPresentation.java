@@ -15,7 +15,7 @@ public class UserJsonPresentation extends JsonPresentation{
         super(serviceLayer);
     }
 
-    public static ObjectNode marshallUserObject(User user){
+    public static ObjectNode marshalUserObject(User user){
         ObjectNode userNode = mapper.createObjectNode();
         userNode.put("username", user.getUsername());
         userNode.put("email", user.getEmail());
@@ -36,7 +36,7 @@ public class UserJsonPresentation extends JsonPresentation{
             success = false;
         }
         response.put("response", responseText);
-        return marshallResponse(success, response);
+        return marshalResponse(success, response);
     }
 
     public JsonNode getUserById(String data) throws JsonProcessingException {
@@ -45,13 +45,13 @@ public class UserJsonPresentation extends JsonPresentation{
         boolean success = true;
         try {
             User user = serviceLayer.getUserService().getUserById(userNode.get("username").asText());
-            response = marshallUserObject(user);
+            response = marshalUserObject(user);
         } catch (Exception e) {
             response = mapper.createObjectNode();
             response.put("response", e.getMessage());
             success = false;
         }
-        return marshallResponse(success, response);
+        return marshalResponse(success, response);
     }
 
     public JsonNode addCredit(String data) throws JsonProcessingException {
@@ -68,7 +68,7 @@ public class UserJsonPresentation extends JsonPresentation{
             success = false;
         }
         response.put("response", responseText);
-        return marshallResponse(success, response);
+        return marshalResponse(success, response);
     }
 
     public JsonNode addToBuyList(String data) throws JsonProcessingException {
@@ -86,7 +86,7 @@ public class UserJsonPresentation extends JsonPresentation{
             success = false;
         }
         response.put("response", responseText);
-        return marshallResponse(success, response);
+        return marshalResponse(success, response);
     }
 
     public JsonNode removeFromBuyList(String data) throws JsonProcessingException {
@@ -104,7 +104,7 @@ public class UserJsonPresentation extends JsonPresentation{
             success = false;
         }
         response.put("response", responseText);
-        return marshallResponse(success, response);
+        return marshalResponse(success, response);
     }
 
     public JsonNode getBuyList(String data) throws JsonProcessingException {
@@ -118,6 +118,6 @@ public class UserJsonPresentation extends JsonPresentation{
             response.put("response", e.getMessage());
             success = false;
         }
-        return marshallResponse(success, response);
+        return marshalResponse(success, response);
     }
 }
