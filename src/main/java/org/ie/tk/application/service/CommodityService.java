@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import jdk.jshell.spi.ExecutionControl;
 import org.ie.tk.data.Database;
 import org.ie.tk.domain.Commodity;
-import org.ie.tk.domain.Provider;
 import org.ie.tk.domain.User;
 import org.ie.tk.exception.Commodity.CommodityNotFound;
 import org.ie.tk.exception.Commodity.InvalidRating;
@@ -18,7 +17,6 @@ public class CommodityService extends Service {
     public CommodityService(Database db) {
         super(db);
     }
-
 
     public void addCommodity(Commodity commodity) throws ProviderNotFound {
         db.fetchProvider(commodity.getProviderId());
