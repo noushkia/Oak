@@ -1,11 +1,17 @@
-package org.ie.tk.service;
+package org.ie.tk.application.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.ie.tk.data.Database;
+import org.ie.tk.exception.Commodity.CommodityInBuyList;
+import org.ie.tk.exception.Commodity.CommodityNotFound;
+import org.ie.tk.exception.Commodity.CommodityOutOfStock;
 import org.ie.tk.exception.User.InvalidUsername;
 import org.ie.tk.domain.Commodity;
 import org.ie.tk.domain.User;
+import org.ie.tk.exception.User.UserNotFound;
+
+import java.util.List;
 
 public class UserService extends Service {
 
@@ -18,100 +24,35 @@ public class UserService extends Service {
         db.addUser(user);
     }
 
-    public JsonNode addUser(JsonNode userNode) {
-        ObjectNode response = mapper.createObjectNode();
-        String responseText;
-        boolean success = true;
-        try {
-            User user = mapper.treeToValue(userNode, User.class);
-            setUser(user);
-            responseText = "User with username " + user.getUsername() + " added/updated successfully!";
-        } catch (Exception e) {
-            responseText = e.getMessage();
-            success = false;
-        }
-        response.put("response", responseText);
-        return createJsonResult(success, response);
+    public void addUser(User user) throws InvalidUsername {
+        setUser(user);
     }
 
-    public JsonNode getUserById(JsonNode userNode) {
-        ObjectNode response;
-        boolean success = true;
-        try {
-            User user = db.fetchUser(userNode.get("username").asText());
-            response = user.getObjectNode();
-        } catch (Exception e) {
-            response = mapper.createObjectNode();
-            response.put("response", e.getMessage());
-            success = false;
-        }
-        return createJsonResult(success, response);
+    public User getUserById(String username) throws UserNotFound {
+        return db.fetchUser(username);
     }
 
-    public JsonNode addCredit(JsonNode userNode) {
-        ObjectNode response = mapper.createObjectNode();
-        String responseText;
-        boolean success = true;
-        try {
-            User user = db.fetchUser(userNode.get("username").asText());
-            user.addCredit(userNode.get("credit").asInt());
-            responseText = "Credit added to user " + user.getUsername() + " successfully!";
-        } catch (Exception e) {
-            responseText = e.getMessage();
-            success = false;
-        }
-        response.put("response", responseText);
-        return createJsonResult(success, response);
+    public void addCredit(String username, Integer credit) throws UserNotFound {
+        User user = db.fetchUser(username);
+        user.addCredit(credit);
     }
 
-    public JsonNode addToBuyList(JsonNode buyListNode) {
-        ObjectNode response = mapper.createObjectNode();
-        String responseText;
-        boolean success = true;
-        try {
-            User user = db.fetchUser(buyListNode.get("username").asText());
-            Commodity commodity = db.fetchCommodity(buyListNode.get("commodityId").asInt());
-            commodity.validate();
-            user.addToBuyList(commodity);
-            commodity.updateStock(-1);
-            responseText = "Commodity with id " + commodity.getId() + " added to user's buy list with username " + user.getUsername() + " successfully!";
-        } catch (Exception e) {
-            responseText = e.getMessage();
-            success = false;
-        }
-        response.put("response", responseText);
-        return createJsonResult(success, response);
+    public void addToBuyList(String username, Integer commodityId) throws UserNotFound, CommodityNotFound, CommodityOutOfStock, CommodityInBuyList {
+        User user = db.fetchUser(username);
+        Commodity commodity = db.fetchCommodity(commodityId);
+        commodity.validate();
+        user.addToBuyList(commodity);
     }
 
-    public JsonNode removeFromBuyList(JsonNode buyListNode) {
-        ObjectNode response = mapper.createObjectNode();
-        String responseText;
-        boolean success = true;
-        try {
-            User user = db.fetchUser(buyListNode.get("username").asText());
-            Commodity commodity = db.fetchCommodity(buyListNode.get("commodityId").asInt());
-            user.removeFromBuyList(commodity);
-            commodity.updateStock(1);
-            responseText = "Commodity with id " + commodity.getId() + " removed from user's buy list with username " + user.getUsername() + " successfully!";
-        } catch (Exception e) {
-            responseText = e.getMessage();
-            success = false;
-        }
-        response.put("response", responseText);
-        return createJsonResult(success, response);
+    public void removeFromBuyList(String username, Integer commodityId) throws UserNotFound, CommodityNotFound {
+        User user = db.fetchUser(username);
+        Commodity commodity = db.fetchCommodity(commodityId);
+        user.removeFromBuyList(commodity);
     }
 
-    public JsonNode getBuyList(JsonNode buyListNode) {
-        ObjectNode response = mapper.createObjectNode();
-        boolean success = true;
-        try {
-            User user = db.fetchUser(buyListNode.get("username").asText());
-            response.set("buyList", mapper.valueToTree(user.getBuyList()));
-        } catch (Exception e) {
-            response.put("response", e.getMessage());
-            success = false;
-        }
-        return createJsonResult(success, response);
+    public List<Commodity> getBuyList(String username) throws UserNotFound {
+        User user = db.fetchUser(username);
+        return user.getBuyList();
     }
 
 }

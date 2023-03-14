@@ -1,11 +1,11 @@
-package org.ie.tk.database;
+package org.ie.tk.data;
 
 import org.ie.tk.exception.Commodity.CommodityNotFound;
 import org.ie.tk.exception.Provider.ProviderNotFound;
 import org.ie.tk.exception.User.UserNotFound;
-import org.ie.tk.model.Commodity;
-import org.ie.tk.model.Provider;
-import org.ie.tk.model.User;
+import org.ie.tk.domain.Commodity;
+import org.ie.tk.domain.Provider;
+import org.ie.tk.domain.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package org.ie.tk.model;
+package org.ie.tk.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;

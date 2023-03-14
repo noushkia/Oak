@@ -1,4 +1,4 @@
-package org.ie.tk.model;
+package org.ie.tk.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,6 +14,7 @@ import org.ie.tk.exception.User.InvalidUsername;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
@@ -54,12 +55,8 @@ public class User {
         buyList.remove(commodity.getId());
     }
 
-    public ArrayList<ObjectNode> getBuyList() {
-        ArrayList<ObjectNode> buyListNode = new ArrayList<>();
-        for (Commodity commodity : buyList.values()) {
-            buyListNode.add(commodity.getObjectNode());
-        }
-        return buyListNode;
+    public List<Commodity> getBuyList() {
+        return (List<Commodity>) buyList.values();
     }
 
     public void addCredit(Integer credit) {
@@ -72,5 +69,9 @@ public class User {
         userNode.put("username", username);
         userNode.put("email", email);
         return userNode;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

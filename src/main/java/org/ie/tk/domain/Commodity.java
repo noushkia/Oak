@@ -1,4 +1,4 @@
-package org.ie.tk.model;
+package org.ie.tk.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -10,6 +10,7 @@ import org.ie.tk.exception.Commodity.InvalidRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Commodity {
@@ -36,6 +37,10 @@ public class Commodity {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Integer getProviderId() {
@@ -98,5 +103,13 @@ public class Commodity {
 
     public void addComment(Comment comment) {
         userComments.put(comment.getId(), comment);
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public List<String> getCategories() {
+        return categories;
     }
 }

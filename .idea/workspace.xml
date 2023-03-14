@@ -5,26 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add templates">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/database/DataBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/CommodityManagement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/ManagementSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/ProviderManagement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/UserManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/ServiceLayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/UserHtmlPresentation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/CommodityJsonPresentation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/JsonPresentation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/JsonPresentationLayer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/UserJsonPresentation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/IO/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/Commodity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/CommodityProvisionSystem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/Commodity/CommodityInBuyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityInBuyList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/Commodity/CommodityNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityNotFound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/Commodity/CommodityOutOfStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityOutOfStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/Commodity/InvalidRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/InvalidRating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/Provider/ProviderNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Provider/ProviderNotFound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/User/DuplicateUsername.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/DuplicateUsername.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/User/InvalidUsername.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/InvalidUsername.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Exception/User/UserNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/UserNotFound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/Provider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/IO/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/command/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/database/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/data/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/CommodityManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommodityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/ManagementSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/ProviderManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/ProviderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/manager/UserManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Commodity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Provider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/utils/CategoriesDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/util/CategoriesDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/utils/CategoriesSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/util/CategoriesSerializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ie/tk/CommodityProvisionSystemTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +34,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -64,31 +63,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kianoush/Documents/IE/CAs/Oak&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/mmdtaha/IdeaProjects/Oak/src/main/java/org/ie/tk/application",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="JUnit.CommodityProvisionSystemTest">
     <configuration name="CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ie.tk.IO.CommandHandler" />
+      <option name="MAIN_CLASS_NAME" value="org.ie.tk.command.CommandHandler" />
       <module name="Oak" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.ie.tk.IO.*" />
+          <option name="PATTERN" value="org.ie.tk.command.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -100,7 +99,7 @@
       <module name="Oak" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.ie.tk.IO.*" />
+          <option name="PATTERN" value="org.ie.tk.command.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
