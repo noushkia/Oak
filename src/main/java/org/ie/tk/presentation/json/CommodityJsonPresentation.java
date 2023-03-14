@@ -5,10 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import jdk.jshell.spi.ExecutionControl;
 import org.ie.tk.application.service.ServiceLayer;
-import org.ie.tk.data.Database;
 import org.ie.tk.domain.Commodity;
-import org.ie.tk.domain.Provider;
-import org.ie.tk.domain.User;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +16,7 @@ public class CommodityJsonPresentation extends JsonPresentation {
         super(serviceLayer);
     }
 
-    public static ObjectNode marshallCommodityObject(Commodity commodity) {
+    public static ObjectNode marshalCommodityObject(Commodity commodity) {
         ObjectNode commodityNode = mapper.createObjectNode();
         commodityNode.put("id", commodity.getId());
         commodityNode.put("name", commodity.getName());
@@ -32,7 +29,7 @@ public class CommodityJsonPresentation extends JsonPresentation {
 
     public static List<ObjectNode> marshallCommodityObjects(List<Commodity> commodities) {
         return commodities.stream()
-                .map(CommodityJsonPresentation::marshallCommodityObject)
+                .map(CommodityJsonPresentation::marshalCommodityObject)
                 .collect(Collectors.toList());
     }
 
@@ -51,15 +48,15 @@ public class CommodityJsonPresentation extends JsonPresentation {
             success = false;
         }
         response.put("response", responseText);
-        return marshallResponse(success, response);
+        return marshalResponse(success, response);
     }
 
 
     public JsonNode getCommoditiesList() {
         List<ObjectNode> commodityNodes = serviceLayer.getCommodityService().getCommoditiesList()
-                .stream().map(CommodityJsonPresentation::marshallCommodityObject)
+                .stream().map(CommodityJsonPresentation::marshalCommodityObject)
                 .collect(Collectors.toList());
-        return marshallResponse(true, mapper.valueToTree(commodityNodes));
+        return marshalResponse(true, mapper.valueToTree(commodityNodes));
     }
 
     public JsonNode getCommodityById(String data) throws JsonProcessingException {
@@ -68,7 +65,7 @@ public class CommodityJsonPresentation extends JsonPresentation {
         boolean success = true;
         try {
             Commodity commodity = serviceLayer.getCommodityService().getCommodityById(commodityNode.get("id").asInt());
-            response = marshallCommodityObject(commodity);
+            response = marshalCommodityObject(commodity);
 //            response.remove("providerId");
 //            response.put("provider", provider.getName());
         } catch (Exception e) {
@@ -76,16 +73,16 @@ public class CommodityJsonPresentation extends JsonPresentation {
             response.put("response", e.getMessage());
             success = false;
         }
-        return marshallResponse(success, response);
+        return marshalResponse(success, response);
     }
 
     public JsonNode getCommoditiesByCategory(String data) throws JsonProcessingException {
         JsonNode commodityNode = fetchData(data);
         String category = commodityNode.get("category").asText();
         List<ObjectNode> commodityNodes = serviceLayer.getCommodityService().getCommoditiesByCategory(category)
-                .stream().map(CommodityJsonPresentation::marshallCommodityObject)
+                .stream().map(CommodityJsonPresentation::marshalCommodityObject)
                 .collect(Collectors.toList());
-        return marshallResponse(true, mapper.valueToTree(commodityNodes));
+        return marshalResponse(true, mapper.valueToTree(commodityNodes));
     }
 
     public JsonNode rateCommodity(String data) throws JsonProcessingException {
@@ -104,7 +101,7 @@ public class CommodityJsonPresentation extends JsonPresentation {
             success = false;
         }
         response.put("response", responseText);
-        return marshallResponse(success, response);
+        return marshalResponse(success, response);
     }
 
     public JsonNode voteComment(JsonNode voteNode) throws ExecutionControl.NotImplementedException {

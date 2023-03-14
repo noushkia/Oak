@@ -3,8 +3,6 @@ package org.ie.tk.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.ie.tk.exception.Commodity.CommodityOutOfStock;
 import org.ie.tk.exception.Commodity.InvalidRating;
 
