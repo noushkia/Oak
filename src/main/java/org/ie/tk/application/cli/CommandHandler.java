@@ -3,6 +3,9 @@ package org.ie.tk.application.cli;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.ie.tk.application.service.ServiceLayer;
+import org.ie.tk.data.Database;
+import org.ie.tk.presentation.json.JsonPresentationLayer;
 
 import java.util.Scanner;
 
@@ -19,8 +22,9 @@ public class CommandHandler {
     private static final String GET_COMMODITY_BY_ID = "getCommodityById";
     private static final String GET_COMMODITIES_BY_CATEGORY = "getCommoditiesByCategory";
     private static final String GET_BUY_LIST = "getBuyList";
-
-    private final CommodityProvisionSystem commodityProvisionSystem = new CommodityProvisionSystem();
+    private final Database database = new Database();
+    private final ServiceLayer serviceLayer = new ServiceLayer(database);
+    private final JsonPresentationLayer jsonPresentationLayer = new JsonPresentationLayer(serviceLayer);
     private final ObjectMapper mapper = new ObjectMapper();
 
     private void printJson(JsonNode json) {
@@ -35,40 +39,37 @@ public class CommandHandler {
         while (scanner.hasNext()) {
             String input = scanner.nextLine();
             String[] splitInput = input.split(" ", 2);
-            JsonNode jsonNode = null, responseNode = null;
-            if (splitInput.length > 1) {
-                jsonNode = mapper.readTree(splitInput[DATA_INDEX]);
-            }
+            JsonNode responseNode = null;
             switch (splitInput[COMMAND_INDEX]) {
                 case ADD_USER -> {
-                    responseNode = commodityProvisionSystem.addUser(jsonNode);
+                    responseNode = jsonPresentationLayer.getUserJsonPresentation().addUser(splitInput[DATA_INDEX]);
                 }
                 case ADD_PROVIDER -> {
-                    responseNode = commodityProvisionSystem.addProvider(jsonNode);
+                    responseNode = jsonPresentationLayer.getProviderJsonPresentation().addProvider(splitInput[DATA_INDEX]);
                 }
                 case ADD_COMMODITY -> {
-                    responseNode = commodityProvisionSystem.addCommodity(jsonNode);
+                    responseNode = jsonPresentationLayer.getCommodityJsonPresentation().addCommodity(splitInput[DATA_INDEX]);
                 }
                 case GET_COMMODITIES_LIST -> {
-                    responseNode = commodityProvisionSystem.getCommoditiesList();
+                    responseNode = jsonPresentationLayer.getCommodityJsonPresentation().getCommoditiesList();
                 }
                 case RATE_COMMODITY -> {
-                    responseNode = commodityProvisionSystem.rateCommodity(jsonNode);
+                    responseNode = jsonPresentationLayer.getCommodityJsonPresentation().rateCommodity(splitInput[DATA_INDEX]);
                 }
                 case ADD_TO_BUY_LIST -> {
-                    responseNode = commodityProvisionSystem.addToBuyList(jsonNode);
+                    responseNode = jsonPresentationLayer.getUserJsonPresentation().addToBuyList(splitInput[DATA_INDEX]);
                 }
                 case REMOVE_FROM_BUY_LIST -> {
-                    responseNode = commodityProvisionSystem.removeFromBuyList(jsonNode);
+                    responseNode = jsonPresentationLayer.getUserJsonPresentation().removeFromBuyList(splitInput[DATA_INDEX]);
                 }
                 case GET_COMMODITY_BY_ID -> {
-                    responseNode = commodityProvisionSystem.getCommodityById(jsonNode);
+                    responseNode = jsonPresentationLayer.getCommodityJsonPresentation().getCommodityById(splitInput[DATA_INDEX]);
                 }
                 case GET_COMMODITIES_BY_CATEGORY -> {
-                    responseNode = commodityProvisionSystem.getCommoditiesByCategory(jsonNode);
+                    responseNode = jsonPresentationLayer.getCommodityJsonPresentation().getCommoditiesByCategory(splitInput[DATA_INDEX]);
                 }
                 case GET_BUY_LIST -> {
-                    responseNode = commodityProvisionSystem.getBuyList(jsonNode);
+                    responseNode = jsonPresentationLayer.getUserJsonPresentation().getBuyList(splitInput[DATA_INDEX]);
                 }
             }
             if (responseNode != null){

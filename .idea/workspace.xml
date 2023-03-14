@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Clean Code">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/Service.java" afterDir="false" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Refactor CommandHandler">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/cli/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/cli/CommandHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,13 +63,26 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.CommodityProvisionSystemTest">
+  <component name="RunManager" selected="Application.org.ie.tk.application.cli.CommandHandler">
     <configuration name="CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.ie.tk.command.CommandHandler" />
       <module name="Oak" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="org.ie.tk.command.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.ie.tk.application.cli.CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ie.tk.application.cli.CommandHandler" />
+      <module name="Oak" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ie.tk.application.cli.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -119,12 +133,14 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.org.ie.tk.application.cli.CommandHandler" />
       <item itemvalue="Application.CommandHandler" />
       <item itemvalue="JUnit.CommodityProvisionSystemTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.org.ie.tk.application.cli.CommandHandler" />
         <item itemvalue="JUnit.CommodityProvisionSystemTest" />
         <item itemvalue="Application.CommandHandler" />
       </list>
@@ -224,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678803838934</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Clean Code">
+      <created>1678803878613</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1678803878613</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,7 +290,9 @@
     <MESSAGE value="Clean Commodity Classes." />
     <MESSAGE value="Clean User Classes." />
     <MESSAGE value="Clean Code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean Code" />
+    <MESSAGE value="Refacor CommandHandler" />
+    <MESSAGE value="Refactor CommandHandler" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor CommandHandler" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Oak$CommodityProvisionSystemTest.ic" NAME="CommodityProvisionSystemTest Coverage Results" MODIFIED="1677351387860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
