@@ -9,6 +9,7 @@ import org.ie.tk.exception.Commodity.CommodityInBuyList;
 import org.ie.tk.exception.Commodity.CommodityNotFound;
 import org.ie.tk.exception.User.InvalidUsername;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -53,7 +54,7 @@ public class User {
     }
 
     public List<Commodity> getBuyList() {
-        return (List<Commodity>) buyList.values();
+        return new ArrayList<>(buyList.values());
     }
 
     public void addCredit(Integer credit) {
