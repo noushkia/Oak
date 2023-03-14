@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import jdk.jshell.spi.ExecutionControl;
 import org.ie.tk.application.service.ServiceLayer;
 import org.ie.tk.domain.Commodity;
+import org.ie.tk.domain.Provider;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -65,9 +66,10 @@ public class CommodityJsonPresentation extends JsonPresentation {
         boolean success = true;
         try {
             Commodity commodity = serviceLayer.getCommodityService().getCommodityById(commodityNode.get("id").asInt());
+            Provider provider = serviceLayer.getProviderService().getProviderById(commodity.getProviderId());
             response = marshalCommodityObject(commodity);
-//            response.remove("providerId");
-//            response.put("provider", provider.getName());
+            response.remove("providerId");
+            response.put("provider", provider.getName());
         } catch (Exception e) {
             response = mapper.createObjectNode();
             response.put("response", e.getMessage());

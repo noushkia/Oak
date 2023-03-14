@@ -1,19 +1,19 @@
 package org.ie.tk;
 
 import static org.junit.Assert.*;
-
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.TextNode;
-import org.ie.tk.exception.Commodity.CommodityNotFound;
-import org.ie.tk.domain.Commodity;
-import org.ie.tk.domain.Provider;
-import org.ie.tk.domain.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import org.ie.tk.application.service.ServiceLayer;
+import org.ie.tk.exception.Commodity.CommodityNotFound;
+import org.ie.tk.domain.Commodity;
+import org.ie.tk.domain.Provider;
+import org.ie.tk.domain.User;
 
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.TextNode;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 
 public class CommodityProvisionSystemTest {
-    private CommodityProvisionSystem cps;
+    private ServiceLayer cps;
     private static ObjectMapper mapper;
 
     static User[] users;

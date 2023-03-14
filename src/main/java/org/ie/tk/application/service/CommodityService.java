@@ -30,11 +30,8 @@ public class CommodityService extends Service {
         return db.fetchCommodities(c -> true);
     }
 
-    public Commodity getCommodityById(Integer commodityId) throws CommodityNotFound, ProviderNotFound {
-        Commodity commodity = db.fetchCommodity(commodityId);
-        Provider provider = db.fetchProvider(commodity.getProviderId());
-        // TODO: 14.03.23 Return provider as well? Maybe fetch provider in the Presenation layer?
-        return commodity;
+    public Commodity getCommodityById(Integer commodityId) throws CommodityNotFound {
+        return db.fetchCommodity(commodityId);
     }
 
     public List<Commodity> getCommoditiesByCategory(String category) {
