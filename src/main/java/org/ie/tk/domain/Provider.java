@@ -5,8 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Provider {
@@ -27,7 +29,12 @@ public class Provider {
         commodities.put(commodity.getId(), commodity);
     }
 
+    public List<Commodity> getProvidedCommodities() {
+        return new ArrayList<>(commodities.values());
+    }
+
     public Double getRating() {
+        // TODO: 15.03.23 Chech the usage of this method
         Double sum = 0.0;
         for (Commodity commodity : commodities.values()) {
             sum += commodity.getRating();
@@ -37,5 +44,9 @@ public class Provider {
 
     public String getName() {
         return name;
+    }
+
+    public Date getRegistryDate() {
+        return registryDate;
     }
 }

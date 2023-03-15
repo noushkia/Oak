@@ -60,7 +60,7 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
 
         for (Comment userComment : commodity.getUserComments()) {
             comments.append(commentTableRow);
-            comments = new StringBuilder(comments.toString().replace("username", userComment.getUserEmail()));
+            comments = new StringBuilder(comments.toString().replace("$username", userComment.getUserEmail()));
             comments = new StringBuilder(comments.toString().replace("$comment", userComment.getText()));
             comments = new StringBuilder(comments.toString().replace("$date", userComment.getDate().toString()));
             comments = new StringBuilder(comments.toString().replace("$likes", userComment.getVotes(1).toString()));
@@ -77,7 +77,7 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
 
-        String movieTableRow = """
+        String commodityTableRow = """
                 <tr>
                             <td>$id</td>
                             <td>$name</td>
@@ -92,7 +92,7 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
         StringBuilder commodities = new StringBuilder();
 
         for (Commodity commodity : commoditiesList) {
-            commodities.append(movieTableRow);
+            commodities.append(commodityTableRow);
             commodities = new StringBuilder(commodities.toString().replace("$id", commodity.getId().toString()));
             commodities = new StringBuilder(commodities.toString().replace("$name", commodity.getName()));
             commodities = new StringBuilder(commodities.toString().replace("$providerId", commodity.getProviderId().toString()));

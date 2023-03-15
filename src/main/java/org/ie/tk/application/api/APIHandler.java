@@ -25,6 +25,7 @@ public class APIHandler extends Handler {
             app.get("/", ctx -> ctx.result("Hello World"));
             app.get("commodities", htmlPresentationLayer.getCommodityHtmlPresentation().getCommodities);
             app.get("commodities/{commodity_id}", htmlPresentationLayer.getCommodityHtmlPresentation().getCommodityById);
+            app.get("providers/{provider_id}", htmlPresentationLayer.getProviderHtmlPresentation().getProviderById);
         });
     }
 
