@@ -28,7 +28,6 @@ public class UserHtmlPresentation extends HtmlPresentation {
         htmlString = htmlString.replace("$address", user.getAddress());
         htmlString = htmlString.replace("$credit", user.getCredit().toString());
 
-        // TODO: 15.03.23 How can I get the username for removeFromBuyList
         String buyListTableRow = """
                 <tr>
                             <td>$id</td>
@@ -40,8 +39,7 @@ public class UserHtmlPresentation extends HtmlPresentation {
                             <td>$inStock</td>
                             <td><a href="/commodities/$id">Link</a></td>
                             <td>
-                                <form action="/removeFromBuyList/$id" method="POST" >
-                                    <input type="hidden" name="username" value=""/>
+                                <form action="/removeFromBuyList/$username/$id" method="GET">
                                     <button type="submit">Remove</button>
                                 </form>
                             </td>
