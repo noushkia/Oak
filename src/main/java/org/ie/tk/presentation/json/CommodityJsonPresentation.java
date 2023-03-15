@@ -28,7 +28,7 @@ public class CommodityJsonPresentation extends JsonPresentation {
         return commodityNode;
     }
 
-    public static List<ObjectNode> marshallCommodityObjects(List<Commodity> commodities) {
+    public static List<ObjectNode> marshalCommodityObjects(List<Commodity> commodities) {
         return commodities.stream()
                 .map(CommodityJsonPresentation::marshalCommodityObject)
                 .collect(Collectors.toList());
@@ -54,9 +54,7 @@ public class CommodityJsonPresentation extends JsonPresentation {
 
 
     public JsonNode getCommoditiesList() {
-        List<ObjectNode> commodityNodes = serviceLayer.getCommodityService().getCommoditiesList()
-                .stream().map(CommodityJsonPresentation::marshalCommodityObject)
-                .collect(Collectors.toList());
+        List<ObjectNode> commodityNodes = marshalCommodityObjects(serviceLayer.getCommodityService().getCommoditiesList());
         return marshalResponse(true, mapper.valueToTree(commodityNodes));
     }
 

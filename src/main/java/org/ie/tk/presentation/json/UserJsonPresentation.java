@@ -113,7 +113,7 @@ public class UserJsonPresentation extends JsonPresentation{
         boolean success = true;
         try {
             List<Commodity> buyList = serviceLayer.getUserService().getBuyList(buyListNode.get("username").asText());
-            response.set("buyList", mapper.valueToTree(CommodityJsonPresentation.marshallCommodityObjects(buyList)));
+            response.set("buyList", mapper.valueToTree(CommodityJsonPresentation.marshalCommodityObjects(buyList)));
         } catch (Exception e) {
             response.put("response", e.getMessage());
             success = false;

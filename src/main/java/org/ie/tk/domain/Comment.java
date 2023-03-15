@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment {
@@ -46,4 +47,27 @@ public class Comment {
     public Integer getCommodityId() {
         return commodityId;
     }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Integer getVotes(Integer voteValue) {
+        int votesCount = 0;
+        for (Integer vote : votes.values()) {
+            if (Objects.equals(vote, voteValue)) {
+                votesCount++;
+            }
+        }
+        return votesCount;
+    }
+
 }
