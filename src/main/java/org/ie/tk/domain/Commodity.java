@@ -83,7 +83,7 @@ public class Commodity {
         return userRatings;
     }
 
-    public int getInStock() {
+    public Integer getInStock() {
         return inStock;
     }
 
@@ -97,5 +97,9 @@ public class Commodity {
 
     public List<String> getCategories() {
         return categories;
+    }
+
+    public List<Comment> getUserComments() {
+        return new ArrayList<>(userComments.values());
     }
 }
