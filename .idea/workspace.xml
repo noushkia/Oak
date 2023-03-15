@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add /providers.">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add commodity for Provider.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommodityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/UserHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/UserHtmlPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/User.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/User.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +195,7 @@
       <workItem from="1678814561590" duration="852000" />
       <workItem from="1678815422609" duration="5206000" />
       <workItem from="1678820848318" duration="594000" />
-      <workItem from="1678876424347" duration="11549000" />
+      <workItem from="1678876424347" duration="13433000" />
     </task>
     <task id="LOCAL-00001" summary="Remove unnecessary breaks.">
       <created>1677321018117</created>
@@ -383,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678890781558</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Add commodity for Provider.">
+      <created>1678890952659</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1678890952660</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,7 +423,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove unused variables." />
     <MESSAGE value="Add extra functionality for services." />
     <MESSAGE value="Add Comment class" />
     <MESSAGE value="Add templates" />
@@ -438,7 +447,8 @@
     <MESSAGE value="Add HtmlPresentationLayer.&#10;Add CommodityHtmlPresentation." />
     <MESSAGE value="Add getters for Comment.&#10;Fix mistype for marshal." />
     <MESSAGE value="Add /providers." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add /providers." />
+    <MESSAGE value="Add commodity for Provider." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add commodity for Provider." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

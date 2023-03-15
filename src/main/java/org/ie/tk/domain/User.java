@@ -64,4 +64,16 @@ public class User {
     public String getEmail() {
         return email;
     }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Integer getCredit() {
+        return credit;
+    }
 }

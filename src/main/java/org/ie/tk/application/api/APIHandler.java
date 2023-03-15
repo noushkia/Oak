@@ -26,6 +26,7 @@ public class APIHandler extends Handler {
             app.get("commodities", htmlPresentationLayer.getCommodityHtmlPresentation().getCommodities);
             app.get("commodities/{commodity_id}", htmlPresentationLayer.getCommodityHtmlPresentation().getCommodityById);
             app.get("providers/{provider_id}", htmlPresentationLayer.getProviderHtmlPresentation().getProviderById);
+            app.get("users/{user_id}", htmlPresentationLayer.getUserHtmlPresentation().getUserById);
         });
     }
 
