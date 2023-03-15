@@ -4,6 +4,7 @@ import org.ie.tk.data.Database;
 import org.ie.tk.exception.Commodity.CommodityInBuyList;
 import org.ie.tk.exception.Commodity.CommodityNotFound;
 import org.ie.tk.exception.Commodity.CommodityOutOfStock;
+import org.ie.tk.exception.User.InsufficientCredit;
 import org.ie.tk.exception.User.InvalidUsername;
 import org.ie.tk.domain.Commodity;
 import org.ie.tk.domain.User;
@@ -38,7 +39,7 @@ public class UserService extends Service {
     public void addToBuyList(String username, Integer commodityId) throws UserNotFound, CommodityNotFound, CommodityOutOfStock, CommodityInBuyList {
         User user = db.fetchUser(username);
         Commodity commodity = db.fetchCommodity(commodityId);
-        commodity.validate();
+        commodity.checkInStock();
         user.addToBuyList(commodity);
     }
 
@@ -48,9 +49,19 @@ public class UserService extends Service {
         user.removeFromBuyList(commodity);
     }
 
+    public void finalizeBuyList(String username) throws UserNotFound, InsufficientCredit, CommodityOutOfStock {
+        User user = db.fetchUser(username);
+        user.finalizeBuyList();
+    }
+
     public List<Commodity> getBuyList(String username) throws UserNotFound {
         User user = db.fetchUser(username);
         return user.getBuyList();
+    }
+
+    public List<Commodity> getPurchasedList(String username) throws UserNotFound {
+        User user = db.fetchUser(username);
+        return user.getPurchasedList();
     }
 
 }

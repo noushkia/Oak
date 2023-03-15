@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.ie.tk.exception.Commodity.CommodityInBuyList;
 import org.ie.tk.exception.Commodity.CommodityNotFound;
+import org.ie.tk.exception.Commodity.CommodityOutOfStock;
+import org.ie.tk.exception.User.InsufficientCredit;
 import org.ie.tk.exception.User.InvalidUsername;
 
 import java.util.ArrayList;
@@ -30,7 +32,10 @@ public class User {
     @JsonProperty("credit")
     private Integer credit;
     @JsonIgnore
-    private final HashMap<Integer, Commodity> buyList = new HashMap<>();
+    private final BuyList buyList = new BuyList();
+
+    @JsonIgnore
+    private final HashMap<Integer, Commodity> purchasedList = new HashMap<>();
 
     public void validate() throws InvalidUsername {
         if (!username.matches("^[a-zA-Z0-9_]+$")) {
@@ -40,21 +45,28 @@ public class User {
     public String getUsername() { return username;}
 
     public void addToBuyList(Commodity commodity) throws CommodityInBuyList {
-        if (buyList.containsKey(commodity.getId())) {
-            throw new CommodityInBuyList(this.username, commodity.getId());
-        }
-        buyList.put(commodity.getId(), commodity);
+        buyList.addItem(this.username, commodity);
     }
 
     public void removeFromBuyList(Commodity commodity) throws CommodityNotFound {
-        if (!buyList.containsKey(commodity.getId())){
-            throw new CommodityNotFound(commodity.getId());
+        buyList.removeItem(commodity);
+    }
+
+    public void finalizeBuyList() throws InsufficientCredit, CommodityOutOfStock {
+        if (!buyList.hasSufficientCredit(this.credit)) {
+            throw new InsufficientCredit();
         }
-        buyList.remove(commodity.getId());
+        buyList.checkItemsStock();
+        purchasedList.putAll(buyList.getItems());
+        buyList.clear();
     }
 
     public List<Commodity> getBuyList() {
-        return new ArrayList<>(buyList.values());
+        return new ArrayList<>(buyList.getItems().values());
+    }
+
+    public List<Commodity> getPurchasedList() {
+        return new ArrayList<>(purchasedList.values());
     }
 
     public void addCredit(Integer credit) {
