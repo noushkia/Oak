@@ -10,14 +10,63 @@ import org.jsoup.nodes.Document;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 
 public class UserHtmlPresentation extends HtmlPresentation {
     public UserHtmlPresentation(ServiceLayer serviceLayer) {
         super(serviceLayer);
     }
 
+    private static String createTableRowsForCommodities(List<Commodity> commodities, String htmlString, String tablePlaceholder) {
+        String tableRow = """
+                <tr>
+                    <td>$id</td>
+                    <td>$name</td>
+                    <td>$providerId</td>
+                    <td>$price</td>
+                    <td>$categories</td>
+                    <td>$rating</td>
+                    <td>$inStock</td>
+                    <td><a href="/commodities/$id">Link</a></td>
+                    $button
+                </tr>
+                """;
+
+
+        StringBuilder tableRows = new StringBuilder();
+
+        for (Commodity commodity : commodities) {
+            StringBuilder row = new StringBuilder(tableRow);
+            row.replace(row.indexOf("$id"), row.indexOf("$id") + 3, commodity.getId().toString());
+            row.replace(row.indexOf("$name"), row.indexOf("$name") + 5, commodity.getName());
+            row.replace(row.indexOf("$providerId"), row.indexOf("$providerId") + 11, commodity.getProviderId().toString());
+            row.replace(row.indexOf("$price"), row.indexOf("$price") + 6, commodity.getPrice().toString());
+            row.replace(row.indexOf("$categories"), row.indexOf("$categories") + 11, commodity.getCategories().toString());
+            row.replace(row.indexOf("$rating"), row.indexOf("$rating") + 7, commodity.getRating().toString());
+            row.replace(row.indexOf("$inStock"), row.indexOf("$inStock") + 8, commodity.getInStock().toString());
+            if (Objects.equals(tablePlaceholder, "$buyList")) {
+                String button = """
+                    <td>
+                        <form action="/removeFromBuyList/$username/$id" method="GET">
+                            <button type="submit">Remove</button>
+                        </form>
+                    </td>
+                    """;
+                row.replace(row.indexOf("$button"), row.indexOf("$button") + 7, button);
+            } else {
+                row.replace(row.indexOf("$button"), row.indexOf("$button") + 7, "");
+            }
+            tableRows.append(row);
+        }
+
+        htmlString = htmlString.replace(tablePlaceholder, tableRows.toString());
+
+        return htmlString;
+    }
+
     public static String marshalUserObject(User user) throws IOException {
-        File input = new File("src/main/resources/templates/User.html");
+        File input = new File(USER_TEMPLATE_PATH);
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
 
@@ -27,67 +76,9 @@ public class UserHtmlPresentation extends HtmlPresentation {
         htmlString = htmlString.replace("$address", user.getAddress());
         htmlString = htmlString.replace("$credit", user.getCredit().toString());
 
-        String buyListTableRow = """
-                <tr>
-                            <td>$id</td>
-                            <td>$name</td>
-                            <td>$providerId</td>
-                            <td>$price</td>
-                            <td>$categories</td>
-                            <td>$rating</td>
-                            <td>$inStock</td>
-                            <td><a href="/commodities/$id">Link</a></td>
-                            <td>
-                                <form action="/removeFromBuyList/$username/$id" method="GET">
-                                    <button type="submit">Remove</button>
-                                </form>
-                            </td>
-                </tr>
-                """;
 
-        StringBuilder buyList = new StringBuilder();
-
-        for (Commodity commodity : user.getBuyList()) {
-            buyList.append(buyListTableRow);
-            buyList = new StringBuilder(buyList.toString().replace("$id", commodity.getId().toString()));
-            buyList = new StringBuilder(buyList.toString().replace("$name", commodity.getName()));
-            buyList = new StringBuilder(buyList.toString().replace("$providerId", commodity.getProviderId().toString()));
-            buyList = new StringBuilder(buyList.toString().replace("$price", commodity.getPrice().toString()));
-            buyList = new StringBuilder(buyList.toString().replace("$categories", commodity.getCategories().toString()));
-            buyList = new StringBuilder(buyList.toString().replace("$rating", commodity.getRating().toString()));
-            buyList = new StringBuilder(buyList.toString().replace("$inStock", commodity.getInStock().toString()));
-        }
-
-        htmlString = htmlString.replace("$buyList", buyList.toString());
-
-        String purchasedListTableRow = """
-                <tr>
-                            <td>$id</td>
-                            <td>$name</td>
-                            <td>$providerId</td>
-                            <td>$price</td>
-                            <td>$categories</td>
-                            <td>$rating</td>
-                            <td>$inStock</td>
-                            <td><a href="/commodities/$id">Link</a></td>
-                </tr>
-                """;
-
-
-        StringBuilder purchasedList = new StringBuilder();
-
-        for (Commodity commodity : user.getBuyList()) {
-            purchasedList.append(purchasedListTableRow);
-            purchasedList = new StringBuilder(purchasedList.toString().replace("$id", commodity.getId().toString()));
-            purchasedList = new StringBuilder(purchasedList.toString().replace("$name", commodity.getName()));
-            purchasedList = new StringBuilder(purchasedList.toString().replace("$providerId", commodity.getProviderId().toString()));
-            purchasedList = new StringBuilder(purchasedList.toString().replace("$price", commodity.getPrice().toString()));
-            purchasedList = new StringBuilder(purchasedList.toString().replace("$categories", commodity.getCategories().toString()));
-            purchasedList = new StringBuilder(purchasedList.toString().replace("$rating", commodity.getRating().toString()));
-            purchasedList = new StringBuilder(purchasedList.toString().replace("$inStock", commodity.getInStock().toString()));
-        }
-
-        htmlString = htmlString.replace("$purchasedList", purchasedList.toString());
+        htmlString = createTableRowsForCommodities(user.getBuyList(), htmlString, "$buyList");
+        htmlString = createTableRowsForCommodities(user.getPurchasedList(), htmlString, "$purchasedList");
 
         return htmlString;
     }

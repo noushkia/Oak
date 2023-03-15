@@ -21,7 +21,7 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
     }
 
     public static String marshalCommodityObject(Commodity commodity) throws IOException {
-        File input = new File("src/main/resources/templates/Commodity.html");
+        File input = new File(COMMODITY_TEMPLATE_PATH);
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
         htmlString = htmlString.replace("$id", commodity.getId().toString());
@@ -73,7 +73,7 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
     }
 
     public static String marshalCommodities(List<Commodity> commoditiesList) throws IOException {
-        File input = new File("src/main/resources/templates/Commodities.html");
+        File input = new File(COMMODITIES_TEMPLATE_PATH);
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
 
