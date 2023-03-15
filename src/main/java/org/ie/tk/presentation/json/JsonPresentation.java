@@ -5,14 +5,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.ie.tk.application.service.ServiceLayer;
+import org.ie.tk.presentation.Presentation;
 
-public abstract class JsonPresentation {
+public abstract class JsonPresentation extends Presentation {
 
     protected static ObjectMapper mapper = new ObjectMapper();
-    protected ServiceLayer serviceLayer;
 
-    public JsonPresentation(ServiceLayer serviceLayer){
-        this.serviceLayer = serviceLayer;
+    public JsonPresentation(ServiceLayer serviceLayer) {
+        super(serviceLayer);
     }
 
     public JsonNode fetchData(String data) throws JsonProcessingException {
