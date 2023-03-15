@@ -27,8 +27,8 @@ public class APIHandler extends Handler {
             app.get("commodities/{commodity_id}", htmlPresentationLayer.getCommodityHtmlPresentation().getCommodityById);
             app.get("providers/{provider_id}", htmlPresentationLayer.getProviderHtmlPresentation().getProviderById);
             app.get("users/{user_id}", htmlPresentationLayer.getUserHtmlPresentation().getUserById);
+            app.get("addCredit/{user_id}/{credit}", htmlPresentationLayer.getUserHtmlPresentation().addCredit);
             // TODO: 15.03.23 post and get: rate, addtobuylist, removefrombuylist, vote
-            // TODO: 15.03.23 get addCredit
             // TODO: 15.03.23 Implement search by categories and price
             // TODO: 15.03.23 Implement payment (purchasedList + buy)
             // TODO: 15.03.23 Implement voteComment

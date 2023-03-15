@@ -2,7 +2,6 @@ package org.ie.tk.presentation.html;
 
 import io.javalin.http.Handler;
 import org.ie.tk.application.service.ServiceLayer;
-import org.ie.tk.domain.Comment;
 import org.ie.tk.domain.Commodity;
 import org.ie.tk.domain.User;
 import org.ie.tk.exception.User.UserNotFound;
@@ -78,7 +77,7 @@ public class UserHtmlPresentation extends HtmlPresentation {
         StringBuilder purchasedList = new StringBuilder();
 
         for (Commodity commodity : user.getBuyList()) {
-            purchasedList.append(buyListTableRow);
+            purchasedList.append(purchasedListTableRow);
             purchasedList = new StringBuilder(purchasedList.toString().replace("$id", commodity.getId().toString()));
             purchasedList = new StringBuilder(purchasedList.toString().replace("$name", commodity.getName()));
             purchasedList = new StringBuilder(purchasedList.toString().replace("$providerId", commodity.getProviderId().toString()));
@@ -106,4 +105,16 @@ public class UserHtmlPresentation extends HtmlPresentation {
         }
     };
 
+    public Handler addCredit = ctx -> {
+        try {
+            String username = ctx.pathParamAsClass("user_id", String.class).get();
+            Integer credit = ctx.pathParamAsClass("credit", Integer.class).get();
+
+            serviceLayer.getUserService().addCredit(username, credit);
+
+            ctx.redirect("/success"); // TODO: 15.03.23 Where to redirect?
+        } catch (UserNotFound userNotFound) {
+            ctx.redirect("/notFound");
+        }
+    };
 }
