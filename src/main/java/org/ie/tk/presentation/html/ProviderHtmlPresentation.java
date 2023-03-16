@@ -17,42 +17,44 @@ public class ProviderHtmlPresentation extends HtmlPresentation {
     }
 
     public static String marshalProviderObject(Provider provider) throws IOException {
-        File input = new File("src/main/resources/templates/Provider.html");
+        File input = new File(PROVIDER_TEMPLATE_PATH);
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
-        htmlString = htmlString.replace("$id", provider.getId().toString());
-        htmlString = htmlString.replace("$name", provider.getName());
-        htmlString = htmlString.replace("$registryDate", provider.getRegistryDate().toString());
+        htmlString = htmlString.replaceAll("\\$id", String.valueOf(provider.getId()))
+                .replaceAll("\\$name", String.valueOf(provider.getName()))
+                .replaceAll("\\$registryDate", String.valueOf(provider.getRegistryDate()));
+
 
         String commodityTableRow = """
-                <tr>
-                    <td>$id</td>
-                    <td>$name</td>
-                    <td>$price</td>
-                    <td>$categories</td>
-                    <td>$rating</td>
-                    <td>$inStock</td>
-                    <td><a href="/commodities/$id">Link</a></td>
-                </tr>
-                """;
+        <tr>
+            <td>$id</td>
+            <td>$name</td>
+            <td>$price</td>
+            <td>$categories</td>
+            <td>$rating</td>
+            <td>$inStock</td>
+            <td><a href="/commodities/$id">Link</a></td>
+        </tr>
+    """;
 
 
         StringBuilder commodities = new StringBuilder();
 
         for (Commodity commodity : provider.getProvidedCommodities()) {
-            commodities.append(commodityTableRow);
-            commodities = new StringBuilder(commodities.toString().replace("$id", commodity.getId().toString()));
-            commodities = new StringBuilder(commodities.toString().replace("$name", commodity.getName()));
-            commodities = new StringBuilder(commodities.toString().replace("$price", commodity.getPrice().toString()));
-            commodities = new StringBuilder(commodities.toString().replace("$categories", commodity.getCategories().toString()));
-            commodities = new StringBuilder(commodities.toString().replace("$rating", commodity.getRating().toString()));
-            commodities = new StringBuilder(commodities.toString().replace("$inStock", commodity.getInStock().toString()));
+            String row = commodityTableRow.replaceAll("\\$id", String.valueOf(commodity.getId()))
+                    .replaceAll("\\$name", commodity.getName())
+                    .replaceAll("\\$price", String.valueOf(commodity.getPrice()))
+                    .replaceAll("\\$categories", String.valueOf(commodity.getCategories()))
+                    .replaceAll("\\$rating", String.valueOf(commodity.getRating()))
+                    .replaceAll("\\$inStock", String.valueOf(commodity.getInStock()));
+            commodities.append(row);
         }
 
         htmlString = htmlString.replace("$commodities", commodities.toString());
 
         return htmlString;
     }
+
 
     public Handler getProviderById = ctx -> {
         try {

@@ -16,60 +16,61 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommodityHtmlPresentation extends HtmlPresentation {
-    public CommodityHtmlPresentation(ServiceLayer serviceLayer) {
-        super(serviceLayer);
-    }
-
     public static String marshalCommodityObject(Commodity commodity) throws IOException {
         File input = new File(COMMODITY_TEMPLATE_PATH);
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
-        htmlString = htmlString.replace("$id", commodity.getId().toString());
-        htmlString = htmlString.replace("$name", commodity.getName());
-        htmlString = htmlString.replace("$providerId", commodity.getProviderId().toString());
-        htmlString = htmlString.replace("$price", commodity.getPrice().toString());
-        htmlString = htmlString.replace("$categories", commodity.getCategories().toString());
-        htmlString = htmlString.replace("$rating", commodity.getRating().toString());
-        htmlString = htmlString.replace("$inStock", commodity.getInStock().toString());
+        htmlString = htmlString.replaceAll("\\$id", String.valueOf(commodity.getId()))
+                .replaceAll("\\$name", commodity.getName())
+                .replaceAll("\\$providerId", String.valueOf(commodity.getProviderId()))
+                .replaceAll("\\$price", String.valueOf(commodity.getPrice()))
+                .replaceAll("\\$categories", String.valueOf(commodity.getCategories()))
+                .replaceAll("\\$rating", String.valueOf(commodity.getRating()))
+                .replaceAll("\\$inStock", String.valueOf(commodity.getInStock()));
 
         String commentTableRow = """
-                <tr>
-                    <td>$username</td>
-                    <td>$comment</td>
-                    <td>$date</td>
-                                  
-                    <td>
-                        <form action="/voteComment/$id/1" method="POST">
-                            <label>$likes</label>
-                            <button type="submit">like</button>
-                            <input type="hidden" name="username" value=""/>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="/voteComment/$id/-1" method="POST">
-                            <label>$dislikes</label>
-                            <button type="submit">dislike</button>
-                            <input type="hidden" name="username" value=""/>
-                        </form>
-                    </td>
-                </tr>
-                """;
+        <tr>
+            <td>$username</td>
+            <td>$comment</td>
+            <td>$date</td>
+  
+            <td>
+                <form action="/voteComment/$id/1" method="POST">
+                    <label>$likes</label>
+                    <button type="submit">like</button>
+                    <input type="hidden" name="username" value=""/>
+                </form>
+            </td>
+            <td>
+                <form action="/voteComment/$id/-1" method="POST">
+                    <label>$dislikes</label>
+                    <button type="submit">dislike</button>
+                    <input type="hidden" name="username" value=""/>
+                </form>
+            </td>
+        </tr>
+        """;
 
-
-        StringBuilder comments = new StringBuilder();
+        StringBuilder tableRows = new StringBuilder();
 
         for (Comment userComment : commodity.getUserComments()) {
-            comments.append(commentTableRow);
-            comments = new StringBuilder(comments.toString().replace("$username", userComment.getUserEmail()));
-            comments = new StringBuilder(comments.toString().replace("$comment", userComment.getText()));
-            comments = new StringBuilder(comments.toString().replace("$date", userComment.getDate().toString()));
-            comments = new StringBuilder(comments.toString().replace("$likes", userComment.getVotes(1).toString()));
-            comments = new StringBuilder(comments.toString().replace("$disLikes", userComment.getVotes(-1).toString()));
+            String row = commentTableRow.replaceAll("\\$username", userComment.getUserEmail())
+                    .replaceAll("\\$comment", userComment.getText())
+                    .replaceAll("\\$date", userComment.getDate().toString())
+                    .replaceAll("\\$likes", userComment.getVotes(1).toString())
+                    .replaceAll("\\$dislikes", userComment.getVotes(-1).toString())
+                    .replaceAll("\\$id", String.valueOf(userComment.getId()));
+            tableRows.append(row);
         }
 
-        htmlString = htmlString.replace("$comments", comments.toString());
+        htmlString = htmlString.replaceAll("\\$comments", tableRows.toString());
 
         return htmlString;
+    }
+
+
+    public CommodityHtmlPresentation(ServiceLayer serviceLayer) {
+        super(serviceLayer);
     }
 
     public static String marshalCommodities(List<Commodity> commoditiesList) throws IOException {
@@ -78,34 +79,36 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
         String htmlString = doc.html();
 
         String commodityTableRow = """
-                <tr>
-                            <td>$id</td>
-                            <td>$name</td>
-                            <td>$providerId</td>
-                            <td>$price</td>
-                            <td>$categories</td>
-                            <td>$rating</td>
-                            <td>$inStock</td>
-                            <td><a href="/commodities/$id">Page</a></td>
-                        </tr>""";
+        <tr>
+            <td>$id</td>
+            <td>$name</td>
+            <td>$providerId</td>
+            <td>$price</td>
+            <td>$categories</td>
+            <td>$rating</td>
+            <td>$inStock</td>
+            <td><a href="/commodities/$id">Page</a></td>
+        </tr>
+        """;
 
-        StringBuilder commodities = new StringBuilder();
+        StringBuilder tableRows = new StringBuilder();
 
         for (Commodity commodity : commoditiesList) {
-            commodities.append(commodityTableRow);
-            commodities = new StringBuilder(commodities.toString().replace("$id", commodity.getId().toString()));
-            commodities = new StringBuilder(commodities.toString().replace("$name", commodity.getName()));
-            commodities = new StringBuilder(commodities.toString().replace("$providerId", commodity.getProviderId().toString()));
-            commodities = new StringBuilder(commodities.toString().replace("$price", commodity.getPrice().toString()));
-            commodities = new StringBuilder(commodities.toString().replace("$categories", commodity.getCategories().toString()));
-            commodities = new StringBuilder(commodities.toString().replace("$rating", commodity.getRating().toString()));
-            commodities = new StringBuilder(commodities.toString().replace("$inStock", commodity.getInStock().toString()));
+            String row = commodityTableRow.replaceAll("\\$id", String.valueOf(commodity.getId()))
+                    .replaceAll("\\$name", commodity.getName())
+                    .replaceAll("\\$providerId", String.valueOf(commodity.getProviderId()))
+                    .replaceAll("\\$price", String.valueOf(commodity.getPrice()))
+                    .replaceAll("\\$categories", String.valueOf(commodity.getCategories()))
+                    .replaceAll("\\$rating", String.valueOf(commodity.getRating()))
+                    .replaceAll("\\$inStock", String.valueOf(commodity.getInStock()));
+            tableRows.append(row);
         }
 
-        htmlString = htmlString.replace("$commodities", commodities.toString());
+        htmlString = htmlString.replace("$commodities", tableRows.toString());
 
         return htmlString;
     }
+
 
     public Handler getCommodities = ctx -> {
         try {

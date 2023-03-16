@@ -103,7 +103,7 @@ public class UserHtmlPresentation extends HtmlPresentation {
 
             serviceLayer.getUserService().addCredit(username, credit);
 
-            ctx.redirect("/success"); // TODO: 15.03.23 Where to redirect?
+            ctx.redirect("/success");
         } catch (UserNotFound userNotFound) {
             ctx.redirect("/notFound");
         }
