@@ -34,7 +34,6 @@ public class Provider {
     }
 
     public Double getRating() {
-        // TODO: 15.03.23 Chech the usage of this method
         Double sum = 0.0;
         for (Commodity commodity : commodities.values()) {
             sum += commodity.getRating();

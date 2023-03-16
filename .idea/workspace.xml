@@ -94,7 +94,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommandHandler" type="Application" factoryName="Application" temporary="true">
+    <configuration name="org.ie.tk.application.cli.CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.ie.tk.application.cli.CommandHandler" />
       <module name="Oak" />
       <extension name="coverage">
@@ -165,16 +165,16 @@
     </configuration>
     <list>
       <item itemvalue="Application.APIHandler" />
-      <item itemvalue="Application.CommandHandler" />
+      <item itemvalue="Application.org.ie.tk.application.cli.CommandHandler" />
       <item itemvalue="JUnit.CommodityServiceTest" />
       <item itemvalue="JUnit.UserServiceTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.APIHandler" />
         <item itemvalue="JUnit.UserServiceTest" />
-        <item itemvalue="Application.CommandHandler" />
+        <item itemvalue="Application.APIHandler" />
+        <item itemvalue="Application.org.ie.tk.application.cli.CommandHandler" />
         <item itemvalue="JUnit.CommodityServiceTest" />
       </list>
     </recent_temporary>
@@ -199,7 +199,8 @@
       <workItem from="1678815422609" duration="5206000" />
       <workItem from="1678820848318" duration="594000" />
       <workItem from="1678876424347" duration="16227000" />
-      <workItem from="1678901551096" duration="6545000" />
+      <workItem from="1678901551096" duration="6708000" />
+      <workItem from="1678962396590" duration="230000" />
     </task>
     <task id="LOCAL-00001" summary="Remove unnecessary breaks.">
       <created>1677321018117</created>
@@ -432,7 +433,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678908279609</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Clean UserHtmlPresentation code.">
+      <created>1678908517477</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1678908517477</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Clean UserHtmlPresentation code.">
+      <created>1678908596467</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1678908596467</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,7 +477,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add Commodity Services and Json Presentation." />
     <MESSAGE value="Add Provider Services and Json Presentation." />
     <MESSAGE value="Clean Commodity Classes." />
     <MESSAGE value="Clean User Classes." />
@@ -487,7 +501,8 @@
     <MESSAGE value="Add TODOs." />
     <MESSAGE value="Add addCredit endpoint." />
     <MESSAGE value="Add BuyList class.&#10;Add finalizeBuyList functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add BuyList class.&#10;Add finalizeBuyList functionality." />
+    <MESSAGE value="Clean UserHtmlPresentation code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean UserHtmlPresentation code." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
