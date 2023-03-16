@@ -38,14 +38,7 @@ public class UserHtmlPresentation extends HtmlPresentation {
         StringBuilder tableRows = new StringBuilder();
 
         for (Commodity commodity : commodities) {
-            StringBuilder row = new StringBuilder(tableRow);
-            row.replace(row.indexOf("$id"), row.indexOf("$id") + 3, commodity.getId().toString());
-            row.replace(row.indexOf("$name"), row.indexOf("$name") + 5, commodity.getName());
-            row.replace(row.indexOf("$providerId"), row.indexOf("$providerId") + 11, commodity.getProviderId().toString());
-            row.replace(row.indexOf("$price"), row.indexOf("$price") + 6, commodity.getPrice().toString());
-            row.replace(row.indexOf("$categories"), row.indexOf("$categories") + 11, commodity.getCategories().toString());
-            row.replace(row.indexOf("$rating"), row.indexOf("$rating") + 7, commodity.getRating().toString());
-            row.replace(row.indexOf("$inStock"), row.indexOf("$inStock") + 8, commodity.getInStock().toString());
+            String row = tableRow;
             if (Objects.equals(tablePlaceholder, "$buyList")) {
                 String button = """
                     <td>
@@ -54,10 +47,12 @@ public class UserHtmlPresentation extends HtmlPresentation {
                         </form>
                     </td>
                     """;
-                row.replace(row.indexOf("$button"), row.indexOf("$button") + 7, button);
+                row = row.replace("$button", button);
             } else {
-                row.replace(row.indexOf("$button"), row.indexOf("$button") + 7, "");
+                row = row.replace("$button", "");
             }
+            row = marshalCommodityEntry(row, commodity);
+
             tableRows.append(row);
         }
 
@@ -71,16 +66,14 @@ public class UserHtmlPresentation extends HtmlPresentation {
         File input = new File(USER_TEMPLATE_PATH);
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
-
-        htmlString = htmlString.replace("$username", user.getUsername());
-        htmlString = htmlString.replace("$email", user.getEmail());
-        htmlString = htmlString.replace("$birthdate", dateFormat.format(user.getBirthDate()));
-        htmlString = htmlString.replace("$address", user.getAddress());
-        htmlString = htmlString.replace("$credit", user.getCredit().toString());
-
-
         htmlString = createTableRowsForCommodities(user.getBuyList(), htmlString, "$buyList");
         htmlString = createTableRowsForCommodities(user.getPurchasedList(), htmlString, "$purchasedList");
+
+        htmlString = htmlString.replaceAll("\\$username", user.getUsername())
+                .replaceAll("\\$email", user.getEmail())
+                .replaceAll("\\$birthdate", dateFormat.format(user.getBirthDate()))
+                .replaceAll("\\$address", user.getAddress())
+                .replaceAll("\\$credit", String.valueOf(user.getCredit()));
 
         return htmlString;
     }

@@ -20,13 +20,7 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
         File input = new File(COMMODITY_TEMPLATE_PATH);
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
-        htmlString = htmlString.replaceAll("\\$id", String.valueOf(commodity.getId()))
-                .replaceAll("\\$name", commodity.getName())
-                .replaceAll("\\$providerId", String.valueOf(commodity.getProviderId()))
-                .replaceAll("\\$price", String.valueOf(commodity.getPrice()))
-                .replaceAll("\\$categories", String.valueOf(commodity.getCategories()))
-                .replaceAll("\\$rating", String.valueOf(commodity.getRating()))
-                .replaceAll("\\$inStock", String.valueOf(commodity.getInStock()));
+        htmlString = marshalCommodityEntry(htmlString, commodity);
 
         String commentTableRow = """
         <tr>

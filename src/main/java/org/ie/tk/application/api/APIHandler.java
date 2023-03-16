@@ -1,7 +1,6 @@
 package org.ie.tk.application.api;
 
 import io.javalin.Javalin;
-import io.javalin.http.NotFoundResponse;
 import org.ie.tk.application.Handler;
 import org.ie.tk.exception.Commodity.CommodityNotFound;
 import org.ie.tk.exception.Provider.ProviderNotFound;
@@ -14,6 +13,7 @@ import java.io.IOException;
 public class APIHandler extends Handler {
     private Javalin app;
     private final HtmlPresentationLayer htmlPresentationLayer;
+
     public APIHandler() throws IOException, InvalidUsername, CommodityNotFound, ProviderNotFound {
         super();
         htmlPresentationLayer = new HtmlPresentationLayer(serviceLayer);
@@ -21,10 +21,6 @@ public class APIHandler extends Handler {
 
     public void run() {
         app = Javalin.create().start(5000);
-
-//        app.exception(NotFoundResponse.class, (e, ctx) -> {
-//            ctx.redirect("/notFound");
-//        });
 
         app.routes(() -> {
             app.get("/", ctx -> ctx.result("Hello World"));
@@ -36,15 +32,12 @@ public class APIHandler extends Handler {
             app.get("/success", htmlPresentationLayer.getStatusHtmlPresentation().handleSuccess);
             app.get("/notFound", htmlPresentationLayer.getStatusHtmlPresentation().handleNotFound);
             app.get("/forbidden", htmlPresentationLayer.getStatusHtmlPresentation().handleForbidden);
-            // TODO: 15.03.23 Clean Commodity and Provider HtmlPresentation
             // TODO: 15.03.23 post and get: rate, addtobuylist, removefrombuylist, vote
             // TODO: 15.03.23 Implement search by categories and price
             // TODO: 15.03.23 Implement payment (purchasedList + buy)
             // TODO: 15.03.23 Implement voteComment
             // TODO: 15.03.23 Test
-        }).error(404, ctx -> {
-            ctx.redirect("/notFound");
-        });
+        }).error(404, ctx -> ctx.redirect("/notFound"));
     }
 
     public static void main(String[] args) throws IOException, InvalidUsername, CommodityNotFound, ProviderNotFound {

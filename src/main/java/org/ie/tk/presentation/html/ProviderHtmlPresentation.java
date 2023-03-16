@@ -23,8 +23,8 @@ public class ProviderHtmlPresentation extends HtmlPresentation {
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
         htmlString = htmlString.replaceAll("\\$id", String.valueOf(provider.getId()))
-                .replaceAll("\\$name", String.valueOf(provider.getName()))
-                .replaceAll("\\$registryDate", String.valueOf(dateFormat.format(provider.getRegistryDate())));
+                .replaceAll("\\$name", provider.getName())
+                .replaceAll("\\$registryDate", dateFormat.format(provider.getRegistryDate()));
 
         String commodityTableRow = """
         <tr>
