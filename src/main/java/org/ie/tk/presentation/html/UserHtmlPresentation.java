@@ -4,6 +4,9 @@ import io.javalin.http.Handler;
 import org.ie.tk.application.service.ServiceLayer;
 import org.ie.tk.domain.Commodity;
 import org.ie.tk.domain.User;
+import org.ie.tk.exception.Commodity.CommodityInBuyList;
+import org.ie.tk.exception.Commodity.CommodityNotFound;
+import org.ie.tk.exception.Commodity.CommodityOutOfStock;
 import org.ie.tk.exception.User.UserNotFound;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -41,12 +44,12 @@ public class UserHtmlPresentation extends HtmlPresentation {
             String row = tableRow;
             if (Objects.equals(tablePlaceholder, "$buyList")) {
                 String button = """
-                    <td>
-                        <form action="/removeFromBuyList/$username/$id" method="GET">
-                            <button type="submit">Remove</button>
-                        </form>
-                    </td>
-                    """;
+                        <td>
+                            <form action="/removeFromBuyList/$username/$id" method="GET">
+                                <button type="submit">Remove</button>
+                            </form>
+                        </td>
+                        """;
                 row = row.replace("$button", button);
             } else {
                 row = row.replace("$button", "");
@@ -80,7 +83,7 @@ public class UserHtmlPresentation extends HtmlPresentation {
 
     public Handler getUserById = ctx -> {
         try {
-            String username = ctx.pathParamAsClass("user_id", String.class).get();
+            String username = ctx.pathParamAsClass("username", String.class).get();
             User user = serviceLayer.getUserService().getUserById(username);
 
             String response = marshalUserObject(user);
@@ -93,13 +96,38 @@ public class UserHtmlPresentation extends HtmlPresentation {
 
     public Handler addCredit = ctx -> {
         try {
-            String username = ctx.pathParamAsClass("user_id", String.class).get();
+            String username = ctx.pathParamAsClass("username", String.class).get();
             Integer credit = ctx.pathParamAsClass("credit", Integer.class).get();
 
             serviceLayer.getUserService().addCredit(username, credit);
 
             ctx.redirect("/success");
         } catch (UserNotFound userNotFound) {
+            ctx.redirect("/notFound");
+        }
+    };
+    public Handler addToBuyList = ctx -> {
+        try {
+            String username = ctx.queryParamAsClass("username", String.class).get();
+            Integer commodityId = ctx.queryParamAsClass("commodity_id", Integer.class).get();
+
+            serviceLayer.getUserService().addToBuyList(username, commodityId);
+            ctx.redirect("/success");
+        } catch (UserNotFound | CommodityNotFound e) {
+            ctx.redirect("/notFound");
+        } catch (CommodityOutOfStock | CommodityInBuyList e) {
+            ctx.redirect("/forbidden");
+        }
+    };
+
+    public Handler removeFromBuyList = ctx -> {
+        try {
+            String username = ctx.pathParamAsClass("username", String.class).get();
+            Integer commodityId = ctx.pathParamAsClass("commodity_id", Integer.class).get();
+
+            serviceLayer.getUserService().removeFromBuyList(username, commodityId);
+            ctx.redirect("/success");
+        } catch (UserNotFound | CommodityNotFound e) {
             ctx.redirect("/notFound");
         }
     };

@@ -31,8 +31,9 @@
 <input type="text" name="username" id="username"/>
 <br><br>
 
-<form action="/rateCommodity/$id" method="POST">
-    <input type="hidden" name="username" value=""/>
+<form action="/rateCommodity" method="POST">
+    <input type="hidden" name="username"/>
+    <input type="hidden" name="commodity_id" value="$id">
     <label>Rate(between 1 and 10):</label>
     <label for="quantity">
         <input type="number" id="quantity" name="quantity" min="1" max="10">
@@ -41,8 +42,9 @@
 </form>
 <br>
 
-<form action="/addToBuyList/$id" method="POST">
-    <input type="hidden" name="username" value=""/>
+<form action="/addToBuyList" method="POST">
+    <input type="hidden" name="username"/>
+    <input type="hidden" name="commodity_id" value="$id">
     <button type="submit">Add to BuyList</button>
 </form>
 <br>

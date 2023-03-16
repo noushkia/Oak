@@ -9,6 +9,11 @@ import org.ie.tk.presentation.html.HtmlPresentationLayer;
 
 import java.io.IOException;
 
+// TODO: 15.03.23 post and get: rate, addtobuylist, removefrombuylist, vote
+// TODO: 15.03.23 Implement search by categories and price
+// TODO: 15.03.23 Implement payment (purchasedList + buy)
+// TODO: 15.03.23 Implement voteComment
+// TODO: 15.03.23 Test
 
 public class APIHandler extends Handler {
     private Javalin app;
@@ -27,16 +32,15 @@ public class APIHandler extends Handler {
             app.get("commodities", htmlPresentationLayer.getCommodityHtmlPresentation().getCommodities);
             app.get("commodities/{commodity_id}", htmlPresentationLayer.getCommodityHtmlPresentation().getCommodityById);
             app.get("providers/{provider_id}", htmlPresentationLayer.getProviderHtmlPresentation().getProviderById);
-            app.get("users/{user_id}", htmlPresentationLayer.getUserHtmlPresentation().getUserById);
-            app.get("addCredit/{user_id}/{credit}", htmlPresentationLayer.getUserHtmlPresentation().addCredit);
+            app.get("users/{username}", htmlPresentationLayer.getUserHtmlPresentation().getUserById);
+            app.get("addCredit/{username}/{credit}", htmlPresentationLayer.getUserHtmlPresentation().addCredit);
+            app.get("addToBuyList/{username}/{commodity_id}", htmlPresentationLayer.getUserHtmlPresentation().addToBuyList);
+            app.post("addToBuyList", htmlPresentationLayer.getUserHtmlPresentation().addToBuyList);
+            app.get("removeFromBuyList/{username}/{commodity_id}", htmlPresentationLayer.getUserHtmlPresentation().removeFromBuyList);
+            app.post("removeFromBuyList", htmlPresentationLayer.getUserHtmlPresentation().removeFromBuyList);
             app.get("/success", htmlPresentationLayer.getStatusHtmlPresentation().handleSuccess);
             app.get("/notFound", htmlPresentationLayer.getStatusHtmlPresentation().handleNotFound);
             app.get("/forbidden", htmlPresentationLayer.getStatusHtmlPresentation().handleForbidden);
-            // TODO: 15.03.23 post and get: rate, addtobuylist, removefrombuylist, vote
-            // TODO: 15.03.23 Implement search by categories and price
-            // TODO: 15.03.23 Implement payment (purchasedList + buy)
-            // TODO: 15.03.23 Implement voteComment
-            // TODO: 15.03.23 Test
         }).error(404, ctx -> ctx.redirect("/notFound"));
     }
 

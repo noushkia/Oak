@@ -7,6 +7,8 @@ import org.ie.tk.domain.Comment;
 import org.ie.tk.domain.Commodity;
 
 import org.ie.tk.exception.Commodity.CommodityNotFound;
+import org.ie.tk.exception.Commodity.InvalidRating;
+import org.ie.tk.exception.User.UserNotFound;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -126,6 +128,21 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
             ctx.html(response);
         } catch (CommodityNotFound commodityNotFound) {
             ctx.redirect("/notFound");
+        }
+    };
+
+    public Handler rateCommodity = ctx -> {
+        try {
+            String username = ctx.pathParamAsClass("username", String.class).get();
+            Integer commodityId = ctx.pathParamAsClass("commodity_id", Integer.class).get();
+            Integer rating = ctx.pathParamAsClass("rate", Integer.class).get();
+
+            serviceLayer.getCommodityService().rateCommodity(username, commodityId, String.valueOf(rating));
+        } catch (CommodityNotFound | UserNotFound e) {
+            ctx.redirect("/notFound");
+        } catch (InvalidRating invalidRating) {
+            ctx.redirect("/forbidden");
+
         }
     };
 
