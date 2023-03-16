@@ -10,6 +10,7 @@ import org.jsoup.nodes.Document;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 public class ProviderHtmlPresentation extends HtmlPresentation {
     public ProviderHtmlPresentation(ServiceLayer serviceLayer) {
@@ -17,12 +18,13 @@ public class ProviderHtmlPresentation extends HtmlPresentation {
     }
 
     public static String marshalProviderObject(Provider provider) throws IOException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         File input = new File("src/main/resources/templates/Provider.html");
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
         htmlString = htmlString.replace("$id", provider.getId().toString());
         htmlString = htmlString.replace("$name", provider.getName());
-        htmlString = htmlString.replace("$registryDate", provider.getRegistryDate().toString());
+        htmlString = htmlString.replace("$registryDate", dateFormat.format(provider.getRegistryDate()));
 
         String commodityTableRow = """
                 <tr>

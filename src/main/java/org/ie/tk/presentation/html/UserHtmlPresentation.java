@@ -10,6 +10,7 @@ import org.jsoup.nodes.Document;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -66,13 +67,14 @@ public class UserHtmlPresentation extends HtmlPresentation {
     }
 
     public static String marshalUserObject(User user) throws IOException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         File input = new File(USER_TEMPLATE_PATH);
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
 
         htmlString = htmlString.replace("$username", user.getUsername());
         htmlString = htmlString.replace("$email", user.getEmail());
-        htmlString = htmlString.replace("$birthdate", user.getBirthDate().toString());
+        htmlString = htmlString.replace("$birthdate", dateFormat.format(user.getBirthDate()));
         htmlString = htmlString.replace("$address", user.getAddress());
         htmlString = htmlString.replace("$credit", user.getCredit().toString());
 
