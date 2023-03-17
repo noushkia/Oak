@@ -9,7 +9,6 @@ import org.ie.tk.presentation.html.HtmlPresentationLayer;
 
 import java.io.IOException;
 
-// TODO: 15.03.23 Implement voteComment
 // TODO: 15.03.23 Test
 
 public class APIHandler extends Handler {
@@ -41,6 +40,9 @@ public class APIHandler extends Handler {
 
             app.get("rateCommodity/{username}/{commodity_id}/{rate}", htmlPresentationLayer.getCommodityHtmlPresentation().rateCommodity);
             app.post("rateCommodity/{commodity_id}", htmlPresentationLayer.getCommodityHtmlPresentation().rateCommodity);
+
+            app.get("voteComment/{username}/{comment_id}/{vote}", htmlPresentationLayer.getCommodityHtmlPresentation().voteComment);
+            app.post("voteComment/{comment_id}/{vote}", htmlPresentationLayer.getCommodityHtmlPresentation().voteComment);
 
             app.get("commodities/search/{start_price}/{end_price}", htmlPresentationLayer.getCommodityHtmlPresentation().getCommoditiesByPriceRange);
             app.get("commodities/search/{categories}", htmlPresentationLayer.getCommodityHtmlPresentation().getCommoditiesByCategory);

@@ -14,11 +14,13 @@ import org.jsoup.nodes.Document;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommodityHtmlPresentation extends HtmlPresentation {
     public static String marshalCommodityObject(Commodity commodity) throws IOException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         File input = new File(COMMODITY_TEMPLATE_PATH);
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
@@ -31,16 +33,20 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
                     <td>$date</td>
                     <td>
                         <form action="/voteComment/$id/1" method="POST">
+                            <label>Your username: </label>
+                            <input type="text" name="username"/>
+                            <br>
                             <label>$likes</label>
-                            <button type="submit">like</button>
-                            <input type="hidden" name="username" value=""/>
+                            <button type="submit">Like</button>
                         </form>
                     </td>
                     <td>
                         <form action="/voteComment/$id/-1" method="POST">
+                            <label>Your username: </label>
+                            <input type="text" name="username"/>
+                            <br>
                             <label>$dislikes</label>
-                            <button type="submit">dislike</button>
-                            <input type="hidden" name="username" value=""/>
+                            <button type="submit">Dislike</button>
                         </form>
                     </td>
                 </tr>
@@ -51,7 +57,7 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
         for (Comment userComment : commodity.getUserComments()) {
             String row = commentTableRow.replaceAll("\\$username", userComment.getUserEmail())
                     .replaceAll("\\$comment", userComment.getText())
-                    .replaceAll("\\$date", userComment.getDate().toString())
+                    .replaceAll("\\$date", dateFormat.format(userComment.getDate()))
                     .replaceAll("\\$likes", userComment.getVotes(1).toString())
                     .replaceAll("\\$dislikes", userComment.getVotes(-1).toString())
                     .replaceAll("\\$id", String.valueOf(userComment.getId()));
@@ -187,14 +193,12 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
             Integer commentId = ctx.pathParamAsClass("comment_id", Integer.class).get();
             Integer vote = ctx.pathParamAsClass("vote", Integer.class).get();
 
-            // TODO: 17.03.23 How to get username/email for voting on comments?
             if (ctx.method().equals("GET")) {
-                username = ctx.queryParamAsClass("username", String.class).get();
+                username = ctx.pathParam("username");
             } else {
-                username = ctx.formParamAsClass("username", String.class).get();
+                username = ctx.formParam("username");
             }
 
-            // TODO: 17.03.23 Username or user email?
             serviceLayer.getCommentService().voteComment(username, commentId, vote);
             ctx.redirect("/success");
         } catch (UserNotFound userNotFound) {

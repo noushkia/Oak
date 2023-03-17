@@ -11,7 +11,6 @@ import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment {
-    @JsonProperty("id")
     @JsonIgnore
     private Integer id;
     @JsonProperty("userEmail")
@@ -31,9 +30,8 @@ public class Comment {
     @JsonIgnore
     private static Integer newCommentId = 0;
 
-    @JsonProperty("id")
     public void setId() {
-        id = newCommentId++;
+        this.id = newCommentId++;
     }
 
     public void addUserVote(String username, Integer vote) {
