@@ -42,6 +42,9 @@ public class APIHandler extends Handler {
 
             app.get("removeFromBuyList/{username}/{commodity_id}", htmlPresentationLayer.getUserHtmlPresentation().removeFromBuyList);
 
+            app.get("commodities/search/{start_price}/{end_price}", htmlPresentationLayer.getCommodityHtmlPresentation().getCommoditiesByPriceRange);
+            app.get("commodities/search/{categories}", htmlPresentationLayer.getCommodityHtmlPresentation().getCommoditiesByCategory);
+
             app.get("/success", htmlPresentationLayer.getStatusHtmlPresentation().handleSuccess);
             app.get("/notFound", htmlPresentationLayer.getStatusHtmlPresentation().handleNotFound);
             app.get("/forbidden", htmlPresentationLayer.getStatusHtmlPresentation().handleForbidden);

@@ -25,27 +25,26 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
         htmlString = marshalCommodityEntry(htmlString, commodity);
 
         String commentTableRow = """
-        <tr>
-            <td>$username</td>
-            <td>$comment</td>
-            <td>$date</td>
-  
-            <td>
-                <form action="/voteComment/$id/1" method="POST">
-                    <label>$likes</label>
-                    <button type="submit">like</button>
-                    <input type="hidden" name="username" value=""/>
-                </form>
-            </td>
-            <td>
-                <form action="/voteComment/$id/-1" method="POST">
-                    <label>$dislikes</label>
-                    <button type="submit">dislike</button>
-                    <input type="hidden" name="username" value=""/>
-                </form>
-            </td>
-        </tr>
-        """;
+                <tr>
+                    <td>$username</td>
+                    <td>$comment</td>
+                    <td>$date</td>
+                    <td>
+                        <form action="/voteComment/$id/1" method="POST">
+                            <label>$likes</label>
+                            <button type="submit">like</button>
+                            <input type="hidden" name="username" value=""/>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/voteComment/$id/-1" method="POST">
+                            <label>$dislikes</label>
+                            <button type="submit">dislike</button>
+                            <input type="hidden" name="username" value=""/>
+                        </form>
+                    </td>
+                </tr>
+                """;
 
         StringBuilder tableRows = new StringBuilder();
 
@@ -75,17 +74,17 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
         String htmlString = doc.html();
 
         String commodityTableRow = """
-        <tr>
-            <td>$id</td>
-            <td>$name</td>
-            <td>$providerId</td>
-            <td>$price</td>
-            <td>$categories</td>
-            <td>$rating</td>
-            <td>$inStock</td>
-            <td><a href="/commodities/$id">Page</a></td>
-        </tr>
-        """;
+                <tr>
+                    <td>$id</td>
+                    <td>$name</td>
+                    <td>$providerId</td>
+                    <td>$price</td>
+                    <td>$categories</td>
+                    <td>$rating</td>
+                    <td>$inStock</td>
+                    <td><a href="/commodities/$id">Page</a></td>
+                </tr>
+                """;
 
         StringBuilder tableRows = new StringBuilder();
 
@@ -109,6 +108,33 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
     public Handler getCommodities = ctx -> {
         try {
             List<Commodity> commodities = new ArrayList<>(serviceLayer.getCommodityService().getCommoditiesList());
+
+            String response = marshalCommodities(commodities);
+
+            ctx.html(response);
+        } catch (Exception exception) {
+            ctx.redirect("/notFound");
+        }
+    };
+
+    public Handler getCommoditiesByCategory = ctx -> {
+        try {
+            String category = ctx.pathParamAsClass("categories", String.class).get();
+            List<Commodity> commodities = new ArrayList<>(serviceLayer.getCommodityService().getCommoditiesByCategory(category));
+
+            String response = marshalCommodities(commodities);
+
+            ctx.html(response);
+        } catch (Exception exception) {
+            ctx.redirect("/notFound");
+        }
+    };
+
+    public Handler getCommoditiesByPriceRange = ctx -> {
+        try {
+            Integer startPrice = ctx.pathParamAsClass("start_price", Integer.class).get();
+            Integer endPrice = ctx.pathParamAsClass("end_price", Integer.class).get();
+            List<Commodity> commodities = new ArrayList<>(serviceLayer.getCommodityService().getCommoditiesByPrice(startPrice, endPrice));
 
             String response = marshalCommodities(commodities);
 
@@ -143,6 +169,27 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
         } catch (InvalidRating invalidRating) {
             ctx.redirect("/forbidden");
 
+        }
+    };
+
+    public Handler voteComment = ctx -> {
+        try {
+            String username;
+            Integer commentId = ctx.pathParamAsClass("comment_id", Integer.class).get();
+            Integer vote = ctx.pathParamAsClass("vote", Integer.class).get();
+
+            // TODO: 17.03.23 How to get username/email for voting on comments?
+            if (ctx.method().equals("GET")) {
+                username = ctx.queryParamAsClass("username", String.class).get();
+            } else {
+                username = ctx.formParamAsClass("username", String.class).get();
+            }
+
+            // TODO: 17.03.23 Username or user email?
+            serviceLayer.getCommentService().voteComment(username, commentId, vote);
+            ctx.redirect("/success");
+        } catch (UserNotFound userNotFound) {
+            ctx.redirect("/notFound");
         }
     };
 
