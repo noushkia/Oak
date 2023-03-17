@@ -69,6 +69,10 @@ public class Commodity {
         return categories.contains(category);
     }
 
+    public Boolean isInPriceRange(Integer startPrice, Integer endPrice) {
+        return (price >= startPrice) & (price <= endPrice);
+    }
+
     public void updateStock(Integer amount) {
         inStock += amount;
     }

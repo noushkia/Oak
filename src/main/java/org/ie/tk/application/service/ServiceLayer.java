@@ -12,7 +12,7 @@ public class ServiceLayer {
         providerService = new ProviderService(db);
         commodityService = new CommodityService(db);
         userService = new UserService(db);
-        commodityService = new CommodityService(db);
+        commentService = new CommentService(db);
     }
 
     public ProviderService getProviderService() {

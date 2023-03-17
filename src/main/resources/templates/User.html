@@ -20,14 +20,23 @@
         <li id="birthDate">Birth Date: $birthdate</li>
         <li id="address">$address</li>
         <li id="credit">Credit: $credit</li>
-        <li>
-            <form action="" method="POST" >
-                <label>Buy List Payment</label>
-                <input id="form_payment" type="hidden" name="userId" value="Farhad">
-                <button type="submit">Payment</button>
-            </form>
-        </li>
     </ul>
+    <br>
+
+    <form action="/addCredit/$username" method="POST" >
+        <label>Add Credit</label>
+        <label for="quantity">
+            <input type="number" id="quantity" name="quantity" min="0">
+        </label>
+        <button type="submit">Add</button>
+    </form>
+    <br>
+
+    <form action="/finalizeBuyList/$username" method="POST" >
+        <label>Finalize Buy List</label>
+        <button type="submit">Pay</button>
+    </form>
+
     <table>
         <caption>
             <h2>Buy List</h2>

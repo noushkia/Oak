@@ -5,17 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Clean HtmlPresentation">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Comment/CommentNotFound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommodityService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/ServiceLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/ServiceLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/data/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/data/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/BuyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/BuyList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Commodity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/UserHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/UserHtmlPresentation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Commodity.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Commodity.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/User.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/User.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -530,6 +527,11 @@
           <properties class="java.lang.UnsupportedOperationException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/UserHtmlPresentation.java</url>
+          <line>118</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

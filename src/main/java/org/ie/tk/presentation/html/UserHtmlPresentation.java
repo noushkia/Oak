@@ -97,7 +97,14 @@ public class UserHtmlPresentation extends HtmlPresentation {
     public Handler addCredit = ctx -> {
         try {
             String username = ctx.pathParamAsClass("username", String.class).get();
-            Integer credit = ctx.pathParamAsClass("credit", Integer.class).get();
+            Integer credit;
+
+            if (ctx.method().equals("GET")) {
+                credit = ctx.pathParamAsClass("credit", Integer.class).get();
+            }
+            else{
+                credit = ctx.formParamAsClass("quantity", Integer.class).get();
+            }
 
             serviceLayer.getUserService().addCredit(username, credit);
 
@@ -108,8 +115,15 @@ public class UserHtmlPresentation extends HtmlPresentation {
     };
     public Handler addToBuyList = ctx -> {
         try {
-            String username = ctx.queryParamAsClass("username", String.class).get();
+            String username;
             Integer commodityId = ctx.queryParamAsClass("commodity_id", Integer.class).get();
+
+            if (ctx.method().equals("GET")) {
+                username = ctx.queryParamAsClass("username", String.class).get();
+            }
+            else {
+                username = ctx.formParamAsClass("username", String.class).get();
+            }
 
             serviceLayer.getUserService().addToBuyList(username, commodityId);
             ctx.redirect("/success");

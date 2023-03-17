@@ -1,9 +1,6 @@
 package org.ie.tk.application.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import jdk.jshell.spi.ExecutionControl;
 import org.ie.tk.data.Database;
-import org.ie.tk.domain.Comment;
 import org.ie.tk.domain.Commodity;
 import org.ie.tk.domain.Provider;
 import org.ie.tk.domain.User;
@@ -37,7 +34,10 @@ public class CommodityService extends Service {
 
     public List<Commodity> getCommoditiesByCategory(String category) {
         return db.fetchCommodities(c -> c.containsCategory(category));
+    }
 
+    public List<Commodity> getCommoditiesByPrice(Integer startPrice, Integer endPrice) {
+        return db.fetchCommodities(c -> c.isInPriceRange(startPrice, endPrice));
     }
 
     public void rateCommodity(String username, Integer commodityId, String rating) throws InvalidRating, UserNotFound, CommodityNotFound {
