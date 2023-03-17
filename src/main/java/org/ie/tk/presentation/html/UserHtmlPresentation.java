@@ -7,6 +7,7 @@ import org.ie.tk.domain.User;
 import org.ie.tk.exception.Commodity.CommodityInBuyList;
 import org.ie.tk.exception.Commodity.CommodityNotFound;
 import org.ie.tk.exception.Commodity.CommodityOutOfStock;
+import org.ie.tk.exception.User.InsufficientCredit;
 import org.ie.tk.exception.User.UserNotFound;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -116,10 +117,10 @@ public class UserHtmlPresentation extends HtmlPresentation {
     public Handler addToBuyList = ctx -> {
         try {
             String username;
-            Integer commodityId = ctx.queryParamAsClass("commodity_id", Integer.class).get();
+            Integer commodityId = ctx.pathParamAsClass("commodity_id", Integer.class).get();
 
             if (ctx.method().equals("GET")) {
-                username = ctx.queryParamAsClass("username", String.class).get();
+                username = ctx.pathParamAsClass("username", String.class).get();
             }
             else {
                 username = ctx.formParamAsClass("username", String.class).get();
@@ -143,6 +144,19 @@ public class UserHtmlPresentation extends HtmlPresentation {
             ctx.redirect("/success");
         } catch (UserNotFound | CommodityNotFound e) {
             ctx.redirect("/notFound");
+        }
+    };
+
+    public Handler finalizeBuyList = ctx -> {
+        try {
+            String username = ctx.pathParamAsClass("username", String.class).get();
+
+            serviceLayer.getUserService().finalizeBuyList(username);
+            ctx.redirect("/success");
+        } catch (UserNotFound e) {
+            ctx.redirect("/notFound");
+        } catch (InsufficientCredit | CommodityOutOfStock e) {
+            ctx.redirect("/forbidden");
         }
     };
 }

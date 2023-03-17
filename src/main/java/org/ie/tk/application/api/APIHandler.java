@@ -9,8 +9,6 @@ import org.ie.tk.presentation.html.HtmlPresentationLayer;
 
 import java.io.IOException;
 
-// TODO: 15.03.23 post and get: rate, addtobuylist, removefrombuylist, vote
-// TODO: 15.03.23 Implement search by categories and price
 // TODO: 15.03.23 Implement payment (purchasedList + buy)
 // TODO: 15.03.23 Implement voteComment
 // TODO: 15.03.23 Test
@@ -48,6 +46,8 @@ public class APIHandler extends Handler {
             app.get("/success", htmlPresentationLayer.getStatusHtmlPresentation().handleSuccess);
             app.get("/notFound", htmlPresentationLayer.getStatusHtmlPresentation().handleNotFound);
             app.get("/forbidden", htmlPresentationLayer.getStatusHtmlPresentation().handleForbidden);
+
+            app.post("/finalizeBuyList/{username}", htmlPresentationLayer.getUserHtmlPresentation().finalizeBuyList);
         }).error(404, ctx -> ctx.redirect("/notFound"));
     }
 
