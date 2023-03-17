@@ -10,16 +10,13 @@ import org.ie.tk.exception.Commodity.CommodityInBuyList;
 import org.ie.tk.exception.Commodity.CommodityNotFound;
 import org.ie.tk.exception.Commodity.CommodityOutOfStock;
 import org.ie.tk.exception.User.UserNotFound;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.*;
 
 public class UserServiceTest {
     private static Database database;
@@ -58,12 +55,13 @@ public class UserServiceTest {
         // Arrange
         String username = users[0].getUsername();
         Integer commodityId = commodities[0].getId();
+        int initialBuyListSize = userService.getUserById(username).getBuyList().size();
 
         // Act
         userService.addToBuyList(username, commodityId);
 
         // Assert
-        assertEquals("Commodity not added to buyList", 1, userService.getUserById(username).getBuyList().size());
+        assertEquals("Commodity not added to buyList", 1, userService.getUserById(username).getBuyList().size()-initialBuyListSize);
         assertEquals("Wrong commodity was added to buyList", commodityId, userService.getUserById(username).getBuyList().get(0).getId());
     }
 
@@ -97,10 +95,72 @@ public class UserServiceTest {
         assertThrows(CommodityOutOfStock.class, () -> userService.addToBuyList(username, commodityId));
     }
 
-    @AfterClass
-    public static void tearDown() {
+    @Test
+    public void getBuyList_withValidUserAndEmptyBuyList_shouldReturnEmptyList() throws UserNotFound {
+        // Arrange
+        String username = users[1].getUsername();
+        List<Commodity> expected = userService.getUserById(username).getBuyList();
+
+        // Act
+        List<Commodity> actual = userService.getBuyList(username);
+
+        // Assert
+        assertEquals("Returned buyList is not valid", expected, actual);
+    }
+
+    @Test
+    public void getBuyList_withUserNotFound_shouldGetUserNotFound() {
+        // Arrange
+        String username = "amirfery";
+
+        // Act & Assert
+        assertThrows(UserNotFound.class, () -> userService.getBuyList(username));
+    }
+
+    @Test
+    public void getBuyList_withValidUserAndMultipleCommodities_shouldReturnValidList() throws UserNotFound, CommodityOutOfStock, CommodityInBuyList, CommodityNotFound {
+        // Arrange
+        String username = users[0].getUsername();
+        List<Commodity> expected = userService.getUserById(username).getBuyList();
+        expected.add(commodities[1]);
+        expected.add(commodities[3]);
+
+        userService.addToBuyList(username, commodities[1].getId());
+        userService.addToBuyList(username, commodities[3].getId());
+
+        // Act
+        List<Commodity> actual = userService.getBuyList(username);
+
+        // Assert
+        assertEquals("Returned buyList is not valid", expected, actual);
+    }
+
+    @Test
+    public void getBuyList_withMultipleUsers_shouldReturnValidList() throws UserNotFound, CommodityOutOfStock, CommodityInBuyList, CommodityNotFound {
+        // Arrange
+        String username1 = users[0].getUsername();
+        String username2 = users[1].getUsername();
+        List<Commodity> expected = userService.getUserById(username2).getBuyList();
+        expected.add(commodities[1]);
+
+        userService.addToBuyList(username2, commodities[1].getId());
+
+        // Act
+        List<Commodity> actual = userService.getBuyList(username1);
+
+        // Assert
+        assertNotEquals("Returned buyList is not valid", expected, actual);
+    }
+
+
+    @After
+    public void tearDown() {
         userService = null;
         database = null;
+    }
+
+    @AfterClass
+    public static void finalTearDown() {
         users = null;
         providers = null;
         commodities = null;

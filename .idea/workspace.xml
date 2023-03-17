@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add voteComment.">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/CommentServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/comments.json" afterDir="false" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Update .json files for tests.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/commodities.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/commodities.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +76,7 @@
       <recent name="$PROJECT_DIR$/src/test/java/org/ie/tk/service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CommentServiceTest">
+  <component name="RunManager" selected="JUnit.UserServiceTest">
     <configuration name="APIHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.ie.tk.application.api.APIHandler" />
       <module name="Oak" />
@@ -120,21 +119,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommodityServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Oak" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.ie.tk.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.ie.tk.service" />
-      <option name="MAIN_CLASS_NAME" value="org.ie.tk.service.CommodityServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Oak" />
       <extension name="coverage">
@@ -146,6 +130,22 @@
       <option name="PACKAGE_NAME" value="org.ie.tk.service" />
       <option name="MAIN_CLASS_NAME" value="org.ie.tk.service.UserServiceTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.addToBuyList_withValidInputs_shouldAddCommodityToUserBuyList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Oak" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ie.tk.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.ie.tk.service" />
+      <option name="MAIN_CLASS_NAME" value="org.ie.tk.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="addToBuyList_withValidInputs_shouldAddCommodityToUserBuyList" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -180,17 +180,17 @@
       <item itemvalue="Application.APIHandler" />
       <item itemvalue="Application.org.ie.tk.application.cli.CommandHandler" />
       <item itemvalue="JUnit.CommentServiceTest" />
-      <item itemvalue="JUnit.CommodityServiceTest" />
+      <item itemvalue="JUnit.UserServiceTest.addToBuyList_withValidInputs_shouldAddCommodityToUserBuyList" />
       <item itemvalue="JUnit.UserServiceTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="JUnit.UserServiceTest.addToBuyList_withValidInputs_shouldAddCommodityToUserBuyList" />
         <item itemvalue="JUnit.CommentServiceTest" />
         <item itemvalue="Application.APIHandler" />
-        <item itemvalue="JUnit.UserServiceTest" />
         <item itemvalue="Application.org.ie.tk.application.cli.CommandHandler" />
-        <item itemvalue="JUnit.CommodityServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -216,7 +216,7 @@
       <workItem from="1678876424347" duration="16227000" />
       <workItem from="1678901551096" duration="6708000" />
       <workItem from="1678962396590" duration="6248000" />
-      <workItem from="1679060274542" duration="7481000" />
+      <workItem from="1679060274542" duration="8392000" />
     </task>
     <task id="LOCAL-00001" summary="Remove unnecessary breaks.">
       <created>1677321018117</created>
@@ -505,7 +505,21 @@
       <option name="project" value="LOCAL" />
       <updated>1679069019481</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Add voteComment tests">
+      <created>1679070062049</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1679070062049</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Update .json files for tests.">
+      <created>1679070474825</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1679070474825</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,8 +549,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix getCommodityById issue" />
-    <MESSAGE value="Refactor Tests." />
     <MESSAGE value="Update dependencies." />
     <MESSAGE value="Add DataLoader" />
     <MESSAGE value="Clean code." />
@@ -560,7 +572,9 @@
     <MESSAGE value="Add finalzeBuyList." />
     <MESSAGE value="Add rateCommodity." />
     <MESSAGE value="Add voteComment." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add voteComment." />
+    <MESSAGE value="Add voteComment tests" />
+    <MESSAGE value="Update .json files for tests." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update .json files for tests." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
