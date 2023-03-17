@@ -13,7 +13,6 @@ import org.junit.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -152,9 +151,7 @@ public class CommodityServiceTest {
     @Test
     public void getCommoditiesByCategory_withValidInputs_shouldGetCommodities() {
         // Arrange
-        ArrayList<Commodity> expected = new ArrayList<>();
-        expected.add(commodities[0]);
-        expected.add(commodities[1]);
+        int expectedSize = 8;
         String category = "Vegetables";
 
         // Act
@@ -162,14 +159,73 @@ public class CommodityServiceTest {
         int actualSize = actual.size();
 
         // Assert
-        assertEquals(expected.size(), actualSize);
+        assertEquals(expectedSize, actualSize);
     }
 
 
-    @AfterClass
-    public static void tearDown() {
+    // get commodities by price tests
+    @Test
+    public void getCommoditiesByPrice_withStartPriceGreaterThanAnyCommodity_shouldReturnEmptyList() {
+        // Arrange
+        Integer startPrice = 100000000;
+        Integer endPrice = 200000000;
+
+        // Act
+        List<Commodity> actual = commodityService.getCommoditiesByPrice(startPrice, endPrice);
+
+        // Assert
+        assertTrue(actual.isEmpty());
+    }
+
+    @Test
+    public void getCommoditiesByPrice_withEndPriceLessThanAnyCommodity_shouldReturnEmptyList() {
+        // Arrange
+        Integer startPrice = 1;
+        Integer endPrice = 4;
+
+        // Act
+        List<Commodity> actual = commodityService.getCommoditiesByPrice(startPrice, endPrice);
+
+        // Assert
+        assertTrue(actual.isEmpty());
+    }
+
+    @Test
+    public void getCommoditiesByPrice_withOnlyOneMatchingCommodity_shouldReturnOneCommodity() {
+        // Arrange
+        Integer startPrice = 10000;
+        Integer endPrice = 10000;
+
+        // Act
+        List<Commodity> actual = commodityService.getCommoditiesByPrice(startPrice, endPrice);
+
+        // Assert
+        assertEquals(1, actual.size());
+        assertTrue(actual.get(0).getName().contains("Onion"));
+    }
+
+    @Test
+    public void getCommoditiesByPrice_withAllCommoditiesInRange_shouldReturnAllCommodities() {
+        // Arrange
+        Integer startPrice = 1;
+        Integer endPrice = 100000000;
+
+        // Act
+        List<Commodity> actual = commodityService.getCommoditiesByPrice(startPrice, endPrice);
+
+        // Assert
+        assertEquals(commodities.length, actual.size());
+    }
+
+
+    @After
+    public void tearDown() {
         commodityService = null;
         database = null;
+    }
+
+    @AfterClass
+    public static void finalTearDown() {
         users = null;
         providers = null;
         commodities = null;
