@@ -9,8 +9,6 @@ import org.ie.tk.presentation.html.HtmlPresentationLayer;
 
 import java.io.IOException;
 
-// TODO: 15.03.23 Test
-
 public class APIHandler extends Handler {
     private Javalin app;
     private final HtmlPresentationLayer htmlPresentationLayer;

@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add get commodities by price tests.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/CommodityServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/CommodityServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +75,21 @@
       <recent name="$PROJECT_DIR$/src/test/java/org/ie/tk/service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserServiceTest">
+  <component name="RunManager" selected="Application.APIHandler">
+    <configuration name="APIHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.ie.tk.application.api.APIHandler" />
+      <module name="Oak" />
+      <option name="VM_PARAMETERS" value="--enable-preview" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ie.tk.application.api.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CommentServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Oak" />
       <extension name="coverage">
@@ -117,22 +131,6 @@
       <option name="PACKAGE_NAME" value="org.ie.tk.service" />
       <option name="MAIN_CLASS_NAME" value="org.ie.tk.service.CommodityServiceTest" />
       <option name="METHOD_NAME" value="getCommoditiesByPrice_withAllCommoditiesInRange_shouldReturnAllCommodities" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CommodityServiceTest.getCommoditiesByPrice_withOnlyOneMatchingCommodity_shouldReturnOneCommodity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Oak" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.ie.tk.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.ie.tk.service" />
-      <option name="MAIN_CLASS_NAME" value="org.ie.tk.service.CommodityServiceTest" />
-      <option name="METHOD_NAME" value="getCommoditiesByPrice_withOnlyOneMatchingCommodity_shouldReturnOneCommodity" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -180,20 +178,20 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.APIHandler" />
       <item itemvalue="JUnit.CommentServiceTest" />
       <item itemvalue="JUnit.CommodityServiceTest.getCommoditiesByPrice_withAllCommoditiesInRange_shouldReturnAllCommodities" />
-      <item itemvalue="JUnit.CommodityServiceTest.getCommoditiesByPrice_withOnlyOneMatchingCommodity_shouldReturnOneCommodity" />
       <item itemvalue="JUnit.CommodityServiceTest" />
       <item itemvalue="JUnit.UserServiceTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.APIHandler" />
         <item itemvalue="JUnit.UserServiceTest" />
         <item itemvalue="JUnit.CommentServiceTest" />
         <item itemvalue="JUnit.CommodityServiceTest" />
         <item itemvalue="JUnit.CommodityServiceTest.getCommoditiesByPrice_withAllCommoditiesInRange_shouldReturnAllCommodities" />
-        <item itemvalue="JUnit.CommodityServiceTest.getCommoditiesByPrice_withOnlyOneMatchingCommodity_shouldReturnOneCommodity" />
       </list>
     </recent_temporary>
   </component>
@@ -219,7 +217,7 @@
       <workItem from="1678876424347" duration="16227000" />
       <workItem from="1678901551096" duration="6708000" />
       <workItem from="1678962396590" duration="6248000" />
-      <workItem from="1679060274542" duration="8938000" />
+      <workItem from="1679060274542" duration="9380000" />
     </task>
     <task id="LOCAL-00001" summary="Remove unnecessary breaks.">
       <created>1677321018117</created>
@@ -529,7 +527,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679070971039</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Add get commodities by price tests.">
+      <created>1679071482804</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1679071482804</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
