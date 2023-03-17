@@ -1,7 +1,32 @@
 [
   {
     "id": 1,
-    "name": "Provider 1",
-    "registryDate": "2010-11-21"
+    "name": "Vegetable Provider",
+    "registryDate": "2023-01-01"
+  },
+  {
+    "id": 2,
+    "name": "Phone Provider",
+    "registryDate": "2022-11-10"
+  },
+  {
+    "id": 3,
+    "name": "Phone Accessory Provider",
+    "registryDate": "2020-02-25"
+  },
+  {
+    "id": 4,
+    "name": "Fruit Provider",
+    "registryDate": "2022-12-15"
+  },
+  {
+    "id": 5,
+    "name": "Home and Kitchen Appliances Provider",
+    "registryDate": "2021-10-01"
+  },
+  {
+    "id": 6,
+    "name": "Dairy Provider",
+    "registryDate": "2022-11-11"
   }
 ]

@@ -1,18 +1,50 @@
 [
   {
-    "username": "taha_fakh" ,
-    "password": "pass" ,
-    "email": "taha_fakh@gmail.com",
-    "birthDate": "2001-10-23",
-    "address": "address1",
-    "credit": 1500
+    "username": "amir",
+    "password": "1234",
+    "email": "amir@gmail.com",
+    "birthDate": "2000-01-01",
+    "address": "amir-home",
+    "credit": 25000
   },
   {
-    "username": "kia_arsh",
-    "password": "pass",
-    "email": "kia_arsh@gmail.com",
-    "birthDate": "2001-02-25",
-    "address": "address2",
-    "credit": 1300
+    "username": "hamid",
+    "password": "12345",
+    "email": "hamid@gmail.com",
+    "birthDate": "2002-02-25",
+    "address": "hamid-home",
+    "credit": 3900000
+  },
+  {
+    "username": "ali",
+    "password": "4321",
+    "email": "ali@gmail.com",
+    "birthDate": "1942-10-11",
+    "address": "ali-home",
+    "credit": 4300000
+  },
+  {
+    "username": "parsa",
+    "password": "54321",
+    "email": "parsa@gmail.com",
+    "birthDate": "1987-07-03",
+    "address": "parsa-home",
+    "credit": 12000000
+  },
+  {
+    "username": "soroosh",
+    "password": "3421",
+    "email": "soroosh@gmail.com",
+    "birthDate": "1990-05-15",
+    "address": "soroosh-home",
+    "credit": 0
+  },
+  {
+    "username": "mahdi",
+    "password": "4312",
+    "email": "mahdi@gmail.com",
+    "birthDate": "1999-04-27",
+    "address": "mahdi-home",
+    "credit": 20000000
   }
 ]
