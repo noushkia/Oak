@@ -1,0 +1,44 @@
+[
+  {
+    "userEmail": "amir@gmail.com",
+    "commodityId": 25,
+    "text": "fair price for a good quality",
+    "date": "2021-03-10"
+  },
+  {
+    "userEmail": "hamid@gmail.com",
+    "commodityId": 6,
+    "text": "dont like how it tastes",
+    "date": "2023-02-03"
+  },
+  {
+    "userEmail": "amir@gmail.com",
+    "commodityId": 11,
+    "text": "One of the bests in the current market",
+    "date": "2021-03-10"
+  },
+  {
+    "userEmail": "ali@gmail.com",
+    "commodityId": 28,
+    "text": "the case was torn apart, and the cable did not charge. Would not recommend!",
+    "date": "2021-06-03"
+  },
+  {
+    "userEmail": "parsa@gmail.com",
+    "commodityId": 19,
+    "text": "fair price for a good quality",
+    "date": "2022-12-10"
+  },
+  {
+    "userEmail": "soroosh@gmail.com",
+    "commodityId": 32,
+    "text": "there were only 4 in the package. I expected to be more!!",
+    "date": "2022-09-12"
+  },
+  {
+    "userEmail": "mahdi@gmail.com",
+    "commodityId": 34,
+    "text": "Not worth it.",
+    "date": "2023-03-10"
+  }
+]
