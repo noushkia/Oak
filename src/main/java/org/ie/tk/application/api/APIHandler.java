@@ -9,7 +9,6 @@ import org.ie.tk.presentation.html.HtmlPresentationLayer;
 
 import java.io.IOException;
 
-// TODO: 15.03.23 Implement payment (purchasedList + buy)
 // TODO: 15.03.23 Implement voteComment
 // TODO: 15.03.23 Test
 
@@ -39,6 +38,9 @@ public class APIHandler extends Handler {
             app.post("addToBuyList/{commodity_id}", htmlPresentationLayer.getUserHtmlPresentation().addToBuyList);
 
             app.get("removeFromBuyList/{username}/{commodity_id}", htmlPresentationLayer.getUserHtmlPresentation().removeFromBuyList);
+
+            app.get("rateCommodity/{username}/{commodity_id}/{rate}", htmlPresentationLayer.getCommodityHtmlPresentation().rateCommodity);
+            app.post("rateCommodity/{commodity_id}", htmlPresentationLayer.getCommodityHtmlPresentation().rateCommodity);
 
             app.get("commodities/search/{start_price}/{end_price}", htmlPresentationLayer.getCommodityHtmlPresentation().getCommoditiesByPriceRange);
             app.get("commodities/search/{categories}", htmlPresentationLayer.getCommodityHtmlPresentation().getCommoditiesByCategory);

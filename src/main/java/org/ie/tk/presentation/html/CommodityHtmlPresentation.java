@@ -159,11 +159,20 @@ public class CommodityHtmlPresentation extends HtmlPresentation {
 
     public Handler rateCommodity = ctx -> {
         try {
-            String username = ctx.pathParamAsClass("username", String.class).get();
+            String username;
             Integer commodityId = ctx.pathParamAsClass("commodity_id", Integer.class).get();
-            Integer rating = ctx.pathParamAsClass("rate", Integer.class).get();
+            String rating;
 
-            serviceLayer.getCommodityService().rateCommodity(username, commodityId, String.valueOf(rating));
+            if (ctx.method().equals("GET")) {
+                username = ctx.pathParam("username");
+                rating = ctx.pathParam("rate");
+            } else {
+                username = ctx.formParam("username");
+                rating = ctx.formParam("rate");
+            }
+
+            serviceLayer.getCommodityService().rateCommodity(username, commodityId, rating);
+            ctx.redirect("/success");
         } catch (CommodityNotFound | UserNotFound e) {
             ctx.redirect("/notFound");
         } catch (InvalidRating invalidRating) {

@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add Search features and VoteComment Handler.">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add finalzeBuyList.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/UserHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/UserHtmlPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/CommodityHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/CommodityHtmlPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Commodity.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Commodity.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +199,7 @@
       <workItem from="1678876424347" duration="16227000" />
       <workItem from="1678901551096" duration="6708000" />
       <workItem from="1678962396590" duration="6248000" />
-      <workItem from="1679060274542" duration="4329000" />
+      <workItem from="1679060274542" duration="4897000" />
     </task>
     <task id="LOCAL-00001" summary="Remove unnecessary breaks.">
       <created>1677321018117</created>
@@ -466,7 +467,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679062935830</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Add finalzeBuyList.">
+      <created>1679066991088</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1679066991088</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +504,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Clean Code" />
     <MESSAGE value="Refacor CommandHandler" />
     <MESSAGE value="Refactor CommandHandler" />
     <MESSAGE value="Fix getCommodityById issue" />
@@ -521,7 +528,8 @@
     <MESSAGE value="Fix date formats" />
     <MESSAGE value="Clean HtmlPresentation" />
     <MESSAGE value="Add Search features and VoteComment Handler." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Search features and VoteComment Handler." />
+    <MESSAGE value="Add finalzeBuyList." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add finalzeBuyList." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
