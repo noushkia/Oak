@@ -29,7 +29,7 @@ public abstract class Handler {
             serviceLayer.getCommodityService().addCommodity(commodity);
         }
         for (Comment comment: dataLoader.getComments()) {
-            serviceLayer.getCommodityService().addComment(comment);
+            serviceLayer.getCommentService().addComment(comment);
         }
     }
 }

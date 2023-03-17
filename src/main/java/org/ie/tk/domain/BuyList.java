@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class BuyList {
     private final HashMap<Integer, Commodity> items = new HashMap<>();
-    private int calculateTotalCredit() {
+    public int calculateTotalCredit() {
         return items.values().stream().mapToInt(Commodity::getPrice).sum();
     }
 
@@ -26,7 +26,10 @@ public class BuyList {
         items.remove(commodity.getId());
     }
 
-    public void clear() {
+    public void updateStock() {
+        for (Commodity commodity : items.values()) {
+            commodity.updateStock(-1);
+        }
         items.clear();
     }
 

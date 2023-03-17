@@ -53,12 +53,13 @@ public class User {
     }
 
     public void finalizeBuyList() throws InsufficientCredit, CommodityOutOfStock {
+        buyList.checkItemsStock();
         if (!buyList.hasSufficientCredit(this.credit)) {
             throw new InsufficientCredit();
         }
-        buyList.checkItemsStock();
+        addCredit(-buyList.calculateTotalCredit());
         purchasedList.putAll(buyList.getItems());
-        buyList.clear();
+        buyList.updateStock();
     }
 
     public List<Commodity> getBuyList() {

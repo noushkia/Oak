@@ -26,7 +26,7 @@ public class Comment {
     @JsonIgnore
     // recorded votes for the comment
     // -1: dislike, 1: like, 0: neutral
-    private final HashMap<String, Integer> votes = new HashMap<>();
+    private final HashMap<String, Integer> userVotes = new HashMap<>();
 
     @JsonIgnore
     private static Integer newCommentId = 0;
@@ -36,8 +36,8 @@ public class Comment {
         id = newCommentId++;
     }
 
-    public void addVote(String username, Integer newVote) {
-        votes.put(username, newVote);
+    public void addUserVote(String username, Integer vote) {
+        userVotes.put(username, vote);
     }
 
     public Integer getId() {
@@ -62,7 +62,7 @@ public class Comment {
 
     public Integer getVotes(Integer voteValue) {
         int votesCount = 0;
-        for (Integer vote : votes.values()) {
+        for (Integer vote : userVotes.values()) {
             if (Objects.equals(vote, voteValue)) {
                 votesCount++;
             }

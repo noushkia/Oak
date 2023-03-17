@@ -1,6 +1,7 @@
 package org.ie.tk.data;
 
 import org.ie.tk.domain.Comment;
+import org.ie.tk.exception.Comment.CommentNotFound;
 import org.ie.tk.exception.Commodity.CommodityNotFound;
 import org.ie.tk.exception.Provider.ProviderNotFound;
 import org.ie.tk.exception.User.UserNotFound;
@@ -45,6 +46,13 @@ public class Database {
             throw new CommodityNotFound(commodityId);
         }
         return commodities.get(commodityId);
+    }
+
+    public Comment fetchComment(Integer commentId) throws CommentNotFound {
+        if (!comments.containsKey(commentId)) {
+            throw new CommentNotFound(commentId);
+        }
+        return comments.get(commentId);
     }
 
     public List<Commodity> fetchCommodities(Predicate<Commodity> predicate) {

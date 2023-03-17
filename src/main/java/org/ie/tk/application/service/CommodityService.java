@@ -46,14 +46,4 @@ public class CommodityService extends Service {
         commodity.addUserRating(user.getUsername(), rating);
     }
 
-    public void addComment(Comment comment) throws CommodityNotFound {
-        Commodity commodity = db.fetchCommodity(comment.getCommodityId());
-        commodity.addComment(comment);
-        db.addComment(comment);
-    }
-    public void voteComment(JsonNode voteNode) throws ExecutionControl.NotImplementedException {
-        // TODO: 14.03.23 Implement
-        throw new ExecutionControl.NotImplementedException("vote comment");
-    }
-
 }
