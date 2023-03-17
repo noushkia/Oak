@@ -68,4 +68,7 @@ public class Comment {
         return votesCount;
     }
 
+    public HashMap<String, Integer> getUserVotes() {
+        return userVotes;
+    }
 }
