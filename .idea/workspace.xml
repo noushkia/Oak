@@ -4,9 +4,52 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add get commodities by price tests.">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Change artifactId">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/APIHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/cli/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/cli/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommodityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/ProviderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/ProviderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/ServiceLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/ServiceLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/data/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/DataLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/data/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/BuyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/BuyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Commodity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Provider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Comment/CommentNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Comment/CommentNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityInBuyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Commodity/CommodityInBuyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Commodity/CommodityNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityOutOfStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Commodity/CommodityOutOfStock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/InvalidRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Commodity/InvalidRating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Provider/ProviderNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Provider/ProviderNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/DuplicateUsername.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/User/DuplicateUsername.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/InsufficientCredit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/User/InsufficientCredit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/InvalidUsername.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/User/InvalidUsername.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/UserNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/User/UserNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/Presentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/Presentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/CommodityHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/CommodityHtmlPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/HtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/HtmlPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/HtmlPresentationLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/HtmlPresentationLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/ProviderHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/ProviderHtmlPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/StatusHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/StatusHtmlPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/UserHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/UserHtmlPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/CommodityJsonPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/CommodityJsonPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/JsonPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/JsonPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/JsonPresentationLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/JsonPresentationLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/ProviderJsonPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/ProviderJsonPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/UserJsonPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/UserJsonPresentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/util/CategoriesDeserializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/util/CategoriesSerializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/CommentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/CommentServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/CommodityServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/CommodityServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/ProviderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/ProviderServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +100,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kianoush/.m2/repository/io/javalin/javalin/4.3.0/javalin-4.3.0.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kianoush/Downloads/javax.servlet-api-4.0.1.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -66,7 +109,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.32988507&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -75,9 +118,9 @@
       <recent name="$PROJECT_DIR$/src/test/java/org/ie/tk/service" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.APIHandler">
-    <configuration name="APIHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.ie.tk.application.api.APIHandler" />
+  <component name="RunManager" selected="JUnit.UserServiceTest">
+    <configuration name="APIHandler" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.oak.application.api.APIHandler" />
       <module name="Oak" />
       <option name="VM_PARAMETERS" value="--enable-preview" />
       <extension name="coverage">
@@ -98,8 +141,9 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.ie.tk.service" />
-      <option name="MAIN_CLASS_NAME" value="org.ie.tk.service.CommentServiceTest" />
+      <option name="PACKAGE_NAME" value="com.oak.service" />
+      <option name="MAIN_CLASS_NAME" value="com.oak.service.CommentServiceTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -113,25 +157,10 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.ie.tk.service" />
-      <option name="MAIN_CLASS_NAME" value="org.ie.tk.service.CommodityServiceTest" />
+      <option name="PACKAGE_NAME" value="com.oak.service" />
+      <option name="MAIN_CLASS_NAME" value="com.oak.service.CommodityServiceTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CommodityServiceTest.getCommoditiesByPrice_withAllCommoditiesInRange_shouldReturnAllCommodities" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Oak" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.ie.tk.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.ie.tk.service" />
-      <option name="MAIN_CLASS_NAME" value="org.ie.tk.service.CommodityServiceTest" />
-      <option name="METHOD_NAME" value="getCommoditiesByPrice_withAllCommoditiesInRange_shouldReturnAllCommodities" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -144,8 +173,9 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.ie.tk.service" />
-      <option name="MAIN_CLASS_NAME" value="org.ie.tk.service.UserServiceTest" />
+      <option name="PACKAGE_NAME" value="com.oak.service" />
+      <option name="MAIN_CLASS_NAME" value="com.oak.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -180,18 +210,16 @@
     <list>
       <item itemvalue="Application.APIHandler" />
       <item itemvalue="JUnit.CommentServiceTest" />
-      <item itemvalue="JUnit.CommodityServiceTest.getCommoditiesByPrice_withAllCommoditiesInRange_shouldReturnAllCommodities" />
       <item itemvalue="JUnit.CommodityServiceTest" />
       <item itemvalue="JUnit.UserServiceTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.APIHandler" />
         <item itemvalue="JUnit.UserServiceTest" />
-        <item itemvalue="JUnit.CommentServiceTest" />
         <item itemvalue="JUnit.CommodityServiceTest" />
-        <item itemvalue="JUnit.CommodityServiceTest.getCommoditiesByPrice_withAllCommoditiesInRange_shouldReturnAllCommodities" />
+        <item itemvalue="JUnit.CommentServiceTest" />
+        <item itemvalue="Application.APIHandler" />
       </list>
     </recent_temporary>
   </component>
@@ -218,6 +246,12 @@
       <workItem from="1678901551096" duration="6708000" />
       <workItem from="1678962396590" duration="6248000" />
       <workItem from="1679060274542" duration="9380000" />
+      <workItem from="1679213260496" duration="1300000" />
+      <workItem from="1679214577665" duration="932000" />
+      <workItem from="1679225867950" duration="3217000" />
+      <workItem from="1679249963361" duration="770000" />
+      <workItem from="1679250766944" duration="426000" />
+      <workItem from="1679251241267" duration="732000" />
     </task>
     <task id="LOCAL-00001" summary="Remove unnecessary breaks.">
       <created>1677321018117</created>
@@ -551,7 +585,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="ca2" />
+                        <option value="ca3" />
                       </list>
                     </value>
                   </entry>
@@ -564,7 +598,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Clean code." />
     <MESSAGE value="Add comment storage to database" />
     <MESSAGE value="Add APIHandler&#10;Refactor code." />
     <MESSAGE value="Fix Comment issues.&#10;Fix Handler error handling." />
@@ -589,7 +622,8 @@
     <MESSAGE value="Update .json files for tests." />
     <MESSAGE value="Add getBuyList tests&#10;Debug tests" />
     <MESSAGE value="Add get commodities by price tests." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add get commodities by price tests." />
+    <MESSAGE value="Change artifactId" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change artifactId" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -599,17 +633,17 @@
           <option name="timeStamp" value="1" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/CommodityHtmlPresentation.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/oak/presentation/html/CommodityHtmlPresentation.java</url>
           <line>191</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommentService.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java</url>
           <line>17</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/ie/tk/application/Handler.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/Handler.java</url>
           <line>31</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
