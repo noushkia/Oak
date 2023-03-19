@@ -75,7 +75,7 @@
       <recent name="$PROJECT_DIR$/src/test/java/org/ie/tk/service" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.Oak [clean,install]">
+  <component name="RunManager" selected="Application.APIHandler">
     <configuration name="APIHandler" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.oak.application.api.APIHandler" />
       <module name="Oak" />
@@ -173,10 +173,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.APIHandler" />
         <item itemvalue="JUnit.CommentServiceTest" />
         <item itemvalue="JUnit.UserServiceTest" />
         <item itemvalue="JUnit.CommodityServiceTest" />
-        <item itemvalue="Application.APIHandler" />
       </list>
     </recent_temporary>
   </component>
