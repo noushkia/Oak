@@ -1,55 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Oak:OakWeb exploded" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Change artifactId">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add javax.servlet dependency.">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Oak_OakWeb_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DemoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/api/APIHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/APIHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/cli/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/cli/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/CommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommodityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/ProviderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/ProviderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/ServiceLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/ServiceLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/data/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/DataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/data/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/BuyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/BuyList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Commodity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Provider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Comment/CommentNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Comment/CommentNotFound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityInBuyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Commodity/CommodityInBuyList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Commodity/CommodityNotFound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/CommodityOutOfStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Commodity/CommodityOutOfStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Commodity/InvalidRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Commodity/InvalidRating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/Provider/ProviderNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Provider/ProviderNotFound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/DuplicateUsername.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/User/DuplicateUsername.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/InsufficientCredit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/User/InsufficientCredit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/InvalidUsername.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/User/InvalidUsername.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/exception/User/UserNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/User/UserNotFound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/Presentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/Presentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/CommodityHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/CommodityHtmlPresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/HtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/HtmlPresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/HtmlPresentationLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/HtmlPresentationLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/ProviderHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/ProviderHtmlPresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/StatusHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/StatusHtmlPresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/html/UserHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/UserHtmlPresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/CommodityJsonPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/CommodityJsonPresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/JsonPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/JsonPresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/JsonPresentationLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/JsonPresentationLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/ProviderJsonPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/ProviderJsonPresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/presentation/json/UserJsonPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/UserJsonPresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/util/CategoriesDeserializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ie/tk/util/CategoriesSerializer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/CommentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/CommentServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/CommodityServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/CommodityServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/ProviderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/ProviderServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/ie/tk/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javax.servlet-api-4.0.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +39,13 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -89,36 +62,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kianoush/Downloads/javax.servlet-api-4.0.1.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.32988507&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/kianoush/Documents/IE/CAs/Oak/src/main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.32988507",
+    "settings.editor.selected.configurable": "http.proxy",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/java/org/ie/tk/service" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserServiceTest">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.73">
     <configuration name="APIHandler" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.oak.application.api.APIHandler" />
       <module name="Oak" />
@@ -207,19 +184,107 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <configuration name="Tomcat 9.0.73" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.73" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="Oak:OakWeb">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="2557aea6-ffaa-4621-81b7-13ddbac61746" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="36891" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="Oak:OakWeb" />
+        </option>
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.APIHandler" />
       <item itemvalue="JUnit.CommentServiceTest" />
       <item itemvalue="JUnit.CommodityServiceTest" />
       <item itemvalue="JUnit.UserServiceTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.73" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.APIHandler" />
         <item itemvalue="JUnit.UserServiceTest" />
         <item itemvalue="JUnit.CommodityServiceTest" />
         <item itemvalue="JUnit.CommentServiceTest" />
-        <item itemvalue="Application.APIHandler" />
       </list>
     </recent_temporary>
   </component>
@@ -251,7 +316,14 @@
       <workItem from="1679225867950" duration="3217000" />
       <workItem from="1679249963361" duration="770000" />
       <workItem from="1679250766944" duration="426000" />
-      <workItem from="1679251241267" duration="732000" />
+      <workItem from="1679251241267" duration="1225000" />
+      <workItem from="1679252477810" duration="1428000" />
+      <workItem from="1679294074028" duration="943000" />
+      <workItem from="1679301018793" duration="212000" />
+      <workItem from="1679301243947" duration="589000" />
+      <workItem from="1679301849087" duration="256000" />
+      <workItem from="1679302116938" duration="437000" />
+      <workItem from="1679302685770" duration="2568000" />
     </task>
     <task id="LOCAL-00001" summary="Remove unnecessary breaks.">
       <created>1677321018117</created>
@@ -568,7 +640,28 @@
       <option name="project" value="LOCAL" />
       <updated>1679071482804</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Change artifactId">
+      <created>1679252018207</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1679252018207</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Delete unused utils">
+      <created>1679252030139</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1679252030139</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Add javax.servlet dependency.">
+      <created>1679252266768</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1679252266768</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,8 +691,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add comment storage to database" />
-    <MESSAGE value="Add APIHandler&#10;Refactor code." />
     <MESSAGE value="Fix Comment issues.&#10;Fix Handler error handling." />
     <MESSAGE value="Start up the website." />
     <MESSAGE value="Add HtmlPresentation classes." />
@@ -623,7 +714,9 @@
     <MESSAGE value="Add getBuyList tests&#10;Debug tests" />
     <MESSAGE value="Add get commodities by price tests." />
     <MESSAGE value="Change artifactId" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change artifactId" />
+    <MESSAGE value="Delete unused utils" />
+    <MESSAGE value="Add javax.servlet dependency." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add javax.servlet dependency." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.ie.tk</groupId>
+    <groupId>com.oak</groupId>
     <artifactId>Oak</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -32,7 +32,8 @@
             <artifactId>jsoup</artifactId>
             <version>1.15.2</version>
             <scope>compile</scope>
-        </dependency><dependency>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.31</version>
@@ -42,6 +43,12 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
             <version>1.6.10</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
