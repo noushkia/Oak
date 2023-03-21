@@ -5,10 +5,10 @@ import com.oak.domain.Commodity;
 import com.oak.presentation.Presentation;
 
 public abstract class HtmlPresentation extends Presentation {
-    protected static final String USER_TEMPLATE_PATH = "src/main/resources/templates/User.html";
-    protected static final String COMMODITY_TEMPLATE_PATH = "src/main/resources/templates/Commodity.html";
-    protected static final String COMMODITIES_TEMPLATE_PATH = "src/main/resources/templates/Commodities.html";
-    protected static final String PROVIDER_TEMPLATE_PATH = "src/main/resources/templates/Provider.html";
+    protected static final String USER_TEMPLATE_PATH = "src/main/resources/templates/user.html";
+    protected static final String COMMODITY_TEMPLATE_PATH = "src/main/resources/templates/commodity.html";
+    protected static final String COMMODITIES_TEMPLATE_PATH = "src/main/resources/templates/commodities.html";
+    protected static final String PROVIDER_TEMPLATE_PATH = "src/main/resources/templates/provider.html";
     protected static String marshalCommodityEntry(String tableRow, Commodity commodity) {
         return tableRow.replaceAll("\\$id", String.valueOf(commodity.getId()))
                 .replaceAll("\\$name", commodity.getName())
