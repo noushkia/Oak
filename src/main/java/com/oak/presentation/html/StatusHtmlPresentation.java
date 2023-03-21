@@ -13,19 +13,19 @@ public class StatusHtmlPresentation extends HtmlPresentation{
     }
 
     public Handler handleSuccess = ctx -> {
-        File input = new File("src/main/resources/templates/200.html");
+        File input = new File("src/main/resources/templates/200.jsp");
         Document doc = Jsoup.parse(input, "UTF-8");
         ctx.html(doc.html());
     };
 
     public Handler handleNotFound = ctx -> {
-        File input = new File("src/main/resources/templates/404.html");
+        File input = new File("src/main/resources/templates/404.jsp");
         Document doc = Jsoup.parse(input, "UTF-8");
         ctx.html(doc.html());
     };
 
     public Handler handleForbidden = ctx -> {
-        File input = new File("src/main/resources/templates/403.html");
+        File input = new File("src/main/resources/templates/403.jsp");
         Document doc = Jsoup.parse(input, "UTF-8");
         ctx.html(doc.html());
     };
