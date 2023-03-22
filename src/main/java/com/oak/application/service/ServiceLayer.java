@@ -36,7 +36,7 @@ public class ServiceLayer {
         return currentUser;
     }
 
-    public void loginUser(User user) {
+    public void setUser(User user) {
         currentUser = user;
     }
 }

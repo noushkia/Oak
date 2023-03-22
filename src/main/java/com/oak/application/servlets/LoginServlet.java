@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
         ServiceLayer serviceLayer = Server.getInstance().getServiceLayer();
         try {
             User user = serviceLayer.getUserService().login(username, password);
-            serviceLayer.loginUser(user);
+            serviceLayer.setUser(user);
             response.sendRedirect("/");
         } catch (UserNotFound | InvalidCredentials ignored) {
         }
