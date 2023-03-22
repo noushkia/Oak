@@ -1,9 +1,10 @@
 package com.oak.application.service;
 
 import com.oak.data.Database;
+import com.oak.domain.User;
 
 public class ServiceLayer {
-
+    private User currentUser = null;
     private final ProviderService providerService;
     private final CommodityService commodityService;
     private final UserService userService;
@@ -29,5 +30,13 @@ public class ServiceLayer {
 
     public CommentService getCommentService() {
         return commentService;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
+    public void loginUser(User user) {
+        currentUser = user;
     }
 }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <style>
+        li {
+        	padding: 5px
+        }
+        table{
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li id="username">Username: $username</li>
+        <li id="email">Email: $email</li>
+        <li id="birthDate">Birth Date: $birthdate</li>
+        <li id="address">$address</li>
+        <li id="credit">Credit: $credit</li>
+    </ul>
+    <br>
+
+    <form action="/addCredit/$username" method="POST" >
+        <label>Add Credit</label>
+        <label for="quantity">
+            <input type="number" id="quantity" name="quantity" min="0">
+        </label>
+        <button type="submit">Add</button>
+    </form>
+    <br>
+
+    <form action="/finalizeBuyList/$username" method="POST" >
+        <label>Finalize Buy List</label>
+        <button type="submit">Pay</button>
+    </form>
+
+    <table>
+        <caption>
+            <h2>Buy List</h2>
+        </caption>
+        <tr>
+            <th>Id</th> 
+            <th>Name</th> 
+            <th>Provider Id</th> 
+            <th>Price</th> 
+            <th>Categories</th> 
+            <th>Rating</th> 
+            <th>In Stock</th>
+            <th>Page</th>
+            <th></th>
+        </tr>
+        $buyList
+    </table>
+    <br>
+    <table>
+        <caption><h2>Purchased List</h2></caption>
+        <tr>
+            <th>Id</th> 
+            <th>Name</th> 
+            <th>Provider Id</th> 
+            <th>Price</th> 
+            <th>Categories</th> 
+            <th>Rating</th> 
+            <th>In Stock</th>
+            <th>Page</th>
+        </tr>
+        $purchasedList
+    </table>
+</body>
+</html>

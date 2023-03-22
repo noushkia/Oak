@@ -1,21 +1,16 @@
 package com.oak.application.api;
 
-import com.oak.exception.Provider.ProviderNotFound;
-import com.oak.exception.User.InvalidUsername;
 import com.oak.presentation.html.HtmlPresentationLayer;
 import io.javalin.Javalin;
 import com.oak.application.Handler;
-import com.oak.exception.Commodity.CommodityNotFound;
-
-import java.io.IOException;
 
 public class APIHandler extends Handler {
     private Javalin app;
     private final HtmlPresentationLayer htmlPresentationLayer;
 
-    public APIHandler() throws IOException, InvalidUsername, CommodityNotFound, ProviderNotFound {
+    public APIHandler() {
         super();
-        htmlPresentationLayer = new HtmlPresentationLayer(serviceLayer);
+        htmlPresentationLayer = new HtmlPresentationLayer(server.getServiceLayer());
     }
 
     public void run() {
@@ -53,7 +48,7 @@ public class APIHandler extends Handler {
         }).error(404, ctx -> ctx.redirect("/notFound"));
     }
 
-    public static void main(String[] args) throws IOException, InvalidUsername, CommodityNotFound, ProviderNotFound {
+    public static void main(String[] args) {
         APIHandler apiHandler = new APIHandler();
         apiHandler.run();
     }

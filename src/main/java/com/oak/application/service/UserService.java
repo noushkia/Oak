@@ -3,6 +3,7 @@ package com.oak.application.service;
 import com.oak.domain.Commodity;
 import com.oak.domain.User;
 import com.oak.exception.User.InsufficientCredit;
+import com.oak.exception.User.InvalidCredentials;
 import com.oak.exception.User.InvalidUsername;
 import com.oak.exception.User.UserNotFound;
 import com.oak.data.Database;
@@ -64,4 +65,11 @@ public class UserService extends Service {
         return user.getPurchasedList();
     }
 
+    public User login(String username, String password) throws UserNotFound, InvalidCredentials {
+        User user = db.fetchUser(username);
+        if (!user.authenticate(password)) {
+            throw new InvalidCredentials();
+        }
+        return user;
+    }
 }

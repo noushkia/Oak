@@ -11,10 +11,7 @@ import com.oak.exception.Commodity.CommodityInBuyList;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Commodity.CommodityOutOfStock;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
@@ -88,5 +85,9 @@ public class User {
 
     public Integer getCredit() {
         return credit;
+    }
+
+    public boolean authenticate(String password) {
+        return Objects.equals(this.password, password);
     }
 }

@@ -3,11 +3,8 @@ package com.oak.application.cli;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.oak.exception.Provider.ProviderNotFound;
-import com.oak.exception.User.InvalidUsername;
 import com.oak.presentation.json.JsonPresentationLayer;
 import com.oak.application.Handler;
-import com.oak.exception.Commodity.CommodityNotFound;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -28,9 +25,9 @@ public class CommandHandler extends Handler {
     private final JsonPresentationLayer jsonPresentationLayer;
     private final ObjectMapper mapper;
 
-    public CommandHandler() throws IOException, InvalidUsername, CommodityNotFound, ProviderNotFound {
+    public CommandHandler() {
         super();
-        jsonPresentationLayer = new JsonPresentationLayer(serviceLayer);
+        jsonPresentationLayer = new JsonPresentationLayer(server.getServiceLayer());
         mapper = new ObjectMapper();
     }
 
@@ -76,7 +73,7 @@ public class CommandHandler extends Handler {
         }
     }
 
-    public static void main(String[] args) throws IOException, InvalidUsername, CommodityNotFound, ProviderNotFound {
+    public static void main(String[] args) throws IOException {
         CommandHandler commandHandler = new CommandHandler();
         commandHandler.run();
     }
