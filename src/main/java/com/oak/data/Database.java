@@ -1,9 +1,6 @@
 package com.oak.data;
 
-import com.oak.domain.Comment;
-import com.oak.domain.Commodity;
-import com.oak.domain.Provider;
-import com.oak.domain.User;
+import com.oak.domain.*;
 import com.oak.exception.Comment.CommentNotFound;
 import com.oak.exception.Provider.ProviderNotFound;
 import com.oak.exception.User.UserNotFound;
@@ -19,12 +16,14 @@ public class Database {
     private final HashMap<Integer, Provider> providers;
     private final HashMap<String, User> users;
     private final HashMap<Integer, Comment> comments;
+    private final HashMap<String, Discount> discounts;
 
     public Database() {
         commodities = new HashMap<>();
         providers = new HashMap<>();
         users = new HashMap<>();
         comments = new HashMap<>();
+        discounts = new HashMap<>();
     }
 
     public User fetchUser(String username) throws UserNotFound {
@@ -77,6 +76,9 @@ public class Database {
 
     public void addCommodity(Commodity commodity) {
         commodities.put(commodity.getId(), commodity);
+    }
+    public void addDiscount(Discount discount){
+        discounts.put(discount.getCode(), discount);
     }
     public void addComment(Comment comment) {
         comment.setId();

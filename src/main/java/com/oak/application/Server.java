@@ -3,10 +3,7 @@ package com.oak.application;
 import com.oak.application.service.ServiceLayer;
 import com.oak.data.DataLoader;
 import com.oak.data.Database;
-import com.oak.domain.Comment;
-import com.oak.domain.Commodity;
-import com.oak.domain.Provider;
-import com.oak.domain.User;
+import com.oak.domain.*;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Provider.ProviderNotFound;
 import com.oak.exception.User.InvalidUsername;
@@ -33,6 +30,9 @@ public class Server {
         }
         for (Comment comment: dataLoader.getComments()) {
             serviceLayer.getCommentService().addComment(comment);
+        }
+        for (Discount discount: dataLoader.getDiscounts()) {
+            serviceLayer.getDiscountService().addDiscount(discount);
         }
     }
 
