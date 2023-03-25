@@ -10,15 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Setup Tomcat.&#10;Add HomeServlet&#10;Add LoginServlet">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/DiscountService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Discount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/servlets/CommoditiesServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/ServiceLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/ServiceLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/DataLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsps/400.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsps/403.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommodityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Commodity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsps/commodities.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsps/commodities.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsps/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsps/home.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +101,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CommandHandler">
+  <component name="RunManager" selected="JUnit.CommodityServiceTest">
     <configuration name="APIHandler" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.oak.application.api.APIHandler" />
       <module name="Oak" />
@@ -304,11 +301,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CommodityServiceTest" />
+        <item itemvalue="JUnit.CommentServiceTest" />
         <item itemvalue="Application.CommandHandler" />
         <item itemvalue="Application.APIHandler" />
         <item itemvalue="JUnit.UserServiceTest" />
-        <item itemvalue="JUnit.CommodityServiceTest" />
-        <item itemvalue="JUnit.CommentServiceTest" />
       </list>
     </recent_temporary>
   </component>

@@ -9,12 +9,38 @@ import com.oak.exception.User.UserNotFound;
 import com.oak.data.Database;
 import com.oak.exception.Commodity.CommodityNotFound;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class CommodityService extends Service {
-
+    private Predicate<Commodity> query = c -> true;
+    private Comparator<Commodity> comparator = null;
     public CommodityService(Database db) {
         super(db);
+    }
+
+    public void setQuery(String method, String input) {
+        if (method.contains("category")) {
+            query = c -> c.containsCategory(input);
+        }
+        else if(method.contains("name")) {
+            query = c -> c.containsName(input);
+        }
+    }
+
+    public void setComparator(String method) {
+        if (method.contains("rating")) {
+            comparator = Comparator.comparing(Commodity::getRating);
+        }
+        else if (method.contains("price")) {
+            comparator = Comparator.comparing(Commodity::getPrice);
+        }
+    }
+
+    public void reset() {
+        query = c -> true;
+        comparator = null;
     }
 
     public void addCommodity(Commodity commodity) throws ProviderNotFound {
@@ -25,7 +51,11 @@ public class CommodityService extends Service {
 
 
     public List<Commodity> getCommoditiesList() {
-        return db.fetchCommodities(c -> true);
+        List<Commodity> commodities = db.fetchCommodities(query);
+        if (comparator != null) {
+            commodities.sort(comparator);
+        }
+        return commodities;
     }
 
     public Commodity getCommodityById(Integer commodityId) throws CommodityNotFound {

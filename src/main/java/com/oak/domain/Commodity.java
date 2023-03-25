@@ -73,6 +73,10 @@ public class Commodity {
         return (price >= startPrice) & (price <= endPrice);
     }
 
+    public Boolean containsName(String name) {
+        return this.name.contains(name);
+    }
+
     public void updateStock(Integer amount) {
         inStock += amount;
     }

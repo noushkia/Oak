@@ -1,4 +1,5 @@
 <%@ page import="com.oak.application.Server" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

@@ -1,3 +1,5 @@
+<%@ page import="com.oak.application.Server" %>
+<%@ page import="com.oak.domain.Commodity" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +14,7 @@
 </head>
 <body>
     <a href="/">Home</a>
-    <p id="username">username: siri</p>
+    <p id="username">username: <%=Server.getInstance().getServiceLayer().getCurrentUser().getUsername()%></p>
     <br><br>
     <form action="" method="POST">
         <label>Search:</label>
@@ -24,7 +26,8 @@
     <br><br>
     <form action="" method="POST">
         <label>Sort By:</label>
-        <button type="submit" name="action" value="sort_by_rate">Rate</button>
+        <button type="submit" name="action" value="sort_by_rating">Rating</button>
+        <button type="submit" name="action" value="sort_by_price">Price</button>
     </form>
     <br><br>
     <table>
@@ -38,26 +41,18 @@
             <th>In Stock</th>
             <th>Links</th>
         </tr>
+        <% for(Commodity commodity : Server.getInstance().getServiceLayer().getCommodityService().getCommoditiesList()) { %>
         <tr>
-            <td>2341</td>
-            <td>Galaxy S21</td> 
-            <td>Phone Provider</td>
-            <td>21000000</td>
-            <td>Technology, Phone</td>
-            <td>8.3</td>
-            <td>17</td>
-            <td><a href="/commodities/2341">Link</a></td>
+            <td><%=commodity.getId()%></td>
+            <td><%=commodity.getName()%></td>
+            <td><%=Server.getInstance().getServiceLayer().getProviderService().getProviderById(commodity.getProviderId()).getName()%></td>
+            <td><%=commodity.getPrice()%></td>
+            <td><%=String.valueOf(commodity.getCategories())%></td>
+            <td><%=commodity.getRating()%></td>
+            <td><%=commodity.getInStock()%></td>
+            <td><a href="/commodities/<%=commodity.getId()%>">Link</a></td>
         </tr>
-        <tr>
-            <td>4231</td>
-            <td>Onion</td> 
-            <td>Vegetables Provider</td>
-            <td>3000</td>
-            <td>Vegetables</td>
-            <td>7.6</td>
-            <td>29</td>
-            <td><a href="/commodities/4231">Link</a></td>
-        </tr>
+        <% } %>
     </table>
 </body>
 </html>
