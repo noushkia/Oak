@@ -36,6 +36,6 @@ public class CommoditiesServlet extends HttpServlet {
             serviceLayer.getCommodityService().reset();
         }
 
-        response.sendRedirect("/movies");
+        response.sendRedirect("/commodities");
     }
 }
