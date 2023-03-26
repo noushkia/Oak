@@ -9,9 +9,9 @@
 <body>
   <form method="post" action="">
     <label>Credits:</label>
-    <input name="credit" type="text" />
+    <input name="credit" type="number" />
     <br>
-    <button type="submit">Add credits</button>
+    <button type="submit">Add credit</button>
   </form>
 </body>
 </html>

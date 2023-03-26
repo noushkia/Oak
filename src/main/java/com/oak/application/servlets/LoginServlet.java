@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         ServiceLayer serviceLayer = Server.getInstance().getServiceLayer();
@@ -27,7 +27,8 @@ public class LoginServlet extends HttpServlet {
             User user = serviceLayer.getUserService().login(username, password);
             serviceLayer.setUser(user);
             response.sendRedirect("/");
-        } catch (UserNotFound | InvalidCredentials ignored) {
+        } catch (UserNotFound | InvalidCredentials e) {
+            throw new ServletException(e);
         }
     }
 }

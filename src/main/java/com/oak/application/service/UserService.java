@@ -2,10 +2,7 @@ package com.oak.application.service;
 
 import com.oak.domain.Commodity;
 import com.oak.domain.User;
-import com.oak.exception.User.InsufficientCredit;
-import com.oak.exception.User.InvalidCredentials;
-import com.oak.exception.User.InvalidUsername;
-import com.oak.exception.User.UserNotFound;
+import com.oak.exception.User.*;
 import com.oak.data.Database;
 import com.oak.exception.Commodity.CommodityInBuyList;
 import com.oak.exception.Commodity.CommodityNotFound;
@@ -32,8 +29,11 @@ public class UserService extends Service {
         return db.fetchUser(username);
     }
 
-    public void addCredit(String username, Integer credit) throws UserNotFound {
+    public void addCredit(String username, Integer credit) throws UserNotFound, NegativeCredit {
         User user = db.fetchUser(username);
+        if (credit < 0) {
+            throw new NegativeCredit();
+        }
         user.addCredit(credit);
     }
 

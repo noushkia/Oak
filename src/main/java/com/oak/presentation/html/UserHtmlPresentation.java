@@ -1,6 +1,7 @@
 package com.oak.presentation.html;
 
 import com.oak.exception.User.InsufficientCredit;
+import com.oak.exception.User.NegativeCredit;
 import com.oak.exception.User.UserNotFound;
 import io.javalin.http.Handler;
 import com.oak.application.service.ServiceLayer;
@@ -112,6 +113,8 @@ public class UserHtmlPresentation extends HtmlPresentation {
             ctx.redirect("/success");
         } catch (UserNotFound userNotFound) {
             ctx.redirect("/notFound");
+        } catch (NegativeCredit negativeCredit) {
+            ctx.redirect("/forbidden");
         }
     };
     public Handler addToBuyList = ctx -> {
