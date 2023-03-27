@@ -16,24 +16,25 @@ import java.util.function.Predicate;
 public class CommodityService extends Service {
     private Predicate<Commodity> query = c -> true;
     private Comparator<Commodity> comparator = null;
+
     public CommodityService(Database db) {
         super(db);
     }
 
     public void setQuery(String method, String input) {
+        final String lowercaseInput = input.toLowerCase();
         if (method.contains("category")) {
-            query = c -> c.containsCategory(input);
-        }
-        else if(method.contains("name")) {
-            query = c -> c.containsName(input);
+            query = c -> c.containsCategory(lowercaseInput);
+        } else if (method.contains("name")) {
+            query = c -> c.containsName(lowercaseInput);
         }
     }
 
+
     public void setComparator(String method) {
         if (method.contains("rating")) {
-            comparator = Comparator.comparing(Commodity::getRating);
-        }
-        else if (method.contains("price")) {
+            comparator = Comparator.comparing(Commodity::getRating).reversed();
+        } else if (method.contains("price")) {
             comparator = Comparator.comparing(Commodity::getPrice);
         }
     }

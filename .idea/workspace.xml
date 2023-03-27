@@ -9,7 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Setup Tomcat.&#10;Add HomeServlet&#10;Add LoginServlet" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Set search by name case-insensitive&#10;Set sort by rating descending">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_03_23_11_01_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_03_23_11_01__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsps/commodities.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsps/commodities.jsp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -56,32 +61,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kianoush/Documents/IE/CAs/Oak/src/main/webapp&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.32988507&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/kianoush/Documents/IE/CAs/Oak/src/main/webapp/jsps",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.32988507",
+    "settings.editor.selected.configurable": "http.proxy",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/java/org/ie/tk/service" />
@@ -94,7 +99,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CommodityServiceTest">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.73">
     <configuration name="APIHandler" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.oak.application.api.APIHandler" />
       <module name="Oak" />
@@ -278,6 +283,7 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method v="2">
+        <option name="MakeProject" enabled="true" />
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="Oak:war exploded" />
@@ -291,6 +297,7 @@
       <item itemvalue="JUnit.CommodityServiceTest" />
       <item itemvalue="JUnit.UserServiceTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.73" />
     </list>
     <recent_temporary>
       <list>
@@ -346,27 +353,6 @@
       <workItem from="1679486355173" duration="13516000" />
       <workItem from="1679502039785" duration="151000" />
       <workItem from="1679502205344" duration="3200000" />
-    </task>
-    <task id="LOCAL-00006" summary="Merge with remote.">
-      <created>1678795570871</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1678795570871</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Add Commodity Services and Json Presentation.">
-      <created>1678802918442</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1678802918442</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Add Provider Services and Json Presentation.">
-      <created>1678803735872</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1678803735872</updated>
     </task>
     <task id="LOCAL-00009" summary="Clean Commodity Classes.">
       <created>1678803810437</created>
@@ -690,7 +676,28 @@
       <option name="project" value="LOCAL" />
       <updated>1679503927263</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Add CommodityServlet">
+      <created>1679909893258</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1679909893258</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Show user credit on homepage&#10;Remove absolute paths">
+      <created>1679909947555</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1679909947556</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Set search by name case-insensitive&#10;Set sort by rating descending">
+      <created>1679910003629</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1679910003630</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -720,10 +727,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add getters for Comment.&#10;Fix mistype for marshal." />
-    <MESSAGE value="Add /providers." />
-    <MESSAGE value="Add commodity for Provider." />
-    <MESSAGE value="Add /users." />
     <MESSAGE value="Add TODOs." />
     <MESSAGE value="Add addCredit endpoint." />
     <MESSAGE value="Add BuyList class.&#10;Add finalizeBuyList functionality." />
@@ -745,7 +748,11 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/ca3' into ca3&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;pom.xml" />
     <MESSAGE value="Fix resources names and structure." />
     <MESSAGE value="Setup Tomcat.&#10;Add HomeServlet&#10;Add LoginServlet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Setup Tomcat.&#10;Add HomeServlet&#10;Add LoginServlet" />
+    <MESSAGE value="Add CommodityServlet" />
+    <MESSAGE value="Show user credit on homepage" />
+    <MESSAGE value="Show user credit on homepage&#10;Remove absolute paths" />
+    <MESSAGE value="Set search by name case-insensitive&#10;Set sort by rating descending" />
+    <option name="LAST_COMMIT_MESSAGE" value="Set search by name case-insensitive&#10;Set sort by rating descending" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -758,6 +765,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/oak/presentation/html/CommodityHtmlPresentation.java</url>
           <line>191</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/servlets/LoginServlet.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/servlets/HomeServlet.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

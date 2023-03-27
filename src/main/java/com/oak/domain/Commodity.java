@@ -74,7 +74,7 @@ public class Commodity {
     }
 
     public Boolean containsName(String name) {
-        return this.name.contains(name);
+        return this.name.toLowerCase().contains(name);
     }
 
     public void updateStock(Integer amount) {
