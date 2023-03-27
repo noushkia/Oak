@@ -8,10 +8,11 @@
 <body>
 <ul>
     <li id="username">Username: <%=Server.getInstance().getServiceLayer().getCurrentUser().getUsername()%></li>
-    <li><a href="/commodities">Commodities</a></li>
-    <li><a href="/buyList">Buy List</a></li>
-    <li><a href="/credit">Add Credit</a></li>
-    <li><a href="/logout">Log Out</a></li>
+    <li id="credit">Credit: <%=Server.getInstance().getServiceLayer().getCurrentUser().getCredit()%></li>
+    <li><a href="${pageContext.request.contextPath}/commodities">Commodities</a></li>
+    <li><a href="${pageContext.request.contextPath}/buyList">Buy List</a></li>
+    <li><a href="${pageContext.request.contextPath}/credit">Add Credit</a></li>
+    <li><a href="${pageContext.request.contextPath}/logout">Log Out</a></li>
 </ul>
 
 </body>
