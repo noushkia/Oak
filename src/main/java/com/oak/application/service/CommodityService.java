@@ -22,10 +22,10 @@ public class CommodityService extends Service {
     }
 
     public void setQuery(String method, String input) {
-        final String lowercaseInput = input.toLowerCase();
         if (method.contains("category")) {
-            query = c -> c.containsCategory(lowercaseInput);
+            query = c -> c.containsCategory(input);
         } else if (method.contains("name")) {
+            final String lowercaseInput = input.toLowerCase();
             query = c -> c.containsName(lowercaseInput);
         }
     }

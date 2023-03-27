@@ -25,7 +25,6 @@ public class CommodityServlet extends HttpServlet {
             response.sendRedirect("/login");
         } else {
             StringTokenizer tokenizer = new StringTokenizer(request.getPathInfo(), "/");
-            String context = tokenizer.nextToken();
             String commodityId = tokenizer.nextToken();
             try {
                 serviceLayer.getCommodityService().getCommodityById(Integer.valueOf(commodityId));
@@ -42,16 +41,15 @@ public class CommodityServlet extends HttpServlet {
         String username = serviceLayer.getCurrentUser().getUsername();
 
         StringTokenizer tokenizer = new StringTokenizer(request.getPathInfo(), "/");
-        String context = tokenizer.nextToken();
+        String action = tokenizer.nextToken();
         String commodityId = tokenizer.nextToken();
 
-        String action = request.getParameter("action");
         switch (action) {
             case "rate" -> {
                 try {
-                    Integer quantity = Integer.valueOf(request.getParameter("quantity"));
+                    Integer score = Integer.valueOf(request.getParameter("score"));
                     serviceLayer.getCommodityService().getCommodityById(Integer.valueOf(commodityId))
-                            .addUserRating(username, String.valueOf(quantity));
+                            .addUserRating(username, String.valueOf(score));
                 } catch (InvalidRating | CommodityNotFound e) {
                     throw new ServletException(e);
                 }
@@ -59,6 +57,7 @@ public class CommodityServlet extends HttpServlet {
             case "add" -> {
                 try {
                     serviceLayer.getUserService().addToBuyList(username, Integer.valueOf(commodityId));
+                    response.sendRedirect("/buyList");
                 } catch (CommodityOutOfStock | UserNotFound | CommodityInBuyList | CommodityNotFound e) {
                     throw new ServletException(e);
                 }

@@ -10,10 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Set search by name case-insensitive&#10;Set sort by rating descending">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_03_23_11_01_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_03_23_11_01__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsps/commodities.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsps/commodities.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommodityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/servlets/CommodityServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/servlets/CommodityServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsps/commodity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsps/commodity.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -354,13 +354,6 @@
       <workItem from="1679502039785" duration="151000" />
       <workItem from="1679502205344" duration="3200000" />
     </task>
-    <task id="LOCAL-00009" summary="Clean Commodity Classes.">
-      <created>1678803810437</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1678803810437</updated>
-    </task>
     <task id="LOCAL-00010" summary="Clean User Classes.">
       <created>1678803820997</created>
       <option name="number" value="00010" />
@@ -697,7 +690,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679910003630</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Set search by name case-insensitive&#10;Set sort by rating descending">
+      <created>1679910126367</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1679910126367</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -765,16 +765,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/oak/presentation/html/CommodityHtmlPresentation.java</url>
           <line>191</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/servlets/LoginServlet.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/servlets/HomeServlet.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
