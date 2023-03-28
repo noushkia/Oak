@@ -9,13 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Integrate discount logic.">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add discount to db.&#10;Add discount exceptions.">
       <change afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/servlets/BuyListServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Discount/DiscountNotFound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/exception/User/ExpiredDiscount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/exception/Discount/ExpiredDiscount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -356,27 +352,6 @@
       <workItem from="1679502039785" duration="151000" />
       <workItem from="1679502205344" duration="3200000" />
     </task>
-    <task id="LOCAL-00013" summary="Refactor CommandHandler">
-      <created>1678808231234</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1678808231234</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Fix getCommodityById issue">
-      <created>1678808957573</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1678808957573</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Refactor Tests.">
-      <created>1678811936382</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1678811936382</updated>
-    </task>
     <task id="LOCAL-00016" summary="Update dependencies.">
       <created>1678815451725</created>
       <option name="number" value="00016" />
@@ -699,7 +674,28 @@
       <option name="project" value="LOCAL" />
       <updated>1680034456316</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Add discount to db.&#10;Add discount exceptions.">
+      <created>1680034677042</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1680034677042</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Add discount to db.&#10;Add discount exceptions.">
+      <created>1680034690000</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1680034690001</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Add discount to db.&#10;Add discount exceptions.">
+      <created>1680034695854</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1680034695855</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -729,7 +725,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Clean UserHtmlPresentation code." />
     <MESSAGE value="Fix date formats" />
     <MESSAGE value="Clean HtmlPresentation" />
     <MESSAGE value="Add Search features and VoteComment Handler." />
@@ -754,7 +749,8 @@
     <MESSAGE value="Debug&#10;Add Java code to commodity.jsp" />
     <MESSAGE value="Debug addComment." />
     <MESSAGE value="Integrate discount logic." />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrate discount logic." />
+    <MESSAGE value="Add discount to db.&#10;Add discount exceptions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add discount to db.&#10;Add discount exceptions." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
