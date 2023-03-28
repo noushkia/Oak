@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Database {
     private final HashMap<Integer, Commodity> commodities;
@@ -55,16 +56,12 @@ public class Database {
     }
 
     public List<Commodity> fetchCommodities(Predicate<Commodity> predicate) {
-        List<Commodity> filteredCommodities = new ArrayList<>();
-
-        for (Commodity commodity : commodities.values()) {
-            if (predicate.test(commodity)) {
-                filteredCommodities.add(commodity);
-            }
-        }
-
-        return filteredCommodities;
+        return commodities.values()
+                .stream()
+                .filter(predicate)
+                .collect(Collectors.toList());
     }
+
 
     public void addUser(User user) {
         users.put(user.getUsername(), user);

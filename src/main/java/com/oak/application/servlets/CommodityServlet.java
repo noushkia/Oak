@@ -2,6 +2,7 @@ package com.oak.application.servlets;
 
 import com.oak.application.Server;
 import com.oak.application.service.ServiceLayer;
+import com.oak.domain.Comment;
 import com.oak.exception.Comment.CommentNotFound;
 import com.oak.exception.Commodity.CommodityInBuyList;
 import com.oak.exception.Commodity.CommodityNotFound;
@@ -13,6 +14,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.Date;
 import java.util.StringTokenizer;
 
 @WebServlet(name = "CommodityServlet", urlPatterns = {"/commodities/*"})
@@ -38,18 +40,21 @@ public class CommodityServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServiceLayer serviceLayer = Server.getInstance().getServiceLayer();
+        if (serviceLayer.getCurrentUser() == null) {
+            response.sendRedirect("/login");
+        }
         String username = serviceLayer.getCurrentUser().getUsername();
 
         StringTokenizer tokenizer = new StringTokenizer(request.getPathInfo(), "/");
-        String action = tokenizer.nextToken();
         String commodityId = tokenizer.nextToken();
+
+        String action = request.getParameter("action");
 
         switch (action) {
             case "rate" -> {
                 try {
-                    Integer score = Integer.valueOf(request.getParameter("score"));
                     serviceLayer.getCommodityService().getCommodityById(Integer.valueOf(commodityId))
-                            .addUserRating(username, String.valueOf(score));
+                            .addUserRating(username, request.getParameter("quantity"));
                 } catch (InvalidRating | CommodityNotFound e) {
                     throw new ServletException(e);
                 }
@@ -62,30 +67,26 @@ public class CommodityServlet extends HttpServlet {
                     throw new ServletException(e);
                 }
             }
-            case "like" -> {
+            case "vote" -> {
                 try {
                     Integer commentId = Integer.valueOf(request.getParameter("comment_id"));
-                    Integer vote = 1;
-                    serviceLayer.getCommentService().voteComment(username, commentId, vote);
-                } catch (UserNotFound | CommentNotFound e) {
-                    throw new ServletException(e);
-                }
-            }
-            case "dislike" -> {
-                // TODO: 27.03.23 Duplication
-                try {
-                    Integer commentId = Integer.valueOf(request.getParameter("comment_id"));
-                    Integer vote = -1;
+                    Integer vote = Integer.valueOf(request.getParameter("vote"));
                     serviceLayer.getCommentService().voteComment(username, commentId, vote);
                 } catch (UserNotFound | CommentNotFound e) {
                     throw new ServletException(e);
                 }
             }
             case "comment" -> {
-                // TODO: 27.03.23 Implement Add Comment
+                String userEmail = serviceLayer.getCurrentUser().getEmail();
+                String text = request.getParameter("comment");
+                Comment comment = new Comment(userEmail, Integer.valueOf(commodityId), text, new Date());
+                try {
+                    serviceLayer.getCommentService().addComment(comment);
+                } catch (CommodityNotFound e) {
+                    throw new ServletException(e);
+                }
             }
         }
         response.sendRedirect("/commodities/" + commodityId);
-        // TODO: 27.03.23 Implement Recommended Commodities
     }
 }

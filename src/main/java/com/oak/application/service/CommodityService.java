@@ -12,6 +12,7 @@ import com.oak.exception.Commodity.CommodityNotFound;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class CommodityService extends Service {
     private Predicate<Commodity> query = c -> true;
@@ -35,7 +36,7 @@ public class CommodityService extends Service {
         if (method.contains("rating")) {
             comparator = Comparator.comparing(Commodity::getRating).reversed();
         } else if (method.contains("price")) {
-            comparator = Comparator.comparing(Commodity::getPrice);
+            comparator = Comparator.comparing(Commodity::getPrice).reversed();
         }
     }
 
@@ -57,6 +58,17 @@ public class CommodityService extends Service {
             commodities.sort(comparator);
         }
         return commodities;
+    }
+
+    public List<Commodity> getSuggestedCommodities(Integer commodityId) throws CommodityNotFound {
+        Commodity inputCommodity = db.fetchCommodity(commodityId);
+        List<Commodity> allCommodities = db.fetchCommodities(c -> true);
+        Comparator<Commodity> scoringFunc = Comparator.comparingDouble(c -> (c.isInSimilarCategory(inputCommodity) ? 11.0 : 0.0) + c.getRating());
+        return allCommodities.stream()
+                .filter(c -> !c.getId().equals(commodityId)) // Skip the input Commodity object
+                .sorted(scoringFunc.thenComparingInt(c -> (int) (Math.random() * 1000)))
+                .limit(5)
+                .collect(Collectors.toList());
     }
 
     public Commodity getCommodityById(Integer commodityId) throws CommodityNotFound {
