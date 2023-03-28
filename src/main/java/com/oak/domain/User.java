@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.oak.exception.User.ExpiredDiscount;
 import com.oak.exception.User.InsufficientCredit;
 import com.oak.exception.User.InvalidUsername;
 import com.oak.exception.Commodity.CommodityInBuyList;
@@ -34,6 +35,9 @@ public class User {
     @JsonIgnore
     private final HashMap<Integer, Commodity> purchasedList = new HashMap<>();
 
+    @JsonIgnore
+    private final HashSet<String> usedDiscounts = new HashSet<>();
+
     public void validate() throws InvalidUsername {
         if (!username.matches("^[a-zA-Z0-9_]+$")) {
             throw new InvalidUsername();
@@ -54,9 +58,13 @@ public class User {
         if (!buyList.hasSufficientCredit(this.credit)) {
             throw new InsufficientCredit();
         }
-        addCredit(-buyList.calculateTotalCredit());
+        addCredit(-buyList.calculateFinalCredit());
         purchasedList.putAll(buyList.getItems());
-        buyList.updateStock();
+        Discount usedDiscount = buyList.getDiscount();
+        if (usedDiscount != null) {
+            usedDiscounts.add(usedDiscount.getCode());
+        }
+        buyList.commitPurchase();
     }
 
     public List<Commodity> getBuyList() {
@@ -89,5 +97,11 @@ public class User {
 
     public boolean authenticate(String password) {
         return Objects.equals(this.password, password);
+    }
+
+    public void addDiscount(Discount discount) throws ExpiredDiscount {
+        if (usedDiscounts.contains(discount.getCode()))
+            throw new ExpiredDiscount(discount.getCode());
+        buyList.addDiscount(discount);
     }
 }

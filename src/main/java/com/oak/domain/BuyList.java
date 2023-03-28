@@ -8,6 +8,16 @@ import java.util.HashMap;
 
 public class BuyList {
     private final HashMap<Integer, Commodity> items = new HashMap<>();
+    private Discount discount = null;
+
+    public int calculateFinalCredit() {
+        return calculateTotalCredit() - calculateDiscountCredit();
+    }
+
+    public int calculateDiscountCredit() {
+        return discount != null ? discount.getDiscountPrice(calculateTotalCredit()) : 0;
+    }
+
     public int calculateTotalCredit() {
         return items.values().stream().mapToInt(Commodity::getPrice).sum();
     }
@@ -38,12 +48,29 @@ public class BuyList {
     }
 
     public boolean hasSufficientCredit(Integer credit) {
-        return calculateTotalCredit() <= credit;
+        return calculateFinalCredit() <= credit;
     }
 
     public void checkItemsStock() throws CommodityOutOfStock {
-        for (Commodity commodity: items.values()) {
+        for (Commodity commodity : items.values()) {
             commodity.checkInStock();
         }
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void useDiscount() {
+        discount = null;
+    }
+
+    public void addDiscount(Discount discount) {
+        this.discount = discount;
+    }
+
+    public void commitPurchase() {
+        updateStock();
+        useDiscount();
     }
 }
