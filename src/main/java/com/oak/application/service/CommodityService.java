@@ -35,7 +35,7 @@ public class CommodityService extends Service {
         if (method.contains("rating")) {
             comparator = Comparator.comparing(Commodity::getRating).reversed();
         } else if (method.contains("price")) {
-            comparator = Comparator.comparing(Commodity::getPrice);
+            comparator = Comparator.comparing(Commodity::getPrice).reversed();
         }
     }
 
