@@ -61,8 +61,8 @@ public class CommodityService extends Service {
     }
 
     public List<Commodity> getSuggestedCommodities(Integer commodityId) throws CommodityNotFound {
-        Commodity inputCommodity = getCommodityById(commodityId);
-        List<Commodity> allCommodities = getCommoditiesList();
+        Commodity inputCommodity = db.fetchCommodity(commodityId);
+        List<Commodity> allCommodities = db.fetchCommodities(c -> true);
         Comparator<Commodity> scoringFunc = Comparator.comparingDouble(c -> (c.isInSimilarCategory(inputCommodity) ? 11.0 : 0.0) + c.getRating());
         return allCommodities.stream()
                 .filter(c -> !c.getId().equals(commodityId)) // Skip the input Commodity object
