@@ -1,4 +1,4 @@
-package com.oak.exception.User;
+package com.oak.exception.Discount;
 
 public class ExpiredDiscount extends Exception{
     public ExpiredDiscount(String code) {

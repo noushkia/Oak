@@ -2,6 +2,7 @@ package com.oak.data;
 
 import com.oak.domain.*;
 import com.oak.exception.Comment.CommentNotFound;
+import com.oak.exception.Discount.DiscountNotFound;
 import com.oak.exception.Provider.ProviderNotFound;
 import com.oak.exception.User.UserNotFound;
 import com.oak.exception.Commodity.CommodityNotFound;
@@ -62,6 +63,12 @@ public class Database {
                 .collect(Collectors.toList());
     }
 
+    public Discount fetchDiscount(String discountCode) throws DiscountNotFound {
+        if (!discounts.containsKey(discountCode)) {
+            throw new DiscountNotFound(discountCode);
+        }
+        return discounts.get(discountCode);
+    }
 
     public void addUser(User user) {
         users.put(user.getUsername(), user);

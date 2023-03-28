@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.oak.exception.User.ExpiredDiscount;
+import com.oak.exception.Discount.ExpiredDiscount;
 import com.oak.exception.User.InsufficientCredit;
 import com.oak.exception.User.InvalidUsername;
 import com.oak.exception.Commodity.CommodityInBuyList;
