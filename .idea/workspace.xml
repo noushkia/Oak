@@ -9,7 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Set search by name case-insensitive&#10;Set sort by rating descending" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Set search by name case-insensitive&#10;Set sort by rating descending">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +97,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.Oak [clean,install]">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.73">
     <configuration name="APIHandler" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.oak.application.api.APIHandler" />
       <module name="Oak" />
@@ -292,6 +295,7 @@
       <item itemvalue="JUnit.CommodityServiceTest" />
       <item itemvalue="JUnit.UserServiceTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.73" />
     </list>
     <recent_temporary>
       <list>
@@ -347,13 +351,6 @@
       <workItem from="1679486355173" duration="13516000" />
       <workItem from="1679502039785" duration="151000" />
       <workItem from="1679502205344" duration="3200000" />
-    </task>
-    <task id="LOCAL-00010" summary="Clean User Classes.">
-      <created>1678803820997</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1678803820997</updated>
     </task>
     <task id="LOCAL-00011" summary="Clean Code">
       <created>1678803838934</created>
@@ -691,7 +688,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679910126367</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Debug&#10;Add Java code to commodity.jsp">
+      <created>1680031168250</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1680031168252</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -721,7 +725,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add TODOs." />
     <MESSAGE value="Add addCredit endpoint." />
     <MESSAGE value="Add BuyList class.&#10;Add finalizeBuyList functionality." />
     <MESSAGE value="Clean UserHtmlPresentation code." />
@@ -746,7 +749,8 @@
     <MESSAGE value="Show user credit on homepage" />
     <MESSAGE value="Show user credit on homepage&#10;Remove absolute paths" />
     <MESSAGE value="Set search by name case-insensitive&#10;Set sort by rating descending" />
-    <option name="LAST_COMMIT_MESSAGE" value="Set search by name case-insensitive&#10;Set sort by rating descending" />
+    <MESSAGE value="Debug&#10;Add Java code to commodity.jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug&#10;Add Java code to commodity.jsp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

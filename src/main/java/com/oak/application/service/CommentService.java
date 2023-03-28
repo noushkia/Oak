@@ -16,8 +16,8 @@ public class CommentService extends Service{
 
     public void addComment(Comment comment) throws CommodityNotFound {
         Commodity commodity = db.fetchCommodity(comment.getCommodityId());
-        commodity.addComment(comment);
         db.addComment(comment);
+        commodity.addComment(comment);
     }
 
     public void voteComment(String username, Integer commentId, Integer vote) throws UserNotFound, CommentNotFound {
