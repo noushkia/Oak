@@ -1,9 +1,6 @@
 package com.oak.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -13,14 +10,9 @@ import java.util.Objects;
 public class Comment {
     @JsonIgnore
     private Integer id;
-    @JsonProperty("userEmail")
     private String userEmail;
-    @JsonProperty("commodityId")
     private Integer commodityId;
-    @JsonProperty("text")
     private String text;
-    @JsonProperty("date")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
     @JsonIgnore
     // recorded votes for the comment
@@ -29,6 +21,17 @@ public class Comment {
 
     @JsonIgnore
     private static Integer newCommentId = 0;
+
+    @JsonCreator
+    public Comment(@JsonProperty("userEmail") String userEmail,
+                   @JsonProperty("commodityId") Integer commodityId,
+                   @JsonProperty("text") String text,
+                   @JsonProperty("date") @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") Date date) {
+        this.userEmail = userEmail;
+        this.commodityId = commodityId;
+        this.text = text;
+        this.date = date;
+    }
 
     public void setId() {
         this.id = newCommentId++;
