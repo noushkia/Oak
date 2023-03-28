@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.oak.exception.Commodity.InvalidRating;
 import com.oak.exception.Commodity.CommodityOutOfStock;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Commodity {
@@ -68,6 +66,14 @@ public class Commodity {
     public Boolean containsCategory(String category) {
         return categories.contains(category);
     }
+
+    public Boolean isInSimilarCategory(Commodity commodity) {
+        Set<String> currentCategories = new HashSet<>(categories);
+        Set<String> otherCategories = new HashSet<>(commodity.getCategories());
+
+        return !Collections.disjoint(currentCategories, otherCategories);
+    }
+
 
     public Boolean isInPriceRange(Integer startPrice, Integer endPrice) {
         return (price >= startPrice) & (price <= endPrice);
