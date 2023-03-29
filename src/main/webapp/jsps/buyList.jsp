@@ -82,8 +82,7 @@
     <label>Enter Your Discount Code:</label>
         <form action="" method="post">
           <input type="text" name="code" value="" />
-          <input type="hidden" id="form_action" name="action" value="discount">
-          <button type="submit">Add Discount</button>
+          <button type="submit" name="action" value="discount">Add Discount</button>
         </form>
 </body>
 </html>
