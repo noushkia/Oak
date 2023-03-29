@@ -39,20 +39,17 @@
     <label>Your Comment:</label>
     <form action="" method="post">
       <input type="text" name="comment" value="" />
-      <input type="hidden" id="form_action" name="action" value="comment">
-      <button type="submit">Add Comment</button>
+      <button type="submit" name="action" value="comment">Add Comment</button>
     </form>
     <br>
     <form action="" method="POST">
       <label>Rate(between 1 and 10):</label>
       <input type="number" id="quantity" name="quantity" min="1" max="10">
-      <input type="hidden" id="form_action" name="action" value="rate">
-      <button type="submit">Rate</button>
+      <button type="submit" name="action" value="rate">Rate</button>
     </form>
     <br>
     <form action="" method="POST">
-    <input type="hidden" id="form_action" name="action" value="add">
-      <button type="submit">Add to BuyList</button>
+      <button type="submit" name="action" value="add">Add to BuyList</button>
     </form>
     <br />
     <table>
@@ -72,19 +69,17 @@
         <td>
           <form action="" method="POST">
             <label for=""><%=comment.getVotes(1)%></label>
-            <input type="hidden" id="form_action" name="action" value="vote">
             <input type="hidden" id="form_comment_id" name="comment_id" value=<%=comment.getId()%>>
             <input type="hidden" id="form_vote" name="vote" value="1">
-            <button type="submit">Like</button>
+            <button type="submit" name="action" value="vote">Like</button>
           </form>
         </td>
         <td>
           <form action="" method="POST">
             <label for=""><%=comment.getVotes(-1)%></label>
-            <input type="hidden" id="form_action" name="action" value="vote">
             <input type="hidden" id="form_comment_id" name="comment_id" value=<%=comment.getId()%>>
             <input type="hidden" id="form_vote" name="vote" value="-1">
-            <button type="submit">Dislike</button>
+            <button type="submit" name="action" value="vote">Dislike</button>
           </form>
         </td>
       </tr>

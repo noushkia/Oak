@@ -36,7 +36,7 @@ public class BuyList {
         items.remove(commodity.getId());
     }
 
-    public void updateStock() {
+    private void updateStock() {
         for (Commodity commodity : items.values()) {
             commodity.updateStock(-1);
         }
@@ -61,7 +61,7 @@ public class BuyList {
         return discount;
     }
 
-    public void useDiscount() {
+    private void useDiscount() {
         discount = null;
     }
 

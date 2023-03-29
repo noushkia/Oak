@@ -1,4 +1,11 @@
-<html lang="en"><head>
+<%@ page import="com.oak.application.Server" %>
+<%@ page import="com.oak.domain.Commodity" %>
+<%@ page import="com.oak.application.BuyList" %>
+<%@ page import="com.oak.application.User" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <title>User</title>
     <style>
@@ -12,21 +19,28 @@
     </style>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/">Home</a>
+<%
+        User currentUser = Server.getInstance().getServiceLayer().getCurrentUser();
+        BuyList buyList = currentUser.getBuyList();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+%>
     <ul>
-        <li id="username">Username: Farhad</li>
-        <li id="email">Email: Farhad@gmail.com</li>
-        <li id="birthDate">Birth Date: 2000/07/21</li>
-        <li id="address">Tehran, North Karegar, No 10</li>
-        <li id="credit">Credit: 700000</li>
-        <li>Current Buy List Price: 64000000</li>
+        <li id="username">Username: <%=currentUser.getUsername()%></li>
+        <li id="email">Email: <%=currentUser.getEmail()%></li>
+        <li id="birthDate">Birth Date: <%=dateFormat.format(currentUser.getBirthDate())%></li>
+        <li id="address"><%=currentUser.getAddress()%></li>
+        <li id="credit">Credit: <%=currentUser.getCredit()%></li>
+        <li>Current Buy List Total Price: <%=buyList.calculateTotalCredit()%>/li>
+        <li>Current Buy List Discount Price: <%=buyList.calculateDiscountCredit()%>/li>
+        <li>Current Buy List Final Price: <%=buyList.calculateFinalCredit()%>/li>
         <li>
             <a href="/credit">Add Credit</a>
         </li>
         <li>
             <form action="" method="POST">
                 <label>Submit & Pay</label>
-                <input id="form_payment" type="hidden" name="userId" value="Farhad">
-                <button type="submit">Payment</button>
+                <button type="submit" name="action" value="pay">Pay</button>
             </form>
         </li>
     </ul>
@@ -34,7 +48,7 @@
         <caption>
             <h2>Buy List</h2>
         </caption>
-        <tbody><tr>
+        <tr>
             <th>Id</th> 
             <th>Name</th> 
             <th>Provider Name</th> 
@@ -42,40 +56,34 @@
             <th>Categories</th> 
             <th>Rating</th> 
             <th>In Stock</th>
-            <th></th>
-            <th></th>
+            <th>Links</th>
+            <th>Remove From Buy List</th>
         </tr>
+        <% for (Commodity commodity : currentUser.getBuyList()) { %>
         <tr>
-            <td>4231</td>
-            <td>Galaxy S22 Plus</td> 
-            <td>Phone Provider No.1</td>
-            <td>43000000</td>
-            <td>Technology, Phone</td>
-            <td>8.7</td>
-            <td>12</td>
-            <td><a href="/commodities/4231">Link</a></td>
+            <td><%=commodity.getId()%></td>
+            <td><%=commodity.getName()%></td>
+            <td><%=Server.getInstance().getServiceLayer().getProviderService().getProviderById(commodity.getProviderId()).getName()%></td>
+            <td><%=commodity.getPrice()%></td>
+            <td><%=String.valueOf(commodity.getCategories())%></td>
+            <td><%=commodity.getRating()%></td>
+            <td><%=commodity.getInStock()%></td>
+            <td><a href="/commodities/<%=commodity.getId()%>">Link</a></td>
             <td>        
                 <form action="" method="POST">
-                    <input id="form_commodity_id" type="hidden" name="commodityId" value="4231">
-                    <button type="submit">Remove</button>
+                    <input type="hidden" id="form_commodity_id" name="commodity_id" value=<%=commodity.getId()%>>
+                    <button type="submit" name="action" value="remove">Remove</button>
                 </form>
             </td>
         </tr>
-        <tr>
-            <th>2341</th> 
-            <th>Galaxy S21</th>
-            <th>Phone Provider No.2</th> 
-            <th>21000000</th> 
-            <th>Technology, Phone</th> 
-            <th>8.3</th> 
-            <th>17</th> 
-            <td><a href="/commodities/2341">Link</a></td>
-            <td>        
-                <form action="" method="POST">
-                    <input id="form_commodity_id" type="hidden" name="commodityId" value="2341">
-                    <button type="submit">Remove</button>
-                </form>
-            </td>
-        </tr>
-    </tbody></table>
-</body></html>
+        <% } %>
+    </table>
+
+    <label>Enter Your Discount Code:</label>
+        <form action="" method="post">
+          <input type="text" name="code" value="" />
+          <input type="hidden" id="form_action" name="action" value="discount">
+          <button type="submit">Add Discount</button>
+        </form>
+</body>
+</html>

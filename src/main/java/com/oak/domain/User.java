@@ -104,4 +104,8 @@ public class User {
             throw new ExpiredDiscount(discount.getCode());
         buyList.addDiscount(discount);
     }
+
+    public BuyList getBuylist() {
+        return buyList;
+    }
 }
