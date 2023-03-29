@@ -71,7 +71,7 @@ public class UserHtmlPresentation extends HtmlPresentation {
         File input = new File(USER_TEMPLATE_PATH);
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
-        htmlString = createTableRowsForCommodities(user.getBuyList(), htmlString, "$buyList");
+        htmlString = createTableRowsForCommodities(user.getBuyListCommodities(), htmlString, "$buyList");
         htmlString = createTableRowsForCommodities(user.getPurchasedList(), htmlString, "$purchasedList");
 
         htmlString = htmlString.replaceAll("\\$username", user.getUsername())

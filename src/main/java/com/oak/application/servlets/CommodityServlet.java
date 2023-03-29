@@ -62,7 +62,6 @@ public class CommodityServlet extends HttpServlet {
             case "add" -> {
                 try {
                     serviceLayer.getUserService().addToBuyList(username, Integer.valueOf(commodityId));
-                    response.sendRedirect("/buyList");
                 } catch (CommodityOutOfStock | UserNotFound | CommodityInBuyList | CommodityNotFound e) {
                     throw new ServletException(e);
                 }

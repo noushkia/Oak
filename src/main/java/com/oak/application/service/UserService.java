@@ -60,7 +60,7 @@ public class UserService extends Service {
 
     public List<Commodity> getBuyList(String username) throws UserNotFound {
         User user = db.fetchUser(username);
-        return user.getBuyList();
+        return user.getBuyListCommodities();
     }
 
     public List<Commodity> getPurchasedList(String username) throws UserNotFound {

@@ -55,14 +55,14 @@ public class UserServiceTest {
         // Arrange
         String username = users[0].getUsername();
         Integer commodityId = commodities[0].getId();
-        int initialBuyListSize = userService.getUserById(username).getBuyList().size();
+        int initialBuyListSize = userService.getUserById(username).getBuyListCommodities().size();
 
         // Act
         userService.addToBuyList(username, commodityId);
 
         // Assert
-        assertEquals("Commodity not added to buyList", 1, userService.getUserById(username).getBuyList().size()-initialBuyListSize);
-        assertEquals("Wrong commodity was added to buyList", commodityId, userService.getUserById(username).getBuyList().get(0).getId());
+        assertEquals("Commodity not added to buyList", 1, userService.getUserById(username).getBuyListCommodities().size()-initialBuyListSize);
+        assertEquals("Wrong commodity was added to buyList", commodityId, userService.getUserById(username).getBuyListCommodities().get(0).getId());
     }
 
     @Test
@@ -99,7 +99,7 @@ public class UserServiceTest {
     public void getBuyList_withValidUserAndEmptyBuyList_shouldReturnEmptyList() throws UserNotFound {
         // Arrange
         String username = users[1].getUsername();
-        List<Commodity> expected = userService.getUserById(username).getBuyList();
+        List<Commodity> expected = userService.getUserById(username).getBuyListCommodities();
 
         // Act
         List<Commodity> actual = userService.getBuyList(username);
@@ -121,7 +121,7 @@ public class UserServiceTest {
     public void getBuyList_withValidUserAndMultipleCommodities_shouldReturnValidList() throws UserNotFound, CommodityOutOfStock, CommodityInBuyList, CommodityNotFound {
         // Arrange
         String username = users[0].getUsername();
-        List<Commodity> expected = userService.getUserById(username).getBuyList();
+        List<Commodity> expected = userService.getUserById(username).getBuyListCommodities();
         expected.add(commodities[1]);
         expected.add(commodities[3]);
 
@@ -140,7 +140,7 @@ public class UserServiceTest {
         // Arrange
         String username1 = users[0].getUsername();
         String username2 = users[1].getUsername();
-        List<Commodity> expected = userService.getUserById(username2).getBuyList();
+        List<Commodity> expected = userService.getUserById(username2).getBuyListCommodities();
         expected.add(commodities[1]);
 
         userService.addToBuyList(username2, commodities[1].getId());

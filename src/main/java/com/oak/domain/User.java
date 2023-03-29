@@ -67,8 +67,12 @@ public class User {
         buyList.commitPurchase();
     }
 
-    public List<Commodity> getBuyList() {
+    public List<Commodity> getBuyListCommodities() {
         return new ArrayList<>(buyList.getItems().values());
+    }
+
+    public BuyList getBuyList() {
+        return buyList;
     }
 
     public List<Commodity> getPurchasedList() {
