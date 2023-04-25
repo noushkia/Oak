@@ -10,9 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Update Spring dependencies&#10;Use Java 19 and compatible spring versions&#10;Remove slf4j due to dependency conflicts">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/CommodityList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/BuyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/BuyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Commodity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/Discount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Discount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/UserHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/UserHtmlPresentation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +113,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.Oak [clean,install]">
+  <component name="RunManager" selected="Application.OakApplication">
     <configuration name="CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.oak.application.cli.CommandHandler" />
       <module name="Oak" />
@@ -201,8 +207,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CommandHandler" />
         <item itemvalue="Application.OakApplication" />
+        <item itemvalue="Application.CommandHandler" />
         <item itemvalue="JUnit.CommodityServiceTest" />
         <item itemvalue="JUnit.CommentServiceTest" />
       </list>

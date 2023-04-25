@@ -87,8 +87,8 @@ public class Commodity {
         inStock += amount;
     }
 
-    public void checkInStock() throws CommodityOutOfStock {
-        if (inStock == 0) {
+    public void checkInStock(Integer count) throws CommodityOutOfStock {
+        if (inStock < count) {
             throw new CommodityOutOfStock(id);
         }
     }

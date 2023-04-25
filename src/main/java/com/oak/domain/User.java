@@ -11,7 +11,6 @@ import com.oak.exception.Commodity.CommodityOutOfStock;
 
 import java.util.*;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     private String username;
     private String password;
@@ -19,12 +18,10 @@ public class User {
     private Date birthDate;
     private String address;
     private Integer credit;
-    @JsonIgnore
+    @JsonProperty("cart")
     private final BuyList buyList = new BuyList();
-
-    @JsonIgnore
-    private final HashMap<Integer, Commodity> purchasedList = new HashMap<>();
-
+    @JsonProperty("history")
+    private final CommodityList purchasedList = new CommodityList();
     @JsonIgnore
     private final HashSet<String> usedDiscounts = new HashSet<>();
 
@@ -58,13 +55,17 @@ public class User {
         buyList.removeItem(commodity);
     }
 
+    public void updateBuyListCommodityCount(Commodity commodity, Integer quantity) throws CommodityNotFound {
+        buyList.updateCount(commodity, quantity);
+    }
+
     public void finalizeBuyList() throws InsufficientCredit, CommodityOutOfStock {
         buyList.checkItemsStock();
         if (!buyList.hasSufficientCredit(this.credit)) {
             throw new InsufficientCredit();
         }
         addCredit(-buyList.calculateFinalCredit());
-        purchasedList.putAll(buyList.getItems());
+        purchasedList.update(buyList);
         Discount usedDiscount = buyList.getDiscount();
         if (usedDiscount != null) {
             usedDiscounts.add(usedDiscount.getCode());
@@ -72,16 +73,14 @@ public class User {
         buyList.commitPurchase();
     }
 
+    @JsonIgnore
     public List<Commodity> getBuyListCommodities() {
         return new ArrayList<>(buyList.getItems().values());
     }
 
-    public BuyList getBuyList() {
-        return buyList;
-    }
-
-    public List<Commodity> getPurchasedList() {
-        return new ArrayList<>(purchasedList.values());
+    @JsonIgnore
+    public List<Commodity> getPurchasedListCommodities() {
+        return new ArrayList<>(purchasedList.getItems().values());
     }
 
     public void addCredit(Integer credit) {
@@ -114,6 +113,7 @@ public class User {
         buyList.addDiscount(discount);
     }
 
+    @JsonIgnore
     public BuyList getBuylist() {
         return buyList;
     }

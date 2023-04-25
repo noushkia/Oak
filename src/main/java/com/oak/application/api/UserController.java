@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,6 +53,17 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch (InvalidUsername e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUserById(@PathVariable String username) {
+        UserService userService = Server.getInstance().getServiceLayer().getUserService();
+        try {
+            User user = userService.getUserById(username);
+            return ResponseEntity.ok(user);
+        } catch (UserNotFound e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 }

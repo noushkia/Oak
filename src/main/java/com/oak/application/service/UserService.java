@@ -43,7 +43,7 @@ public class UserService extends Service {
     public void addToBuyList(String username, Integer commodityId) throws UserNotFound, CommodityNotFound, CommodityOutOfStock, CommodityInBuyList {
         User user = db.fetchUser(username);
         Commodity commodity = db.fetchCommodity(commodityId);
-        commodity.checkInStock();
+        commodity.checkInStock(1);
         user.addToBuyList(commodity);
     }
 
@@ -51,6 +51,12 @@ public class UserService extends Service {
         User user = db.fetchUser(username);
         Commodity commodity = db.fetchCommodity(commodityId);
         user.removeFromBuyList(commodity);
+    }
+
+    public void updateBuyListCommodityCount(String username, Integer commodityId, Integer quantity) throws UserNotFound, CommodityNotFound {
+        User user = db.fetchUser(username);
+        Commodity commodity = db.fetchCommodity(commodityId);
+        user.updateBuyListCommodityCount(commodity, quantity);
     }
 
     public void finalizeBuyList(String username) throws UserNotFound, InsufficientCredit, CommodityOutOfStock {
@@ -65,7 +71,7 @@ public class UserService extends Service {
 
     public List<Commodity> getPurchasedList(String username) throws UserNotFound {
         User user = db.fetchUser(username);
-        return user.getPurchasedList();
+        return user.getPurchasedListCommodities();
     }
 
     public void addDiscount(String username, String discountCode) throws UserNotFound, DiscountNotFound, ExpiredDiscount {

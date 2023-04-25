@@ -72,7 +72,7 @@ public class UserHtmlPresentation extends HtmlPresentation {
         Document doc = Jsoup.parse(input, "UTF-8");
         String htmlString = doc.html();
         htmlString = createTableRowsForCommodities(user.getBuyListCommodities(), htmlString, "$buyList");
-        htmlString = createTableRowsForCommodities(user.getPurchasedList(), htmlString, "$purchasedList");
+        htmlString = createTableRowsForCommodities(user.getPurchasedListCommodities(), htmlString, "$purchasedList");
 
         htmlString = htmlString.replaceAll("\\$username", user.getUsername())
                 .replaceAll("\\$email", user.getEmail())
