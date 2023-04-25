@@ -21,14 +21,14 @@ import java.util.Map;
 @RequestMapping("/api/users")
 public class UserController {
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody Map<String, String> body) {
+    public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
         String username = body.get("username");
         String password = body.get("password");
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
-            User user = userService.login(username, password);
-            return ResponseEntity.ok(user);
+            userService.login(username, password);
+            return ResponseEntity.status(HttpStatus.OK).build();
         } catch (UserNotFound e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (InvalidCredentials e) {
@@ -37,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> signup(@RequestBody Map<String, String> body) {
+    public ResponseEntity<?> signup(@RequestBody Map<String, String> body) {
         String username = body.get("username");
         String password = body.get("password");
         String email = body.get("email");
@@ -51,7 +51,7 @@ public class UserController {
         User user = new User(username, password, email, birthDate, address, 0);
         try {
             userService.addUser(user);
-            return ResponseEntity.ok(user);
+            return ResponseEntity.status(HttpStatus.OK).build();
         } catch (InvalidUsername e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }

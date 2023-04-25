@@ -74,11 +74,10 @@ public class UserService extends Service {
         user.addDiscount(discount);
     }
 
-    public User login(String username, String password) throws UserNotFound, InvalidCredentials {
+    public void login(String username, String password) throws UserNotFound, InvalidCredentials {
         User user = db.fetchUser(username);
         if (!user.authenticate(password)) {
             throw new InvalidCredentials();
         }
-        return user;
     }
 }
