@@ -20,7 +20,7 @@ public class DataLoader {
     private final ArrayList<Provider> providers;
     private final ArrayList<Commodity> commodities;
     private final ArrayList<Comment> comments;
-    private final ArrayList<Discount> discounts;
+//    private final ArrayList<Discount> discounts;
 
     private static ObjectMapper mapper;
 
@@ -30,7 +30,7 @@ public class DataLoader {
         providers = loadData(externalServiceUrl + PROVIDERSENDPOINT, Provider.class);
         commodities = loadData(externalServiceUrl + COMMODITIESENDPOINT, Commodity.class);
         comments = loadData(externalServiceUrl + COMMENTSENDPOINT, Comment.class);
-        discounts = loadData(externalServiceUrl + DISCOUNTENDPOINT, Discount.class);
+//        discounts = loadData(externalServiceUrl + DISCOUNTENDPOINT, Discount.class);
     }
 
     private <T> ArrayList<T> loadData(String url, Class<T> clazz) throws IOException {
@@ -53,7 +53,7 @@ public class DataLoader {
     public ArrayList<Comment> getComments() {
         return comments;
     }
-    public ArrayList<Discount> getDiscounts() {
-        return discounts;
-    }
+//    public ArrayList<Discount> getDiscounts() {
+//        return discounts;
+//    }
 }

@@ -27,7 +27,7 @@ public class CommodityController {
         if (params.containsKey("searchType")) {
             String method = params.get("searchType");
             String input = params.get("searchQuery");
-            if (method == "provider") {
+            if (method.contains("provider")) {
                 ProviderService providerService = Server.getInstance().getServiceLayer().getProviderService();
                 List<Provider> providers = providerService.getProvidersByName(input);
                 commodityService.setQuery(providers);

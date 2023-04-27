@@ -31,9 +31,9 @@ public class Server {
         for (Comment comment: dataLoader.getComments()) {
             serviceLayer.getCommentService().addComment(comment);
         }
-        for (Discount discount: dataLoader.getDiscounts()) {
-            serviceLayer.getDiscountService().addDiscount(discount);
-        }
+//        for (Discount discount: dataLoader.getDiscounts()) {
+//            serviceLayer.getDiscountService().addDiscount(discount);
+//        }
     }
 
     public static Server getInstance() {

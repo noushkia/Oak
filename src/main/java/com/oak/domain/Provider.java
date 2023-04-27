@@ -29,7 +29,7 @@ public class Provider {
         commodities.put(commodity.getId(), commodity);
     }
     public Boolean containsName(String name) {
-        return this.name.toLowerCase().contains(name);
+        return this.name.toLowerCase().contains(name.toLowerCase());
     }
 
     public List<Commodity> getProvidedCommodities() {

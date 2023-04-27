@@ -42,7 +42,7 @@ public class Commodity {
     public Integer getProviderId() {
         return providerId;
     }
-
+    @JsonProperty("rating")
     public Double getRating() {
         Double sum = rating;
         for (Integer userRating : userRatings.values()) {
@@ -80,11 +80,7 @@ public class Commodity {
     }
 
     public Boolean containsName(String name) {
-        return this.name.toLowerCase().contains(name);
-    }
-
-    public Boolean isProvidedBy(Provider provider) {
-        return Objects.equals(this.providerId, provider.getId());
+        return this.name.toLowerCase().contains(name.toLowerCase());
     }
 
     public void updateStock(Integer amount) {

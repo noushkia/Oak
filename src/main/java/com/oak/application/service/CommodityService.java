@@ -11,6 +11,7 @@ import com.oak.exception.Commodity.CommodityNotFound;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -32,9 +33,10 @@ public class CommodityService extends Service {
     }
 
     public void setQuery(List<Provider> input) {
-        query = query.and(c -> input.stream()
-                .anyMatch(c::isProvidedBy)
-        );
+        Set<Integer> providerIds = input.stream()
+                .map(Provider::getId)
+                .collect(Collectors.toSet());
+        query = query.and(c -> providerIds.contains(c.getProviderId()));
     }
 
     public void setQuery(String method) {
