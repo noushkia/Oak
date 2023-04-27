@@ -28,6 +28,9 @@ public class Provider {
     public void addCommodity(Commodity commodity) {
         commodities.put(commodity.getId(), commodity);
     }
+    public Boolean containsName(String name) {
+        return this.name.toLowerCase().contains(name);
+    }
 
     public List<Commodity> getProvidedCommodities() {
         return new ArrayList<>(commodities.values());

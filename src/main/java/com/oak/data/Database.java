@@ -63,6 +63,13 @@ public class Database {
                 .collect(Collectors.toList());
     }
 
+    public List<Provider> fetchProviders(Predicate<Provider> predicate) {
+        return providers.values()
+                .stream()
+                .filter(predicate)
+                .collect(Collectors.toList());
+    }
+
     public Discount fetchDiscount(String discountCode) throws DiscountNotFound {
         if (!discounts.containsKey(discountCode)) {
             throw new DiscountNotFound(discountCode);

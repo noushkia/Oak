@@ -83,6 +83,10 @@ public class Commodity {
         return this.name.toLowerCase().contains(name);
     }
 
+    public Boolean isProvidedBy(Provider provider) {
+        return Objects.equals(this.providerId, provider.getId());
+    }
+
     public void updateStock(Integer amount) {
         inStock += amount;
     }
@@ -91,6 +95,15 @@ public class Commodity {
         if (inStock < count) {
             throw new CommodityOutOfStock(id);
         }
+    }
+
+    public Boolean isAvailable() {
+        try {
+            checkInStock(1);
+        } catch (CommodityOutOfStock e) {
+            return false;
+        }
+        return true;
     }
 
     public HashMap<String, Integer> getUserRatings() {
