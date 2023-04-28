@@ -6,6 +6,8 @@ import com.oak.domain.User;
 import com.oak.exception.Commodity.CommodityInBuyList;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Commodity.CommodityOutOfStock;
+import com.oak.exception.Discount.DiscountNotFound;
+import com.oak.exception.Discount.ExpiredDiscount;
 import com.oak.exception.User.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,23 +24,7 @@ import java.util.Map;
             allowedHeaders = "*")
 @RequestMapping("/api/users")
 public class UserController {
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
-        String username = body.get("username");
-        String password = body.get("password");
-
-        UserService userService = Server.getInstance().getServiceLayer().getUserService();
-        try {
-            userService.login(username, password);
-            return ResponseEntity.status(HttpStatus.OK).build();
-        } catch (UserNotFound e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        } catch (InvalidCredentials e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-    }
-
-    @PostMapping("/signup")
+    @PostMapping("/")
     public ResponseEntity<?> signup(@RequestBody Map<String, String> body) {
         String username = body.get("username");
         String password = body.get("password");
@@ -56,6 +42,22 @@ public class UserController {
             userService.addUser(user);
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch (InvalidUsername e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
+        String username = body.get("username");
+        String password = body.get("password");
+
+        UserService userService = Server.getInstance().getServiceLayer().getUserService();
+        try {
+            userService.login(username, password);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (UserNotFound e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (InvalidCredentials e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
@@ -104,7 +106,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{username}/buyList/finalize")
+    @PostMapping("/{username}/buyList/finalize")
     public ResponseEntity<User> finalizeBuyList(@PathVariable String username) {
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
@@ -131,6 +133,22 @@ public class UserController {
         } catch (UserNotFound e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (NegativeCredit e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+    @PostMapping("/{username}/discounts")
+    public ResponseEntity<User> addDiscount(@PathVariable String username, @RequestBody Map<String, String> body) {
+        String discountCode = body.get("code");
+
+        UserService userService = Server.getInstance().getServiceLayer().getUserService();
+        try {
+            userService.addDiscount(username, discountCode);
+            User user = userService.getUserById(username);
+            return ResponseEntity.ok(user);
+        } catch (UserNotFound | DiscountNotFound e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (ExpiredDiscount e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }

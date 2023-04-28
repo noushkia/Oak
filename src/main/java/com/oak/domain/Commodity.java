@@ -28,7 +28,7 @@ public class Commodity {
     @JsonIgnore
     private final HashMap<String, Integer> userRatings = new HashMap<>();
 
-    @JsonIgnore
+    @JsonProperty("comments")
     private final HashMap<Integer, Comment> userComments = new HashMap<>();
 
     public Integer getId() {
@@ -49,6 +49,11 @@ public class Commodity {
             sum += userRating;
         }
         return sum / (userRatings.size() + 1);
+    }
+
+    @JsonProperty("ratings")
+    public Integer getRatings() {
+        return userRatings.size() + 1;
     }
 
     public void addUserRating(String username, String rating) throws InvalidRating {
