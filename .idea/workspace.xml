@@ -9,7 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Debug">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Fix addToCart api naming">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" afterDir="false" />
@@ -260,13 +261,6 @@
       <workItem from="1682149541752" duration="218000" />
       <workItem from="1682149763454" duration="1947000" />
       <workItem from="1682151741614" duration="75000" />
-    </task>
-    <task id="LOCAL-00017" summary="Add DataLoader">
-      <created>1678817839940</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1678817839940</updated>
     </task>
     <task id="LOCAL-00018" summary="Clean code.">
       <created>1678817913432</created>
@@ -604,7 +598,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682089434729</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Fix addToCart api naming">
+      <created>1682698591659</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1682698591659</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -621,7 +622,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="ca3" />
+                        <option value="ca5" />
                       </list>
                     </value>
                   </entry>
@@ -634,7 +635,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add finalzeBuyList." />
     <MESSAGE value="Add rateCommodity." />
     <MESSAGE value="Add voteComment." />
     <MESSAGE value="Add voteComment tests" />
@@ -659,7 +659,8 @@
     <MESSAGE value="Wrap up CA3." />
     <MESSAGE value="Add Spring dependencies" />
     <MESSAGE value="Debug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug" />
+    <MESSAGE value="Fix addToCart api naming" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix addToCart api naming" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
