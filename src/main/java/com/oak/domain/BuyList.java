@@ -48,9 +48,10 @@ public class BuyList extends CommodityList{
         itemsCount.remove(commodity.getId());
     }
 
-    public void updateCount(Commodity commodity, Integer quantity) throws CommodityNotFound {
+    public void updateCount(Commodity commodity, Integer quantity) throws CommodityNotFound, CommodityOutOfStock {
         Integer prevCount = itemsCount.get(commodity.getId());
         int newCount = prevCount + quantity;
+        commodity.checkInStock(newCount);
         itemsCount.put(commodity.getId(), newCount);
         if (newCount == 0) {
             removeItem(commodity);

@@ -53,7 +53,7 @@ public class UserService extends Service {
         user.removeFromBuyList(commodity);
     }
 
-    public void updateBuyListCommodityCount(String username, Integer commodityId, Integer quantity) throws UserNotFound, CommodityNotFound {
+    public void updateBuyListCommodityCount(String username, Integer commodityId, Integer quantity) throws UserNotFound, CommodityNotFound, CommodityOutOfStock {
         User user = db.fetchUser(username);
         Commodity commodity = db.fetchCommodity(commodityId);
         user.updateBuyListCommodityCount(commodity, quantity);

@@ -55,7 +55,7 @@ public class User {
         buyList.removeItem(commodity);
     }
 
-    public void updateBuyListCommodityCount(Commodity commodity, Integer quantity) throws CommodityNotFound {
+    public void updateBuyListCommodityCount(Commodity commodity, Integer quantity) throws CommodityNotFound, CommodityOutOfStock {
         buyList.updateCount(commodity, quantity);
     }
 

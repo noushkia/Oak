@@ -3,6 +3,9 @@ package com.oak.application.api;
 import com.oak.application.Server;
 import com.oak.application.service.UserService;
 import com.oak.domain.User;
+import com.oak.exception.Commodity.CommodityInBuyList;
+import com.oak.exception.Commodity.CommodityNotFound;
+import com.oak.exception.Commodity.CommodityOutOfStock;
 import com.oak.exception.User.InvalidCredentials;
 import com.oak.exception.User.InvalidUsername;
 import com.oak.exception.User.UserNotFound;
@@ -64,6 +67,37 @@ public class UserController {
             return ResponseEntity.ok(user);
         } catch (UserNotFound e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @PostMapping("/{username}/buyList")
+    public ResponseEntity<?> addToBuyList(@PathVariable String username, @RequestBody Map<String, Integer> body) {
+        Integer commodityId = body.get("commodityId");
+
+        UserService userService = Server.getInstance().getServiceLayer().getUserService();
+        try {
+            userService.addToBuyList(username, commodityId);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (UserNotFound | CommodityNotFound e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (CommodityOutOfStock | CommodityInBuyList e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+    @PutMapping("/{username}/buylist")
+    public ResponseEntity<?> updateBuylist(@PathVariable String username, @RequestBody Map<String, Integer> body) {
+        Integer commodityId = body.get("commodityId");
+        Integer quantity = body.get("quantity");
+
+        UserService userService = Server.getInstance().getServiceLayer().getUserService();
+        try {
+            userService.updateBuyListCommodityCount(username, commodityId, quantity);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (UserNotFound | CommodityNotFound e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (CommodityOutOfStock e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 }
