@@ -71,13 +71,14 @@ public class UserController {
     }
 
     @PostMapping("/{username}/buyList")
-    public ResponseEntity<?> addToBuyList(@PathVariable String username, @RequestBody Map<String, Integer> body) {
+    public ResponseEntity<User> addToBuyList(@PathVariable String username, @RequestBody Map<String, Integer> body) {
         Integer commodityId = body.get("commodityId");
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
             userService.addToBuyList(username, commodityId);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            User user = userService.getUserById(username);
+            return ResponseEntity.ok(user);
         } catch (UserNotFound | CommodityNotFound e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (CommodityOutOfStock | CommodityInBuyList e) {
@@ -86,14 +87,15 @@ public class UserController {
     }
 
     @PutMapping("/{username}/buylist")
-    public ResponseEntity<?> updateBuylist(@PathVariable String username, @RequestBody Map<String, Integer> body) {
+    public ResponseEntity<User> updateBuylist(@PathVariable String username, @RequestBody Map<String, Integer> body) {
         Integer commodityId = body.get("commodityId");
         Integer quantity = body.get("quantity");
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
             userService.updateBuyListCommodityCount(username, commodityId, quantity);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            User user = userService.getUserById(username);
+            return ResponseEntity.ok(user);
         } catch (UserNotFound | CommodityNotFound e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (CommodityOutOfStock e) {
