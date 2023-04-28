@@ -2,6 +2,8 @@ package com.oak.data;
 
 import java.util.List;
 
+import static java.lang.Math.max;
+
 public class Pagination<T> {
     private Integer limit = 0;
 
@@ -21,6 +23,6 @@ public class Pagination<T> {
         if (numItems % limit != 0) {
             numPages++;
         }
-        return numPages;
+        return max(numPages, 1);
     }
 }

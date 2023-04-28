@@ -12,15 +12,15 @@ import com.oak.exception.Commodity.CommodityOutOfStock;
 import java.util.*;
 
 public class User {
-    private String username;
-    private String password;
-    private String email;
-    private Date birthDate;
-    private String address;
+    private final String username;
+    private final String password;
+    private final String email;
+    private final Date birthDate;
+    private final String address;
     private Integer credit;
-    @JsonProperty("cart")
+    @JsonProperty("buyList")
     private final BuyList buyList = new BuyList();
-    @JsonProperty("history")
+    @JsonProperty("purchasedList")
     private final CommodityList purchasedList = new CommodityList();
     @JsonIgnore
     private final HashSet<String> usedDiscounts = new HashSet<>();
