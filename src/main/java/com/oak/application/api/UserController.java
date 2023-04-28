@@ -6,9 +6,7 @@ import com.oak.domain.User;
 import com.oak.exception.Commodity.CommodityInBuyList;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Commodity.CommodityOutOfStock;
-import com.oak.exception.User.InvalidCredentials;
-import com.oak.exception.User.InvalidUsername;
-import com.oak.exception.User.UserNotFound;
+import com.oak.exception.User.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,8 +48,8 @@ public class UserController {
         Date birthDate = null;
         try {
             birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
-        } catch (ParseException ignored) {
-        }
+        } catch (ParseException ignored) {}
+
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         User user = new User(username, password, email, birthDate, address, 0);
         try {
@@ -102,6 +100,37 @@ public class UserController {
         } catch (UserNotFound | CommodityNotFound e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (CommodityOutOfStock e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+    @PutMapping("/{username}/buyList/finalize")
+    public ResponseEntity<User> finalizeBuyList(@PathVariable String username) {
+        UserService userService = Server.getInstance().getServiceLayer().getUserService();
+        try {
+            userService.finalizeBuyList(username);
+            User user = userService.getUserById(username);
+            return ResponseEntity.ok(user);
+        } catch (UserNotFound e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (CommodityOutOfStock | InsufficientCredit e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
+
+
+    @PutMapping("/{username}/credit")
+    public ResponseEntity<User> addCredit(@PathVariable String username, @RequestBody Map<String, Integer> body) {
+        Integer amount = body.get("credit");
+
+        UserService userService = Server.getInstance().getServiceLayer().getUserService();
+        try {
+            userService.addCredit(username, amount);
+            User user = userService.getUserById(username);
+            return ResponseEntity.ok(user);
+        } catch (UserNotFound e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } catch (NegativeCredit e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
