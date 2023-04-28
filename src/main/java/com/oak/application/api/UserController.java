@@ -104,7 +104,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{username}/buyList/finalize")
+    @PostMapping("/{username}/buyList/finalize")
     public ResponseEntity<User> finalizeBuyList(@PathVariable String username) {
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
