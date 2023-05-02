@@ -74,11 +74,11 @@ public class CommodityController {
     public Map<String, Object> prepareCommodity(Integer commodityId) throws CommodityNotFound {
         CommodityService commodityService = Server.getInstance().getServiceLayer().getCommodityService();
         Commodity commodity = commodityService.getCommodityById(commodityId);
-        List<Commodity> suggested = commodityService.getSuggestedCommodities(commodityId);
+        List<Commodity> suggestions = commodityService.getSuggestedCommodities(commodityId);
 
         Map<String, Object> response = new HashMap<>();
         response.put("commodity", commodity);
-        response.put("suggested", suggested);
+        response.put("suggestions", suggestions);
         return response;
     }
 
