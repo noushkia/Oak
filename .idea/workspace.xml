@@ -12,10 +12,10 @@
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Fix addToCart api naming">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/DataLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/DataLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Commodity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Provider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

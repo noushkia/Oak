@@ -19,6 +19,9 @@ public class Provider {
     @JsonProperty("registryDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date registryDate;
+    @JsonProperty("image")
+    private String image;
+
     @JsonIgnore
     private final HashMap<Integer, Commodity> commodities = new HashMap<>();
     public Integer getId() {

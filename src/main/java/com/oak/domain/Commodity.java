@@ -25,6 +25,9 @@ public class Commodity {
     @JsonProperty("inStock")
     private Integer inStock;
 
+    @JsonProperty("image")
+    private String image;
+
     @JsonIgnore
     private final HashMap<String, Integer> userRatings = new HashMap<>();
 
