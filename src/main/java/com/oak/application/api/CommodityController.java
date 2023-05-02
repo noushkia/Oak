@@ -4,6 +4,7 @@ import com.oak.application.Server;
 import com.oak.application.service.CommentService;
 import com.oak.application.service.CommodityService;
 import com.oak.application.service.ProviderService;
+import com.oak.application.service.UserService;
 import com.oak.data.Pagination;
 import com.oak.domain.Comment;
 import com.oak.domain.Commodity;
@@ -112,7 +113,7 @@ public class CommodityController {
 
     @PostMapping("/{id}/comments")
     public ResponseEntity<Map<String, Object>> addComment(@PathVariable Integer id, @RequestBody Map<String, String> body) {
-        String userEmail = body.get("email");
+        String username = body.get("username");
         String text = body.get("text");
         String dateString = body.get("date");
         Date date = null;
@@ -120,13 +121,15 @@ public class CommodityController {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
         } catch (ParseException ignored) {}
 
-        CommentService commentService = Server.getInstance().getServiceLayer().getCommentService();
-        Comment comment = new Comment(userEmail, id, text, date);
+        UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
+            String userEmail = userService.getUserById(username).getEmail();
+            CommentService commentService = Server.getInstance().getServiceLayer().getCommentService();
+            Comment comment = new Comment(userEmail, id, text, date);
             commentService.addComment(comment);
             Map<String, Object> response = prepareCommodity(id);
             return ResponseEntity.ok(response);
-        } catch (CommodityNotFound e) {
+        } catch (CommodityNotFound | UserNotFound e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
