@@ -22,7 +22,7 @@ public class Provider {
     @JsonProperty("image")
     private String image;
 
-    @JsonIgnore
+    @JsonProperty("commodities")
     private final HashMap<Integer, Commodity> commodities = new HashMap<>();
     public Integer getId() {
         return id;
@@ -34,11 +34,11 @@ public class Provider {
     public Boolean containsName(String name) {
         return this.name.toLowerCase().contains(name.toLowerCase());
     }
-
+    @JsonIgnore
     public List<Commodity> getProvidedCommodities() {
         return new ArrayList<>(commodities.values());
     }
-
+    @JsonIgnore
     public Double getRating() {
         Double sum = 0.0;
         for (Commodity commodity : commodities.values()) {
