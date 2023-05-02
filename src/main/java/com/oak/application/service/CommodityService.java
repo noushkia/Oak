@@ -81,7 +81,7 @@ public class CommodityService extends Service {
         Comparator<Commodity> scoringFunc = Comparator.comparingDouble(c -> (c.isInSimilarCategory(inputCommodity) ? 11.0 : 0.0) + c.getRating());
         return allCommodities.stream()
                 .filter(c -> !c.getId().equals(commodityId)) // Skip the input Commodity object
-                .sorted(scoringFunc.thenComparingInt(c -> (int) (Math.random() * 1000)))
+                .sorted(scoringFunc.reversed().thenComparingInt(c -> (int) (Math.random() * 1000)))
                 .limit(5)
                 .collect(Collectors.toList());
     }
