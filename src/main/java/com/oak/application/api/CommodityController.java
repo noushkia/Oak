@@ -12,6 +12,7 @@ import com.oak.domain.Provider;
 import com.oak.exception.Comment.CommentNotFound;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Commodity.InvalidRating;
+import com.oak.exception.Provider.ProviderNotFound;
 import com.oak.exception.User.UserNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -74,12 +75,19 @@ public class CommodityController {
 
     public Map<String, Object> prepareCommodity(Integer commodityId) throws CommodityNotFound {
         CommodityService commodityService = Server.getInstance().getServiceLayer().getCommodityService();
+        ProviderService providerService = Server.getInstance().getServiceLayer().getProviderService();
+
         Commodity commodity = commodityService.getCommodityById(commodityId);
         List<Commodity> suggestions = commodityService.getSuggestedCommodities(commodityId);
+        Provider provider = null;
+        try {
+            provider = providerService.getProviderById(commodity.getProviderId());
+        } catch (ProviderNotFound ignored) {}
 
         Map<String, Object> response = new HashMap<>();
         response.put("commodity", commodity);
         response.put("suggestions", suggestions);
+        response.put("providerName", provider.getName());
         return response;
     }
 
