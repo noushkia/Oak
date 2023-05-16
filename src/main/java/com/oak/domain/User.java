@@ -1,9 +1,6 @@
 package com.oak.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
 import com.oak.exception.Discount.ExpiredDiscount;
 import com.oak.exception.User.InsufficientCredit;
@@ -14,29 +11,34 @@ import com.oak.exception.Commodity.CommodityOutOfStock;
 
 import java.util.*;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
-    @JsonProperty("username")
-    private String username;
-    @JsonProperty("password")
-    private String password;
-    @JsonProperty("email")
-    private String email;
-    @JsonProperty("birthDate")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date birthDate;
-    @JsonProperty("address")
-    private String address;
-    @JsonProperty("credit")
+    private final String username;
+    private final String password;
+    private final String email;
+    private final Date birthDate;
+    private final String address;
     private Integer credit;
-    @JsonIgnore
+    @JsonProperty("buyList")
     private final BuyList buyList = new BuyList();
-
-    @JsonIgnore
-    private final HashMap<Integer, Commodity> purchasedList = new HashMap<>();
-
+    @JsonProperty("purchasedList")
+    private final CommodityList purchasedList = new CommodityList();
     @JsonIgnore
     private final HashSet<String> usedDiscounts = new HashSet<>();
+
+    @JsonCreator
+    public User(@JsonProperty("username") String username,
+                @JsonProperty("password") String password,
+                @JsonProperty("email") String email,
+                @JsonProperty("birthDate") @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") Date birthDate,
+                @JsonProperty("address") String address,
+                @JsonProperty("credit") Integer credit) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.credit = credit;
+    }
 
     public void validate() throws InvalidUsername {
         if (!username.matches("^[a-zA-Z0-9_]+$")) {
@@ -53,13 +55,17 @@ public class User {
         buyList.removeItem(commodity);
     }
 
+    public void updateBuyListCommodityCount(Commodity commodity, Integer quantity) throws CommodityNotFound, CommodityOutOfStock {
+        buyList.updateCount(commodity, quantity);
+    }
+
     public void finalizeBuyList() throws InsufficientCredit, CommodityOutOfStock {
         buyList.checkItemsStock();
         if (!buyList.hasSufficientCredit(this.credit)) {
             throw new InsufficientCredit();
         }
         addCredit(-buyList.calculateFinalCredit());
-        purchasedList.putAll(buyList.getItems());
+        purchasedList.update(buyList);
         Discount usedDiscount = buyList.getDiscount();
         if (usedDiscount != null) {
             usedDiscounts.add(usedDiscount.getCode());
@@ -67,16 +73,14 @@ public class User {
         buyList.commitPurchase();
     }
 
+    @JsonIgnore
     public List<Commodity> getBuyListCommodities() {
         return new ArrayList<>(buyList.getItems().values());
     }
 
-    public BuyList getBuyList() {
-        return buyList;
-    }
-
-    public List<Commodity> getPurchasedList() {
-        return new ArrayList<>(purchasedList.values());
+    @JsonIgnore
+    public List<Commodity> getPurchasedListCommodities() {
+        return new ArrayList<>(purchasedList.getItems().values());
     }
 
     public void addCredit(Integer credit) {
@@ -109,6 +113,7 @@ public class User {
         buyList.addDiscount(discount);
     }
 
+    @JsonIgnore
     public BuyList getBuylist() {
         return buyList;
     }

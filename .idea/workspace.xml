@@ -9,16 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Wrap up CA3.">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_03_23_16_11_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_03_23_16_11__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/servlets/CommodityServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/servlets/CommodityServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/UserHtmlPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/html/UserHtmlPresentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsps/buyList.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsps/buyList.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/oak/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/UserServiceTest.java" afterDir="false" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Fix addToCart api naming">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +52,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2M8oVWJuNPSJYk9cBlYFKhOqA2q" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -75,11 +70,16 @@
     &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
     &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
     &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/kianoush/Documents/IE/CAs/Oak/src/main/webapp/jsps&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ca5&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/kianoush/Documents/UT/IE/CAs/Oak-Front&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -88,7 +88,8 @@
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.32988507&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;spring.boot&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;f2b6dcdc344bf345a187b3c6c19af47e&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -104,14 +105,13 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.73">
-    <configuration name="APIHandler" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.oak.application.api.APIHandler" />
+  <component name="RunManager" selected="Application.OakApplication">
+    <configuration name="CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.oak.application.cli.CommandHandler" />
       <module name="Oak" />
-      <option name="VM_PARAMETERS" value="--enable-preview" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.ie.tk.application.api.*" />
+          <option name="PATTERN" value="com.oak.application.cli.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -119,12 +119,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.oak.application.cli.CommandHandler" />
+    <configuration name="OakApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.oak.application.api.OakApplication" />
       <module name="Oak" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.oak.application.cli.*" />
+          <option name="PATTERN" value="com.oak.application.api.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -164,22 +164,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Oak" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.ie.tk.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.oak.service" />
-      <option name="MAIN_CLASS_NAME" value="com.oak.service.UserServiceTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Oak [clean,install]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -206,111 +190,19 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
-    <configuration name="Tomcat 9.0.73" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.73" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment>
-        <artifact name="Oak:war exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/" />
-          </settings>
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="2557aea6-ffaa-4621-81b7-13ddbac61746" />
-      </server-settings>
-      <output_file path="$PROJECT_DIR$/../tomcat.log" is_save="true" />
-      <log_file alias="Tomcat Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/manager.*" />
-      <log_file alias="Tomcat Host Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/host-manager.*" />
-      <log_file alias="Tomcat Localhost Access Log" path="%IDEA_RUN:CATALINA_BASE%/logs/localhost_access_log.*" />
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="36891" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="MakeProject" enabled="true" />
-        <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="Oak:war exploded" />
-        </option>
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="Application.OakApplication" />
       <item itemvalue="Application.CommandHandler" />
-      <item itemvalue="Application.APIHandler" />
       <item itemvalue="JUnit.CommentServiceTest" />
       <item itemvalue="JUnit.CommodityServiceTest" />
-      <item itemvalue="JUnit.UserServiceTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.73" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.OakApplication" />
+        <item itemvalue="Application.CommandHandler" />
         <item itemvalue="JUnit.CommodityServiceTest" />
         <item itemvalue="JUnit.CommentServiceTest" />
-        <item itemvalue="Application.CommandHandler" />
-        <item itemvalue="Application.APIHandler" />
-        <item itemvalue="JUnit.UserServiceTest" />
       </list>
     </recent_temporary>
   </component>
@@ -358,20 +250,12 @@
       <workItem from="1679486355173" duration="13516000" />
       <workItem from="1679502039785" duration="151000" />
       <workItem from="1679502205344" duration="3200000" />
-    </task>
-    <task id="LOCAL-00016" summary="Update dependencies.">
-      <created>1678815451725</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1678815451725</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Add DataLoader">
-      <created>1678817839940</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1678817839940</updated>
+      <workItem from="1682097341971" duration="30000" />
+      <workItem from="1682098414935" duration="34000" />
+      <workItem from="1682147976835" duration="1533000" />
+      <workItem from="1682149541752" duration="218000" />
+      <workItem from="1682149763454" duration="1947000" />
+      <workItem from="1682151741614" duration="75000" />
     </task>
     <task id="LOCAL-00018" summary="Clean code.">
       <created>1678817913432</created>
@@ -702,7 +586,21 @@
       <option name="project" value="LOCAL" />
       <updated>1680034695855</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Add Spring dependencies">
+      <created>1682089434728</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1682089434729</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Fix addToCart api naming">
+      <created>1682698591659</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1682698591659</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -719,7 +617,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="ca3" />
+                        <option value="ca5" />
                       </list>
                     </value>
                   </entry>
@@ -732,9 +630,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Clean HtmlPresentation" />
-    <MESSAGE value="Add Search features and VoteComment Handler." />
-    <MESSAGE value="Add finalzeBuyList." />
     <MESSAGE value="Add rateCommodity." />
     <MESSAGE value="Add voteComment." />
     <MESSAGE value="Add voteComment tests" />
@@ -757,7 +652,10 @@
     <MESSAGE value="Integrate discount logic." />
     <MESSAGE value="Add discount to db.&#10;Add discount exceptions." />
     <MESSAGE value="Wrap up CA3." />
-    <option name="LAST_COMMIT_MESSAGE" value="Wrap up CA3." />
+    <MESSAGE value="Add Spring dependencies" />
+    <MESSAGE value="Debug" />
+    <MESSAGE value="Fix addToCart api naming" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix addToCart api naming" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -773,6 +671,10 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Oak$CommodityProvisionSystemTest.ic" NAME="CommodityProvisionSystemTest Coverage Results" MODIFIED="1677351387860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

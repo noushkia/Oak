@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class DataLoader {
     static final String USERSENDPOINT = "api/users";
-    static final String COMMODITIESENDPOINT = "api/commodities";
-    static final String PROVIDERSENDPOINT = "api/providers";
+    static final String COMMODITIESENDPOINT = "api/v2/commodities";
+    static final String PROVIDERSENDPOINT = "api/v2/providers";
     static final String COMMENTSENDPOINT = "api/comments";
     static final String DISCOUNTENDPOINT = "api/discount";
 

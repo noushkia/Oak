@@ -11,6 +11,7 @@ import com.oak.exception.Commodity.CommodityNotFound;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -24,19 +25,33 @@ public class CommodityService extends Service {
 
     public void setQuery(String method, String input) {
         if (method.contains("category")) {
-            query = c -> c.containsCategory(input);
+            query = query.and(c -> c.containsCategory(input));
         } else if (method.contains("name")) {
             final String lowercaseInput = input.toLowerCase();
-            query = c -> c.containsName(lowercaseInput);
+            query = query.and(c -> c.containsName(lowercaseInput));
         }
     }
 
+    public void setQuery(List<Provider> input) {
+        Set<Integer> providerIds = input.stream()
+                .map(Provider::getId)
+                .collect(Collectors.toSet());
+        query = query.and(c -> providerIds.contains(c.getProviderId()));
+    }
+
+    public void setQuery(String method) {
+        if (method.contains("onlyAvailableCommodities")) {
+            query = query.and(Commodity::isAvailable);
+        }
+    }
 
     public void setComparator(String method) {
         if (method.contains("rating")) {
             comparator = Comparator.comparing(Commodity::getRating).reversed();
         } else if (method.contains("price")) {
             comparator = Comparator.comparing(Commodity::getPrice).reversed();
+        } else if (method.contains("name")) {
+            comparator = Comparator.comparing(Commodity::getName);
         }
     }
 
@@ -66,7 +81,7 @@ public class CommodityService extends Service {
         Comparator<Commodity> scoringFunc = Comparator.comparingDouble(c -> (c.isInSimilarCategory(inputCommodity) ? 11.0 : 0.0) + c.getRating());
         return allCommodities.stream()
                 .filter(c -> !c.getId().equals(commodityId)) // Skip the input Commodity object
-                .sorted(scoringFunc.thenComparingInt(c -> (int) (Math.random() * 1000)))
+                .sorted(scoringFunc.reversed().thenComparingInt(c -> (int) (Math.random() * 1000)))
                 .limit(5)
                 .collect(Collectors.toList());
     }

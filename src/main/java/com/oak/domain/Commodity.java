@@ -25,10 +25,13 @@ public class Commodity {
     @JsonProperty("inStock")
     private Integer inStock;
 
+    @JsonProperty("image")
+    private String image;
+
     @JsonIgnore
     private final HashMap<String, Integer> userRatings = new HashMap<>();
 
-    @JsonIgnore
+    @JsonProperty("comments")
     private final HashMap<Integer, Comment> userComments = new HashMap<>();
 
     public Integer getId() {
@@ -42,13 +45,18 @@ public class Commodity {
     public Integer getProviderId() {
         return providerId;
     }
-
+    @JsonProperty("rating")
     public Double getRating() {
         Double sum = rating;
         for (Integer userRating : userRatings.values()) {
             sum += userRating;
         }
         return sum / (userRatings.size() + 1);
+    }
+
+    @JsonProperty("ratings")
+    public Integer getRatings() {
+        return userRatings.size() + 1;
     }
 
     public void addUserRating(String username, String rating) throws InvalidRating {
@@ -80,17 +88,26 @@ public class Commodity {
     }
 
     public Boolean containsName(String name) {
-        return this.name.toLowerCase().contains(name);
+        return this.name.toLowerCase().contains(name.toLowerCase());
     }
 
     public void updateStock(Integer amount) {
         inStock += amount;
     }
 
-    public void checkInStock() throws CommodityOutOfStock {
-        if (inStock == 0) {
+    public void checkInStock(Integer count) throws CommodityOutOfStock {
+        if (inStock < count) {
             throw new CommodityOutOfStock(id);
         }
+    }
+
+    public Boolean isAvailable() {
+        try {
+            checkInStock(1);
+        } catch (CommodityOutOfStock e) {
+            return false;
+        }
+        return true;
     }
 
     public HashMap<String, Integer> getUserRatings() {

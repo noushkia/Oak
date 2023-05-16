@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Comment {
-    @JsonIgnore
+    @JsonProperty("id")
     private Integer id;
     private String userEmail;
     private Integer commodityId;
@@ -61,14 +61,20 @@ public class Comment {
         return date;
     }
 
+    @JsonProperty("likes")
+    public Integer getLikes() {
+        return getVotes(1);
+    }
+
+    @JsonProperty("dislikes")
+    public Integer getDislikes() {
+        return getVotes(-1);
+    }
+
     public Integer getVotes(Integer voteValue) {
-        int votesCount = 0;
-        for (Integer vote : userVotes.values()) {
-            if (Objects.equals(vote, voteValue)) {
-                votesCount++;
-            }
-        }
-        return votesCount;
+        return  (int) userVotes.values().stream()
+                .filter(vote -> Objects.equals(vote, voteValue))
+                .count();
     }
 
     public HashMap<String, Integer> getUserVotes() {

@@ -19,7 +19,10 @@ public class Provider {
     @JsonProperty("registryDate")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date registryDate;
-    @JsonIgnore
+    @JsonProperty("image")
+    private String image;
+
+    @JsonProperty("commodities")
     private final HashMap<Integer, Commodity> commodities = new HashMap<>();
     public Integer getId() {
         return id;
@@ -28,11 +31,14 @@ public class Provider {
     public void addCommodity(Commodity commodity) {
         commodities.put(commodity.getId(), commodity);
     }
-
+    public Boolean containsName(String name) {
+        return this.name.toLowerCase().contains(name.toLowerCase());
+    }
+    @JsonIgnore
     public List<Commodity> getProvidedCommodities() {
         return new ArrayList<>(commodities.values());
     }
-
+    @JsonIgnore
     public Double getRating() {
         Double sum = 0.0;
         for (Commodity commodity : commodities.values()) {

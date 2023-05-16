@@ -1,15 +1,17 @@
 package com.oak.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.oak.exception.Commodity.CommodityInBuyList;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Commodity.CommodityOutOfStock;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class BuyList {
-    private final HashMap<Integer, Commodity> items = new HashMap<>();
+public class BuyList extends CommodityList{
     private Discount discount = null;
 
+    @JsonProperty("final")
     public int calculateFinalCredit() {
         return calculateTotalCredit() - calculateDiscountCredit();
     }
@@ -18,8 +20,16 @@ public class BuyList {
         return discount != null ? discount.getDiscountPrice(calculateTotalCredit()) : 0;
     }
 
+    @JsonProperty("total")
     public int calculateTotalCredit() {
-        return items.values().stream().mapToInt(Commodity::getPrice).sum();
+        return itemsCount.entrySet().stream()
+                .mapToInt(entry -> {
+                    int itemId = entry.getKey();
+                    int itemCount = entry.getValue();
+                    Commodity item = items.get(itemId);
+                    return item.getPrice() * itemCount;
+                })
+                .sum();
     }
 
     public void addItem(String username, Commodity commodity) throws CommodityInBuyList {
@@ -27,6 +37,7 @@ public class BuyList {
             throw new CommodityInBuyList(username, commodity.getId());
         }
         items.put(commodity.getId(), commodity);
+        itemsCount.put(commodity.getId(), 1);
     }
 
     public void removeItem(Commodity commodity) throws CommodityNotFound {
@@ -34,17 +45,27 @@ public class BuyList {
             throw new CommodityNotFound(commodity.getId());
         }
         items.remove(commodity.getId());
+        itemsCount.remove(commodity.getId());
+    }
+
+    public void updateCount(Commodity commodity, Integer quantity) throws CommodityNotFound, CommodityOutOfStock {
+        Integer prevCount = itemsCount.get(commodity.getId());
+        int newCount = prevCount + quantity;
+        commodity.checkInStock(newCount);
+        itemsCount.put(commodity.getId(), newCount);
+        if (newCount == 0) {
+            removeItem(commodity);
+        }
     }
 
     private void updateStock() {
-        for (Commodity commodity : items.values()) {
-            commodity.updateStock(-1);
+        for (Map.Entry<Integer, Commodity> entry : items.entrySet()) {
+            Integer commodityId = entry.getKey();
+            Commodity commodity = entry.getValue();
+            commodity.updateStock(-itemsCount.get(commodityId));
         }
         items.clear();
-    }
-
-    public HashMap<Integer, Commodity> getItems() {
-        return items;
+        itemsCount.clear();
     }
 
     public boolean hasSufficientCredit(Integer credit) {
@@ -52,8 +73,10 @@ public class BuyList {
     }
 
     public void checkItemsStock() throws CommodityOutOfStock {
-        for (Commodity commodity : items.values()) {
-            commodity.checkInStock();
+        for (Map.Entry<Integer, Commodity> entry : items.entrySet()) {
+            Integer commodityId = entry.getKey();
+            Commodity commodity = entry.getValue();
+            commodity.checkInStock(itemsCount.get(commodityId));
         }
     }
 
