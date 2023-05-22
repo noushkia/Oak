@@ -25,14 +25,40 @@ public class CommodityService extends Service {
 
     public void setQuery(String method, String input) {
         if (method.contains("category")) {
+            /*
+                CREATE TABLE products (
+                    id INT PRIMARY KEY,
+                    name VARCHAR(255),
+                    categories TEXT
+                );
+
+                INSERT INTO products (id, name, categories)
+                VALUES (1, 'Product 1', '["Category 1", "Category 2", "Category 3"]');
+
+                SELECT * FROM products WHERE JSON_CONTAINS(categories, '["Category 1"]');
+            */
             query = query.and(c -> c.containsCategory(input));
         } else if (method.contains("name")) {
+            /*
+                SELECT * FROM
+                Commodities
+                WHERE commodities.name is like name (check if contains)
+            */
             final String lowercaseInput = input.toLowerCase();
             query = query.and(c -> c.containsName(lowercaseInput));
         }
     }
 
     public void setQuery(List<Provider> input) {
+        /*
+            WITH PROVIDERS_ID AS
+                SELECT id
+                FROM Providers
+                WHERE p.name like name
+            SELECT * FROM
+            Commodities
+            INNER JOIN PROVIDERS_ID ON commodities.provider_id = providers_id.id;
+        */
         Set<Integer> providerIds = input.stream()
                 .map(Provider::getId)
                 .collect(Collectors.toSet());
@@ -40,6 +66,11 @@ public class CommodityService extends Service {
     }
 
     public void setQuery(String method) {
+        /*
+            SELECT * FROM
+            Commodities
+            WHERE commodities.inStock > 0
+        */
         if (method.contains("onlyAvailableCommodities")) {
             query = query.and(Commodity::isAvailable);
         }
