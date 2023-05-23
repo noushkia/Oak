@@ -1,6 +1,7 @@
 package com.oak.application.service;
 
 import com.oak.data.dao.DAOLayer;
+import com.oak.data.dao.ProviderDAO;
 import com.oak.domain.Provider;
 import com.oak.exception.Provider.ProviderNotFound;
 import com.oak.data.Database;
@@ -13,7 +14,8 @@ public class ProviderService extends Service {
     }
 
     public void addProvider(Provider provider) {
-            db.addProvider(provider);
+        ProviderDAO providerDAO = daoLayer.getProviderDAO();
+        providerDAO.addProvider(provider);
     }
 
     public Provider getProviderById(Integer providerId) throws ProviderNotFound {

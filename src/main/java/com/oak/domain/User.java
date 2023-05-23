@@ -47,6 +47,8 @@ public class User {
     }
     public String getUsername() { return username;}
 
+    public String getPassword() { return password;}
+
     public void addToBuyList(Commodity commodity) throws CommodityInBuyList {
         buyList.addItem(this.username, commodity);
     }

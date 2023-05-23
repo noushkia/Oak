@@ -1,6 +1,7 @@
 package com.oak.application.service;
 
 import com.oak.data.dao.DAOLayer;
+import com.oak.data.dao.UserDAO;
 import com.oak.domain.Commodity;
 import com.oak.domain.Discount;
 import com.oak.domain.User;
@@ -22,7 +23,8 @@ public class UserService extends Service {
 
     public void setUser(User user) throws InvalidUsername {
         user.validate();
-        db.addUser(user);
+        UserDAO userDAO = daoLayer.getUserDAO();
+        userDAO.addUser(user);
     }
 
     public void addUser(User user) throws InvalidUsername {

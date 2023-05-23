@@ -14,4 +14,8 @@ public class Discount {
     public String getCode() {
         return discountCode;
     }
+
+    public Integer getDiscount() {
+        return discount;
+    }
 }

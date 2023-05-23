@@ -2,6 +2,7 @@ package com.oak.application.service;
 
 import com.oak.data.Database;
 import com.oak.data.dao.DAOLayer;
+import com.oak.data.dao.DiscountDAO;
 import com.oak.domain.Discount;
 
 public class DiscountService extends Service {
@@ -9,6 +10,7 @@ public class DiscountService extends Service {
         super(db, daoLayer);
     }
     public void addDiscount(Discount discount) {
-        db.addDiscount(discount);
+        DiscountDAO discountDAO = daoLayer.getDiscountDAO();
+        discountDAO.addDiscount(discount);
     }
 }

@@ -28,6 +28,10 @@ public class Provider {
         return id;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     public void addCommodity(Commodity commodity) {
         commodities.put(commodity.getId(), commodity);
     }

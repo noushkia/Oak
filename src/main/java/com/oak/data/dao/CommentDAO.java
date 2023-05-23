@@ -1,10 +1,18 @@
 package com.oak.data.dao;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oak.data.ConnectionPool;
+import com.oak.domain.Comment;
+import com.oak.domain.Commodity;
+import com.oak.exception.Commodity.CommodityNotFound;
+import com.oak.exception.Provider.ProviderNotFound;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class CommentDAO {
     public CommentDAO() throws SQLException {
@@ -21,5 +29,44 @@ public class CommentDAO {
         con.commit();
         createTableStatement.close();
         con.close();
+    }
+
+    private void fillCommentStatement(PreparedStatement commentStatement, Comment comment) throws SQLException, JsonProcessingException {
+        commentStatement.setInt(1, comment.getId());
+        commentStatement.setString(2, comment.getUserEmail());
+        commentStatement.setInt(3, comment.getCommodityId());
+        commentStatement.setString(4, comment.getText());
+        commentStatement.setDate(5, new java.sql.Date(comment.getDate().getTime()));
+    }
+
+    public void addComment(Comment comment) throws CommodityNotFound {
+        try {
+            Connection con = ConnectionPool.getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement commentStatement = con.prepareStatement(
+                    "INSERT INTO Comment(id, userEmail, commodityId, text, date) "
+                            + " VALUES(?,?,?,?,?)"
+                            + "ON DUPLICATE KEY UPDATE "
+                            + "userEmail = VALUES(userEmail), "
+                            + "commodityId = VALUES(commodityId), "
+                            + "text = VALUES(text), "
+                            + "date = VALUES(date);"
+            );
+            fillCommentStatement(commentStatement, comment);
+            try {
+                commentStatement.execute();
+                con.commit();
+            } catch (SQLException e) {
+                con.rollback();
+                if (e.getSQLState().equals("23503")) {
+                    commentStatement.close();
+                    con.close();
+                    throw new CommodityNotFound(comment.getCommodityId());
+                }
+            } finally {
+                commentStatement.close();
+                con.close();
+            }
+        } catch (SQLException | JsonProcessingException ignored) {}
     }
 }

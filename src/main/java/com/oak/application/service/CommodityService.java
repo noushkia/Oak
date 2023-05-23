@@ -1,5 +1,6 @@
 package com.oak.application.service;
 
+import com.oak.data.dao.CommodityDAO;
 import com.oak.data.dao.DAOLayer;
 import com.oak.domain.Commodity;
 import com.oak.domain.Provider;
@@ -93,9 +94,8 @@ public class CommodityService extends Service {
     }
 
     public void addCommodity(Commodity commodity) throws ProviderNotFound {
-        Provider provider = db.fetchProvider(commodity.getProviderId());
-        db.addCommodity(commodity);
-        provider.addCommodity(commodity);
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+        commodityDAO.addCommodity(commodity);
     }
 
 

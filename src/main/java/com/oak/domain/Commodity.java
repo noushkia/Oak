@@ -42,6 +42,10 @@ public class Commodity {
         return name;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     public Integer getProviderId() {
         return providerId;
     }
@@ -116,6 +120,11 @@ public class Commodity {
 
     public Integer getInStock() {
         return inStock;
+    }
+    
+    @JsonIgnore
+    public Double getOriginalRating() {
+        return rating;
     }
 
     public void addComment(Comment comment) {

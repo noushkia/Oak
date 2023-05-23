@@ -1,5 +1,6 @@
 package com.oak.application.service;
 
+import com.oak.data.dao.CommentDAO;
 import com.oak.data.dao.DAOLayer;
 import com.oak.domain.Comment;
 import com.oak.domain.Commodity;
@@ -16,9 +17,8 @@ public class CommentService extends Service{
     }
 
     public void addComment(Comment comment) throws CommodityNotFound {
-        Commodity commodity = db.fetchCommodity(comment.getCommodityId());
-        db.addComment(comment);
-        commodity.addComment(comment);
+        CommentDAO commentDAO = daoLayer.getCommentDAO();
+        commentDAO.addComment(comment);
     }
 
     public void voteComment(String username, Integer commentId, Integer vote) throws UserNotFound, CommentNotFound {
