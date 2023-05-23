@@ -5,10 +5,9 @@ import com.oak.exception.Commodity.CommodityInBuyList;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Commodity.CommodityOutOfStock;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class BuyList extends CommodityList{
+public class BuyList extends CommodityList {
     private Discount discount = null;
 
     @JsonProperty("final")

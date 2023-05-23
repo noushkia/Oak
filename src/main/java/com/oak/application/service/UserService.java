@@ -1,8 +1,11 @@
 package com.oak.application.service;
 
+import com.oak.data.dao.CommodityDAO;
 import com.oak.data.dao.DAOLayer;
 import com.oak.data.dao.UserDAO;
+import com.oak.domain.BuyList;
 import com.oak.domain.Commodity;
+import com.oak.domain.CommodityList;
 import com.oak.domain.User;
 import com.oak.exception.Discount.DiscountNotFound;
 import com.oak.exception.Discount.ExpiredDiscount;
@@ -30,8 +33,23 @@ public class UserService extends Service {
         setUser(user);
     }
 
+    public User getUser(String username) throws UserNotFound {
+        UserDAO userDAO = daoLayer.getUserDAO();
+        return userDAO.fetchUser(username);
+    }
+
     public User getUserById(String username) throws UserNotFound {
-        return db.fetchUser(username);
+        User user = getUser(username);
+
+        UserDAO userDAO = daoLayer.getUserDAO();
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+        BuyList buyList = (BuyList) userDAO.fetchUserList(username, "BuyList", commodityDAO);
+        CommodityList purchasedList = userDAO.fetchUserList(username, "PurchasedList", commodityDAO);
+
+        user.getBuylist().update(buyList);
+        user.getPurchasedList().update(purchasedList);
+
+        return user;
     }
 
     public void addCredit(String username, Integer credit) throws UserNotFound, NegativeCredit {

@@ -5,7 +5,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Commodity;
+import com.oak.domain.User;
+import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Provider.ProviderNotFound;
+import com.oak.exception.User.UserNotFound;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -118,6 +121,38 @@ public class CommodityDAO {
         String image = result.getString("image");
         return new Commodity(id, name, providerId, price,
                 categories, rating, inStock, image);
+    }
+
+    public Commodity fetchCommodity(Integer commodityId) throws CommodityNotFound {
+        try {
+            Connection connection = ConnectionPool.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement getCommodityStatement = connection.prepareStatement(
+                    "SELECT * FROM Commodity " +
+                            "WHERE id = ?;"
+            );
+            getCommodityStatement.setInt(1, commodityId);
+            try {
+                ResultSet result = getCommodityStatement.executeQuery();
+                if (result.next()) {
+                    connection.commit();
+                    getCommodityStatement.close();
+                    connection.close();
+                    return createCommodity(result);
+                }
+                getCommodityStatement.close();
+                connection.close();
+                throw new CommodityNotFound(commodityId);
+            } catch (SQLException e) {
+                connection.rollback();
+                getCommodityStatement.close();
+                connection.close();
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        } catch (SQLException ignored) {
+        }
+        return null;
     }
 
     public List<Commodity> fetchCommodities(Integer providerId) {

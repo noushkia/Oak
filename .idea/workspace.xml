@@ -9,13 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add addUsedDiscount code logic">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Fix issues">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/ProviderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/ProviderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/ProviderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/ProviderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/BuyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/BuyList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/CommodityList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/CommodityList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,13 +285,6 @@
       <workItem from="1684671708277" duration="344000" />
       <workItem from="1684749717066" duration="1256000" />
       <workItem from="1684778507565" duration="5237000" />
-    </task>
-    <task id="LOCAL-00022" summary="Start up the website.">
-      <created>1678821415892</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1678821415892</updated>
     </task>
     <task id="LOCAL-00023" summary="Add HtmlPresentation classes.">
       <created>1678877612667</created>
@@ -626,7 +622,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684854646297</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Fix issues">
+      <created>1684867848823</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1684867848823</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -656,7 +659,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add getBuyList tests&#10;Debug tests" />
     <MESSAGE value="Add get commodities by price tests." />
     <MESSAGE value="Change artifactId" />
     <MESSAGE value="Delete unused utils" />
@@ -681,7 +683,8 @@
     <MESSAGE value="Test create tables and external db load." />
     <MESSAGE value="Fix tests." />
     <MESSAGE value="Add addUsedDiscount code logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add addUsedDiscount code logic" />
+    <MESSAGE value="Fix issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix issues" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

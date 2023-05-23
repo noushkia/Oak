@@ -1,12 +1,12 @@
 package com.oak.data.dao;
 
 import com.oak.data.ConnectionPool;
-import com.oak.domain.User;
+import com.oak.domain.*;
+import com.oak.exception.Commodity.CommodityNotFound;
+import com.oak.exception.Provider.ProviderNotFound;
+import com.oak.exception.User.UserNotFound;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class UserDAO {
     public UserDAO() throws SQLException {
@@ -16,7 +16,7 @@ public class UserDAO {
         createTableStatement.addBatch(
                 "CREATE TABLE IF NOT EXISTS User(username VARCHAR(50), password VARCHAR(50), " +
                         "email VARCHAR(50), birthDate DATETIME, address VARCHAR(255)," +
-                        "credit INT, "+
+                        "credit INT, " +
                         "PRIMARY KEY(username));"
         );
         createTableStatement.addBatch(
@@ -91,6 +91,78 @@ public class UserDAO {
                 userStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {}
+        } catch (SQLException ignored) {
+        }
+    }
+
+    public User fetchUser(String username) throws UserNotFound {
+        try {
+            Connection connection = ConnectionPool.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement getUserStatement = connection.prepareStatement(
+                    "SELECT * FROM User " +
+                            "WHERE username = ?;"
+            );
+            getUserStatement.setString(1, username);
+            try {
+                ResultSet result = getUserStatement.executeQuery();
+                if (result.next()) {
+                    String password = result.getString("password");
+                    String email = result.getString("email");
+                    Date birthDate = result.getDate("birthDate");
+                    String address = result.getString("address");
+                    Integer credit = result.getInt("credit");
+
+                    connection.commit();
+                    getUserStatement.close();
+                    connection.close();
+                    return new User(username, password, email, birthDate, address, credit);
+                }
+                getUserStatement.close();
+                connection.close();
+                throw new UserNotFound(username);
+            } catch (SQLException e) {
+                connection.rollback();
+                getUserStatement.close();
+                connection.close();
+            }
+        } catch (SQLException ignored) {
+        }
+        return null;
+    }
+
+    public CommodityList fetchUserList(String username, String listType, CommodityDAO commodityDAO) {
+        CommodityList list = new CommodityList();
+        try {
+            Connection connection = ConnectionPool.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement getUserBuyListStatement = connection.prepareStatement(
+                    "SELECT commodityId, count FROM " + listType +
+                            " WHERE username = ?;"
+            );
+
+            getUserBuyListStatement.setString(1, username);
+            try {
+                ResultSet result = getUserBuyListStatement.executeQuery();
+                while (result.next()) {
+                    int commodityId = result.getInt("commodityId");
+                    int count = result.getInt("count");
+                    // todo: move CommodityDAO outside
+                    Commodity commodity = commodityDAO.fetchCommodity(commodityId);
+                    list.getItems().put(commodityId, commodity);
+                    list.getItemsCount().put(commodityId, count);
+                }
+
+                getUserBuyListStatement.close();
+                connection.close();
+            } catch (SQLException e) {
+                connection.rollback();
+                getUserBuyListStatement.close();
+                connection.close();
+            } catch (CommodityNotFound ignored) {
+            }
+        } catch (SQLException ignored) {
+        }
+        return list;
     }
 }

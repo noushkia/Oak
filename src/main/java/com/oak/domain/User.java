@@ -119,4 +119,9 @@ public class User {
     public BuyList getBuylist() {
         return buyList;
     }
+
+    @JsonIgnore
+    public CommodityList getPurchasedList() {
+        return purchasedList;
+    }
 }
