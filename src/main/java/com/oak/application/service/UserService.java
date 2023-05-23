@@ -1,5 +1,6 @@
 package com.oak.application.service;
 
+import com.oak.data.dao.DAOLayer;
 import com.oak.domain.Commodity;
 import com.oak.domain.Discount;
 import com.oak.domain.User;
@@ -15,8 +16,8 @@ import java.util.List;
 
 public class UserService extends Service {
 
-    public UserService(Database db) {
-        super(db);
+    public UserService(Database db, DAOLayer daoLayer) {
+        super(db, daoLayer);
     }
 
     public void setUser(User user) throws InvalidUsername {

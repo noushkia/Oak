@@ -1,5 +1,6 @@
 package com.oak.application.service;
 
+import com.oak.data.dao.DAOLayer;
 import com.oak.domain.Comment;
 import com.oak.domain.Commodity;
 import com.oak.domain.User;
@@ -10,8 +11,8 @@ import com.oak.exception.Commodity.CommodityNotFound;
 
 public class CommentService extends Service{
 
-    public CommentService(Database db) {
-        super(db);
+    public CommentService(Database db, DAOLayer daoLayer) {
+        super(db, daoLayer);
     }
 
     public void addComment(Comment comment) throws CommodityNotFound {

@@ -1,6 +1,7 @@
 package com.oak.application.service;
 
 import com.oak.data.Database;
+import com.oak.data.dao.DAOLayer;
 import com.oak.domain.User;
 
 public class ServiceLayer {
@@ -9,12 +10,12 @@ public class ServiceLayer {
     private final UserService userService;
     private final CommentService commentService;
     private final DiscountService discountService;
-    public ServiceLayer(Database db) {
-        providerService = new ProviderService(db);
-        commodityService = new CommodityService(db);
-        userService = new UserService(db);
-        commentService = new CommentService(db);
-        discountService = new DiscountService(db);
+    public ServiceLayer(Database db, DAOLayer daoLayer) {
+        providerService = new ProviderService(db, daoLayer);
+        commodityService = new CommodityService(db, daoLayer);
+        userService = new UserService(db, daoLayer);
+        commentService = new CommentService(db, daoLayer);
+        discountService = new DiscountService(db, daoLayer);
     }
 
     public ProviderService getProviderService() {

@@ -1,5 +1,6 @@
 package com.oak.application.service;
 
+import com.oak.data.dao.DAOLayer;
 import com.oak.domain.Commodity;
 import com.oak.domain.Provider;
 import com.oak.domain.User;
@@ -19,8 +20,8 @@ public class CommodityService extends Service {
     private Predicate<Commodity> query = c -> true;
     private Comparator<Commodity> comparator = null;
 
-    public CommodityService(Database db) {
-        super(db);
+    public CommodityService(Database db, DAOLayer daoLayer) {
+        super(db, daoLayer);
     }
 
     public void setQuery(String method, String input) {

@@ -1,25 +1,22 @@
 package com.oak.data.dao;
 
-public class DAOLayer {
-    private final UserDAO userDAO;
-    private final ProviderDAO providerDAO;
-    private final CommodityDAO commodityDAO;
-    private final CommentDAO commentDAO;
-    private final DiscountDAO discountDAO;
+import java.sql.SQLException;
 
-    // TODO:
-    // Create tables
-    // CommentVote Table -> commentDAO
-    // BuyList Table -> userDAO
-    // PurchasedList Table -> userDAO
-    // userRatings Table -> userDAO
+public class DAOLayer {
+    private UserDAO userDAO = null;
+    private ProviderDAO providerDAO = null;
+    private CommodityDAO commodityDAO = null;
+    private CommentDAO commentDAO = null;
+    private DiscountDAO discountDAO = null;
 
     public DAOLayer() {
-        discountDAO = new DiscountDAO();
-        providerDAO = new ProviderDAO();
-        commodityDAO = new CommodityDAO();
-        commentDAO = new CommentDAO();
-        userDAO = new UserDAO();
+        try {
+            discountDAO = new DiscountDAO();
+            providerDAO = new ProviderDAO();
+            commodityDAO = new CommodityDAO();
+            commentDAO = new CommentDAO();
+            userDAO = new UserDAO();
+        } catch (SQLException ignored) {}
     }
 
     public UserDAO getUserDAO() {
