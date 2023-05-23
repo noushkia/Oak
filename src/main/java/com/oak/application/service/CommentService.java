@@ -3,7 +3,6 @@ package com.oak.application.service;
 import com.oak.data.dao.CommentDAO;
 import com.oak.data.dao.DAOLayer;
 import com.oak.domain.Comment;
-import com.oak.domain.Commodity;
 import com.oak.domain.User;
 import com.oak.exception.Comment.CommentNotFound;
 import com.oak.exception.User.UserNotFound;
@@ -17,6 +16,7 @@ public class CommentService extends Service{
     }
 
     public void addComment(Comment comment) throws CommodityNotFound {
+        comment.setId();
         CommentDAO commentDAO = daoLayer.getCommentDAO();
         commentDAO.addComment(comment);
     }

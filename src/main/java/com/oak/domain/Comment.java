@@ -10,10 +10,10 @@ import java.util.Objects;
 public class Comment {
     @JsonProperty("id")
     private Integer id;
-    private String userEmail;
-    private Integer commodityId;
-    private String text;
-    private Date date;
+    private final String userEmail;
+    private final Integer commodityId;
+    private final String text;
+    private final Date date;
     @JsonIgnore
     // recorded votes for the comment
     // -1: dislike, 1: like, 0: neutral
@@ -58,7 +58,7 @@ public class Comment {
     }
 
     public Date getDate() {
-        return date;
+        return date != null ? date : new Date();
     }
 
     @JsonProperty("likes")

@@ -17,7 +17,7 @@ public class UserDAO {
                 "CREATE TABLE IF NOT EXISTS User(username VARCHAR(50), password VARCHAR(50), " +
                         "email VARCHAR(50), birthDate DATETIME, address VARCHAR(255)," +
                         "credit INT, "+
-                        "PRIMARY KEY(id));"
+                        "PRIMARY KEY(username));"
         );
         createTableStatement.addBatch(
                 "CREATE TABLE IF NOT EXISTS BuyList(username VARCHAR(50), commodityId INT, " +
@@ -51,7 +51,7 @@ public class UserDAO {
                         "rating INT," +
                         "PRIMARY KEY(username, commodityId)," +
                         "FOREIGN KEY (username) REFERENCES User(username)," +
-                        "FOREIGN KEY (commodityId) REFERENCES Commodity(commodityId));"
+                        "FOREIGN KEY (commodityId) REFERENCES Commodity(id));"
         );
         createTableStatement.executeBatch();
         con.commit();

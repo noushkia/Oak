@@ -2,7 +2,6 @@ package com.oak.data.dao;
 
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Discount;
-import com.oak.domain.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,6 +48,7 @@ public class DiscountDAO {
                 discountStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {}
+        } catch (SQLException ignored) {
+        }
     }
 }

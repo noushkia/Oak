@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Commodity;
-import com.oak.domain.User;
 import com.oak.exception.Provider.ProviderNotFound;
 
 import java.sql.Connection;
@@ -75,6 +74,7 @@ public class CommodityDAO {
                 commodityStatement.close();
                 con.close();
             }
-        } catch (SQLException | JsonProcessingException ignored) {}
+        } catch (SQLException | JsonProcessingException ignored) {
+        }
     }
 }

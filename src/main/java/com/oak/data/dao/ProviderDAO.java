@@ -2,7 +2,6 @@ package com.oak.data.dao;
 
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Provider;
-import com.oak.domain.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -54,5 +53,7 @@ public class ProviderDAO {
                 providerStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {}
+        } catch (SQLException ignored) {
+        }
+    }
 }

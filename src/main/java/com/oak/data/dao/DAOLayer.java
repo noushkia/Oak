@@ -16,7 +16,9 @@ public class DAOLayer {
             commodityDAO = new CommodityDAO();
             commentDAO = new CommentDAO();
             userDAO = new UserDAO();
-        } catch (SQLException ignored) {}
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
+        }
     }
 
     public UserDAO getUserDAO() {

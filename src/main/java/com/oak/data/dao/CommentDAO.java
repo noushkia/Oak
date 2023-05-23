@@ -1,18 +1,14 @@
 package com.oak.data.dao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Comment;
-import com.oak.domain.Commodity;
 import com.oak.exception.Commodity.CommodityNotFound;
-import com.oak.exception.Provider.ProviderNotFound;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 
 public class CommentDAO {
     public CommentDAO() throws SQLException {
@@ -67,6 +63,7 @@ public class CommentDAO {
                 commentStatement.close();
                 con.close();
             }
-        } catch (SQLException | JsonProcessingException ignored) {}
+        } catch (SQLException | JsonProcessingException ignored) {
+        }
     }
 }
