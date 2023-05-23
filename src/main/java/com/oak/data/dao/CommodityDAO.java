@@ -65,7 +65,7 @@ public class CommodityDAO {
                 con.commit();
             } catch (SQLException e) {
                 con.rollback();
-                if (e.getSQLState().equals("23503")) {
+                if (e.getSQLState().equals("23000")) {
                     commodityStatement.close();
                     con.close();
                     throw new ProviderNotFound(commodity.getProviderId());

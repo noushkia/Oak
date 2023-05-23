@@ -2,11 +2,11 @@ package com.oak.data.dao;
 
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Discount;
+import com.oak.exception.Discount.DiscountNotFound;
+import com.oak.exception.Discount.ExpiredDiscount;
+import com.oak.exception.User.UserNotFound;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DiscountDAO {
     public DiscountDAO() throws SQLException {
@@ -47,6 +47,41 @@ public class DiscountDAO {
             } finally {
                 discountStatement.close();
                 con.close();
+            }
+        } catch (SQLException ignored) {
+        }
+    }
+
+    public void addUsedDiscount(String username, String discountCode) throws ExpiredDiscount, UserNotFound, DiscountNotFound {
+        try {
+            Connection connection = ConnectionPool.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement usedDiscountStatement = connection.prepareStatement(
+                    "INSERT INTO UsedDiscount(username, discountCode) " +
+                            "VALUES (?, ?);"
+            );
+            usedDiscountStatement.setString(1, username);
+            usedDiscountStatement.setString(2, discountCode);
+            try {
+                usedDiscountStatement.executeUpdate();
+                connection.commit();
+                usedDiscountStatement.close();
+                connection.close();
+            } catch (SQLException sqlException) {
+                connection.rollback();
+                usedDiscountStatement.close();
+                connection.close();
+                if (sqlException.getSQLState().equals("23000")) {
+                    String errorMessage = sqlException.getMessage();
+
+                    if (errorMessage.contains("Duplicate entry")) {
+                        throw new ExpiredDiscount(discountCode);
+                    } else if (errorMessage.contains("User")) {
+                        throw new UserNotFound(username);
+                    } else if (errorMessage.contains("Discount")) {
+                        throw new DiscountNotFound(discountCode);
+                    }
+                }
             }
         } catch (SQLException ignored) {
         }

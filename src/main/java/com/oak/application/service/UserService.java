@@ -3,7 +3,6 @@ package com.oak.application.service;
 import com.oak.data.dao.DAOLayer;
 import com.oak.data.dao.UserDAO;
 import com.oak.domain.Commodity;
-import com.oak.domain.Discount;
 import com.oak.domain.User;
 import com.oak.exception.Discount.DiscountNotFound;
 import com.oak.exception.Discount.ExpiredDiscount;
@@ -78,9 +77,7 @@ public class UserService extends Service {
     }
 
     public void addDiscount(String username, String discountCode) throws UserNotFound, DiscountNotFound, ExpiredDiscount {
-        User user = db.fetchUser(username);
-        Discount discount = db.fetchDiscount(discountCode);
-        user.addDiscount(discount);
+        daoLayer.getDiscountDAO().addUsedDiscount(username, discountCode);
     }
 
     public void login(String username, String password) throws UserNotFound, InvalidCredentials {
