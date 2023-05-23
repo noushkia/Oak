@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Commodity;
 import com.oak.exception.Provider.ProviderNotFound;
+import kotlin.NotImplementedError;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -76,5 +77,9 @@ public class CommodityDAO {
             }
         } catch (SQLException | JsonProcessingException ignored) {
         }
+    }
+
+    public List<Commodity> fetchCommodities() {
+        throw new NotImplementedError();
     }
 }

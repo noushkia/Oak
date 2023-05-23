@@ -43,6 +43,7 @@ public class CommodityController {
             String input = params.get("searchQuery");
             if (method.contains("provider")) {
                 ProviderService providerService = Server.getInstance().getServiceLayer().getProviderService();
+                // TODO: remove getProvidersByName and implement the search in the CommodityDAO
                 List<Provider> providers = providerService.getProvidersByName(input);
                 commodityService.setQuery(providers);
             }

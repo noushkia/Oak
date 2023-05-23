@@ -2,11 +2,9 @@ package com.oak.data.dao;
 
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Provider;
+import com.oak.exception.Provider.ProviderNotFound;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ProviderDAO {
     public ProviderDAO() throws SQLException {
@@ -55,5 +53,40 @@ public class ProviderDAO {
             }
         } catch (SQLException ignored) {
         }
+    }
+
+    public Provider fetchProvider(Integer providerId) throws ProviderNotFound {
+        try {
+            Connection con = ConnectionPool.getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement getProviderStatement = con.prepareStatement(
+                    "SELECT * FROM Provider " +
+                            "WHERE id = ?;"
+            );
+            getProviderStatement.setInt(1, providerId);
+            try {
+                ResultSet result = getProviderStatement.executeQuery();
+                if (result.next()) {
+                    int id = result.getInt("id");
+                    String name = result.getString("name");
+                    Date registryDate = result.getDate("registryDate");
+                    String image = result.getString("image");
+
+                    con.commit();
+                    getProviderStatement.close();
+                    con.close();
+                    return new Provider(id, name, registryDate, image);
+                }
+                getProviderStatement.close();
+                con.close();
+                throw new ProviderNotFound(providerId);
+            } catch (SQLException e) {
+                con.rollback();
+                getProviderStatement.close();
+                con.close();
+            }
+        } catch (SQLException ignored) {
+        }
+        return null;
     }
 }
