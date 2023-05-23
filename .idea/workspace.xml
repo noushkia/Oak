@@ -13,12 +13,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/ProviderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/ProviderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/ProviderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/ProviderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/ProviderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/ProviderDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/Commodity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Commodity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Provider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,6 +215,7 @@
       <item itemvalue="JUnit.CommentServiceTest" />
       <item itemvalue="JUnit.CommodityServiceTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
+      <item itemvalue="Spring Boot.OakApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -645,7 +643,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="ca5" />
+                        <option value="ca6" />
                       </list>
                     </value>
                   </entry>

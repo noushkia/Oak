@@ -82,13 +82,13 @@ public class CommodityController {
         List<Commodity> suggestions = commodityService.getSuggestedCommodities(commodityId);
         Provider provider = null;
         try {
-            provider = providerService.getProviderById(commodity.getProviderId());
+            provider = providerService.getProvider(commodity.getProviderId());
         } catch (ProviderNotFound ignored) {}
 
         Map<String, Object> response = new HashMap<>();
         response.put("commodity", commodity);
         response.put("suggestions", suggestions);
-        response.put("providerName", provider.getName());
+        response.put("providerName", provider != null ? provider.getName() : null);
         return response;
     }
 

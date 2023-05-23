@@ -16,6 +16,7 @@ public class CommodityDAO {
     private String currentQuery = baseQuery;
     private String sort = null;
     private ArrayList<String> conditions = new ArrayList<>();
+
     public CommodityDAO() throws SQLException {
         Connection con = ConnectionPool.getConnection();
         Statement createTableStatement = con.createStatement();
@@ -45,12 +46,12 @@ public class CommodityDAO {
 
     public void addProviderCondition(String providerName) {
         currentQuery = "WITH ProviderId AS (" +
-                    "SELECT id" +
-                    "FROM Provider" +
-                    "WHERE name LIKE name" +
-                    ")" +
-                    "SELECT * FROM Commodity c" +
-                    "INNER JOIN ProviderId p ON c.providerId = p.id"
+                "SELECT id" +
+                "FROM Provider" +
+                "WHERE name LIKE name" +
+                ")" +
+                "SELECT * FROM Commodity c" +
+                "INNER JOIN ProviderId p ON c.providerId = p.id";
     }
 
     private void fillCommodityStatement(PreparedStatement commodityStatement, Commodity commodity) throws SQLException, JsonProcessingException {
@@ -109,7 +110,8 @@ public class CommodityDAO {
 
         String categoriesJson = result.getString("categories");
         ObjectMapper objectMapper = new ObjectMapper();
-        ArrayList<String> categories = objectMapper.readValue(categoriesJson, new TypeReference<>(){});
+        ArrayList<String> categories = objectMapper.readValue(categoriesJson, new TypeReference<>() {
+        });
 
         Double rating = result.getDouble("rating");
         Integer inStock = result.getInt("inStock");
@@ -141,7 +143,8 @@ public class CommodityDAO {
                 getProviderCommoditiesStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {}
+        } catch (SQLException ignored) {
+        }
         return null;
     }
 }
