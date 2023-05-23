@@ -9,19 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Test create tables and external db load.">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Fix tests.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/ConnectionPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/DAOLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/DAOLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/DiscountDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/DiscountDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/ProviderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/ProviderDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/oak/service/CommentServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/CommentServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/oak/service/CommodityServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/CommodityServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/oak/service/ProviderServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/oak/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/oak/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +116,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.OakApplication">
+  <component name="RunManager" selected="Maven.Oak [clean,install]">
     <configuration name="CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.oak.application.cli.CommandHandler" />
       <module name="Oak" />
@@ -288,13 +281,6 @@
       <workItem from="1684671708277" duration="344000" />
       <workItem from="1684749717066" duration="1256000" />
       <workItem from="1684778507565" duration="5237000" />
-    </task>
-    <task id="LOCAL-00019" summary="Add comment storage to database">
-      <created>1678819465940</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1678819465940</updated>
     </task>
     <task id="LOCAL-00020" summary="Add APIHandler&#10;Refactor code.">
       <created>1678819502982</created>
@@ -632,7 +618,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684405096597</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Test create tables and external db load.">
+      <created>1684847664971</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1684847664971</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -662,7 +655,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add voteComment tests" />
     <MESSAGE value="Update .json files for tests." />
     <MESSAGE value="Add getBuyList tests&#10;Debug tests" />
     <MESSAGE value="Add get commodities by price tests." />
@@ -687,7 +679,8 @@
     <MESSAGE value="Fix addToCart api naming" />
     <MESSAGE value="Add ConnectionPool and setup db." />
     <MESSAGE value="Test create tables and external db load." />
-    <option name="LAST_COMMIT_MESSAGE" value="Test create tables and external db load." />
+    <MESSAGE value="Fix tests." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix tests." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -700,11 +693,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/oak/presentation/html/CommodityHtmlPresentation.java</url>
           <line>191</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java</url>
