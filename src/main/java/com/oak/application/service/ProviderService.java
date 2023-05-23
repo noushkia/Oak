@@ -20,16 +20,16 @@ public class ProviderService extends Service {
         providerDAO.addProvider(provider);
     }
 
-    public Provider getProviderById(Integer providerId) throws ProviderNotFound {
+    public Provider getProvider(Integer providerId) throws ProviderNotFound {
         ProviderDAO providerDAO = daoLayer.getProviderDAO();
-        Provider provider = providerDAO.fetchProvider(providerId);
+        return providerDAO.fetchProvider(providerId);
+    }
+    public Provider getProviderById(Integer providerId) throws ProviderNotFound {
+        Provider provider = getProvider(providerId);
         CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
-        // TODO: fetch commodities with providerId
-        commodityDAO.fetchCommodities();
+        commodityDAO.fetchCommodities(providerId)
+                .forEach(provider::addCommodity);
         return provider;
     }
 
-    public List<Provider> getProvidersByName(String name) {
-        return db.fetchProviders(p -> p.containsName(name));
-    }
 }

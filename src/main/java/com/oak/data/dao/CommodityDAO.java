@@ -1,19 +1,21 @@
 package com.oak.data.dao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Commodity;
 import com.oak.exception.Provider.ProviderNotFound;
-import kotlin.NotImplementedError;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommodityDAO {
+    private String baseQuery = "SELECT * FROM Commodity";
+    private String currentQuery = baseQuery;
+    private String sort = null;
+    private ArrayList<String> conditions = new ArrayList<>();
     public CommodityDAO() throws SQLException {
         Connection con = ConnectionPool.getConnection();
         Statement createTableStatement = con.createStatement();
@@ -29,6 +31,26 @@ public class CommodityDAO {
         con.commit();
         createTableStatement.close();
         con.close();
+    }
+
+    public void addAvailableCondition() {
+        conditions.add(
+                "inStock > 0"
+        );
+    }
+
+    public void addSort(String attribute) {
+        sort = "ORDER BY " + attribute + " ASC";
+    }
+
+    public void addProviderCondition(String providerName) {
+        currentQuery = "WITH ProviderId AS (" +
+                    "SELECT id" +
+                    "FROM Provider" +
+                    "WHERE name LIKE name" +
+                    ")" +
+                    "SELECT * FROM Commodity c" +
+                    "INNER JOIN ProviderId p ON c.providerId = p.id"
     }
 
     private void fillCommodityStatement(PreparedStatement commodityStatement, Commodity commodity) throws SQLException, JsonProcessingException {
@@ -79,7 +101,47 @@ public class CommodityDAO {
         }
     }
 
-    public List<Commodity> fetchCommodities() {
-        throw new NotImplementedError();
+    private Commodity createCommodity(ResultSet result) throws SQLException, JsonProcessingException {
+        int id = result.getInt("id");
+        String name = result.getString("name");
+        Integer providerId = result.getInt("providerId");
+        Integer price = result.getInt("price");
+
+        String categoriesJson = result.getString("categories");
+        ObjectMapper objectMapper = new ObjectMapper();
+        ArrayList<String> categories = objectMapper.readValue(categoriesJson, new TypeReference<>(){});
+
+        Double rating = result.getDouble("rating");
+        Integer inStock = result.getInt("inStock");
+        String image = result.getString("image");
+        return new Commodity(id, name, providerId, price,
+                categories, rating, inStock, image);
+    }
+
+    public List<Commodity> fetchCommodities(Integer providerId) {
+        try {
+            Connection con = ConnectionPool.getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement getProviderCommoditiesStatement = con.prepareStatement(
+                    "SELECT * FROM Commodity " +
+                            "WHERE providerId = ?;"
+            );
+            getProviderCommoditiesStatement.setInt(1, providerId);
+            try {
+                ResultSet result = getProviderCommoditiesStatement.executeQuery();
+                ArrayList<Commodity> commodities = new ArrayList<>();
+                while (result.next()) {
+                    commodities.add(createCommodity(result));
+                }
+                getProviderCommoditiesStatement.close();
+                con.close();
+                return commodities;
+            } catch (SQLException | JsonProcessingException e) {
+                con.rollback();
+                getProviderCommoditiesStatement.close();
+                con.close();
+            }
+        } catch (SQLException ignored) {}
+        return null;
     }
 }

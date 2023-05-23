@@ -85,8 +85,7 @@ public class ProviderDAO {
                 getProviderStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {
-        }
+        } catch (SQLException ignored) {}
         return null;
     }
 }

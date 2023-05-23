@@ -1,5 +1,6 @@
 package com.oak.domain;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,29 +11,40 @@ import java.util.*;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Commodity {
-    @JsonProperty("id")
-    private Integer id;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("providerId")
-    private Integer providerId;
-    @JsonProperty("price")
-    private Integer price;
-    @JsonProperty("categories")
-    private ArrayList<String> categories;
-    @JsonProperty("rating")
-    private Double rating;
-    @JsonProperty("inStock")
+    private final Integer id;
+    private final String name;
+    private final Integer providerId;
+    private final Integer price;
+    private final ArrayList<String> categories;
+    private final Double rating;
     private Integer inStock;
 
-    @JsonProperty("image")
-    private String image;
+    private final String image;
 
     @JsonIgnore
     private final HashMap<String, Integer> userRatings = new HashMap<>();
 
     @JsonProperty("comments")
     private final HashMap<Integer, Comment> userComments = new HashMap<>();
+
+    @JsonCreator
+    public Commodity(@JsonProperty("id") Integer id,
+                    @JsonProperty("name") String name,
+                     @JsonProperty("providerId") Integer providerId,
+                    @JsonProperty("price") Integer price,
+                    @JsonProperty("categories") ArrayList<String> categories,
+                    @JsonProperty("rating") Double rating,
+                    @JsonProperty("inStock") Integer inStock,
+                    @JsonProperty("image") String image) {
+        this.id = id;
+        this.name = name;
+        this.providerId = providerId;
+        this.price = price;
+        this.categories = categories;
+        this.rating = rating;
+        this.inStock = inStock;
+        this.image = image;
+    }
 
     public Integer getId() {
         return id;
