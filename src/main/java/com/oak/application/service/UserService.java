@@ -53,44 +53,54 @@ public class UserService extends Service {
     }
 
     public void addCredit(String username, Integer credit) throws UserNotFound, NegativeCredit {
-        User user = db.fetchUser(username);
+        User user = getUser(username);
+
         if (credit < 0) {
             throw new NegativeCredit();
         }
         user.addCredit(credit);
+        UserDAO userDAO = daoLayer.getUserDAO();
+        // todo: update the user credit
     }
 
     public void addToBuyList(String username, Integer commodityId) throws UserNotFound, CommodityNotFound, CommodityOutOfStock, CommodityInBuyList {
-        User user = db.fetchUser(username);
-        Commodity commodity = db.fetchCommodity(commodityId);
+        User user = getUserById(username);
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+        Commodity commodity = commodityDAO.fetchCommodity(commodityId);
         commodity.checkInStock(1);
         user.addToBuyList(commodity);
+        // todo: update BuyList table
     }
 
     public void removeFromBuyList(String username, Integer commodityId) throws UserNotFound, CommodityNotFound {
-        User user = db.fetchUser(username);
-        Commodity commodity = db.fetchCommodity(commodityId);
+        User user = getUserById(username);
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+        Commodity commodity = commodityDAO.fetchCommodity(commodityId);
         user.removeFromBuyList(commodity);
+        // todo: update BuyList table
     }
 
     public void updateBuyListCommodityCount(String username, Integer commodityId, Integer quantity) throws UserNotFound, CommodityNotFound, CommodityOutOfStock {
-        User user = db.fetchUser(username);
-        Commodity commodity = db.fetchCommodity(commodityId);
+        User user = getUserById(username);
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+        Commodity commodity = commodityDAO.fetchCommodity(commodityId);
         user.updateBuyListCommodityCount(commodity, quantity);
+        // todo: update BuyList table
     }
 
     public void finalizeBuyList(String username) throws UserNotFound, InsufficientCredit, CommodityOutOfStock {
-        User user = db.fetchUser(username);
+        User user = getUserById(username);
         user.finalizeBuyList();
+        // todo: update BuyList and PurchasedList tables
     }
 
     public List<Commodity> getBuyList(String username) throws UserNotFound {
-        User user = db.fetchUser(username);
+        User user = getUserById(username);
         return user.getBuyListCommodities();
     }
 
     public List<Commodity> getPurchasedList(String username) throws UserNotFound {
-        User user = db.fetchUser(username);
+        User user = getUserById(username);
         return user.getPurchasedListCommodities();
     }
 
@@ -99,7 +109,8 @@ public class UserService extends Service {
     }
 
     public void login(String username, String password) throws UserNotFound, InvalidCredentials {
-        User user = db.fetchUser(username);
+        User user = getUser(username);
+        // todo: should we authenticate via db??
         if (!user.authenticate(password)) {
             throw new InvalidCredentials();
         }
