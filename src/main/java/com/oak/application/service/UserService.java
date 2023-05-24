@@ -3,10 +3,7 @@ package com.oak.application.service;
 import com.oak.data.dao.CommodityDAO;
 import com.oak.data.dao.DAOLayer;
 import com.oak.data.dao.UserDAO;
-import com.oak.domain.BuyList;
-import com.oak.domain.Commodity;
-import com.oak.domain.CommodityList;
-import com.oak.domain.User;
+import com.oak.domain.*;
 import com.oak.exception.Discount.DiscountNotFound;
 import com.oak.exception.Discount.ExpiredDiscount;
 import com.oak.exception.User.*;
@@ -92,9 +89,20 @@ public class UserService extends Service {
     }
 
     public void finalizeBuyList(String username) throws UserNotFound, InsufficientCredit, CommodityOutOfStock {
+        UserDAO userDAO = daoLayer.getUserDAO();
         User user = getUserById(username);
+        BuyList buyList = user.getBuylist();
         user.finalizeBuyList();
-        // todo: update BuyList and PurchasedList tables
+
+        userDAO.updateUserCredit(username, -buyList.calculateFinalCredit());
+        userDAO.finalizeBuyList(username);
+        Discount usedDiscount = buyList.getDiscount();
+        if (usedDiscount != null) {
+            try {
+                addDiscount(username, usedDiscount.getCode());
+            } catch (DiscountNotFound | ExpiredDiscount ignored) {}
+        }
+        // todo: store discount for buy lists?
     }
 
     public List<Commodity> getBuyList(String username) throws UserNotFound {

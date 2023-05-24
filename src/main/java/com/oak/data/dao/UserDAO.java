@@ -215,11 +215,58 @@ public class UserDAO {
             try {
                 statement.executeUpdate();
                 connection.commit();
-                statement.close();
-                connection.close();
             } catch (SQLException e) {
                 connection.rollback();
+            } finally {
                 statement.close();
+                connection.close();
+            }
+
+        } catch (SQLException ignored) {
+        }
+    }
+
+    public void finalizeBuyList(String username) {
+        try {
+            Connection connection = ConnectionPool.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement moveStatement;
+            PreparedStatement updateStatement;
+            PreparedStatement deleteStatement;
+
+            // Move rows from BuyList to PurchasedList
+            String moveQuery = "INSERT INTO PurchasedList (username, commodityId, count) " +
+                    "SELECT username, commodityId, count " +
+                    "FROM BuyList " +
+                    "WHERE username = ?";
+            moveStatement = connection.prepareStatement(moveQuery);
+            moveStatement.setString(1, username);
+
+            // Update Commodities inStock column
+            String updateQuery = "UPDATE Commodity c " +
+                    "JOIN BuyList bl ON c.id = bl.commodityId " +
+                    "SET c.inStock = c.inStock - bl.count " +
+                    "WHERE bl.username = ?";
+            updateStatement = connection.prepareStatement(updateQuery);
+            updateStatement.setString(1, username);
+
+            // Delete rows from BuyList
+            String deleteQuery = "DELETE FROM BuyList WHERE username = ?";
+            deleteStatement = connection.prepareStatement(deleteQuery);
+            deleteStatement.setString(1, username);
+
+            try {
+                moveStatement.executeUpdate();
+                updateStatement.executeUpdate();
+                deleteStatement.executeUpdate();
+                connection.commit();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+                connection.rollback();
+            } finally {
+                moveStatement.close();
+                updateStatement.close();
+                deleteStatement.close();
                 connection.close();
             }
 
