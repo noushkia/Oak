@@ -3,7 +3,6 @@ package com.oak.data.dao;
 import com.oak.data.ConnectionPool;
 import com.oak.domain.*;
 import com.oak.exception.Commodity.CommodityNotFound;
-import com.oak.exception.Provider.ProviderNotFound;
 import com.oak.exception.User.UserNotFound;
 
 import java.sql.*;
@@ -20,8 +19,7 @@ public class UserDAO {
                         "PRIMARY KEY(username));"
         );
         createTableStatement.addBatch(
-                "CREATE TABLE IF NOT EXISTS BuyList(username VARCHAR(50), commodityId INT, " +
-                        "count INT," +
+                "CREATE TABLE IF NOT EXISTS BuyList(username VARCHAR(50), commodityId INT, count INT," +
                         "PRIMARY KEY(username, commodityId)," +
                         "FOREIGN KEY (username) REFERENCES User(username)," +
                         "FOREIGN KEY (commodityId) REFERENCES Commodity(id));"
@@ -147,7 +145,6 @@ public class UserDAO {
                 while (result.next()) {
                     int commodityId = result.getInt("commodityId");
                     int count = result.getInt("count");
-                    // todo: move CommodityDAO outside
                     Commodity commodity = commodityDAO.fetchCommodity(commodityId);
                     list.getItems().put(commodityId, commodity);
                     list.getItemsCount().put(commodityId, count);
@@ -164,5 +161,69 @@ public class UserDAO {
         } catch (SQLException ignored) {
         }
         return list;
+    }
+
+    public void updateUserCredit(String username, Integer credit) {
+        try {
+            Connection connection = ConnectionPool.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement updateCreditStatement = connection.prepareStatement(
+                    "UPDATE User SET credit = ? WHERE username = ?;"
+            );
+
+            updateCreditStatement.setInt(1, credit);
+            updateCreditStatement.setString(2, username);
+            try {
+                updateCreditStatement.executeUpdate();
+                connection.commit();
+
+                updateCreditStatement.close();
+                connection.close();
+            } catch (SQLException e) {
+                connection.rollback();
+                updateCreditStatement.close();
+                connection.close();
+            }
+        } catch (SQLException ignored) {
+        }
+    }
+
+    public void updateUserBuyList(String username, Integer commodityId, Integer quantity) {
+        try {
+            Connection connection = ConnectionPool.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement statement;
+
+            if (quantity != 0) {
+                // add or update row
+                statement = connection.prepareStatement(
+                        "INSERT INTO BuyList (username, commodityId, count) " +
+                                "VALUES (?, ?, ?) " +
+                                "ON DUPLICATE KEY UPDATE count = count + VALUES(count)"
+                );
+                statement.setInt(3, quantity);
+            } else {
+                // remove row
+                statement = connection.prepareStatement(
+                        "DELETE FROM BuyList WHERE username = ? AND commodityId = ?"
+                );
+            }
+
+            statement.setString(1, username);
+            statement.setInt(2, commodityId);
+
+            try {
+                statement.executeUpdate();
+                connection.commit();
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                connection.rollback();
+                statement.close();
+                connection.close();
+            }
+
+        } catch (SQLException ignored) {
+        }
     }
 }

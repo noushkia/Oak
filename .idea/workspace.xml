@@ -9,9 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add getUserById.&#10;TODO:&#10;Test&#10;Move Lists generation outside the DAO method.">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add UserService todos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,13 +279,7 @@
       <workItem from="1684671708277" duration="344000" />
       <workItem from="1684749717066" duration="1256000" />
       <workItem from="1684778507565" duration="5237000" />
-    </task>
-    <task id="LOCAL-00024" summary="Add HtmlPresentationLayer.&#10;Add CommodityHtmlPresentation.">
-      <created>1678889205230</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1678889205230</updated>
+      <workItem from="1684954397887" duration="2442000" />
     </task>
     <task id="LOCAL-00025" summary="Add HtmlPresentationLayer.&#10;Add CommodityHtmlPresentation.">
       <created>1678889235337</created>
@@ -622,7 +617,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684871178059</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Add UserService todos">
+      <created>1684871502069</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1684871502069</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -652,7 +654,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Change artifactId" />
     <MESSAGE value="Delete unused utils" />
     <MESSAGE value="Add javax.servlet dependency." />
     <MESSAGE value="Set up Tomcat." />
@@ -677,7 +678,8 @@
     <MESSAGE value="Add addUsedDiscount code logic" />
     <MESSAGE value="Fix issues" />
     <MESSAGE value="Add getUserById.&#10;TODO:&#10;Test&#10;Move Lists generation outside the DAO method." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add getUserById.&#10;TODO:&#10;Test&#10;Move Lists generation outside the DAO method." />
+    <MESSAGE value="Add UserService todos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add UserService todos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

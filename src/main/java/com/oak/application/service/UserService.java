@@ -58,34 +58,37 @@ public class UserService extends Service {
         if (credit < 0) {
             throw new NegativeCredit();
         }
-        user.addCredit(credit);
         UserDAO userDAO = daoLayer.getUserDAO();
-        // todo: update the user credit
+        user.addCredit(credit);
+        userDAO.updateUserCredit(username, credit);
     }
 
     public void addToBuyList(String username, Integer commodityId) throws UserNotFound, CommodityNotFound, CommodityOutOfStock, CommodityInBuyList {
+        UserDAO userDAO = daoLayer.getUserDAO();
         User user = getUserById(username);
         CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
         Commodity commodity = commodityDAO.fetchCommodity(commodityId);
         commodity.checkInStock(1);
         user.addToBuyList(commodity);
-        // todo: update BuyList table
+        userDAO.updateUserBuyList(username, commodityId, 1);
     }
 
     public void removeFromBuyList(String username, Integer commodityId) throws UserNotFound, CommodityNotFound {
+        UserDAO userDAO = daoLayer.getUserDAO();
         User user = getUserById(username);
         CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
         Commodity commodity = commodityDAO.fetchCommodity(commodityId);
         user.removeFromBuyList(commodity);
-        // todo: update BuyList table
+        userDAO.updateUserBuyList(username, commodityId, 0);
     }
 
     public void updateBuyListCommodityCount(String username, Integer commodityId, Integer quantity) throws UserNotFound, CommodityNotFound, CommodityOutOfStock {
+        UserDAO userDAO = daoLayer.getUserDAO();
         User user = getUserById(username);
         CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
         Commodity commodity = commodityDAO.fetchCommodity(commodityId);
         user.updateBuyListCommodityCount(commodity, quantity);
-        // todo: update BuyList table
+        userDAO.updateUserBuyList(username, commodityId, quantity);
     }
 
     public void finalizeBuyList(String username) throws UserNotFound, InsufficientCredit, CommodityOutOfStock {
@@ -110,7 +113,6 @@ public class UserService extends Service {
 
     public void login(String username, String password) throws UserNotFound, InvalidCredentials {
         User user = getUser(username);
-        // todo: should we authenticate via db??
         if (!user.authenticate(password)) {
             throw new InvalidCredentials();
         }
