@@ -1,16 +1,11 @@
 package com.oak.data.dao;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oak.data.ConnectionPool;
 import com.oak.domain.*;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.User.UserNotFound;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class UserDAO {
     public UserDAO() throws SQLException {
@@ -126,13 +121,13 @@ public class UserDAO {
             getUserStatement.setString(1, username);
             try {
                 ResultSet result = getUserStatement.executeQuery();
-                if (result.next()) {
-                    connection.commit();
-                    user = createUser(result);
+                if (!result.next()) {
+                    getUserStatement.close();
+                    connection.close();
+                    throw new UserNotFound(username);
                 }
-                getUserStatement.close();
-                connection.close();
-                throw new UserNotFound(username);
+                connection.commit();
+                user = createUser(result);
             } catch (SQLException e) {
                 connection.rollback();
             } finally {

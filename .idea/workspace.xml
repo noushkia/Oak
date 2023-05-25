@@ -9,11 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add comment voting to db">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Debug getUserById">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,10 +219,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.OakApplication" />
         <item itemvalue="JUnit.CommodityServiceTest" />
         <item itemvalue="JUnit.CommentServiceTest" />
         <item itemvalue="Application.CommandHandler" />
-        <item itemvalue="Application.OakApplication" />
         <item itemvalue="Application.OakApplication" />
       </list>
     </recent_temporary>
@@ -285,13 +284,6 @@
       <workItem from="1684749717066" duration="1256000" />
       <workItem from="1684778507565" duration="5237000" />
       <workItem from="1684954397887" duration="5065000" />
-    </task>
-    <task id="LOCAL-00026" summary="Add getters for Comment.&#10;Fix mistype for marshal.">
-      <created>1678889286814</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1678889286814</updated>
     </task>
     <task id="LOCAL-00027" summary="Add /providers.">
       <created>1678890781558</created>
@@ -629,7 +621,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684957095703</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Add comment voting to db">
+      <created>1685039391270</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1685039391271</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -659,7 +658,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Set up Tomcat." />
     <MESSAGE value="Merge remote-tracking branch 'origin/ca3' into ca3&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;pom.xml" />
     <MESSAGE value="Fix resources names and structure." />
     <MESSAGE value="Setup Tomcat.&#10;Add HomeServlet&#10;Add LoginServlet" />
@@ -684,7 +682,8 @@
     <MESSAGE value="Add UserService todos" />
     <MESSAGE value="Add updateCart and updateBuyList" />
     <MESSAGE value="Add comment voting to db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add comment voting to db" />
+    <MESSAGE value="Debug getUserById" />
+    <option name="LAST_COMMIT_MESSAGE" value="Debug getUserById" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -697,6 +696,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/oak/presentation/html/CommodityHtmlPresentation.java</url>
           <line>191</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

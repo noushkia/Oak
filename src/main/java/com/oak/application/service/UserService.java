@@ -40,7 +40,8 @@ public class UserService extends Service {
 
         UserDAO userDAO = daoLayer.getUserDAO();
         CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
-        BuyList buyList = (BuyList) userDAO.fetchUserList(username, "BuyList", commodityDAO);
+        BuyList buyList = new BuyList();
+        buyList.update(userDAO.fetchUserList(username, "BuyList", commodityDAO));
         CommodityList purchasedList = userDAO.fetchUserList(username, "PurchasedList", commodityDAO);
 
         user.getBuylist().update(buyList);
