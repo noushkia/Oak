@@ -125,8 +125,7 @@ public class CommodityController {
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
-            // todo getUser
-            String userEmail = userService.getUserById(username).getEmail();
+            String userEmail = userService.getUser(username).getEmail();
             CommentService commentService = Server.getInstance().getServiceLayer().getCommentService();
             Comment comment = new Comment(userEmail, id, text, date);
             commentService.addComment(comment);

@@ -134,8 +134,7 @@ public class UserDAO {
                 getUserStatement.close();
                 connection.close();
             }
-        } catch (SQLException ignored) {
-        }
+        } catch (SQLException ignored) {}
         return user;
     }
 
@@ -159,14 +158,12 @@ public class UserDAO {
                     list.getItems().put(commodityId, commodity);
                     list.getItemsCount().put(commodityId, count);
                 }
-
-                getUserBuyListStatement.close();
-                connection.close();
             } catch (SQLException e) {
                 connection.rollback();
+            } catch (CommodityNotFound ignored) {
+            } finally {
                 getUserBuyListStatement.close();
                 connection.close();
-            } catch (CommodityNotFound ignored) {
             }
         } catch (SQLException ignored) {
         }
@@ -186,26 +183,23 @@ public class UserDAO {
             try {
                 updateCreditStatement.executeUpdate();
                 connection.commit();
-
-                updateCreditStatement.close();
-                connection.close();
             } catch (SQLException e) {
                 connection.rollback();
+            } finally {
                 updateCreditStatement.close();
                 connection.close();
             }
-        } catch (SQLException ignored) {
-        }
+        } catch (SQLException ignored) {}
     }
 
-    public void updateUserBuyList(String username, Integer commodityId, Integer quantity) {
+    public void updateUserList(String username, String listType, Integer commodityId, Integer quantity) {
         try {
             Connection connection = ConnectionPool.getConnection();
             connection.setAutoCommit(false);
             PreparedStatement updateStatement = connection.prepareStatement(
-                    "INSERT INTO BuyList (username, commodityId, count) " +
-                            "VALUES (?, ?, ?) " +
-                            "ON DUPLICATE KEY UPDATE count = VALUES(count)"
+                    "INSERT INTO " + listType + "(username, commodityId, count) " +
+                            "VALUES(?, ?, ?) " +
+                            "ON DUPLICATE KEY UPDATE count = VALUES(count);"
             );
             updateStatement.setString(1, username);
             updateStatement.setInt(2, commodityId);
@@ -216,7 +210,7 @@ public class UserDAO {
             try {
                 updateStatement.executeUpdate();
                 deleteStatement.executeUpdate(
-                  "DELETE FROM BuyList " +
+                  "DELETE FROM " + listType + " " +
                           "WHERE count = 0;"
                 );
                 connection.commit();
@@ -231,50 +225,25 @@ public class UserDAO {
         } catch (SQLException ignored) {}
     }
 
-    public void finalizeBuyList(String username) {
+    public void deleteUserList(String username, String listType) {
         try {
             Connection connection = ConnectionPool.getConnection();
             connection.setAutoCommit(false);
-            PreparedStatement moveStatement;
-            PreparedStatement updateStatement;
-            PreparedStatement deleteStatement;
-
-            // Move rows from BuyList to PurchasedList
-            String moveQuery = "INSERT INTO PurchasedList (username, commodityId, count) " +
-                    "SELECT username, commodityId, count " +
-                    "FROM BuyList " +
-                    "WHERE username = ?";
-            moveStatement = connection.prepareStatement(moveQuery);
-            moveStatement.setString(1, username);
-
-            // Update Commodities inStock column
-            String updateQuery = "UPDATE Commodity c " +
-                    "JOIN BuyList bl ON c.id = bl.commodityId " +
-                    "SET c.inStock = c.inStock - bl.count " +
-                    "WHERE bl.username = ?";
-            updateStatement = connection.prepareStatement(updateQuery);
-            updateStatement.setString(1, username);
-
-            // Delete rows from BuyList
-            String deleteQuery = "DELETE FROM BuyList WHERE username = ?";
-            deleteStatement = connection.prepareStatement(deleteQuery);
+            PreparedStatement deleteStatement = connection.prepareStatement(
+                    "DELETE FROM " + listType + " " +
+                            "WHERE username = ?;"
+            );
             deleteStatement.setString(1, username);
 
             try {
-                moveStatement.executeUpdate();
-                updateStatement.executeUpdate();
                 deleteStatement.executeUpdate();
                 connection.commit();
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
                 connection.rollback();
             } finally {
-                moveStatement.close();
-                updateStatement.close();
                 deleteStatement.close();
                 connection.close();
             }
-
         } catch (SQLException ignored) {
         }
     }

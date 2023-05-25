@@ -91,7 +91,7 @@ public class DiscountDAO {
             connection.setAutoCommit(false);
             PreparedStatement usedDiscountStatement = connection.prepareStatement(
                     "INSERT INTO BuyListDiscount(username, discountCode) " +
-                            "VALUES (?, ?) " +
+                            "VALUES(?, ?) " +
                             "ON DUPLICATE KEY UPDATE " +
                             "discountCode = VALUES(discountCode);"
             );
@@ -124,9 +124,9 @@ public class DiscountDAO {
             Connection con = ConnectionPool.getConnection();
             con.setAutoCommit(false);
             PreparedStatement getDiscountStatement = con.prepareStatement(
-                    "SELECT * FROM UsedDiscount " +
+                    "SELECT * FROM BuyListDiscount " +
                             "INNER JOIN Discount ON discountCode = code " +
-                            "WHERE username = ?"
+                            "WHERE username = ?;"
             );
             getDiscountStatement.setString(1, username);
             try {
@@ -146,6 +146,37 @@ public class DiscountDAO {
             }
         } catch (SQLException ignored) {}
         return discount;
+    }
+
+    public void applyDiscount(String username, String code) {
+        try {
+            Connection con = ConnectionPool.getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement deleteDiscountStatement = con.prepareStatement(
+                    "DELETE FROM BuyListDiscount " +
+                            "WHERE username = ? AND discountCode = ?;"
+            );
+            deleteDiscountStatement.setString(1, username);
+            deleteDiscountStatement.setString(1, code);
+
+            PreparedStatement addDiscountStatement = con.prepareStatement(
+                    "INSERT INTO UsedDiscount(username, discountCode) " +
+                            "VALUES(?, ?);"
+            );
+            addDiscountStatement.setString(1, username);
+            addDiscountStatement.setString(1, code);
+            try {
+                deleteDiscountStatement.executeUpdate();
+                addDiscountStatement.executeUpdate();
+                con.commit();
+            } catch (SQLException e) {
+                con.rollback();
+            } finally {
+                deleteDiscountStatement.close();
+                addDiscountStatement.close();
+                con.close();
+            }
+        } catch (SQLException ignored) {}
     }
 }
 

@@ -291,4 +291,26 @@ public class CommodityDAO {
         } catch (SQLException ignored) {}
         return ratings;
     }
+
+    public void updateCommodityInStock(Integer commodityId, Integer inStock) {
+        try {
+            Connection connection = ConnectionPool.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement updateInStockStatement = connection.prepareStatement(
+                    "UPDATE Commodity SET inStock = ? WHERE commodityId = ?;"
+            );
+
+            updateInStockStatement.setInt(1, inStock);
+            updateInStockStatement.setInt(2, commodityId);
+            try {
+                updateInStockStatement.executeUpdate();
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+            } finally {
+                updateInStockStatement.close();
+                connection.close();
+            }
+        } catch (SQLException ignored) {}
+    }
 }

@@ -83,16 +83,11 @@ public class BuyList extends CommodityList {
         return discount;
     }
 
-    private void useDiscount() {
-        discount = null;
-    }
-
     public void addDiscount(Discount discount) {
         this.discount = discount;
     }
 
     public void commitPurchase() {
         updateStock();
-        useDiscount();
     }
 }

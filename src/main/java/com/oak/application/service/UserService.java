@@ -15,6 +15,7 @@ import com.oak.exception.Commodity.CommodityOutOfStock;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserService extends Service {
 
@@ -74,7 +75,7 @@ public class UserService extends Service {
         Commodity commodity = commodityDAO.fetchCommodity(commodityId);
         commodity.checkInStock(1);
         user.addToBuyList(commodity);
-        userDAO.updateUserBuyList(username, commodityId, 1);
+        userDAO.updateUserList(username, "BuyList", commodityId, 1);
     }
 
     public void removeFromBuyList(String username, Integer commodityId) throws UserNotFound, CommodityNotFound {
@@ -83,7 +84,7 @@ public class UserService extends Service {
         CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
         Commodity commodity = commodityDAO.fetchCommodity(commodityId);
         user.removeFromBuyList(commodity);
-        userDAO.updateUserBuyList(username, commodityId, 0);
+        userDAO.updateUserList(username, "BuyList", commodityId, 0);
     }
 
     public void updateBuyListCommodityCount(String username, Integer commodityId, Integer quantity) throws UserNotFound, CommodityNotFound, CommodityOutOfStock {
@@ -95,24 +96,39 @@ public class UserService extends Service {
         user.updateBuyListCommodityCount(commodity, quantity);
 
         HashMap<Integer, Integer> counts = user.getBuylist().getItemsCount();
-        userDAO.updateUserBuyList(username, commodityId, counts.get(commodityId));
+        userDAO.updateUserList(username, "BuyList", commodityId, counts.get(commodityId));
     }
 
     public void finalizeBuyList(String username) throws UserNotFound, InsufficientCredit, CommodityOutOfStock {
         UserDAO userDAO = daoLayer.getUserDAO();
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+        DiscountDAO discountDAO = daoLayer.getDiscountDAO();
+
         User user = getUserById(username);
-        BuyList buyList = user.getBuylist();
         user.finalizeBuyList();
 
-        userDAO.updateUserCredit(username, -buyList.calculateFinalCredit());
-        userDAO.finalizeBuyList(username);
-        Discount usedDiscount = buyList.getDiscount();
-        if (usedDiscount != null) {
-            try {
-                addDiscount(username, usedDiscount.getCode());
-            } catch (DiscountNotFound | ExpiredDiscount ignored) {}
+        userDAO.updateUserCredit(username, user.getCredit());
+        userDAO.deleteUserList(username, "BuyList");
+
+        CommodityList purchasedList = user.getPurchasedList();
+        HashMap<Integer, Integer> itemsCount = purchasedList.getItemsCount();
+        for (Map.Entry<Integer, Integer> entry : itemsCount.entrySet()) {
+            Integer commodityId = entry.getKey();
+            Integer quantity = entry.getValue();
+            userDAO.updateUserList(username, "PurchasedList", commodityId, quantity);
         }
-        // todo: store discount for buy lists?
+
+        HashMap<Integer, Commodity> items = purchasedList.getItems();
+        for (Map.Entry<Integer, Commodity> entry : items.entrySet()) {
+            Integer commodityId = entry.getKey();
+            Commodity commodity = entry.getValue();
+            commodityDAO.updateCommodityInStock(commodityId, commodity.getInStock());
+        }
+
+        Discount discount = user.getBuylist().getDiscount();
+        if (discount != null) {
+            discountDAO.applyDiscount(username, discount.getCode());
+        }
     }
 
     public List<Commodity> getBuyList(String username) throws UserNotFound {
