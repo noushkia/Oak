@@ -10,14 +10,14 @@ import java.util.Objects;
 public class Comment {
     @JsonProperty("id")
     private Integer id;
-    private String userEmail;
-    private Integer commodityId;
-    private String text;
-    private Date date;
+    private final String userEmail;
+    private final Integer commodityId;
+    private final String text;
+    private final Date date;
     @JsonIgnore
     // recorded votes for the comment
     // -1: dislike, 1: like, 0: neutral
-    private final HashMap<String, Integer> userVotes = new HashMap<>();
+    private HashMap<String, Integer> userVotes = new HashMap<>();
 
     @JsonIgnore
     private static Integer newCommentId = 0;
@@ -37,6 +37,13 @@ public class Comment {
         this.id = newCommentId++;
     }
 
+    public void setId(Integer newId) {
+        this.id = newId;
+    }
+
+    public void setUserVotes(HashMap<String, Integer> votes) {
+        this.userVotes = votes;
+    }
     public void addUserVote(String username, Integer vote) {
         userVotes.put(username, vote);
     }
@@ -58,7 +65,7 @@ public class Comment {
     }
 
     public Date getDate() {
-        return date;
+        return date != null ? date : new Date();
     }
 
     @JsonProperty("likes")

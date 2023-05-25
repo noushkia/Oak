@@ -47,6 +47,8 @@ public class User {
     }
     public String getUsername() { return username;}
 
+    public String getPassword() { return password;}
+
     public void addToBuyList(Commodity commodity) throws CommodityInBuyList {
         buyList.addItem(this.username, commodity);
     }
@@ -116,5 +118,10 @@ public class User {
     @JsonIgnore
     public BuyList getBuylist() {
         return buyList;
+    }
+
+    @JsonIgnore
+    public CommodityList getPurchasedList() {
+        return purchasedList;
     }
 }

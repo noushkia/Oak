@@ -1,6 +1,7 @@
 package com.oak.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.oak.data.dao.DAOLayer;
 import com.oak.exception.Commodity.InvalidRating;
 import com.oak.exception.User.UserNotFound;
 import com.oak.application.service.CommodityService;
@@ -19,6 +20,7 @@ import static org.junit.Assert.*;
 
 public class CommodityServiceTest {
     private static Database database;
+    private static DAOLayer daoLayer;
     private static CommodityService commodityService;
     static User[] users;
     static Provider[] providers;
@@ -35,6 +37,7 @@ public class CommodityServiceTest {
     @Before
     public void setup() {
         database = new Database();
+        daoLayer = new DAOLayer();
         for (User user : users) {
             database.addUser(user);
         }
@@ -45,7 +48,7 @@ public class CommodityServiceTest {
             database.addCommodity(commodity);
         }
 
-        commodityService = new CommodityService(database);
+        commodityService = new CommodityService(database, daoLayer);
     }
 
     // rate commodity tests

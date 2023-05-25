@@ -3,6 +3,7 @@ package com.oak.application;
 import com.oak.application.service.ServiceLayer;
 import com.oak.data.DataLoader;
 import com.oak.data.Database;
+import com.oak.data.dao.DAOLayer;
 import com.oak.domain.*;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Provider.ProviderNotFound;
@@ -14,7 +15,8 @@ public class Server {
     private static Server instance = null;
 
     protected final Database database = new Database();
-    protected final ServiceLayer serviceLayer = new ServiceLayer(database);
+    protected final DAOLayer daoLayer = new DAOLayer();
+    protected final ServiceLayer serviceLayer = new ServiceLayer(database, daoLayer);
     protected final String externalServicesUrl = "http://5.253.25.110:5000/";
 
     private Server() throws IOException, CommodityNotFound, InvalidUsername, ProviderNotFound {

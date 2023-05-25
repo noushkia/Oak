@@ -1,9 +1,6 @@
 package com.oak.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,20 +9,32 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Provider {
-    @JsonProperty("id")
-    private Integer id;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("registryDate")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date registryDate;
-    @JsonProperty("image")
-    private String image;
+    private final Integer id;
+    private final String name;
+    private final Date registryDate;
+    private final String image;
 
     @JsonProperty("commodities")
     private final HashMap<Integer, Commodity> commodities = new HashMap<>();
+
+    @JsonCreator
+    public Provider(@JsonProperty("id") int id,
+                    @JsonProperty("name") String name,
+                    @JsonProperty("registryDate") @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd") Date registryDate,
+                    @JsonProperty("image") String image
+                    ) {
+        this.id = id;
+        this.name = name;
+        this.registryDate = registryDate;
+        this.image = image;
+    }
+
     public Integer getId() {
         return id;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public void addCommodity(Commodity commodity) {

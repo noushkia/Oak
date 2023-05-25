@@ -5,7 +5,6 @@ import com.oak.application.service.CommentService;
 import com.oak.application.service.CommodityService;
 import com.oak.application.service.ProviderService;
 import com.oak.application.service.UserService;
-import com.oak.data.Pagination;
 import com.oak.domain.Comment;
 import com.oak.domain.Commodity;
 import com.oak.domain.Provider;
@@ -31,8 +30,6 @@ import java.util.Map;
         allowedHeaders = "*")
 @RequestMapping("/api/commodities")
 public class CommodityController {
-    private final Pagination<Commodity> pagination = new Pagination<>();
-
     private void prepareParams(Map<String, String> params) {
         CommodityService commodityService = Server.getInstance().getServiceLayer().getCommodityService();
         if (params.containsKey("onlyAvailableCommodities")) {
@@ -41,14 +38,7 @@ public class CommodityController {
         if (params.containsKey("searchType")) {
             String method = params.get("searchType");
             String input = params.get("searchQuery");
-            if (method.contains("provider")) {
-                ProviderService providerService = Server.getInstance().getServiceLayer().getProviderService();
-                List<Provider> providers = providerService.getProvidersByName(input);
-                commodityService.setQuery(providers);
-            }
-            else {
                 commodityService.setQuery(method, input);
-            }
         }
         if (params.containsKey("sortBy")) {
             commodityService.setComparator(params.get("sortBy"));
@@ -61,15 +51,15 @@ public class CommodityController {
 
         Integer limit = Integer.parseInt(params.get("limit"));
         Integer pageNumber = Integer.parseInt(params.get("page"));
-        pagination.setLimit(limit);
 
         CommodityService commodityService = Server.getInstance().getServiceLayer().getCommodityService();
+        commodityService.setPagination(limit, pageNumber);
         List<Commodity> commodities = commodityService.getCommoditiesList();
-        commodityService.reset();
 
         Map<String, Object> response = new HashMap<>();
-        response.put("commodities", pagination.getPage(commodities, pageNumber));
-        response.put("pages", pagination.getNumberOfPages(commodities));
+        response.put("commodities", commodities);
+        response.put("pages", commodityService.getNumberOfPages(limit));
+        commodityService.reset();
         return ResponseEntity.ok(response);
     }
 
@@ -81,13 +71,13 @@ public class CommodityController {
         List<Commodity> suggestions = commodityService.getSuggestedCommodities(commodityId);
         Provider provider = null;
         try {
-            provider = providerService.getProviderById(commodity.getProviderId());
+            provider = providerService.getProvider(commodity.getProviderId());
         } catch (ProviderNotFound ignored) {}
 
         Map<String, Object> response = new HashMap<>();
         response.put("commodity", commodity);
         response.put("suggestions", suggestions);
-        response.put("providerName", provider.getName());
+        response.put("providerName", provider != null ? provider.getName() : null);
         return response;
     }
 
@@ -131,7 +121,7 @@ public class CommodityController {
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
-            String userEmail = userService.getUserById(username).getEmail();
+            String userEmail = userService.getUser(username).getEmail();
             CommentService commentService = Server.getInstance().getServiceLayer().getCommentService();
             Comment comment = new Comment(userEmail, id, text, date);
             commentService.addComment(comment);

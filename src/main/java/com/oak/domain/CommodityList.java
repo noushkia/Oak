@@ -14,6 +14,10 @@ public class CommodityList {
         return items;
     }
 
+    public HashMap<Integer, Integer> getItemsCount() {
+        return itemsCount;
+    }
+
     public void update(CommodityList other) {
         other.itemsCount.forEach((id, count) -> {
             if (this.items.containsKey(id)) {
