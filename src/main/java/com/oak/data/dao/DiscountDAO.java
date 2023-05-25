@@ -2,10 +2,8 @@ package com.oak.data.dao;
 
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Discount;
-import com.oak.domain.Provider;
 import com.oak.exception.Discount.DiscountNotFound;
 import com.oak.exception.Discount.ExpiredDiscount;
-import com.oak.exception.Provider.ProviderNotFound;
 import com.oak.exception.User.UserNotFound;
 
 import java.sql.*;
@@ -157,14 +155,14 @@ public class DiscountDAO {
                             "WHERE username = ? AND discountCode = ?;"
             );
             deleteDiscountStatement.setString(1, username);
-            deleteDiscountStatement.setString(1, code);
+            deleteDiscountStatement.setString(2, code);
 
             PreparedStatement addDiscountStatement = con.prepareStatement(
                     "INSERT INTO UsedDiscount(username, discountCode) " +
                             "VALUES(?, ?);"
             );
             addDiscountStatement.setString(1, username);
-            addDiscountStatement.setString(1, code);
+            addDiscountStatement.setString(2, code);
             try {
                 deleteDiscountStatement.executeUpdate();
                 addDiscountStatement.executeUpdate();

@@ -5,7 +5,6 @@ import com.oak.application.service.CommentService;
 import com.oak.application.service.CommodityService;
 import com.oak.application.service.ProviderService;
 import com.oak.application.service.UserService;
-import com.oak.data.Pagination;
 import com.oak.domain.Comment;
 import com.oak.domain.Commodity;
 import com.oak.domain.Provider;
@@ -31,8 +30,6 @@ import java.util.Map;
         allowedHeaders = "*")
 @RequestMapping("/api/commodities")
 public class CommodityController {
-    private final Pagination<Commodity> pagination = new Pagination<>();
-
     private void prepareParams(Map<String, String> params) {
         CommodityService commodityService = Server.getInstance().getServiceLayer().getCommodityService();
         if (params.containsKey("onlyAvailableCommodities")) {
@@ -46,24 +43,23 @@ public class CommodityController {
         if (params.containsKey("sortBy")) {
             commodityService.setComparator(params.get("sortBy"));
         }
-
-        Integer limit = Integer.parseInt(params.get("limit"));
-        Integer pageNumber = Integer.parseInt(params.get("page"));
-
-        commodityService.setPagination(limit, pageNumber);
     }
 
     @GetMapping("/")
     public ResponseEntity<Map<String, Object>> getCommodities(@RequestParam Map<String, String> params) {
         prepareParams(params);
 
+        Integer limit = Integer.parseInt(params.get("limit"));
+        Integer pageNumber = Integer.parseInt(params.get("page"));
+
         CommodityService commodityService = Server.getInstance().getServiceLayer().getCommodityService();
+        commodityService.setPagination(limit, pageNumber);
         List<Commodity> commodities = commodityService.getCommoditiesList();
-        commodityService.reset();
 
         Map<String, Object> response = new HashMap<>();
         response.put("commodities", commodities);
-        response.put("pages", commodityService.getNumberOfPages());
+        response.put("pages", commodityService.getNumberOfPages(limit));
+        commodityService.reset();
         return ResponseEntity.ok(response);
     }
 

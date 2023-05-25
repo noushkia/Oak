@@ -51,7 +51,7 @@ public class CommodityDAO {
 
     public void setNameCondition(String name) {
         conditions.add(
-                "name LIKE " + name
+                "name LIKE '%" + name + "%'"
         );
     }
 
@@ -93,8 +93,8 @@ public class CommodityDAO {
         currentQuery = "WITH ProviderId AS (" +
                 "SELECT id " +
                 "FROM Provider " +
-                "WHERE name LIKE name" +
-                ") " +
+                "WHERE name LIKE '%" + providerName +
+                "%') " +
                 "SELECT * FROM Commodity c " +
                 "INNER JOIN ProviderId p ON c.providerId = p.id";
     }
@@ -188,19 +188,21 @@ public class CommodityDAO {
                 categories, rating, inStock, image);
     }
 
-    public Integer getNumberOfPages() {
+    public Integer getNumberOfPages(Integer limit) {
         int numPages = 0;
         try {
             Connection con = ConnectionPool.getConnection();
             con.setAutoCommit(false);
             String condition = String.join(" AND ", conditions);
+            condition = !condition.equals("") ? " WHERE " + condition : condition;
             PreparedStatement getNumberOfPagesStatement = con.prepareStatement(
                     "SELECT CEIL(COUNT(*) / ?) AS numPages "
                             + "FROM ("
                             + currentQuery
                             + condition
-                            + ");"
+                            + ") AS commodities;"
             );
+            getNumberOfPagesStatement.setInt(1, limit);
             try {
                 ResultSet set = getNumberOfPagesStatement.executeQuery();
                 if (set.next()) {
@@ -297,7 +299,7 @@ public class CommodityDAO {
             Connection connection = ConnectionPool.getConnection();
             connection.setAutoCommit(false);
             PreparedStatement updateInStockStatement = connection.prepareStatement(
-                    "UPDATE Commodity SET inStock = ? WHERE commodityId = ?;"
+                    "UPDATE Commodity SET inStock = ? WHERE id = ?;"
             );
 
             updateInStockStatement.setInt(1, inStock);

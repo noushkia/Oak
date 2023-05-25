@@ -15,13 +15,9 @@ import com.oak.exception.Commodity.CommodityNotFound;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class CommodityService extends Service {
-    private Predicate<Commodity> query = c -> true;
-    private Comparator<Commodity> comparator = null;
-
     public CommodityService(Database db, DAOLayer daoLayer) {
         super(db, daoLayer);
     }
@@ -66,8 +62,8 @@ public class CommodityService extends Service {
         daoLayer.getCommodityDAO().setPagination(limit, pageNumber);
     }
 
-    public Integer getNumberOfPages() {
-        return daoLayer.getCommodityDAO().getNumberOfPages();
+    public Integer getNumberOfPages(Integer limit) {
+        return daoLayer.getCommodityDAO().getNumberOfPages(limit);
     }
 
     private void prepareCommodity(Commodity commodity) {

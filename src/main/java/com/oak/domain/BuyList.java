@@ -47,14 +47,11 @@ public class BuyList extends CommodityList {
         itemsCount.remove(commodity.getId());
     }
 
-    public void updateCount(Commodity commodity, Integer quantity) throws CommodityNotFound, CommodityOutOfStock {
+    public void updateCount(Commodity commodity, Integer quantity) throws CommodityOutOfStock {
         Integer prevCount = itemsCount.get(commodity.getId());
         int newCount = prevCount + quantity;
         commodity.checkInStock(newCount);
         itemsCount.put(commodity.getId(), newCount);
-        if (newCount == 0) {
-            removeItem(commodity);
-        }
     }
 
     private void updateStock() {
@@ -63,8 +60,6 @@ public class BuyList extends CommodityList {
             Commodity commodity = entry.getValue();
             commodity.updateStock(-itemsCount.get(commodityId));
         }
-        items.clear();
-        itemsCount.clear();
     }
 
     public boolean hasSufficientCredit(Integer credit) {

@@ -118,7 +118,7 @@ public class UserService extends Service {
             userDAO.updateUserList(username, "PurchasedList", commodityId, quantity);
         }
 
-        HashMap<Integer, Commodity> items = purchasedList.getItems();
+        HashMap<Integer, Commodity> items = user.getBuylist().getItems();
         for (Map.Entry<Integer, Commodity> entry : items.entrySet()) {
             Integer commodityId = entry.getKey();
             Commodity commodity = entry.getValue();
@@ -134,11 +134,6 @@ public class UserService extends Service {
     public List<Commodity> getBuyList(String username) throws UserNotFound {
         User user = getUserById(username);
         return user.getBuyListCommodities();
-    }
-
-    public List<Commodity> getPurchasedList(String username) throws UserNotFound {
-        User user = getUserById(username);
-        return user.getPurchasedListCommodities();
     }
 
     public void addDiscount(String username, String discountCode) throws UserNotFound, DiscountNotFound, ExpiredDiscount {
