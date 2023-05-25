@@ -25,7 +25,7 @@ public class ProviderService extends Service {
     public Provider getProviderById(Integer providerId) throws ProviderNotFound {
         Provider provider = getProvider(providerId);
         CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
-        commodityDAO.fetchCommodities(providerId)
+        commodityDAO.fetchProviderCommodities(providerId)
                 .forEach(provider::addCommodity);
         return provider;
     }

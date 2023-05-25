@@ -41,36 +41,29 @@ public class CommodityController {
         if (params.containsKey("searchType")) {
             String method = params.get("searchType");
             String input = params.get("searchQuery");
-            if (method.contains("provider")) {
-                ProviderService providerService = Server.getInstance().getServiceLayer().getProviderService();
-                // TODO: remove getProvidersByName and implement the search in the CommodityDAO
-//                List<Provider> providers = providerService.getProvidersByName(input);
-//                commodityService.setQuery(providers);
-            }
-            else {
                 commodityService.setQuery(method, input);
-            }
         }
         if (params.containsKey("sortBy")) {
             commodityService.setComparator(params.get("sortBy"));
         }
+
+        Integer limit = Integer.parseInt(params.get("limit"));
+        Integer pageNumber = Integer.parseInt(params.get("page"));
+
+        commodityService.setPagination(limit, pageNumber);
     }
 
     @GetMapping("/")
     public ResponseEntity<Map<String, Object>> getCommodities(@RequestParam Map<String, String> params) {
         prepareParams(params);
 
-        Integer limit = Integer.parseInt(params.get("limit"));
-        Integer pageNumber = Integer.parseInt(params.get("page"));
-        pagination.setLimit(limit);
-
         CommodityService commodityService = Server.getInstance().getServiceLayer().getCommodityService();
         List<Commodity> commodities = commodityService.getCommoditiesList();
         commodityService.reset();
 
         Map<String, Object> response = new HashMap<>();
-        response.put("commodities", pagination.getPage(commodities, pageNumber));
-        response.put("pages", pagination.getNumberOfPages(commodities));
+        response.put("commodities", commodities);
+        response.put("pages", commodityService.getNumberOfPages());
         return ResponseEntity.ok(response);
     }
 

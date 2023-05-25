@@ -116,7 +116,7 @@ public class UserService extends Service {
     }
 
     public void addDiscount(String username, String discountCode) throws UserNotFound, DiscountNotFound, ExpiredDiscount {
-        daoLayer.getDiscountDAO().addUsedDiscount(username, discountCode);
+        daoLayer.getDiscountDAO().addBuyListDiscount(username, discountCode);
     }
 
     public void login(String username, String password) throws UserNotFound, InvalidCredentials {

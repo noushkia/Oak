@@ -1,9 +1,10 @@
 package com.oak.application.service;
 
+import com.oak.data.dao.CommentDAO;
 import com.oak.data.dao.CommodityDAO;
 import com.oak.data.dao.DAOLayer;
+import com.oak.domain.Comment;
 import com.oak.domain.Commodity;
-import com.oak.domain.Provider;
 import com.oak.domain.User;
 import com.oak.exception.Commodity.InvalidRating;
 import com.oak.exception.Provider.ProviderNotFound;
@@ -12,8 +13,8 @@ import com.oak.data.Database;
 import com.oak.exception.Commodity.CommodityNotFound;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -26,71 +27,29 @@ public class CommodityService extends Service {
     }
 
     public void setQuery(String method, String input) {
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
         if (method.contains("category")) {
-            /*
-                CREATE TABLE products (
-                    id INT PRIMARY KEY,
-                    name VARCHAR(255),
-                    categories TEXT
-                );
-
-                INSERT INTO products (id, name, categories)
-                VALUES (1, 'Product 1', '["Category 1", "Category 2", "Category 3"]');
-
-                SELECT * FROM products WHERE JSON_CONTAINS(categories, '["Category 1"]');
-            */
-            query = query.and(c -> c.containsCategory(input));
+            commodityDAO.setCategoryCondition(input);
         } else if (method.contains("name")) {
-            /*
-                SELECT * FROM
-                Commodities
-                WHERE commodities.name is like name (check if contains)
-            */
             final String lowercaseInput = input.toLowerCase();
-            query = query.and(c -> c.containsName(lowercaseInput));
+            commodityDAO.setNameCondition(lowercaseInput);
+        } else if (method.contains("provider")) {
+            commodityDAO.setProviderNameCondition(input);
         }
     }
 
-    public void setQuery(List<Provider> input) {
-        /*
-            WITH PROVIDERS_ID AS
-                SELECT id
-                FROM Providers
-                WHERE p.name like name
-            SELECT * FROM
-            Commodities
-            INNER JOIN PROVIDERS_ID ON commodities.provider_id = providers_id.id;
-        */
-        Set<Integer> providerIds = input.stream()
-                .map(Provider::getId)
-                .collect(Collectors.toSet());
-        query = query.and(c -> providerIds.contains(c.getProviderId()));
-    }
-
     public void setQuery(String method) {
-        /*
-            SELECT * FROM
-            Commodities
-            WHERE commodities.inStock > 0
-        */
         if (method.contains("onlyAvailableCommodities")) {
-            query = query.and(Commodity::isAvailable);
+            daoLayer.getCommodityDAO().setAvailableCondition();
         }
     }
 
     public void setComparator(String method) {
-        if (method.contains("rating")) {
-            comparator = Comparator.comparing(Commodity::getRating).reversed();
-        } else if (method.contains("price")) {
-            comparator = Comparator.comparing(Commodity::getPrice).reversed();
-        } else if (method.contains("name")) {
-            comparator = Comparator.comparing(Commodity::getName);
-        }
+        daoLayer.getCommodityDAO().setSort(method);
     }
 
     public void reset() {
-        query = c -> true;
-        comparator = null;
+        daoLayer.getCommodityDAO().reset();
     }
 
     public void addCommodity(Commodity commodity) throws ProviderNotFound {
@@ -100,11 +59,27 @@ public class CommodityService extends Service {
 
 
     public List<Commodity> getCommoditiesList() {
-        List<Commodity> commodities = db.fetchCommodities(query);
-        if (comparator != null) {
-            commodities.sort(comparator);
+        return daoLayer.getCommodityDAO().fetchCommodities();
+    }
+
+    public void setPagination(Integer limit, Integer pageNumber) {
+        daoLayer.getCommodityDAO().setPagination(limit, pageNumber);
+    }
+
+    public Integer getNumberOfPages() {
+        return daoLayer.getCommodityDAO().getNumberOfPages();
+    }
+
+    private void prepareCommodity(Commodity commodity) {
+        CommentDAO commentDAO =  daoLayer.getCommentDAO();
+        List<Comment> comments = commentDAO.fetchComments(commodity.getId());
+        for (Comment comment : comments) {
+            HashMap<String, Integer> votes = commentDAO.fetchVotes(comment.getId());
+            comment.setUserVotes(votes);
+            commodity.addComment(comment);
         }
-        return commodities;
+        HashMap<String, Integer> ratings = daoLayer.getCommodityDAO().fetchRatings(commodity.getId());
+        commodity.setUserRatings(ratings);
     }
 
     public List<Commodity> getSuggestedCommodities(Integer commodityId) throws CommodityNotFound {
@@ -119,7 +94,9 @@ public class CommodityService extends Service {
     }
 
     public Commodity getCommodityById(Integer commodityId) throws CommodityNotFound {
-        return db.fetchCommodity(commodityId);
+        Commodity commodity = daoLayer.getCommodityDAO().fetchCommodity(commodityId);
+        prepareCommodity(commodity);
+        return commodity;
     }
 
     public List<Commodity> getCommoditiesByCategory(String category) {

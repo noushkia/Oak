@@ -1,11 +1,16 @@
 package com.oak.data.dao;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oak.data.ConnectionPool;
 import com.oak.domain.*;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.User.UserNotFound;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class UserDAO {
     public UserDAO() throws SQLException {
@@ -41,6 +46,12 @@ public class UserDAO {
         createTableStatement.addBatch(
                 "CREATE TABLE IF NOT EXISTS UsedDiscount(username VARCHAR(50), discountCode VARCHAR(50), " +
                         "PRIMARY KEY(username, discountCode)," +
+                        "FOREIGN KEY (username) REFERENCES User(username)," +
+                        "FOREIGN KEY (discountCode) REFERENCES Discount(code));"
+        );
+        createTableStatement.addBatch(
+                "CREATE TABLE IF NOT EXISTS BuyListDiscount(username VARCHAR(50), discountCode VARCHAR(50), " +
+                        "PRIMARY KEY(username)," +
                         "FOREIGN KEY (username) REFERENCES User(username)," +
                         "FOREIGN KEY (discountCode) REFERENCES Discount(code));"
         );
@@ -93,7 +104,18 @@ public class UserDAO {
         }
     }
 
+    private User createUser(ResultSet result) throws SQLException {
+        String username = result.getString("username");
+        String password = result.getString("password");
+        String email = result.getString("email");
+        Date birthDate = result.getDate("birthDate");
+        String address = result.getString("address");
+        Integer credit = result.getInt("credit");
+        return new User(username, password, email, birthDate, address, credit);
+    }
+
     public User fetchUser(String username) throws UserNotFound {
+        User user = null;
         try {
             Connection connection = ConnectionPool.getConnection();
             connection.setAutoCommit(false);
@@ -105,28 +127,21 @@ public class UserDAO {
             try {
                 ResultSet result = getUserStatement.executeQuery();
                 if (result.next()) {
-                    String password = result.getString("password");
-                    String email = result.getString("email");
-                    Date birthDate = result.getDate("birthDate");
-                    String address = result.getString("address");
-                    Integer credit = result.getInt("credit");
-
                     connection.commit();
-                    getUserStatement.close();
-                    connection.close();
-                    return new User(username, password, email, birthDate, address, credit);
+                    user = createUser(result);
                 }
                 getUserStatement.close();
                 connection.close();
                 throw new UserNotFound(username);
             } catch (SQLException e) {
                 connection.rollback();
+            } finally {
                 getUserStatement.close();
                 connection.close();
             }
         } catch (SQLException ignored) {
         }
-        return null;
+        return user;
     }
 
     public CommodityList fetchUserList(String username, String listType, CommodityDAO commodityDAO) {

@@ -22,7 +22,7 @@ public class Commodity {
     private final String image;
 
     @JsonIgnore
-    private final HashMap<String, Integer> userRatings = new HashMap<>();
+    private HashMap<String, Integer> userRatings = new HashMap<>();
 
     @JsonProperty("comments")
     private final HashMap<Integer, Comment> userComments = new HashMap<>();
@@ -85,6 +85,10 @@ public class Commodity {
         } catch (NumberFormatException e) {
             throw new InvalidRating();
         }
+    }
+    @JsonIgnore
+    public void setUserRatings(HashMap<String, Integer> ratings) {
+        this.userRatings = ratings;
     }
 
     public Boolean containsCategory(String category) {

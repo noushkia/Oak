@@ -1,16 +1,21 @@
 package com.oak.data.dao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Comment;
+import com.oak.domain.Commodity;
 import com.oak.exception.Commodity.CommodityNotFound;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class CommentDAO {
+    private final String baseQuery = "SELECT * FROM Comment";
+    private String condition = "";
     public CommentDAO() throws SQLException {
         Connection con = ConnectionPool.getConnection();
         Statement createTableStatement = con.createStatement();
@@ -41,7 +46,7 @@ public class CommentDAO {
             con.setAutoCommit(false);
             PreparedStatement commentStatement = con.prepareStatement(
                     "INSERT INTO Comment(id, userEmail, commodityId, text, date) "
-                            + " VALUES(?,?,?,?,?)"
+                            + "VALUES(?,?,?,?,?) "
                             + "ON DUPLICATE KEY UPDATE "
                             + "userEmail = VALUES(userEmail), "
                             + "commodityId = VALUES(commodityId), "
@@ -65,5 +70,69 @@ public class CommentDAO {
             }
         } catch (SQLException | JsonProcessingException ignored) {
         }
+    }
+
+    private Comment createComment(ResultSet result) throws SQLException, JsonProcessingException {
+        int id = result.getInt("id");
+        String userEmail = result.getString("userEmail");
+        int commodityId = result.getInt("commodityId");
+        String text = result.getString("text");
+        Date date = result.getDate("date");
+
+        Comment comment = new Comment(userEmail, commodityId, text, date);
+        comment.setId(id);
+        return comment;
+    }
+
+    public List<Comment> fetchComments(Integer commodityId) {
+        ArrayList<Comment> comments = new ArrayList<>();
+        try {
+            Connection con = ConnectionPool.getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement getCommentsStatement = con.prepareStatement(
+                    "SELECT * FROM Comment "
+                            + "WHERE commodityId = ?;"
+            );
+            getCommentsStatement.setInt(1, commodityId);
+            try {
+                ResultSet result = getCommentsStatement.executeQuery();
+                while (result.next()) {
+                    comments.add(createComment(result));
+                }
+            } catch (SQLException | JsonProcessingException e) {
+                con.rollback();
+            } finally {
+                getCommentsStatement.close();
+                con.close();
+            }
+        } catch (SQLException ignored) {}
+        return comments;
+    }
+
+    public HashMap<String, Integer> fetchVotes(Integer commentId) {
+        HashMap<String, Integer> votes = new HashMap<>();
+        try {
+            Connection con = ConnectionPool.getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement getVotesStatement = con.prepareStatement(
+                    "SELECT * FROM Vote "
+                            + "WHERE commentId = ?;"
+            );
+            getVotesStatement.setInt(1, commentId);
+            try {
+                ResultSet result = getVotesStatement.executeQuery();
+                while (result.next()) {
+                    String username = result.getString("username");
+                    Integer vote = result.getInt("vote");
+                    votes.put(username, vote);
+                }
+            } catch (SQLException e) {
+                con.rollback();
+            } finally {
+                getVotesStatement.close();
+                con.close();
+            }
+        } catch (SQLException ignored) {}
+        return votes;
     }
 }

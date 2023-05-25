@@ -5,19 +5,19 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Commodity;
-import com.oak.domain.User;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Provider.ProviderNotFound;
-import com.oak.exception.User.UserNotFound;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class CommodityDAO {
-    private String baseQuery = "SELECT * FROM Commodity";
+    private final String baseQuery = "SELECT * FROM Commodity";
     private String currentQuery = baseQuery;
-    private String sort = null;
+    private String sort = "";
+    private String pagination = "";
     private ArrayList<String> conditions = new ArrayList<>();
 
     public CommodityDAO() throws SQLException {
@@ -37,23 +37,58 @@ public class CommodityDAO {
         con.close();
     }
 
-    public void addAvailableCondition() {
+    public void setAvailableCondition() {
         conditions.add(
                 "inStock > 0"
         );
     }
 
-    public void addSort(String attribute) {
-        sort = "ORDER BY " + attribute + " ASC";
+    public void setCategoryCondition(String category) {
+        conditions.add(
+                "JSON_SEARCH(categories, 'one', '" + category + "') IS NOT NULL"
+        );
     }
 
-    public void addProviderCondition(String providerName) {
+    public void setNameCondition(String name) {
+        conditions.add(
+                "name LIKE " + name
+        );
+    }
+
+    public void setProviderIdCondition(Integer providerId) {
+        conditions.add(
+                "providerId = " + providerId
+        );
+    }
+
+    public void setCommodityIdCondition(Integer commodityId) {
+        conditions.add(
+                "id = " + commodityId
+        );
+    }
+
+    public void reset() {
+        conditions.clear();
+        currentQuery = baseQuery;
+        sort = "";
+        pagination = "";
+    }
+
+    public void setSort(String attribute) {
+        sort = " ORDER BY " + attribute + " ASC";
+    }
+
+    public void setPagination(Integer limit, Integer pageNumber) {
+        pagination = " LIMIT " + limit + " OFFSET " + limit * (pageNumber - 1);
+    }
+
+    public void setProviderNameCondition(String providerName) {
         currentQuery = "WITH ProviderId AS (" +
-                "SELECT id" +
-                "FROM Provider" +
+                "SELECT id " +
+                "FROM Provider " +
                 "WHERE name LIKE name" +
-                ")" +
-                "SELECT * FROM Commodity c" +
+                ") " +
+                "SELECT * FROM Commodity c " +
                 "INNER JOIN ProviderId p ON c.providerId = p.id";
     }
 
@@ -76,14 +111,13 @@ public class CommodityDAO {
             con.setAutoCommit(false);
             PreparedStatement commodityStatement = con.prepareStatement(
                     "INSERT INTO Commodity(id, name, providerId, price, categories, rating, inStock, image) "
-                            + " VALUES(?,?,?,?,?,?,?,?)"
+                            + "VALUES(?,?,?,?,?,?,?,?) "
                             + "ON DUPLICATE KEY UPDATE "
                             + "name = VALUES(name), "
                             + "providerId = VALUES(providerId), "
                             + "price = VALUES(price), "
                             + "categories = VALUES(categories),"
                             + "rating = VALUES(rating),"
-                            + "inStock = VALUES(inStock),"
                             + "image = VALUES(image);"
             );
             fillCommodityStatement(commodityStatement, commodity);
@@ -101,8 +135,7 @@ public class CommodityDAO {
                 commodityStatement.close();
                 con.close();
             }
-        } catch (SQLException | JsonProcessingException ignored) {
-        }
+        } catch (SQLException | JsonProcessingException ignored) {}
     }
 
     private Commodity createCommodity(ResultSet result) throws SQLException, JsonProcessingException {
@@ -123,63 +156,106 @@ public class CommodityDAO {
                 categories, rating, inStock, image);
     }
 
-    public Commodity fetchCommodity(Integer commodityId) throws CommodityNotFound {
-        try {
-            Connection connection = ConnectionPool.getConnection();
-            connection.setAutoCommit(false);
-            PreparedStatement getCommodityStatement = connection.prepareStatement(
-                    "SELECT * FROM Commodity " +
-                            "WHERE id = ?;"
-            );
-            getCommodityStatement.setInt(1, commodityId);
-            try {
-                ResultSet result = getCommodityStatement.executeQuery();
-                if (result.next()) {
-                    connection.commit();
-                    getCommodityStatement.close();
-                    connection.close();
-                    return createCommodity(result);
-                }
-                getCommodityStatement.close();
-                connection.close();
-                throw new CommodityNotFound(commodityId);
-            } catch (SQLException e) {
-                connection.rollback();
-                getCommodityStatement.close();
-                connection.close();
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
-        } catch (SQLException ignored) {
-        }
-        return null;
-    }
-
-    public List<Commodity> fetchCommodities(Integer providerId) {
+    public Integer getNumberOfPages() {
+        int numPages = 0;
         try {
             Connection con = ConnectionPool.getConnection();
             con.setAutoCommit(false);
-            PreparedStatement getProviderCommoditiesStatement = con.prepareStatement(
-                    "SELECT * FROM Commodity " +
-                            "WHERE providerId = ?;"
+            String condition = String.join(" AND ", conditions);
+            PreparedStatement getNumberOfPagesStatement = con.prepareStatement(
+                    "SELECT CEIL(COUNT(*) / ?) AS numPages "
+                            + "FROM ("
+                            + currentQuery
+                            + condition
+                            + ");"
             );
-            getProviderCommoditiesStatement.setInt(1, providerId);
             try {
-                ResultSet result = getProviderCommoditiesStatement.executeQuery();
-                ArrayList<Commodity> commodities = new ArrayList<>();
+                ResultSet set = getNumberOfPagesStatement.executeQuery();
+                if (set.next()) {
+                    numPages = set.getInt("numPages");
+                }
+                con.commit();
+            } catch (SQLException e) {
+                con.rollback();
+            } finally {
+                getNumberOfPagesStatement.close();
+                con.close();
+            }
+        } catch (SQLException ignored) {}
+        return numPages;
+    }
+
+    public Commodity fetchCommodity(Integer commodityId) throws CommodityNotFound {
+        reset();
+        setCommodityIdCondition(commodityId);
+        List<Commodity> commodities = fetchCommodities();
+        if (commodities.size() > 0) {
+            return commodities.get(0);
+        }
+        else {
+            throw new CommodityNotFound(commodityId);
+        }
+    }
+
+    public List<Commodity> fetchCommodities() {
+        ArrayList<Commodity> commodities = new ArrayList<>();
+        try {
+            Connection con = ConnectionPool.getConnection();
+            con.setAutoCommit(false);
+            Statement getCommoditiesStatement = con.createStatement();
+            String condition = String.join(" AND ", conditions);
+            condition = !condition.equals("") ? " WHERE " + condition : condition;
+            String finalQuery = currentQuery + condition + sort + pagination + ";";
+            try {
+                ResultSet result = getCommoditiesStatement.executeQuery(
+                        finalQuery
+                );
                 while (result.next()) {
                     commodities.add(createCommodity(result));
                 }
-                getProviderCommoditiesStatement.close();
-                con.close();
-                return commodities;
             } catch (SQLException | JsonProcessingException e) {
                 con.rollback();
-                getProviderCommoditiesStatement.close();
+            } finally {
+                getCommoditiesStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {
-        }
-        return null;
+        } catch (SQLException ignored) {}
+        return commodities;
+    }
+
+
+    public List<Commodity> fetchProviderCommodities(Integer providerId) {
+        reset();
+        setProviderIdCondition(providerId);
+        List<Commodity> commodities = fetchCommodities();
+        reset();
+        return commodities;
+    }
+
+    public HashMap<String, Integer> fetchRatings(Integer commodityId) {
+        HashMap<String, Integer> ratings = new HashMap<>();
+        try {
+            Connection con = ConnectionPool.getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement getRatingsStatement = con.prepareStatement(
+                    "SELECT * FROM Rating "
+                            + "WHERE commodityId = ?;"
+            );
+            getRatingsStatement.setInt(1, commodityId);
+            try {
+                ResultSet result = getRatingsStatement.executeQuery();
+                while (result.next()) {
+                    String username = result.getString("username");
+                    Integer rating = result.getInt("rating");
+                    ratings.put(username, rating);
+                }
+            } catch (SQLException e) {
+                con.rollback();
+            } finally {
+                getRatingsStatement.close();
+                con.close();
+            }
+        } catch (SQLException ignored) {}
+        return ratings;
     }
 }

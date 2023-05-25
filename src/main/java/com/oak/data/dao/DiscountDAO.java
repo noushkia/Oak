@@ -34,7 +34,7 @@ public class DiscountDAO {
             con.setAutoCommit(false);
             PreparedStatement discountStatement = con.prepareStatement(
                     "INSERT INTO Discount(code, discount) "
-                            + " VALUES(?,?)"
+                            + "VALUES(?,?) "
                             + "ON DUPLICATE KEY UPDATE "
                             + "discount = VALUES(discount);"
             );
@@ -52,16 +52,48 @@ public class DiscountDAO {
         }
     }
 
-    public void addUsedDiscount(String username, String discountCode) throws ExpiredDiscount, UserNotFound, DiscountNotFound {
+    private void fillListDiscountStatement(PreparedStatement discountStatement, String username, String discountCode) throws SQLException {
+        discountStatement.setString(1, username);
+        discountStatement.setString(2, discountCode);
+    }
+    public void checkIfDiscountIsExpired(String username, String discountCode) throws ExpiredDiscount {
         try {
             Connection connection = ConnectionPool.getConnection();
             connection.setAutoCommit(false);
             PreparedStatement usedDiscountStatement = connection.prepareStatement(
-                    "INSERT INTO UsedDiscount(username, discountCode) " +
-                            "VALUES (?, ?);"
+                    "SELECT * FROM UsedDiscount " +
+                            "WHERE username = ? AND  discountCode = ?;"
             );
-            usedDiscountStatement.setString(1, username);
-            usedDiscountStatement.setString(2, discountCode);
+            fillListDiscountStatement(usedDiscountStatement, username, discountCode);
+            try {
+                ResultSet set = usedDiscountStatement.executeQuery();
+                connection.commit();
+                if(set.next()) {
+                    usedDiscountStatement.close();
+                    connection.close();
+                    throw new ExpiredDiscount(discountCode);
+                }
+            } catch (SQLException sqlException) {
+                connection.rollback();
+            } finally {
+                usedDiscountStatement.close();
+                connection.close();
+            }
+        } catch (SQLException ignored) {}
+    }
+
+    public void addBuyListDiscount(String username, String discountCode) throws UserNotFound, DiscountNotFound, ExpiredDiscount {
+        try {
+            checkIfDiscountIsExpired(username, discountCode);
+            Connection connection = ConnectionPool.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement usedDiscountStatement = connection.prepareStatement(
+                    "INSERT INTO BuyListDiscount(username, discountCode) " +
+                            "VALUES (?, ?) " +
+                            "ON DUPLICATE KEY UPDATE " +
+                            "discountCode = VALUES(discountCode);"
+            );
+            fillListDiscountStatement(usedDiscountStatement, username, discountCode);
             try {
                 usedDiscountStatement.executeUpdate();
                 connection.commit();
@@ -73,10 +105,7 @@ public class DiscountDAO {
                 connection.close();
                 if (sqlException.getSQLState().equals("23000")) {
                     String errorMessage = sqlException.getMessage();
-
-                    if (errorMessage.contains("Duplicate entry")) {
-                        throw new ExpiredDiscount(discountCode);
-                    } else if (errorMessage.contains("User")) {
+                    if (errorMessage.contains("User")) {
                         throw new UserNotFound(username);
                     } else if (errorMessage.contains("Discount")) {
                         throw new DiscountNotFound(discountCode);
