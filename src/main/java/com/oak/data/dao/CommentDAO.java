@@ -1,12 +1,11 @@
 package com.oak.data.dao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Comment;
-import com.oak.domain.Commodity;
+import com.oak.exception.Comment.CommentNotFound;
 import com.oak.exception.Commodity.CommodityNotFound;
+import com.oak.exception.User.UserNotFound;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,8 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CommentDAO {
-    private final String baseQuery = "SELECT * FROM Comment";
-    private String condition = "";
     public CommentDAO() throws SQLException {
         Connection con = ConnectionPool.getConnection();
         Statement createTableStatement = con.createStatement();
@@ -105,7 +102,8 @@ public class CommentDAO {
                 getCommentsStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {}
+        } catch (SQLException ignored) {
+        }
         return comments;
     }
 
@@ -132,7 +130,44 @@ public class CommentDAO {
                 getVotesStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {}
+        } catch (SQLException ignored) {
+        }
         return votes;
+    }
+
+    public void addUserVote(String username, Integer commentId, Integer vote) throws UserNotFound, CommentNotFound {
+        try {
+            Connection connection = ConnectionPool.getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement addUserVoteStatement = connection.prepareStatement(
+                    "INSERT INTO Vote(username, commentId, vote) " +
+                            "VALUES (?, ?, ?) " +
+                            "ON DUPLICATE KEY UPDATE " +
+                            "vote = VALUES(vote);"
+            );
+            addUserVoteStatement.setString(1, username);
+            addUserVoteStatement.setInt(2, commentId);
+            addUserVoteStatement.setInt(3, vote);
+
+            try {
+                addUserVoteStatement.executeUpdate();
+                connection.commit();
+                addUserVoteStatement.close();
+                connection.close();
+            } catch (SQLException sqlException) {
+                connection.rollback();
+                addUserVoteStatement.close();
+                connection.close();
+                if (sqlException.getSQLState().equals("23000")) {
+                    String errorMessage = sqlException.getMessage();
+                    if (errorMessage.contains("User")) {
+                        throw new UserNotFound(username);
+                    } else if (errorMessage.contains("Comment")) {
+                        throw new CommentNotFound(commentId);
+                    }
+                }
+            }
+        } catch (SQLException ignored) {
+        }
     }
 }

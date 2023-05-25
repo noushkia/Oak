@@ -9,10 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add updateCart and updateBuyList">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add comment voting to db">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommodityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommodityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommentDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="ca5" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -215,13 +216,15 @@
       <item itemvalue="JUnit.CommentServiceTest" />
       <item itemvalue="JUnit.CommodityServiceTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
+      <item itemvalue="Spring Boot.OakApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.OakApplication" />
-        <item itemvalue="Application.CommandHandler" />
         <item itemvalue="JUnit.CommodityServiceTest" />
         <item itemvalue="JUnit.CommentServiceTest" />
+        <item itemvalue="Application.CommandHandler" />
+        <item itemvalue="Application.OakApplication" />
+        <item itemvalue="Application.OakApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -656,7 +659,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add javax.servlet dependency." />
     <MESSAGE value="Set up Tomcat." />
     <MESSAGE value="Merge remote-tracking branch 'origin/ca3' into ca3&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;pom.xml" />
     <MESSAGE value="Fix resources names and structure." />
@@ -681,7 +683,8 @@
     <MESSAGE value="Add getUserById.&#10;TODO:&#10;Test&#10;Move Lists generation outside the DAO method." />
     <MESSAGE value="Add UserService todos" />
     <MESSAGE value="Add updateCart and updateBuyList" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add updateCart and updateBuyList" />
+    <MESSAGE value="Add comment voting to db" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add comment voting to db" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
