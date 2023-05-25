@@ -18,7 +18,7 @@ public class CommodityDAO {
     private String currentQuery = baseQuery;
     private String sort = "";
     private String pagination = "";
-    private ArrayList<String> conditions = new ArrayList<>();
+    private final ArrayList<String> conditions = new ArrayList<>();
 
     public CommodityDAO() throws SQLException {
         Connection con = ConnectionPool.getConnection();
@@ -66,6 +66,13 @@ public class CommodityDAO {
                 "id = " + commodityId
         );
     }
+
+    public void setPriceCondition(Integer startPrice, Integer endPrice) {
+        conditions.add(
+                "(price >= " + startPrice + " AND price <= " + endPrice + ")"
+        );
+    }
+
 
     public void reset() {
         conditions.clear();
@@ -138,6 +145,31 @@ public class CommodityDAO {
         } catch (SQLException | JsonProcessingException ignored) {}
     }
 
+    public void addRating(String username, Integer commodityId, Integer rating) {
+        try {
+            Connection con = ConnectionPool.getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement ratingStatement = con.prepareStatement(
+                    "INSERT INTO Rating(username, commodityId, rating) "
+                            + "VALUES(?,?,?) "
+                            + "ON DUPLICATE KEY UPDATE "
+                            + "rating = VALUES(rating);"
+            );
+            ratingStatement.setString(1, username);
+            ratingStatement.setInt(2, commodityId);
+            ratingStatement.setInt(3, rating);
+            try {
+                ratingStatement.execute();
+                con.commit();
+            } catch (SQLException e) {
+                con.rollback();
+            } finally {
+                ratingStatement.close();
+                con.close();
+            }
+        } catch (SQLException ignored) {}
+    }
+
     private Commodity createCommodity(ResultSet result) throws SQLException, JsonProcessingException {
         int id = result.getInt("id");
         String name = result.getString("name");
@@ -189,6 +221,7 @@ public class CommodityDAO {
         reset();
         setCommodityIdCondition(commodityId);
         List<Commodity> commodities = fetchCommodities();
+        reset();
         if (commodities.size() > 0) {
             return commodities.get(0);
         }

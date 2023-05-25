@@ -38,28 +38,28 @@ public class UserDAO {
         );
         createTableStatement.addBatch(
                 "CREATE TABLE IF NOT EXISTS Vote(username VARCHAR(50), commentId INT, " +
-                        "vote INT," +
-                        "PRIMARY KEY(username, commentId)," +
-                        "FOREIGN KEY (username) REFERENCES User(username)," +
+                        "vote INT, " +
+                        "PRIMARY KEY(username, commentId), " +
+                        "FOREIGN KEY (username) REFERENCES User(username), " +
                         "FOREIGN KEY (commentId) REFERENCES Comment(id));"
         );
         createTableStatement.addBatch(
                 "CREATE TABLE IF NOT EXISTS UsedDiscount(username VARCHAR(50), discountCode VARCHAR(50), " +
-                        "PRIMARY KEY(username, discountCode)," +
-                        "FOREIGN KEY (username) REFERENCES User(username)," +
+                        "PRIMARY KEY(username, discountCode), " +
+                        "FOREIGN KEY (username) REFERENCES User(username), " +
                         "FOREIGN KEY (discountCode) REFERENCES Discount(code));"
         );
         createTableStatement.addBatch(
                 "CREATE TABLE IF NOT EXISTS BuyListDiscount(username VARCHAR(50), discountCode VARCHAR(50), " +
-                        "PRIMARY KEY(username)," +
-                        "FOREIGN KEY (username) REFERENCES User(username)," +
+                        "PRIMARY KEY(username), " +
+                        "FOREIGN KEY (username) REFERENCES User(username), " +
                         "FOREIGN KEY (discountCode) REFERENCES Discount(code));"
         );
         createTableStatement.addBatch(
                 "CREATE TABLE IF NOT EXISTS Rating(username VARCHAR(50), commodityId INT, " +
-                        "rating INT," +
-                        "PRIMARY KEY(username, commodityId)," +
-                        "FOREIGN KEY (username) REFERENCES User(username)," +
+                        "rating INT, " +
+                        "PRIMARY KEY(username, commodityId), " +
+                        "FOREIGN KEY (username) REFERENCES User(username), " +
                         "FOREIGN KEY (commodityId) REFERENCES Commodity(id));"
         );
         createTableStatement.executeBatch();

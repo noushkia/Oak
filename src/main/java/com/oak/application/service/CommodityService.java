@@ -83,11 +83,18 @@ public class CommodityService extends Service {
     }
 
     public List<Commodity> getSuggestedCommodities(Integer commodityId) throws CommodityNotFound {
-        Commodity inputCommodity = db.fetchCommodity(commodityId);
-        List<Commodity> allCommodities = db.fetchCommodities(c -> true);
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+        Commodity inputCommodity = commodityDAO.fetchCommodity(commodityId);
+
+        reset();
+        List<Commodity> allCommodities = commodityDAO.fetchCommodities();
+        for (Commodity commodity : allCommodities) {
+            prepareCommodity(commodity);
+        }
+
         Comparator<Commodity> scoringFunc = Comparator.comparingDouble(c -> (c.isInSimilarCategory(inputCommodity) ? 11.0 : 0.0) + c.getRating());
         return allCommodities.stream()
-                .filter(c -> !c.getId().equals(commodityId)) // Skip the input Commodity object
+                .filter(c -> !c.getId().equals(commodityId))
                 .sorted(scoringFunc.reversed().thenComparingInt(c -> (int) (Math.random() * 1000)))
                 .limit(5)
                 .collect(Collectors.toList());
@@ -100,17 +107,30 @@ public class CommodityService extends Service {
     }
 
     public List<Commodity> getCommoditiesByCategory(String category) {
-        return db.fetchCommodities(c -> c.containsCategory(category));
+        reset();
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+        commodityDAO.setCategoryCondition(category);
+        List<Commodity> commodities = commodityDAO.fetchCommodities();
+        reset();
+        return commodities;
     }
 
     public List<Commodity> getCommoditiesByPrice(Integer startPrice, Integer endPrice) {
-        return db.fetchCommodities(c -> c.isInPriceRange(startPrice, endPrice));
+        reset();
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+        commodityDAO.setPriceCondition(startPrice, endPrice);
+        List<Commodity> commodities = commodityDAO.fetchCommodities();
+        reset();
+        return commodities;
     }
 
     public void rateCommodity(String username, Integer commodityId, String rating) throws InvalidRating, UserNotFound, CommodityNotFound {
-        User user = db.fetchUser(username);
-        Commodity commodity = db.fetchCommodity(commodityId);
+        User user = daoLayer.getUserDAO().fetchUser(username);
+
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+        Commodity commodity = commodityDAO.fetchCommodity(commodityId);
         commodity.addUserRating(user.getUsername(), rating);
+        commodityDAO.addRating(username, commodityId, Integer.parseInt(rating));
     }
 
 }
