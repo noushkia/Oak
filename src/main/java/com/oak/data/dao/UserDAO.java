@@ -202,38 +202,33 @@ public class UserDAO {
         try {
             Connection connection = ConnectionPool.getConnection();
             connection.setAutoCommit(false);
-            PreparedStatement statement;
+            PreparedStatement updateStatement = connection.prepareStatement(
+                    "INSERT INTO BuyList (username, commodityId, count) " +
+                            "VALUES (?, ?, ?) " +
+                            "ON DUPLICATE KEY UPDATE count = VALUES(count)"
+            );
+            updateStatement.setString(1, username);
+            updateStatement.setInt(2, commodityId);
+            updateStatement.setInt(3, quantity);
 
-            if (quantity != 0) {
-                // add or update row
-                statement = connection.prepareStatement(
-                        "INSERT INTO BuyList (username, commodityId, count) " +
-                                "VALUES (?, ?, ?) " +
-                                "ON DUPLICATE KEY UPDATE count = count + VALUES(count)"
-                );
-                statement.setInt(3, quantity);
-            } else {
-                // remove row
-                statement = connection.prepareStatement(
-                        "DELETE FROM BuyList WHERE username = ? AND commodityId = ?"
-                );
-            }
-
-            statement.setString(1, username);
-            statement.setInt(2, commodityId);
+            Statement deleteStatement = connection.createStatement();
 
             try {
-                statement.executeUpdate();
+                updateStatement.executeUpdate();
+                deleteStatement.executeUpdate(
+                  "DELETE FROM BuyList " +
+                          "WHERE count = 0;"
+                );
                 connection.commit();
             } catch (SQLException e) {
                 connection.rollback();
             } finally {
-                statement.close();
+                updateStatement.close();
+                deleteStatement.close();
                 connection.close();
             }
 
-        } catch (SQLException ignored) {
-        }
+        } catch (SQLException ignored) {}
     }
 
     public void finalizeBuyList(String username) {

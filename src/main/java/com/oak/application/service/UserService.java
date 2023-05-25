@@ -2,6 +2,7 @@ package com.oak.application.service;
 
 import com.oak.data.dao.CommodityDAO;
 import com.oak.data.dao.DAOLayer;
+import com.oak.data.dao.DiscountDAO;
 import com.oak.data.dao.UserDAO;
 import com.oak.domain.*;
 import com.oak.exception.Discount.DiscountNotFound;
@@ -12,6 +13,7 @@ import com.oak.exception.Commodity.CommodityInBuyList;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Commodity.CommodityOutOfStock;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class UserService extends Service {
@@ -35,18 +37,22 @@ public class UserService extends Service {
         return userDAO.fetchUser(username);
     }
 
-    public User getUserById(String username) throws UserNotFound {
-        User user = getUser(username);
-
+    private void prepareUser(User user) {
         UserDAO userDAO = daoLayer.getUserDAO();
         CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
         BuyList buyList = new BuyList();
-        buyList.update(userDAO.fetchUserList(username, "BuyList", commodityDAO));
-        CommodityList purchasedList = userDAO.fetchUserList(username, "PurchasedList", commodityDAO);
+        buyList.update(userDAO.fetchUserList(user.getUsername(), "BuyList", commodityDAO));
+        CommodityList purchasedList = userDAO.fetchUserList(user.getUsername(), "PurchasedList", commodityDAO);
 
         user.getBuylist().update(buyList);
         user.getPurchasedList().update(purchasedList);
 
+        Discount discount = daoLayer.getDiscountDAO().fetchDiscount(user.getUsername());
+        user.getBuylist().addDiscount(discount);
+    }
+    public User getUserById(String username) throws UserNotFound {
+        User user = getUser(username);
+        prepareUser(user);
         return user;
     }
 
@@ -58,7 +64,7 @@ public class UserService extends Service {
         }
         UserDAO userDAO = daoLayer.getUserDAO();
         user.addCredit(credit);
-        userDAO.updateUserCredit(username, credit);
+        userDAO.updateUserCredit(username, user.getCredit());
     }
 
     public void addToBuyList(String username, Integer commodityId) throws UserNotFound, CommodityNotFound, CommodityOutOfStock, CommodityInBuyList {
@@ -82,11 +88,14 @@ public class UserService extends Service {
 
     public void updateBuyListCommodityCount(String username, Integer commodityId, Integer quantity) throws UserNotFound, CommodityNotFound, CommodityOutOfStock {
         UserDAO userDAO = daoLayer.getUserDAO();
-        User user = getUserById(username);
         CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+
+        User user = getUserById(username);
         Commodity commodity = commodityDAO.fetchCommodity(commodityId);
         user.updateBuyListCommodityCount(commodity, quantity);
-        userDAO.updateUserBuyList(username, commodityId, quantity);
+
+        HashMap<Integer, Integer> counts = user.getBuylist().getItemsCount();
+        userDAO.updateUserBuyList(username, commodityId, counts.get(commodityId));
     }
 
     public void finalizeBuyList(String username) throws UserNotFound, InsufficientCredit, CommodityOutOfStock {

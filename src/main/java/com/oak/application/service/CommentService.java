@@ -26,16 +26,6 @@ public class CommentService extends Service {
     }
 
     public void voteComment(String username, Integer commentId, Integer vote) throws UserNotFound, CommentNotFound {
-        UserDAO userDAO = daoLayer.getUserDAO();
-        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
-        CommentDAO commentDAO = daoLayer.getCommentDAO();
-
-        User user = userDAO.fetchUser(username);
-        BuyList buyList = (BuyList) userDAO.fetchUserList(username, "BuyList", commodityDAO);
-        CommodityList purchasedList = userDAO.fetchUserList(username, "PurchasedList", commodityDAO);
-        user.getBuylist().update(buyList);
-        user.getPurchasedList().update(purchasedList);
-
-        commentDAO.addUserVote(username, commentId, vote);
+        daoLayer.getCommentDAO().addUserVote(username, commentId, vote);
     }
 }

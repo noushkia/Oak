@@ -2,8 +2,10 @@ package com.oak.data.dao;
 
 import com.oak.data.ConnectionPool;
 import com.oak.domain.Discount;
+import com.oak.domain.Provider;
 import com.oak.exception.Discount.DiscountNotFound;
 import com.oak.exception.Discount.ExpiredDiscount;
+import com.oak.exception.Provider.ProviderNotFound;
 import com.oak.exception.User.UserNotFound;
 
 import java.sql.*;
@@ -115,4 +117,35 @@ public class DiscountDAO {
         } catch (SQLException ignored) {
         }
     }
+
+    public Discount fetchDiscount(String username) {
+        Discount discount = null;
+        try {
+            Connection con = ConnectionPool.getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement getDiscountStatement = con.prepareStatement(
+                    "SELECT * FROM UsedDiscount " +
+                            "INNER JOIN Discount ON discountCode = code " +
+                            "WHERE username = ?"
+            );
+            getDiscountStatement.setString(1, username);
+            try {
+                ResultSet result = getDiscountStatement.executeQuery();
+                if (result.next()) {
+                    String code = result.getString("code");
+                    Integer discountVal = result.getInt("discount");
+
+                    con.commit();
+                    discount = new Discount(code, discountVal);
+                }
+            } catch (SQLException e) {
+                con.rollback();
+            } finally {
+                getDiscountStatement.close();
+                con.close();
+            }
+        } catch (SQLException ignored) {}
+        return discount;
+    }
 }
+

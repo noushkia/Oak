@@ -22,11 +22,15 @@ public class ProviderService extends Service {
         ProviderDAO providerDAO = daoLayer.getProviderDAO();
         return providerDAO.fetchProvider(providerId);
     }
+
+    private void prepareProvider(Provider provider) {
+        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
+        commodityDAO.fetchProviderCommodities(provider.getId())
+                .forEach(provider::addCommodity);
+    }
     public Provider getProviderById(Integer providerId) throws ProviderNotFound {
         Provider provider = getProvider(providerId);
-        CommodityDAO commodityDAO = daoLayer.getCommodityDAO();
-        commodityDAO.fetchProviderCommodities(providerId)
-                .forEach(provider::addCommodity);
+        prepareProvider(provider);
         return provider;
     }
 

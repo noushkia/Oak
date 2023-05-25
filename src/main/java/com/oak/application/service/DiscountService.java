@@ -10,7 +10,6 @@ public class DiscountService extends Service {
         super(db, daoLayer);
     }
     public void addDiscount(Discount discount) {
-        DiscountDAO discountDAO = daoLayer.getDiscountDAO();
-        discountDAO.addDiscount(discount);
+        daoLayer.getDiscountDAO().addDiscount(discount);
     }
 }
