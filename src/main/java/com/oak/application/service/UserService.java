@@ -23,14 +23,14 @@ public class UserService extends Service {
         super(db, daoLayer);
     }
 
-    public void setUser(User user) throws InvalidUsername {
+    public void setUser(User user, Boolean init) throws InvalidUsername {
         user.validate();
         UserDAO userDAO = daoLayer.getUserDAO();
-        userDAO.addUser(user);
+        userDAO.addUser(user, init);
     }
 
-    public void addUser(User user) throws InvalidUsername {
-        setUser(user);
+    public void addUser(User user, Boolean init) throws InvalidUsername {
+        setUser(user, init);
     }
 
     public User getUser(String username) throws UserNotFound {

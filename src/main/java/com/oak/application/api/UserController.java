@@ -37,9 +37,9 @@ public class UserController {
         } catch (ParseException ignored) {}
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
-        User user = new User(username, password, email, birthDate, address, 0);
+        User user = new User(username, User.hashString(password), email, birthDate, address, 0);
         try {
-            userService.addUser(user);
+            userService.addUser(user, false);
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch (InvalidUsername e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

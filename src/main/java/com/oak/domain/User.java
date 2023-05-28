@@ -9,6 +9,8 @@ import com.oak.exception.Commodity.CommodityInBuyList;
 import com.oak.exception.Commodity.CommodityNotFound;
 import com.oak.exception.Commodity.CommodityOutOfStock;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class User {
@@ -45,9 +47,14 @@ public class User {
             throw new InvalidUsername();
         }
     }
-    public String getUsername() { return username;}
 
-    public String getPassword() { return password;}
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     public void addToBuyList(Commodity commodity) throws CommodityInBuyList {
         buyList.addItem(this.username, commodity);
@@ -57,7 +64,7 @@ public class User {
         buyList.removeItem(commodity);
     }
 
-    public void updateBuyListCommodityCount(Commodity commodity, Integer quantity) throws CommodityNotFound, CommodityOutOfStock {
+    public void updateBuyListCommodityCount(Commodity commodity, Integer quantity) throws CommodityOutOfStock {
         buyList.updateCount(commodity, quantity);
     }
 
@@ -106,7 +113,22 @@ public class User {
     }
 
     public boolean authenticate(String password) {
-        return Objects.equals(this.password, password);
+        return Objects.equals(this.password, hashString(password));
+    }
+
+    public static String hashString(String input) {
+        MessageDigest md;
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+        byte[] hashedBytes = md.digest(input.getBytes());
+        StringBuilder sb = new StringBuilder();
+        for (byte b : hashedBytes) {
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
     }
 
     public void addDiscount(Discount discount) throws ExpiredDiscount {

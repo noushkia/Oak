@@ -22,7 +22,7 @@ public class UserJsonPresentation extends JsonPresentation{
         boolean success = true;
         try {
             User user = mapper.treeToValue(userNode, User.class);
-            serviceLayer.getUserService().addUser(user);
+            serviceLayer.getUserService().addUser(user, false);
             responseText = "User with username " + user.getUsername() + " added/updated successfully!";
         } catch (Exception e) {
             responseText = e.getMessage();

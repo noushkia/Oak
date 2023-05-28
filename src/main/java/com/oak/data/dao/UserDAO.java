@@ -13,7 +13,7 @@ public class UserDAO {
         Statement createTableStatement = con.createStatement();
         con.setAutoCommit(false);
         createTableStatement.addBatch(
-                "CREATE TABLE IF NOT EXISTS User(username VARCHAR(50), password VARCHAR(50), " +
+                "CREATE TABLE IF NOT EXISTS User(username VARCHAR(50), password VARCHAR(200), " +
                         "email VARCHAR(50), birthDate DATETIME, address VARCHAR(255)," +
                         "credit INT, " +
                         "PRIMARY KEY(username));"
@@ -63,16 +63,16 @@ public class UserDAO {
         con.close();
     }
 
-    private void fillUserStatement(PreparedStatement userStatement, User user) throws SQLException {
+    private void fillUserStatement(PreparedStatement userStatement, User user, Boolean init) throws SQLException {
         userStatement.setString(1, user.getUsername());
-        userStatement.setString(2, user.getPassword());
+        userStatement.setString(2, init ? User.hashString(user.getPassword()) : user.getPassword());
         userStatement.setString(3, user.getEmail());
         userStatement.setDate(4, new java.sql.Date(user.getBirthDate().getTime()));
         userStatement.setString(5, user.getAddress());
         userStatement.setInt(6, user.getCredit());
     }
 
-    public void addUser(User user) {
+    public void addUser(User user, Boolean init) {
         try {
             Connection con = ConnectionPool.getConnection();
             con.setAutoCommit(false);
@@ -85,7 +85,7 @@ public class UserDAO {
                             + "birthDate = VALUES(birthDate), "
                             + "address = VALUES(address);"
             );
-            fillUserStatement(userStatement, user);
+            fillUserStatement(userStatement, user, init);
             try {
                 userStatement.execute();
                 con.commit();
@@ -95,7 +95,8 @@ public class UserDAO {
                 userStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {
+        } catch (SQLException sqlException) {
+            System.out.println(sqlException.getMessage());
         }
     }
 

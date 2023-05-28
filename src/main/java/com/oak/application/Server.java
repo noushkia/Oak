@@ -22,7 +22,7 @@ public class Server {
     private Server() throws IOException, CommodityNotFound, InvalidUsername, ProviderNotFound {
         DataLoader dataLoader = new DataLoader(externalServicesUrl);
         for (User user: dataLoader.getUsers()) {
-            serviceLayer.getUserService().addUser(user);
+            serviceLayer.getUserService().addUser(user, true);
         }
         for (Provider provider: dataLoader.getProviders()) {
             serviceLayer.getProviderService().addProvider(provider);
