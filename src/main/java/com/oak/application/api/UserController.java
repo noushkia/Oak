@@ -24,7 +24,7 @@ import java.util.Map;
             allowedHeaders = "*")
 @RequestMapping("/api/users")
 public class UserController {
-    @PostMapping("/")
+    @PostMapping("/signUp")
     public ResponseEntity<?> signup(@RequestBody Map<String, String> body) {
         String username = body.get("username");
         String password = body.get("password");

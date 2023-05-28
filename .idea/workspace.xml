@@ -11,12 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add password hashing.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/UserJsonPresentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/presentation/json/UserJsonPresentation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ca5" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -86,7 +81,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "ca7",
     "last_opened_file_path": "/home/kianoush/Documents/UT/IE/CAs/Oak-Front",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -288,13 +283,6 @@
       <workItem from="1684749717066" duration="1256000" />
       <workItem from="1684778507565" duration="5237000" />
       <workItem from="1684954397887" duration="5065000" />
-    </task>
-    <task id="LOCAL-00027" summary="Add /providers.">
-      <created>1678890781558</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1678890781558</updated>
     </task>
     <task id="LOCAL-00028" summary="Add commodity for Provider.">
       <created>1678890952659</created>
@@ -632,7 +620,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685039391271</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Add password hashing.">
+      <created>1685268795523</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1685268795523</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -692,7 +687,7 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
+        <breakpoint type="java-exception">
           <properties class="java.lang.UnsupportedOperationException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
@@ -710,6 +705,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java</url>
           <line>191</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/oak/data/dao/UserDAO.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
