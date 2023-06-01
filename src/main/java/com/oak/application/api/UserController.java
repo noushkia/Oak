@@ -1,6 +1,7 @@
 package com.oak.application.api;
 
 import com.oak.application.Server;
+import com.oak.application.service.AuthService;
 import com.oak.application.service.UserService;
 import com.oak.domain.User;
 import com.oak.exception.Commodity.CommodityInBuyList;
@@ -58,7 +59,8 @@ public class UserController {
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
             userService.login(username, password);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            String jwtToken = AuthService.generateJWT(username);
+            return ResponseEntity.ok(jwtToken);
         } catch (UserNotFound e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (InvalidCredentials e) {
@@ -66,8 +68,8 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{username}")
-    public ResponseEntity<User> getUserById(@PathVariable String username) {
+    @GetMapping("")
+    public ResponseEntity<User> getUserById(@RequestAttribute("username") String username) {
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
             User user = userService.getUserById(username);
@@ -77,8 +79,8 @@ public class UserController {
         }
     }
 
-    @PostMapping("/{username}/buyList")
-    public ResponseEntity<User> addToBuyList(@PathVariable String username, @RequestBody Map<String, Integer> body) {
+    @PostMapping("/buyList")
+    public ResponseEntity<User> addToBuyList(@RequestAttribute("username") String username, @RequestBody Map<String, Integer> body) {
         Integer commodityId = body.get("commodityId");
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
@@ -93,8 +95,8 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{username}/buyList")
-    public ResponseEntity<User> updateBuyList(@PathVariable String username, @RequestBody Map<String, Integer> body) {
+    @PutMapping("/buyList")
+    public ResponseEntity<User> updateBuyList(@RequestAttribute("username") String username, @RequestBody Map<String, Integer> body) {
         Integer commodityId = body.get("commodityId");
         Integer quantity = body.get("quantity");
 
@@ -110,8 +112,8 @@ public class UserController {
         }
     }
 
-    @PostMapping("/{username}/buyList/finalize")
-    public ResponseEntity<User> finalizeBuyList(@PathVariable String username) {
+    @PostMapping("/buyList/finalize")
+    public ResponseEntity<User> finalizeBuyList(@RequestAttribute("username") String username) {
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
             userService.finalizeBuyList(username);
@@ -125,8 +127,8 @@ public class UserController {
     }
 
 
-    @PutMapping("/{username}/credit")
-    public ResponseEntity<User> addCredit(@PathVariable String username, @RequestBody Map<String, Integer> body) {
+    @PutMapping("/credit")
+    public ResponseEntity<User> addCredit(@RequestAttribute("username") String username, @RequestBody Map<String, Integer> body) {
         Integer amount = body.get("credit");
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
@@ -141,8 +143,8 @@ public class UserController {
         }
     }
 
-    @PostMapping("/{username}/discounts")
-    public ResponseEntity<User> addDiscount(@PathVariable String username, @RequestBody Map<String, String> body) {
+    @PostMapping("/discounts")
+    public ResponseEntity<User> addDiscount(@RequestAttribute("username") String username, @RequestBody Map<String, String> body) {
         String discountCode = body.get("code");
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
