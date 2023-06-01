@@ -33,6 +33,10 @@ public class Comment {
         this.date = date;
     }
 
+    public static void setNewCommentId(Integer newCommentId) {
+        Comment.newCommentId = newCommentId;
+    }
+
     public void setId() {
         this.id = newCommentId++;
     }

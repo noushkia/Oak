@@ -81,6 +81,30 @@ public class CommentDAO {
         return comment;
     }
 
+    public Integer fetchNewestId() {
+        int newestCommentId = -1;
+        try {
+            Connection con = ConnectionPool.getConnection();
+            con.setAutoCommit(false);
+            PreparedStatement getCommentsStatement = con.prepareStatement(
+                    "SELECT MAX(id) FROM Comment;"
+            );
+            try {
+                ResultSet result = getCommentsStatement.executeQuery();
+                if (result.next()) {
+                    newestCommentId = result.getInt("MAX(id)");
+                }
+            } catch (SQLException e) {
+                con.rollback();
+            } finally {
+                getCommentsStatement.close();
+                con.close();
+            }
+        } catch (SQLException ignored) {
+        }
+        return newestCommentId;
+    }
+
     public List<Comment> fetchComments(Integer commodityId) {
         ArrayList<Comment> comments = new ArrayList<>();
         try {
