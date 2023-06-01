@@ -38,7 +38,7 @@ public class CommodityController {
         if (params.containsKey("searchType")) {
             String method = params.get("searchType");
             String input = params.get("searchQuery");
-                commodityService.setQuery(method, input);
+            commodityService.setQuery(method, input);
         }
         if (params.containsKey("sortBy")) {
             commodityService.setComparator(params.get("sortBy"));
@@ -72,7 +72,8 @@ public class CommodityController {
         Provider provider = null;
         try {
             provider = providerService.getProvider(commodity.getProviderId());
-        } catch (ProviderNotFound ignored) {}
+        } catch (ProviderNotFound ignored) {
+        }
 
         Map<String, Object> response = new HashMap<>();
         response.put("commodity", commodity);
@@ -92,8 +93,8 @@ public class CommodityController {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> rateCommodity(@PathVariable Integer id, @RequestBody Map<String, String> body) {
-        String username = body.get("username");
+    public ResponseEntity<Map<String, Object>> rateCommodity(@PathVariable Integer id, @RequestBody Map<String, String> body,
+                                                             @RequestAttribute("username") String username) {
         String rating = body.get("rating");
 
         CommodityService commodityService = Server.getInstance().getServiceLayer().getCommodityService();
@@ -110,14 +111,15 @@ public class CommodityController {
     }
 
     @PostMapping("/{id}/comments")
-    public ResponseEntity<Map<String, Object>> addComment(@PathVariable Integer id, @RequestBody Map<String, String> body) {
-        String username = body.get("username");
+    public ResponseEntity<Map<String, Object>> addComment(@PathVariable Integer id, @RequestBody Map<String, String> body,
+                                                          @RequestAttribute("username") String username) {
         String text = body.get("text");
         String dateString = body.get("date");
         Date date = null;
         try {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
-        } catch (ParseException ignored) {}
+        } catch (ParseException ignored) {
+        }
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
@@ -133,8 +135,9 @@ public class CommodityController {
     }
 
     @PostMapping("/{id}/comments/{commentId}/vote")
-    public ResponseEntity<Map<String, Object>> voteComment(@PathVariable Integer id, @PathVariable Integer commentId, @RequestBody Map<String, String> body) {
-        String username = body.get("username");
+    public ResponseEntity<Map<String, Object>> voteComment(@PathVariable Integer id, @PathVariable Integer commentId,
+                                                           @RequestBody Map<String, String> body,
+                                                           @RequestAttribute("username") String username) {
         Integer vote = Integer.parseInt(body.get("vote"));
 
         CommentService commentService = Server.getInstance().getServiceLayer().getCommentService();
