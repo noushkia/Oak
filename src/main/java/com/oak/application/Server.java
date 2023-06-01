@@ -30,9 +30,12 @@ public class Server {
         for (Commodity commodity: dataLoader.getCommodities()) {
             serviceLayer.getCommodityService().addCommodity(commodity);
         }
+
         for (Comment comment: dataLoader.getComments()) {
             serviceLayer.getCommentService().addComment(comment);
         }
+        serviceLayer.getCommentService().setNewCommentId(); // Update the commentIds static variable
+
         for (Discount discount: dataLoader.getDiscounts()) {
             serviceLayer.getDiscountService().addDiscount(discount);
         }

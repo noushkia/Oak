@@ -20,6 +20,12 @@ public class CommentService extends Service {
         commentDAO.addComment(comment);
     }
 
+    public void setNewCommentId() {
+        CommentDAO commentDAO = daoLayer.getCommentDAO();
+        Integer newCommentId = commentDAO.fetchNewestId();
+        Comment.setNewCommentId(newCommentId+1);
+    }
+
     public void voteComment(String username, Integer commentId, Integer vote) throws UserNotFound, CommentNotFound {
         daoLayer.getCommentDAO().addUserVote(username, commentId, vote);
     }
