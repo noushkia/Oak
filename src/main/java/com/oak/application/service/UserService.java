@@ -57,6 +57,15 @@ public class UserService extends Service {
         return user;
     }
 
+    public void checkUsernameDuplication(String username) throws DuplicateUsername {
+        try {
+          daoLayer.getUserDAO().fetchUser(username);
+        } catch (UserNotFound e) {
+            return;
+        }
+        throw new DuplicateUsername(username);
+    }
+
     public void addCredit(String username, Integer credit) throws UserNotFound, NegativeCredit {
         User user = getUser(username);
 

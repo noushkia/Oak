@@ -26,6 +26,8 @@ import java.util.Map;
 public class UserController {
     @PostMapping("/signUp")
     public ResponseEntity<?> signup(@RequestBody Map<String, String> body) {
+        UserService userService = Server.getInstance().getServiceLayer().getUserService();
+
         String username = body.get("username");
         String password = body.get("password");
         String email = body.get("email");
@@ -36,13 +38,15 @@ public class UserController {
             birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
         } catch (ParseException ignored) {}
 
-        UserService userService = Server.getInstance().getServiceLayer().getUserService();
         User user = new User(username, User.hashString(password), email, birthDate, address, 0);
         try {
+            userService.checkUsernameDuplication(username);
             userService.addUser(user, false);
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch (InvalidUsername e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (DuplicateUsername e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         }
     }
 
