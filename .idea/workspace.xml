@@ -10,10 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add JWT authentication service">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CORSFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CallBackController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/AuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/ProviderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/ProviderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/AuthService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,14 +290,8 @@
       <workItem from="1684778507565" duration="5237000" />
       <workItem from="1684954397887" duration="5065000" />
       <workItem from="1685625755924" duration="1547000" />
-      <workItem from="1685632512750" duration="9782000" />
-    </task>
-    <task id="LOCAL-00030" summary="Add TODOs.">
-      <created>1678894876345</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1678894876345</updated>
+      <workItem from="1685632512750" duration="13133000" />
+      <workItem from="1685688604487" duration="9838000" />
     </task>
     <task id="LOCAL-00031" summary="Add TODOs.">
       <created>1678895565754</created>
@@ -631,7 +629,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685647687746</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Add JWT authentication service">
+      <created>1685647715758</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1685647715758</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -699,20 +704,25 @@
           <properties class="java.lang.ClassNotFoundException" package="java.lang" />
           <option name="timeStamp" value="18" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/oak/presentation/html/CommodityHtmlPresentation.java</url>
           <line>191</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java</url>
           <line>136</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/api/AuthFilter.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="21" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/Server.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

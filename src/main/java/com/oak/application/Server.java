@@ -45,7 +45,8 @@ public class Server {
         if (instance == null) {
             try {
                 instance = new Server();
-            } catch (InvalidUsername | CommodityNotFound | ProviderNotFound | IOException ignored) {
+            } catch (InvalidUsername | CommodityNotFound | ProviderNotFound | IOException e) {
+                System.out.println("Server Instance Error: " + e.getMessage());
             }
         }
         return instance;

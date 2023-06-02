@@ -11,15 +11,13 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 @Component
-@Order(1)
-@WebFilter(filterName = "AuthFilter", urlPatterns = "/*")
+@Order(2)
 public class AuthFilter extends OncePerRequestFilter {
 
     private static final Set<String> UNPROTECTED_URLS = new HashSet<>(Arrays.asList(

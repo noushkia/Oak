@@ -20,9 +20,6 @@ import java.util.Date;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000",
-            methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE},
-            allowedHeaders = "*")
 @RequestMapping("/api/users")
 public class UserController {
     @PostMapping("/signUp")
@@ -37,7 +34,8 @@ public class UserController {
         Date birthDate = null;
         try {
             birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
-        } catch (ParseException ignored) {}
+        } catch (ParseException ignored) {
+        }
 
         User user = new User(username, User.hashString(password), email, birthDate, address, 0);
         try {

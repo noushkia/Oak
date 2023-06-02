@@ -25,9 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000",
-        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE},
-        allowedHeaders = "*")
 @RequestMapping("/api/commodities")
 public class CommodityController {
     private void prepareParams(Map<String, String> params) {
