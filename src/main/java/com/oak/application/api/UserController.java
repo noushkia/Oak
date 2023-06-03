@@ -1,6 +1,7 @@
 package com.oak.application.api;
 
 import com.oak.application.Server;
+import com.oak.application.service.AuthService;
 import com.oak.application.service.UserService;
 import com.oak.domain.User;
 import com.oak.exception.Commodity.CommodityInBuyList;
@@ -19,13 +20,12 @@ import java.util.Date;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000",
-            methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE},
-            allowedHeaders = "*")
 @RequestMapping("/api/users")
 public class UserController {
-    @PostMapping("/")
+    @PostMapping("/signUp")
     public ResponseEntity<?> signup(@RequestBody Map<String, String> body) {
+        UserService userService = Server.getInstance().getServiceLayer().getUserService();
+
         String username = body.get("username");
         String password = body.get("password");
         String email = body.get("email");
@@ -34,15 +34,18 @@ public class UserController {
         Date birthDate = null;
         try {
             birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
-        } catch (ParseException ignored) {}
+        } catch (ParseException ignored) {
+        }
 
-        UserService userService = Server.getInstance().getServiceLayer().getUserService();
         User user = new User(username, User.hashString(password), email, birthDate, address, 0);
         try {
+            userService.checkUsernameDuplication(username);
             userService.addUser(user, false);
             return ResponseEntity.status(HttpStatus.OK).build();
         } catch (InvalidUsername e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (DuplicateUsername e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
         }
     }
 
@@ -54,7 +57,8 @@ public class UserController {
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
             userService.login(username, password);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            String jwt = AuthService.generateJWT(username);
+            return ResponseEntity.ok(jwt);
         } catch (UserNotFound e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } catch (InvalidCredentials e) {
@@ -62,8 +66,8 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{username}")
-    public ResponseEntity<User> getUserById(@PathVariable String username) {
+    @GetMapping("")
+    public ResponseEntity<User> getUserById(@RequestAttribute("username") String username) {
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
             User user = userService.getUserById(username);
@@ -73,8 +77,8 @@ public class UserController {
         }
     }
 
-    @PostMapping("/{username}/buyList")
-    public ResponseEntity<User> addToBuyList(@PathVariable String username, @RequestBody Map<String, Integer> body) {
+    @PostMapping("/buyList")
+    public ResponseEntity<User> addToBuyList(@RequestAttribute("username") String username, @RequestBody Map<String, Integer> body) {
         Integer commodityId = body.get("commodityId");
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
@@ -89,8 +93,8 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{username}/buyList")
-    public ResponseEntity<User> updateBuyList(@PathVariable String username, @RequestBody Map<String, Integer> body) {
+    @PutMapping("/buyList")
+    public ResponseEntity<User> updateBuyList(@RequestAttribute("username") String username, @RequestBody Map<String, Integer> body) {
         Integer commodityId = body.get("commodityId");
         Integer quantity = body.get("quantity");
 
@@ -106,8 +110,8 @@ public class UserController {
         }
     }
 
-    @PostMapping("/{username}/buyList/finalize")
-    public ResponseEntity<User> finalizeBuyList(@PathVariable String username) {
+    @PostMapping("/buyList/finalize")
+    public ResponseEntity<User> finalizeBuyList(@RequestAttribute("username") String username) {
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
         try {
             userService.finalizeBuyList(username);
@@ -121,8 +125,8 @@ public class UserController {
     }
 
 
-    @PutMapping("/{username}/credit")
-    public ResponseEntity<User> addCredit(@PathVariable String username, @RequestBody Map<String, Integer> body) {
+    @PutMapping("/credit")
+    public ResponseEntity<User> addCredit(@RequestAttribute("username") String username, @RequestBody Map<String, Integer> body) {
         Integer amount = body.get("credit");
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();
@@ -137,8 +141,8 @@ public class UserController {
         }
     }
 
-    @PostMapping("/{username}/discounts")
-    public ResponseEntity<User> addDiscount(@PathVariable String username, @RequestBody Map<String, String> body) {
+    @PostMapping("/discounts")
+    public ResponseEntity<User> addDiscount(@RequestAttribute("username") String username, @RequestBody Map<String, String> body) {
         String discountCode = body.get("code");
 
         UserService userService = Server.getInstance().getServiceLayer().getUserService();

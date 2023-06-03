@@ -9,12 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add password hashing.">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add GitHub Authentication&#10;TODO: Debug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/domain/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/domain/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/AuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CallBackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CallBackController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +55,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2M8oVWJuNPSJYk9cBlYFKhOqA2q" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -84,7 +82,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ca7&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/kianoush/Documents/UT/IE/CAs/Oak-Front&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -287,48 +285,9 @@
       <workItem from="1684778507565" duration="5237000" />
       <workItem from="1684954397887" duration="5065000" />
       <workItem from="1685625755924" duration="1547000" />
-    </task>
-    <task id="LOCAL-00027" summary="Add /providers.">
-      <created>1678890781558</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1678890781558</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Add commodity for Provider.">
-      <created>1678890952659</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1678890952660</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Add /users.">
-      <created>1678892936210</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1678892936210</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Add TODOs.">
-      <created>1678894876345</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1678894876345</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Add TODOs.">
-      <created>1678895565754</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1678895565754</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Add addCredit endpoint.">
-      <created>1678902304684</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1678902304684</updated>
+      <workItem from="1685632512750" duration="13133000" />
+      <workItem from="1685688604487" duration="13328000" />
+      <workItem from="1685812683004" duration="8449000" />
     </task>
     <task id="LOCAL-00033" summary="Add BuyList class.&#10;Add finalizeBuyList functionality.">
       <created>1678908279609</created>
@@ -631,7 +590,49 @@
       <option name="project" value="LOCAL" />
       <updated>1685039391271</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Add duplicate user error.">
+      <created>1685628824401</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1685628824401</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Add JWT authentication service">
+      <created>1685635332901</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1685635332901</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Add JWT authentication service">
+      <created>1685647687746</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1685647687746</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Add JWT authentication service">
+      <created>1685647715758</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1685647715758</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Replace CORS annotations with CORSFilter&#10;Reason:&#10;Order of filters is wrong with annotations and preflight packets are not handled correctly">
+      <created>1685706118943</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1685706118943</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Add GitHub Authentication&#10;TODO: Debug">
+      <created>1685717306071</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1685717306071</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,11 +662,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Setup Tomcat.&#10;Add HomeServlet&#10;Add LoginServlet" />
-    <MESSAGE value="Add CommodityServlet" />
-    <MESSAGE value="Show user credit on homepage" />
-    <MESSAGE value="Show user credit on homepage&#10;Remove absolute paths" />
-    <MESSAGE value="Set search by name case-insensitive&#10;Set sort by rating descending" />
     <MESSAGE value="Debug&#10;Add Java code to commodity.jsp" />
     <MESSAGE value="Debug addComment." />
     <MESSAGE value="Integrate discount logic." />
@@ -686,34 +682,38 @@
     <MESSAGE value="Debug getUserById" />
     <MESSAGE value="Debug Everything and wrap up CA6" />
     <MESSAGE value="Add password hashing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add password hashing." />
+    <MESSAGE value="Fix comment bug." />
+    <MESSAGE value="Add duplicate user error." />
+    <MESSAGE value="Add JWT authentication service" />
+    <MESSAGE value="Replace CORS annotations with CORSFilter&#10;Reason:&#10;Order of filters is wrong with annotations and preflight packets are not handled correctly" />
+    <MESSAGE value="Add GitHub Authentication&#10;TODO: Debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add GitHub Authentication&#10;TODO: Debug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
+        <breakpoint type="java-exception">
           <properties class="java.lang.UnsupportedOperationException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <breakpoint type="java-exception">
+          <properties class="java.lang.ClassNotFoundException" package="java.lang" />
+          <option name="timeStamp" value="18" />
+        </breakpoint>
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/oak/presentation/html/CommodityHtmlPresentation.java</url>
           <line>191</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/service/UserService.java</url>
-          <line>127</line>
+          <line>136</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java</url>
-          <line>191</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/service/CommentService.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="17" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/api/AuthFilter.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
