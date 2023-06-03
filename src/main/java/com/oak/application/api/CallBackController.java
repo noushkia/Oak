@@ -26,12 +26,12 @@ public class CallBackController {
     public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
         try {
             String code = body.get("code");
-            System.out.println("code is:" + code);
             Document doc = Jsoup.connect("https://github.com/login/oauth/access_token")
                     .header("Accept", "application/json")
                     .data("client_id", "31ca176f1af22ef04b8f")
-                    .data("client_secret", "02856e5f62cb4d97125c4488a8572e427f1f4a0e")
-                    .data("code", code).ignoreContentType(true).post();
+                    .data("client_secret", "af411e36027af2ef7e941a3b9293a7bd019d2893")
+                    .data("code", code)
+                    .ignoreContentType(true).post();
 
             String token_field = "\"access_token\":\"";
             int starting_index = doc.wholeText().indexOf(token_field) + token_field.length();
@@ -46,7 +46,6 @@ public class CallBackController {
             });
             String username = map.get("login").toString();
             String email = map.get("email").toString();
-
             String created_at = map.get("created_at").toString();
             Date birthDate = null;
             try {

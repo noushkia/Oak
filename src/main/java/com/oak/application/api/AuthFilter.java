@@ -23,10 +23,10 @@ public class AuthFilter extends OncePerRequestFilter {
     private static final Set<String> UNPROTECTED_URLS = new HashSet<>(Arrays.asList(
             "http://localhost:3000/api/users/login",
             "http://localhost:3000/api/users/signUp",
-            "http://localhost:3000/api/users/callback",
+            "http://localhost:3000/callback",
             "http://localhost:8080/api/users/login",
             "http://localhost:8080/api/users/signUp",
-            "http://localhost:8080/api/users/callback"
+            "http://localhost:8080/callback"
     ));
 
     @Override

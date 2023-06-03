@@ -9,15 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add JWT authentication service">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CORSFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CallBackController.java" afterDir="false" />
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add GitHub Authentication&#10;TODO: Debug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/AuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CommodityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/ProviderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/ProviderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CallBackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/CallBackController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,21 +286,8 @@
       <workItem from="1684954397887" duration="5065000" />
       <workItem from="1685625755924" duration="1547000" />
       <workItem from="1685632512750" duration="13133000" />
-      <workItem from="1685688604487" duration="9838000" />
-    </task>
-    <task id="LOCAL-00031" summary="Add TODOs.">
-      <created>1678895565754</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1678895565754</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Add addCredit endpoint.">
-      <created>1678902304684</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1678902304684</updated>
+      <workItem from="1685688604487" duration="13328000" />
+      <workItem from="1685812683004" duration="8449000" />
     </task>
     <task id="LOCAL-00033" summary="Add BuyList class.&#10;Add finalizeBuyList functionality.">
       <created>1678908279609</created>
@@ -636,7 +618,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685647715758</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Replace CORS annotations with CORSFilter&#10;Reason:&#10;Order of filters is wrong with annotations and preflight packets are not handled correctly">
+      <created>1685706118943</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1685706118943</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Add GitHub Authentication&#10;TODO: Debug">
+      <created>1685717306071</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1685717306071</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -666,8 +662,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Show user credit on homepage&#10;Remove absolute paths" />
-    <MESSAGE value="Set search by name case-insensitive&#10;Set sort by rating descending" />
     <MESSAGE value="Debug&#10;Add Java code to commodity.jsp" />
     <MESSAGE value="Debug addComment." />
     <MESSAGE value="Integrate discount logic." />
@@ -691,7 +685,9 @@
     <MESSAGE value="Fix comment bug." />
     <MESSAGE value="Add duplicate user error." />
     <MESSAGE value="Add JWT authentication service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add JWT authentication service" />
+    <MESSAGE value="Replace CORS annotations with CORSFilter&#10;Reason:&#10;Order of filters is wrong with annotations and preflight packets are not handled correctly" />
+    <MESSAGE value="Add GitHub Authentication&#10;TODO: Debug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add GitHub Authentication&#10;TODO: Debug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -714,15 +710,10 @@
           <line>136</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/api/UserController.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/Server.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="32" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/oak/application/api/AuthFilter.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
