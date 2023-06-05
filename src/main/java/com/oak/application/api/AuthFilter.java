@@ -1,6 +1,7 @@
 package com.oak.application.api;
 
 import com.oak.application.service.AuthService;
+import com.oak.exception.Auth.InvalidAuthorization;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -12,9 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.Instant;
+import java.util.*;
 
 @Component
 @Order(2)
@@ -29,17 +29,25 @@ public class AuthFilter extends OncePerRequestFilter {
             "http://localhost:8080/callback"
     ));
 
+    private Boolean validate(Claims claims) {
+        return (Objects.equals(claims.getIssuer(), "Oak"))
+                && (claims.getExpiration().after(Date.from(Instant.now())));
+    }
+
     @Override
     protected void doFilterInternal(
             @NotNull HttpServletRequest request,
             @NotNull HttpServletResponse response,
             @NotNull FilterChain filterChain
-    ) throws ServletException, IOException {
+    ) {
 
         try {
             if (!UNPROTECTED_URLS.contains(request.getRequestURL().toString())) {
                 String jwtString = request.getHeader("Authorization");
                 Claims claims = AuthService.parseJWT(jwtString);
+                if (!validate(claims)) {
+                    throw new InvalidAuthorization();
+                }
                 request.setAttribute("username", claims.get("username").toString());
             }
 
