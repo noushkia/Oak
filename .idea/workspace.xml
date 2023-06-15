@@ -9,9 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add GitHub Authentication&#10;TODO: Debug">
+    <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Dockerized the project">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/application/api/AuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/application/api/AuthFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/ConnectionPool.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ca5" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -81,14 +82,14 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;ca7&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ca8&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/kianoush/Documents/UT/IE/CAs/Oak-Front&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.32988507&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;database.query.execution&quot;,
@@ -116,7 +117,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.OakApplication">
+  <component name="RunManager" selected="Maven.Oak [clean,install]">
     <configuration name="CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.oak.application.cli.CommandHandler" />
       <module name="Oak" />
@@ -188,6 +189,7 @@
               <list>
                 <option value="clean" />
                 <option value="install" />
+                <option value="-DskipTests" />
               </list>
             </option>
             <option name="pomFileName" />
@@ -214,6 +216,7 @@
       <item itemvalue="JUnit.CommentServiceTest" />
       <item itemvalue="JUnit.CommodityServiceTest" />
       <item itemvalue="Maven.Oak [clean,install]" />
+      <item itemvalue="Spring Boot.OakApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -286,13 +289,7 @@
       <workItem from="1685632512750" duration="13133000" />
       <workItem from="1685688604487" duration="13328000" />
       <workItem from="1685812683004" duration="8449000" />
-    </task>
-    <task id="LOCAL-00033" summary="Add BuyList class.&#10;Add finalizeBuyList functionality.">
-      <created>1678908279609</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1678908279609</updated>
+      <workItem from="1686845871164" duration="1248000" />
     </task>
     <task id="LOCAL-00034" summary="Clean UserHtmlPresentation code.">
       <created>1678908517477</created>
@@ -630,7 +627,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685717306071</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Dockerized the project">
+      <created>1686840204307</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1686840204307</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +664,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Debug&#10;Add Java code to commodity.jsp" />
     <MESSAGE value="Debug addComment." />
     <MESSAGE value="Integrate discount logic." />
     <MESSAGE value="Add discount to db.&#10;Add discount exceptions." />
@@ -685,7 +688,8 @@
     <MESSAGE value="Add JWT authentication service" />
     <MESSAGE value="Replace CORS annotations with CORSFilter&#10;Reason:&#10;Order of filters is wrong with annotations and preflight packets are not handled correctly" />
     <MESSAGE value="Add GitHub Authentication&#10;TODO: Debug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add GitHub Authentication&#10;TODO: Debug" />
+    <MESSAGE value="Dockerized the project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dockerized the project" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

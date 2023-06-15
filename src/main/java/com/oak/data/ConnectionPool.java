@@ -32,16 +32,14 @@ public class ConnectionPool {
         return dataSource.getConnection();
     }
 
-    public static void setEncoding(){
+    public static void setEncoding() {
         try {
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
             statement.execute("ALTER DATABASE OakDB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
             connection.close();
             statement.close();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }

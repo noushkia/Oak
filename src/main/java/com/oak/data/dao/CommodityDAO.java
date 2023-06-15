@@ -37,6 +37,16 @@ public class CommodityDAO {
         con.close();
     }
 
+    private boolean hasNoSqlInjection(String input) {
+        String[] sqlKeywords = {"SELECT", "INSERT", "UPDATE", "DELETE", "DROP", "CREATE", "ALTER", "TRUNCATE", "EXEC", "UNION", "OR", "AND", "LIKE"};
+        for (String keyword : sqlKeywords) {
+            if (input.toUpperCase().contains(keyword)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void setAvailableCondition() {
         conditions.add(
                 "inStock > 0"
@@ -44,15 +54,19 @@ public class CommodityDAO {
     }
 
     public void setCategoryCondition(String category) {
-        conditions.add(
-                "JSON_SEARCH(categories, 'one', '" + category + "') IS NOT NULL"
-        );
+        if (hasNoSqlInjection(category)) {
+            conditions.add(
+                    "JSON_SEARCH(categories, 'one', '" + category + "') IS NOT NULL"
+            );
+        }
     }
 
     public void setNameCondition(String name) {
-        conditions.add(
-                "name LIKE '%" + name + "%'"
-        );
+        if (hasNoSqlInjection(name)) {
+            conditions.add(
+                    "name LIKE '%" + name + "%'"
+            );
+        }
     }
 
     public void setProviderIdCondition(Integer providerId) {
@@ -82,7 +96,9 @@ public class CommodityDAO {
     }
 
     public void setSort(String attribute) {
-        sort = " ORDER BY " + attribute + " ASC";
+        if (hasNoSqlInjection(attribute)) {
+            sort = " ORDER BY " + attribute + " ASC";
+        }
     }
 
     public void setPagination(Integer limit, Integer pageNumber) {
@@ -90,13 +106,15 @@ public class CommodityDAO {
     }
 
     public void setProviderNameCondition(String providerName) {
-        currentQuery = "WITH ProviderId AS (" +
-                "SELECT id " +
-                "FROM Provider " +
-                "WHERE name LIKE '%" + providerName +
-                "%') " +
-                "SELECT * FROM Commodity c " +
-                "INNER JOIN ProviderId p ON c.providerId = p.id";
+        if (hasNoSqlInjection(providerName)) {
+            currentQuery = "WITH ProviderId AS (" +
+                    "SELECT id " +
+                    "FROM Provider " +
+                    "WHERE name LIKE '%" + providerName +
+                    "%') " +
+                    "SELECT * FROM Commodity c " +
+                    "INNER JOIN ProviderId p ON c.providerId = p.id";
+        }
     }
 
     private void fillCommodityStatement(PreparedStatement commodityStatement, Commodity commodity) throws SQLException, JsonProcessingException {
@@ -142,7 +160,8 @@ public class CommodityDAO {
                 commodityStatement.close();
                 con.close();
             }
-        } catch (SQLException | JsonProcessingException ignored) {}
+        } catch (SQLException | JsonProcessingException ignored) {
+        }
     }
 
     public void addRating(String username, Integer commodityId, Integer rating) {
@@ -167,7 +186,8 @@ public class CommodityDAO {
                 ratingStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {}
+        } catch (SQLException ignored) {
+        }
     }
 
     private Commodity createCommodity(ResultSet result) throws SQLException, JsonProcessingException {
@@ -215,7 +235,8 @@ public class CommodityDAO {
                 getNumberOfPagesStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {}
+        } catch (SQLException ignored) {
+        }
         return numPages;
     }
 
@@ -226,8 +247,7 @@ public class CommodityDAO {
         reset();
         if (commodities.size() > 0) {
             return commodities.get(0);
-        }
-        else {
+        } else {
             throw new CommodityNotFound(commodityId);
         }
     }
@@ -254,7 +274,8 @@ public class CommodityDAO {
                 getCommoditiesStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {}
+        } catch (SQLException ignored) {
+        }
         return commodities;
     }
 
@@ -290,7 +311,8 @@ public class CommodityDAO {
                 getRatingsStatement.close();
                 con.close();
             }
-        } catch (SQLException ignored) {}
+        } catch (SQLException ignored) {
+        }
         return ratings;
     }
 
@@ -313,6 +335,7 @@ public class CommodityDAO {
                 updateInStockStatement.close();
                 connection.close();
             }
-        } catch (SQLException ignored) {}
+        } catch (SQLException ignored) {
+        }
     }
 }
