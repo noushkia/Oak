@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class ConnectionPool {
     private static final BasicDataSource dataSource = new BasicDataSource();
-    private final static String dbURL = "jdbc:mysql://localhost:3306/OakDB";
+    private final static String dbURL = "jdbc:mysql://host.docker.internal:3306/OakDB";
     private final static String dbUserName = "admin";
     private final static String dbPassword = "admin";
 
@@ -32,16 +32,14 @@ public class ConnectionPool {
         return dataSource.getConnection();
     }
 
-    public static void setEncoding(){
+    public static void setEncoding() {
         try {
             Connection connection = getConnection();
             Statement statement = connection.createStatement();
             statement.execute("ALTER DATABASE OakDB CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;");
             connection.close();
             statement.close();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }

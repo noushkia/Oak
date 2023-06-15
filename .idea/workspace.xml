@@ -10,9 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="994815cc-c81a-445b-95cc-ef51ec88b9a2" name="Changes" comment="Add GitHub Authentication&#10;TODO: Debug">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/CommodityDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/ConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/ConnectionPool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/DAOLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/oak/data/dao/DAOLayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +90,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Facets",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.32988507",
     "settings.editor.selected.configurable": "database.query.execution",
@@ -117,7 +118,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.OakApplication">
+  <component name="RunManager" selected="Maven.Oak [clean,install]">
     <configuration name="CommandHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.oak.application.cli.CommandHandler" />
       <module name="Oak" />
@@ -189,6 +190,7 @@
               <list>
                 <option value="clean" />
                 <option value="install" />
+                <option value="-DskipTests" />
               </list>
             </option>
             <option name="pomFileName" />

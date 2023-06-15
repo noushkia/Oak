@@ -17,7 +17,7 @@ public class DAOLayer {
             commentDAO = new CommentDAO();
             userDAO = new UserDAO();
         } catch (SQLException sqlException) {
-            System.out.println(sqlException.getMessage());
+            sqlException.printStackTrace();
         }
     }
 
