@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 public class ConnectionPool {
     private static final BasicDataSource dataSource = new BasicDataSource();
-    private final static String dbURL = "jdbc:mysql://host.docker.internal:3306/OakDB";
+    private final static String dbURL = "jdbc:mysql://localhost:3306/OakDB";
     private final static String dbUserName = "admin";
     private final static String dbPassword = "admin";
 
